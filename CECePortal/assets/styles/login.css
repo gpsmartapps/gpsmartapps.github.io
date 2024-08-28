@@ -1,0 +1,155 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: hsl(125, 65%, 33%);
+    --primary-color-darker: hsl(122, 39%, 49%);
+    --secondary: #f3cd03;
+    --text-color: #252b42;
+    --second-text-color: #737373;
+    --danger-color: #e74040;
+    --background-color: #f7faff;
+}
+
+/* Selections */
+/* Unselectable class */
+.unselectable {
+    user-select: none;
+    /* Prevents text selection */
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE/Edge */
+    -o-user-select: none;
+    /* Opera */
+}
+
+/* Unselectable class */
+.selectable {
+    user-select: none;
+    /* Prevents text selection */
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE/Edge */
+    -o-user-select: none;
+    /* Opera */
+}
+
+.logo-link {
+    display: inline-block; /* Ensures that the link wraps around the image properly */
+    text-decoration: none; /* Removes underline from link */
+}
+
+.logo-image {
+    width: 120px; /* Adjust as needed */
+    height: auto; /* Keeps aspect ratio */
+    user-select: none; /* Prevents image selection */
+    -webkit-touch-callout: none; /* Prevents callout on iOS */
+}
+
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 1rem;
+    background-color: var(--background-color);
+}
+
+/* Logo */
+.login-container img {
+    width: 120px;
+    margin-bottom: 2rem;
+    padding-top: 2rem;
+}
+
+/* Form Styling */
+.login-form {
+    background-color: var(--primary-color-darker);
+    color: var(--background-color);
+    padding: 2rem;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-form h2 {
+    color: var(--background-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.login-form p {
+    color: var(--background-color);
+    font-size: small;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.login-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.login-form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: lighter;
+    color: var(--background-color);
+}
+
+.login-form .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.login-form .form-actions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.login-form .form-actions button {
+    background-color: var(--primary-color-darker);
+    color: var(--background-color);
+    border: none;
+    padding: 0.75rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: lighter;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.login-form .form-actions button:hover {
+    background-color: var(--primary-color);
+}
+
+.login-form .form-actions a {
+    color: var(--background-color);
+    text-decoration: none;
+    font-weight: lighter;
+    text-align: center;
+}
