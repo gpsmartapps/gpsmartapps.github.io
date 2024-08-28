@@ -18,6 +18,25 @@ document.querySelector('.cta-buttons button:last-child').addEventListener('click
     alert('Results are unavailable.');
 });
 
+document.getElementById('passport').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file.size > 15360) { // 15kb = 15360 bytes
+        alert('File size must be less than 15kb.');
+        event.target.value = ''; // Clear the input
+        document.getElementById('passportPreview').style.display = 'none';
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const preview = document.getElementById('passportPreview');
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+});
+
+
 // Attach event listeners to the buttons
 
 // document.getElementById('btnReg1').addEventListener('click', redirectToRegistration);
