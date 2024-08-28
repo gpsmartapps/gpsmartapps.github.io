@@ -6,8 +6,8 @@ document.querySelector(".hamburger").addEventListener("click", () => {
 
 
 function redirectToRegistration() {
-    // window.location.href = '/_registration.html';
-    alert('Registration is closed.');
+    window.location.href = '/CECePortal/enrollment.html';
+    // alert('Registration is closed.');
 }
 
 function redirectToLogin() {
