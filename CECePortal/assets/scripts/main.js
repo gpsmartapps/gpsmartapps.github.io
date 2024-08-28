@@ -14,6 +14,10 @@ function redirectToLogin() {
     window.location.href = '/CECePortal/login.html';
 }
 
+document.querySelector('.cta-buttons button:last-child').addEventListener('click', function () {
+    alert('Results are unavailable.');
+});
+
 // Attach event listeners to the buttons
 
 // document.getElementById('btnReg1').addEventListener('click', redirectToRegistration);
