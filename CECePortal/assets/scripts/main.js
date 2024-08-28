@@ -11,7 +11,7 @@ function redirectToRegistration() {
 }
 
 function redirectToLogin() {
-    window.location.href = '/_login.html';
+    window.location.href = '/CECePortal/login.html';
 }
 
 // Attach event listeners to the buttons
