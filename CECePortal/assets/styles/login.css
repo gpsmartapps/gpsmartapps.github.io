@@ -37,11 +37,23 @@ body {
 .login-right {
     padding: 30px;
     flex: 1;
+    position: relative;
 }
 
 .login-right h2 {
     color: var(--primary-color);
     margin-bottom: 20px;
+}
+
+.header-icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.header-icons .house-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
 }
 
 .form-control {
@@ -50,9 +62,6 @@ body {
 
 .form-actions {
     margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .form-actions button {
@@ -75,6 +84,22 @@ body {
     background-color: hsl(125, 65%, 25%);
     box-shadow: none;
     outline: none;
+}
+
+.form-links {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.form-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.form-links a:hover {
+    text-decoration: underline;
 }
 
 .show-password {
@@ -110,5 +135,10 @@ body {
 
     .form-actions button {
         width: 100%;
+    }
+
+    .header-icons {
+        position: static;
+        margin-top: 20px;
     }
 }
