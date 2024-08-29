@@ -7,7 +7,8 @@
 
 :root {
     --primary-color: hsl(125, 65%, 33%);
-    --primary-color-darker: hsla(122, 39%, 49%, 0.8); /* Adjusted for transparency */
+    --primary-color-darker: hsla(122, 39%, 49%, 0.8);
+    /* Adjusted for transparency */
     --secondary: #f3cd03;
     --text-color: #252b42;
     --second-text-color: #737373;
@@ -84,7 +85,8 @@ body {
 
 /* Form Styling */
 .login-form {
-    background-color: var(--primary-color-darker); /* Transparent background */
+    background-color: var(--primary-color-darker);
+    /* Transparent background */
     color: var(--background-color);
     padding: 2rem;
     border-radius: 5px;
@@ -139,9 +141,10 @@ body {
     padding: 0.75rem;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: lighter;
+    font-weight: bold;
     width: 100%;
     margin-bottom: 0.5rem;
+    /* opacity: 100%; */
 }
 
 .login-form .form-actions button:hover {
