@@ -9,12 +9,12 @@
 </head>
 
 <body>
-    <div class="login-container">
+    <div class="login-container unselectable">
         <!-- Left Panel -->
-        <div class="login-left">
+        <div class="login-left unselectable">
             <img src="/CECePortal/assets/logo/logo.png" alt="CEC ePortal Logo">
             <p>Welcome back to the Catholic Education Board ePortal. Please enter your login details to continue.</p>
-            <div class="login-hints">
+            <div class="login-hints unselectable">
                 <p><strong>Hints:</strong></p>
                 <p>1. Use your Centre Number as the username.</p>
                 <p>2. Ensure your password is strong.</p>
@@ -22,9 +22,9 @@
             </div>
         </div>
         <!-- Right Panel -->
-        <div class="login-right">
-            <div class="header-icons">
-                <a href="index.html" class="house-icon">
+        <div class="login-right unselectable">
+            <div class="header-icons unselectable">
+                <a href="index.html" class="house-icon unselectable">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                         class="bi bi-house" viewBox="0 0 16 16">
                         <path
@@ -34,33 +34,33 @@
             </div>
             <h2>Login</h2>
             <form id="loginForm">
-                <div class="form-group">
+                <div class="form-group unselectable">
                     <label for="centreNumber">Centre Number</label>
                     <input type="text" class="form-control" id="centreNumber" name="centreNumber"
                         placeholder="Enter Centre Number" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group unselectable">
                     <label for="emailAddress">Email Address</label>
                     <input type="email" class="form-control" id="emailAddress" name="emailAddress"
                         placeholder="Enter Email Address" required>
                 </div>
-                <div class="form-group password-group">
+                <div class="form-group password-group unselectable">
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password" name="password"
                         placeholder="Enter Password" required>
-                    <i class="bi bi-eye-slash show-password" id="togglePassword"></i>
+                    <i class="bi bi-eye-slash show-password unselectable" id="togglePassword"></i>
                 </div>
-                <div class="form-actions">
+                <div class="form-actions unselectable">
                     <button type="submit" class="btn">Login</button>
                 </div>
-                <div class="form-links">
+                <div class="form-links unselectable">
                     <a href="verify-centre.html">Register School</a>
                     <span>|</span>
                     <a href="reset-password.html">Reset Password</a>
                 </div>
             </form>
              <!-- Notification element -->
-        <div id="notification" class="notification"></div>
+        <div id="notification" class="notification unselectable"></div>
         </div>
     </div>
     <script src="/CECePortal/assets/scripts/bootstrap.bundle.min.js"></script>
