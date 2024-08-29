@@ -125,6 +125,34 @@ button:hover {
     border-color: #bee5eb;
 }
 
+/* Selections */
+/* Unselectable class */
+.unselectable {
+    user-select: none;
+    /* Prevents text selection */
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE/Edge */
+    -o-user-select: none;
+    /* Opera */
+}
+
+/* Unselectable class */
+.selectable {
+    user-select: none;
+    /* Prevents text selection */
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE/Edge */
+    -o-user-select: none;
+    /* Opera */
+}
 
 @media (max-width: 768px) {
     .enrollment-container {

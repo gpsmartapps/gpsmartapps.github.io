@@ -7,12 +7,13 @@
 }
 
 :root {
-    --primary-color: hsl(122, 39%, 49%);
     --primary-color-darker: hsl(125, 65%, 33%);
+    --primary-color: hsl(122, 39%, 49%);
     --secondary: #f3cd03;
     --text-color: #252b42;
     --second-text-color: #737373;
     --danger-color: #e74040;
+    --background-color: #f7faff;
 }
 
 /* Logo styling */
