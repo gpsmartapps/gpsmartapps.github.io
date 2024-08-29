@@ -4,15 +4,17 @@
     }
 
     .logo-link {
-        position:relative;
+        position: relative;
         top: 0;
         left: 17%;
         transform: translateX(-50%);
     }
 
     .header-logo {
-        max-width: 80px; /* Adjust size for mobile if needed */
-        margin-top: 0.5rem; /* Adjust spacing on mobile */
+        max-width: 80px;
+        /* Adjust size for mobile if needed */
+        margin-top: 0.5rem;
+        /* Adjust spacing on mobile */
     }
 
     nav {
@@ -43,7 +45,7 @@
         position: absolute;
         height: 14px;
         width: 20px;
-        background-image: url("/assets/images/icon-hamburger.svg");
+        background-image: url("/CECePortal/assets/images/icon-hamburger.svg");
         background-size: cover;
         top: 10px;
         right: 10px;
@@ -53,7 +55,7 @@
     .hamburger.open {
         height: 16px;
         width: 16px;
-        background-image: url("/assets/images/icon-close.svg");
+        background-image: url("/CECePortal/assets/images/icon-close.svg");
     }
 
     nav .nav-wrapper .logo {
