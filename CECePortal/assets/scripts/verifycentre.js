@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
             showNotification("Please enter a Centre/School Number.", "error");
         } else {
             // Redirect to schoolenrollment.html with the centreNumber as a query parameter
-            window.location.href = `/CECePortal/schoolenrollment.html?centreNumber=${encodeURIComponent(centreNumber)}`;
+            window.location.href = `/CECePortal/centre-enroll.html?centreNumber=${encodeURIComponent(centreNumber)}`;
         }
     });
 
