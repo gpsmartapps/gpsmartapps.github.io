@@ -18,7 +18,7 @@ document.querySelector('.cta-buttons button:last-child').addEventListener('click
     alert('Results are unavailable.');
 });
 
-document.getElementById('passport').addEventListener('change', function(event) {
+document.getElementById('passport').addEventListener('change', function (event) {
     const file = event.target.files[0];
     if (file.size > 15360) { // 15kb = 15360 bytes
         alert('File size must be less than 15kb.');
@@ -28,7 +28,7 @@ document.getElementById('passport').addEventListener('change', function(event) {
     }
 
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
         const preview = document.getElementById('passportPreview');
         preview.src = e.target.result;
         preview.style.display = 'block';
@@ -36,6 +36,25 @@ document.getElementById('passport').addEventListener('change', function(event) {
     reader.readAsDataURL(file);
 });
 
+document.getElementById('loginForm').addEventListener('submit', function (e) {
+    const centreNumber = document.getElementById('centre-number').value;
+    const email = document.getElementById('email').value;
+
+    // Validate Centre Number (should be numeric and non-empty)
+    if (isNaN(centreNumber) || centreNumber.trim() === '') {
+        alert('Please enter a valid numeric School/Centre Number.');
+        e.preventDefault(); // Prevent form submission
+        return false;
+    }
+
+    // Validate Email (basic format check)
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(email)) {
+        alert('Please enter a valid email address.');
+        e.preventDefault(); // Prevent form submission
+        return false;
+    }
+});
 
 // Attach event listeners to the buttons
 
