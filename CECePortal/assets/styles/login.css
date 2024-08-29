@@ -7,12 +7,12 @@
 
 :root {
     --primary-color: hsl(125, 65%, 33%);
-    --primary-color-darker: hsl(122, 39%, 49%);
+    --primary-color-darker: hsla(122, 39%, 49%, 0.8); /* Adjusted for transparency */
     --secondary: #f3cd03;
     --text-color: #252b42;
     --second-text-color: #737373;
     --danger-color: #e74040;
-    --background-color: #f7faff;
+    --background-color: #fdfdfd;
 }
 
 /* Selections */
@@ -45,15 +45,15 @@
 }
 
 .logo-link {
-    display: inline-block; /* Ensures that the link wraps around the image properly */
-    text-decoration: none; /* Removes underline from link */
+    display: inline-block;
+    text-decoration: none;
 }
 
 .logo-image {
-    width: 120px; /* Adjust as needed */
-    height: auto; /* Keeps aspect ratio */
-    user-select: none; /* Prevents image selection */
-    -webkit-touch-callout: none; /* Prevents callout on iOS */
+    width: 120px;
+    height: auto;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
 
@@ -84,12 +84,13 @@ body {
 
 /* Form Styling */
 .login-form {
-    background-color: var(--primary-color-darker);
+    background-color: var(--primary-color-darker); /* Transparent background */
     color: var(--background-color);
     padding: 2rem;
     border-radius: 5px;
     width: 100%;
     max-width: 400px;
+    opacity: 90%;
 }
 
 .login-form h2 {
