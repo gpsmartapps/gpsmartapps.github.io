@@ -21,7 +21,7 @@ body {
 }
 
 .enrollment-container {
-    max-width: 600px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
@@ -35,9 +35,16 @@ h2 {
     margin-bottom: 20px;
 }
 
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
 .form-group {
+    flex: 1;
+    min-width: 200px;
     margin-bottom: 15px;
-    width: 100%;
 }
 
 label {
@@ -49,6 +56,8 @@ label {
 
 input[type="text"],
 input[type="date"],
+input[type="tel"],
+input[type="email"],
 select,
 input[type="file"] {
     width: 100%;
@@ -175,5 +184,9 @@ input[type=number] {
 @media (max-width: 768px) {
     .enrollment-container {
         padding: 10px;
+    }
+
+    .form-row {
+        flex-direction: column;
     }
 }
