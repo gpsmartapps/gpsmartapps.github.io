@@ -114,14 +114,14 @@ body {
 }
 
 .login-left.login-hints ul {
-    list-style-type: none;
+    list-style-type:none;
     padding: 0;
     margin-bottom: 6rem;
 }
 
 .login-left ul li {
     margin-bottom: 0.5rem;
-    align-items: center;
+    align-items:center;
 }
 
 .show-password {
@@ -198,6 +198,12 @@ input[type=number] {
         text-align: center;
     }
 
+    .login-left ul li {
+        margin-bottom: 0.5rem;
+        align-items:center;
+        list-style-type: none;
+    }
+    
     .form-actions {
         flex-direction: column;
     }
