@@ -9,20 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (centreNumber === "") {
             showNotification("error", "Please enter a Centre/School Number.");
         } else {
-            // Redirect to schoolenrollment.html with the centreNumber as a query parameter
+            // Redirect to centre-enroll.html with the centreNumber as a query parameter
             window.location.href = `/CECePortal/centre-enroll.html?centreNumber=${encodeURIComponent(centreNumber)}`;
         }
     });
-
-    // function showNotification(type, message) {
-    //     notificationElement.textContent = message;
-    //     notificationElement.className = `notification ${type}`;
-    //     notificationElement.style.display = "block";
-
-    //     setTimeout(function () {
-    //         notificationElement.style.display = "none";
-    //     }, 3000); // Hide notification after 3 seconds
-    // }
 
     function showNotification(type, message) {
         const notification = document.getElementById('notification');
@@ -48,9 +38,4 @@ document.addEventListener("DOMContentLoaded", function () {
             notification.style.display = 'none';
         }, 3000);
     }
-
-    // Example usage:
-    // showNotification('success', 'You have successfully logged in!');
-    // showNotification('error', 'Invalid login credentials, please try again.');
-
 });

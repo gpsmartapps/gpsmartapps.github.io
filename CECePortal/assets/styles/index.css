@@ -23,9 +23,6 @@
     /* Adjust the size as needed */
     color: var(--primary-color-darker);
     user-select: none;
-    /* Makes the text non-selectable */
-    /* text-transform:uppercase; */
-    /* Optional: Makes the text uppercase */
 }
 
 .logo-link {
