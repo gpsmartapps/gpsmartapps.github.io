@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Registration - Catholic Education Board</title>
+    <link href="/CECePortal/assets/styles/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/CECePortal/assets/styles/verifycentre.css">
+</head>
+
+<body>
+    <div class="registration-container unselectable">
+        <!-- Left Panel -->
+        <div class="left-panel unselectable">
+            <a href="/CECePortal/index.html" class="logo-link">
+                <img src="/CECePortal/assets/logo/logo.png" alt="CEC ePortal Logo" class="logo-image unselectable">
+            </a>
+            <h1>Examination Registration</h1>
+            <h2>Welcome to the Registration Portal</h2>
+            <ul>
+                <li>Register your school or center</li>
+                <li>Manage student data</li>
+                <li>Access exam information</li>
+            </ul>
+            <p>If you need any help, please email us at <a href="mailto:support@cecexams.com">support@cecexams.com</a>
+            </p>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel unselectable">
+            <h2>School Update</h2>
+            <p>Hi, to get access to your school, enter the school number and complete the form.</p>
+            <div class="form-group unselectable">
+                <input type="number" id="centreNumber" name="centreNumber" placeholder="Enter Centre/School Number">
+            </div>
+            <div class="form-actions">
+                <button type="button" id="submit">Continue</button>
+                <a href="/CECePortal/login.html">Back to Login</a>
+            </div>
+        </div>
+        <!-- Notification element -->
+        <div id="notification" class="notification"></div>
+    </div>
+    <script src="/CECePortal/assets/scripts/bootstrap.bundle.min.js"></script>
+    <script src="/CECePortal/assets/scripts/verifycentre.js"></script>
+
+</body>
+
+</html>

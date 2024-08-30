@@ -6,8 +6,8 @@ document.querySelector(".hamburger").addEventListener("click", () => {
 
 
 function redirectToRegistration() {
-    // window.location.href = '/_registration.html';
-    alert('Registration is closed.');
+    window.location.href = '/CECePortal/enrollment.html';
+    // alert('Registration is closed.');
 }
 
 function redirectToLogin() {
@@ -19,9 +19,4 @@ document.querySelector('.cta-buttons button:last-child').addEventListener('click
 });
 
 
-// Attach event listeners to the buttons
-
-// document.getElementById('btnReg1').addEventListener('click', redirectToRegistration);
-// document.getElementById('btnReg2').addEventListener('click', redirectToRegistration);
-// document.getElementById('btnLogin').addEventListener('click', redirectToLogin);
 
