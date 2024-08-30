@@ -249,4 +249,17 @@ input[type=number] {
     .form-actions button {
         width: 100%;
     }
+
+    .login-left.login-hints ul {
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 6rem;
+    }
+
+    .login-left ul li {
+        margin-bottom: 0.5rem;
+        list-style-type: none;
+        margin-right: 30px;
+    }
+
 }
