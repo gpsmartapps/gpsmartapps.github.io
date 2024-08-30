@@ -7,13 +7,12 @@
 }
 
 :root {
-    --primary-color-darker: hsl(125, 65%, 33%);
     --primary-color: hsl(122, 39%, 49%);
+    --primary-color-darker: hsl(125, 65%, 33%);
     --secondary: #f3cd03;
     --text-color: #252b42;
     --second-text-color: #737373;
     --danger-color: #e74040;
-    --background-color: #f7faff;
 }
 
 /* Logo styling */
@@ -140,7 +139,7 @@ nav .nav-wrapper .logo {
     line-height: 2rem;
     letter-spacing: 0.1px;
     color: var(--text-color);
-    margin-right: 4.1875rem;
+    margin-right: 5.1875rem;
 }
 
 nav .nav-wrapper ul {
@@ -178,7 +177,6 @@ nav .login {
     color: var(--primary-color);
     letter-spacing: 0.2px;
     cursor: pointer;
-    /* margin-left: 2.1875rem; */
 }
 
 nav .signup {
@@ -191,7 +189,7 @@ nav .signup {
     gap: 0.9375rem;
     border-radius: 5px;
     transition: background 0.1s ease-in-out;
-    /* margin-left: 1.1875rem; */
+    margin-right: 5.1875rem;
 }
 
 nav .signup:hover,
@@ -277,11 +275,10 @@ nav .signup:hover,
 }
 
 .hero-info h1 {
-    font-size: 3.225rem;
+    font-size: 3.625rem;
     line-height: 5rem;
     letter-spacing: 0.2px;
     color: var(--text-color);
-    opacity: 0.7;
 }
 
 .hero-info .cta-buttons {
