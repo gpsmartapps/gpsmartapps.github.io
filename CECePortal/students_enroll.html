@@ -6,96 +6,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Enrollment</title>
     <link rel="stylesheet" href="/CECePortal/assets/styles/students_enroll.css">
+    <link rel="stylesheet" href="/CECePortal/assets/styles/bootstrap-icons.min">
 </head>
 
 <body>
     <div class="enrollment-container">
-        <header>
+        <!-- <header>
             <nav class="container unselectable">
                 <a href="/CECePortal/index.html">
                     <img src="/CECePortal/assets/logo/logo2.png" alt="CEC ePortal" class="logo unselectable">
                 </a>
             </nav>
-        </header>
+        </header> -->
 
-        <h2>Student Enrollment</h2>
-        <form id="enrollmentForm" enctype="multipart/form-data">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="surname">Surname</label>
-                    <input type="text" id="surname" name="surname" required>
-                </div>
-                <div class="form-group">
-                    <label for="firstname">First Name</label>
-                    <input type="text" id="firstname" name="firstname" required>
-                </div>
+        <div class="form-wrapper">
+            <!-- Inside left-panel div -->
+            <div class="left-panel">
+                <a href="/CECePortal/index.html">
+                    <img src="/CECePortal/assets/logo/logo.png" alt="CEC ePortal" class="logo unselectable">
+                </a>
+                <h2>Student Enrollment</h2>
+                <p>Complete the form to enroll a student. Provide accurate information to ensure successful
+                    registration.</p>
+                <p>For any assistance, please <a href="mailto:support@cec-portal.com">Contact Support</a>.</p>
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="othername">Other Name</label>
-                    <input type="text" id="othername" name="othername">
-                </div>
-                <div class="form-group">
-                    <label for="dob">Date of Birth</label>
-                    <input type="date" id="dob" name="dob" required>
-                </div>
+
+            <div class="right-panel">
+                <form id="enrollmentForm" enctype="multipart/form-data">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="surname">Surname</label>
+                            <input type="text" id="surname" name="surname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname">First Name</label>
+                            <input type="text" id="firstname" name="firstname" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="othername">Other Name</label>
+                            <input type="text" id="othername" name="othername">
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="disability">Disability</label>
+                            <select id="disability" name="disability" required>
+                                <option value="">Select Disability</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Visually Impaired">Visually Impaired</option>
+                                <option value="Hearing/Speech Impaired">Hearing/Speech Impaired</option>
+                                <option value="Physically Impaired">Physically Impaired</option>
+                                <option value="Mentally Impaired">Mentally Impaired</option>
+                                <option value="Spastic/Palsy/Epilectic Condition">Spastic/Palsy/Epilectic Condition
+                                </option>
+                                <option value="Low Vision">Low Vision</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <input type="text" id="state" name="state" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lga">LGA or City</label>
+                            <input type="text" id="lga" name="lga" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email (Optional)</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="passport">Passport Photo (Max 15kb)</label>
+                        <input type="file" id="passport" name="passport" accept="image/jpeg, image/jpg" required>
+                        <img id="passportPreview" alt="Passport Preview"
+                            style="display:none; width: 100px; height: 100px; margin-top: 10px;">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" id="submit">Submit</button>
+                    </div>
+                </form>
+                <!-- Notification element -->
+                <div id="notification" class="notification unselectable"></div>
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="gender">Gender</label>
-                    <select id="gender" name="gender" required>
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="disability">Disability</label>
-                    <select id="disability" name="disability" required>
-                        <option value="">Select Disability</option>
-                        <option value="Normal">Normal</option>
-                        <option value="Visually Impaired">Visually Impaired</option>
-                        <option value="Hearing/Speech Impaired">Hearing/Speech Impaired</option>
-                        <option value="Physically Impaired">Physically Impaired</option>
-                        <option value="Mentally Impaired">Mentally Impaired</option>
-                        <option value="Spastic/Palsy/Epilectic Condition">Spastic/Palsy/Epilectic Condition</option>
-                        <option value="Low Vision">Low Vision</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="state">State</label>
-                    <input type="text" id="state" name="state" required>
-                </div>
-                <div class="form-group">
-                    <label for="lga">LGA or City</label>
-                    <input type="text" id="lga" name="lga" required>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email (Optional)</label>
-                    <input type="email" id="email" name="email">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="passport">Passport Photo (Max 15kb)</label>
-                <input type="file" id="passport" name="passport" accept="image/jpeg, image/jpg" required>
-                <img id="passportPreview" alt="Passport Preview"
-                    style="display:none; width: 100px; height: 100px; margin-top: 10px;">
-            </div>
-            <div class="form-actions">
-                <button type="submit" id="submit">Submit</button>
-            </div>
-        </form>
-        <!-- Notification element -->
-        <div id="notification" class="notification unselectable"></div>
+        </div>
     </div>
     <script src="/CECePortal/assets/scripts/bootstrap.bundle.min.js"></script>
     <script src="/CECePortal/assets/scripts/students_enroll.js"></script>
 </body>
+
+</html>

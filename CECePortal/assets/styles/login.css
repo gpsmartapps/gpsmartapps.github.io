@@ -29,14 +29,9 @@ body {
 
 .login-left {
     background-color: var(--primary-color);
+    color: #fff;
     padding: 30px;
-    color: white;
     flex: 1;
-}
-
-.login-left img {
-    max-width: 100px;
-    margin-bottom: 20px;
 }
 
 .login-right {
@@ -50,6 +45,12 @@ body {
     margin-bottom: 20px;
 }
 
+
+.login-left img {
+    max-width: 100px;
+    margin-bottom: 20px;
+}
+
 .header-icons {
     position: absolute;
     top: 10px;
@@ -59,7 +60,14 @@ body {
 .header-icons .house-icon {
     font-size: 1.5rem;
     color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
+
+.header-icons .house-icon:hover {
+    color: var(--primary-color-darker);
+}
+
 
 .form-control {
     margin-bottom: 15px;
@@ -218,7 +226,6 @@ input[type=number] {
 }
 
 
-
 @media (max-width: 768px) {
     .login-container {
         flex-direction: column;
@@ -230,10 +237,9 @@ input[type=number] {
         text-align: center;
     }
 
-    .login-left ul li {
-        margin-bottom: 0.5rem;
-        align-items: center;
-        list-style-type: none;
+    .header-icons {
+        position: static;
+        margin-top: 1rem;
     }
 
     .form-actions {
@@ -242,10 +248,5 @@ input[type=number] {
 
     .form-actions button {
         width: 100%;
-    }
-
-    .header-icons {
-        position: static;
-        margin-top: 0.6rem;
     }
 }

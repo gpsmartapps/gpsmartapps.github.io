@@ -21,7 +21,7 @@ body {
 }
 
 .enrollment-container {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
@@ -33,6 +33,49 @@ h2 {
     text-align: center;
     color: var(--primary-color);
     margin-bottom: 20px;
+}
+
+.form-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.left-panel, .right-panel {
+    flex: 1;
+}
+
+/* For the left panel logo */
+.left-panel .logo {
+    display: block;
+    margin: 0 auto 20px auto;
+    max-width: 100px; /* Adjust as needed */
+}
+
+
+.left-panel {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 250px;
+}
+
+.left-panel p {
+    margin-bottom: 15px;
+}
+
+.left-panel a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.right-panel {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 450px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-row {
@@ -126,24 +169,8 @@ button:hover {
     color: #856404;
 }
 
-
-/* Selections */
 /* Unselectable class */
 .unselectable {
-    user-select: none;
-    /* Prevents text selection */
-    -webkit-user-select: none;
-    /* Safari */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* IE/Edge */
-    -o-user-select: none;
-    /* Opera */
-}
-
-/* Unselectable class */
-.selectable {
     user-select: none;
     /* Prevents text selection */
     -webkit-user-select: none;
@@ -179,7 +206,11 @@ input[type=number] {
         padding: 10px;
     }
 
-    .form-row {
+    .form-wrapper {
         flex-direction: column;
+    }
+
+    .left-panel, .right-panel {
+        min-width: 100%;
     }
 }
