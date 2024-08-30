@@ -1,4 +1,3 @@
-
 :root {
     --primary-color-darker: hsl(125, 65%, 33%);
     --primary-color: hsl(122, 39%, 49%);
@@ -94,7 +93,7 @@ body {
 
 .form-links {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 8px;
 }
 
 .form-links a {
@@ -107,6 +106,22 @@ body {
 .form-links a:hover {
     text-decoration: underline;
     color: var(--primary-color);
+}
+
+.login-left.login-hints a {
+    color: var(--background-color);
+    text-decoration: underline;
+}
+
+.login-left.login-hints ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 6rem;
+}
+
+.login-left ul li {
+    margin-bottom: 0.5rem;
+    align-items: center;
 }
 
 .show-password {
@@ -123,7 +138,7 @@ body {
     font-size: 0.9rem;
     line-height: 1.5;
     margin-top: 20px;
-    }
+}
 
 /* Selections */
 /* Unselectable class */
@@ -193,6 +208,6 @@ input[type=number] {
 
     .header-icons {
         position: static;
-        margin-top:0.6rem;
+        margin-top: 0.6rem;
     }
 }
