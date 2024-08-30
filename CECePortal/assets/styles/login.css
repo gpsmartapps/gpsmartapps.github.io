@@ -108,7 +108,7 @@ body {
     color: var(--primary-color);
 }
 
-.login-left.login-hints a {
+.login-left a {
     color: var(--background-color);
     text-decoration: underline;
 }
