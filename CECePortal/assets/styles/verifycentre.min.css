@@ -184,4 +184,8 @@ body {
         position: static;
         margin-top: 1rem
     }
+
+    .left-panel ul {
+        list-style: none;
+    }
 }
