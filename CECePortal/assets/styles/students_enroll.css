@@ -1,3 +1,4 @@
+/* Global Variables */
 :root {
     --primary-color-darker: hsl(125, 65%, 33%);
     --primary-color: hsl(122, 39%, 49%);
@@ -6,25 +7,78 @@
     --second-text-color: #737373;
     --danger-color: #e74040;
     --background-color: #f7faff;
+    --input-padding: 10px;
+    --border-color: #ccc;
+    --button-padding: 10px 20px;
+    --button-border-radius: 4px;
+    --font-size: 14px;
 }
 
-.header-icons .house-icon {
-    color: var(--primary-color);
+/* Container */
+.login-container {
+    display: flex;
+    max-width: 1200px;
+    /* Increased width for landscape orientation */
+    width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px auto;
+    /* Margin to center the container */
 }
 
-.header-icons .house-icon svg {
-    width: 24px;
-    height: 24px;
+/* Left Panel */
+.login-left {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-left img {
+    max-width: 100px;
+    margin-bottom: 20px;
+    margin-left: 140px;
+}
+
+.login-left h2 {
+    margin-top: 0;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Right Panel */
+.login-right {
+    padding: 30px;
+    flex: 2;
+    /* Make the right panel wider */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-right h2 {
+    margin-bottom: 20px;
+}
+
+/* Form Layout */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allows wrapping for smaller screens */
+    gap: 20px;
 }
 
 .form-group {
+    flex: 1;
+    min-width: 200px;
+    /* Ensure form groups have a minimum width */
     margin-bottom: 15px;
-}
-
-.form-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
 }
 
 .form-group label {
@@ -35,29 +89,37 @@
 .form-group input,
 .form-group select {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: var(--input-padding);
+    border: 1px solid var(--border-color);
+    border-radius: var(--button-border-radius);
+    background-color: #fff;
 }
 
+/* Form Actions */
 .form-actions {
     margin-top: 20px;
+    text-align: center;
 }
 
 .form-actions button {
     background-color: var(--primary-color);
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
+    padding: var(--button-padding);
+    border-radius: var(--button-border-radius);
     cursor: pointer;
 }
 
+.form-actions button:hover {
+    background-color: var(--primary-color-darker);
+}
+
+/* Notifications */
 .notification {
     margin-top: 20px;
     padding: 10px;
-    border-radius: 4px;
-    font-size: 14px;
+    border-radius: var(--button-border-radius);
+    font-size: var(--font-size);
 }
 
 .notification.info {
@@ -68,4 +130,35 @@
 .notification.error {
     background-color: var(--danger-color);
     color: #fff;
+}
+
+/* Header Icons */
+.header-icons .house-icon {
+    color: var(--primary-color);
+}
+
+.header-icons .house-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-left,
+    .login-right {
+        padding: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-group {
+        min-width: 100%;
+        /* Ensure form groups take full width in portrait mode */
+    }
 }
