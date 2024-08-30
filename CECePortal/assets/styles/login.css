@@ -82,11 +82,13 @@ body {
 
 .form-actions button:hover {
     background-color: hsl(125, 65%, 25%);
+    color: #fff;
 }
 
 .form-actions button:focus,
 .form-actions button:active {
     background-color: hsl(125, 65%, 25%);
+    color: #fff;
     box-shadow: none;
     outline: none;
 }
