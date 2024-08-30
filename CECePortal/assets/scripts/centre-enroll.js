@@ -4,14 +4,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const notificationElement = document.getElementById("notification");
 
     submitButton.addEventListener("click", async function (e) {
-        e.preventDefault(); // Prevent default form submission
-
         const centreNumber = centreNumberInput.value.trim();
 
         if (!centreNumber) {
             showNotification("Please enter a Centre/School Number.", "error");
+            e.preventDefault(); // Prevent default form submission
         } else if (!/^\d+$/.test(centreNumber)) {
             showNotification("Centre Number should only contain numeric values.", "error");
+            e.preventDefault(); // Prevent default form submission
+
         } else {
             // Send data securely to the server
             sendVerifyCentreData({ centreNumber });
@@ -45,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 // Handle error response
                 showNotification("Verification failed. Please try again.", "error");
+
             }
         } catch (error) {
             // Handle network or other errors

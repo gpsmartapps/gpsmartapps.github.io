@@ -3,11 +3,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const centreNumberInput = document.getElementById("centreNumber");
     const notificationElement = document.getElementById("notification");
 
-    submitButton.addEventListener("click", function () {
+    submitButton.addEventListener("click", function (e) {
         const centreNumber = centreNumberInput.value.trim();
 
         if (centreNumber === "") {
             showNotification("error", "Please enter a Centre/School Number.");
+            e.preventDefault(); // Prevent default form submission
         } else {
             // Redirect to centre-enroll.html with the centreNumber as a query parameter
             window.location.href = `/CECePortal/centre-enroll.html?centreNumber=${encodeURIComponent(centreNumber)}`;

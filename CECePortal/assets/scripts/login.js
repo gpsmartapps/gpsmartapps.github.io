@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     submitButton.addEventListener("click", async function (e) {
         e.preventDefault(); // Prevent default form submission
-
         const centreNumber = centreNumberInput.value.trim();
         const emailAddress = emailAddressInput.value.trim();
         const password = passwordInput.value.trim();

@@ -10,8 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!email) {
             showNotification("Please enter an email address.", "error");
+            e.preventDefault(); // Prevent default form submission
         } else if (!validateEmail(email)) {
             showNotification("Please enter a valid email address.", "error");
+            e.preventDefault(); // Prevent default form submission
         } else {
             // Send data securely to the server
             sendResetData({ email });
