@@ -1,1 +1,41 @@
-const _0x538a6a=_0x2ccf;function _0x2ccf(_0x1e5ebe,_0x44eb51){const _0x4fa20b=_0x4fa2();return _0x2ccf=function(_0x2ccf00,_0x45326f){_0x2ccf00=_0x2ccf00-0x188;let _0x3b75e0=_0x4fa20b[_0x2ccf00];return _0x3b75e0;},_0x2ccf(_0x1e5ebe,_0x44eb51);}(function(_0x34ba3d,_0xc79007){const _0x2306d3=_0x2ccf,_0x3f07b9=_0x34ba3d();while(!![]){try{const _0x366f17=-parseInt(_0x2306d3(0x18d))/0x1*(parseInt(_0x2306d3(0x198))/0x2)+-parseInt(_0x2306d3(0x18e))/0x3+-parseInt(_0x2306d3(0x193))/0x4+-parseInt(_0x2306d3(0x191))/0x5*(-parseInt(_0x2306d3(0x1a5))/0x6)+parseInt(_0x2306d3(0x1a1))/0x7+-parseInt(_0x2306d3(0x19a))/0x8+parseInt(_0x2306d3(0x19b))/0x9;if(_0x366f17===_0xc79007)break;else _0x3f07b9['push'](_0x3f07b9['shift']());}catch(_0x1479b8){_0x3f07b9['push'](_0x3f07b9['shift']());}}}(_0x4fa2,0xe7dd6),document[_0x538a6a(0x19c)]('DOMContentLoaded',function(){const _0x14691e=_0x538a6a,_0x373aea=document[_0x14691e(0x19d)]('submit'),_0x41906f=document['getElementById'](_0x14691e(0x18c)),_0x2fcbc6=document['getElementById'](_0x14691e(0x190));_0x373aea[_0x14691e(0x19c)](_0x14691e(0x195),function(){const _0xc79418=_0x14691e,_0x2f6d92=_0x41906f[_0xc79418(0x196)][_0xc79418(0x188)]();_0x2f6d92===''?_0x3eae47(_0xc79418(0x199),_0xc79418(0x1a6)):window[_0xc79418(0x192)][_0xc79418(0x1a7)]=_0xc79418(0x18a)+encodeURIComponent(_0x2f6d92);});function _0x3eae47(_0x22047b,_0x186251){const _0x18d720=_0x14691e,_0x17bd81=document['getElementById'](_0x18d720(0x190));_0x17bd81[_0x18d720(0x18f)]=_0x18d720(0x1a2);if(_0x22047b==='error')_0x17bd81['classList'][_0x18d720(0x19f)](_0x18d720(0x199));else{if(_0x22047b===_0x18d720(0x197))_0x17bd81[_0x18d720(0x18b)][_0x18d720(0x19f)](_0x18d720(0x197));else _0x22047b===_0x18d720(0x194)&&_0x17bd81[_0x18d720(0x18b)][_0x18d720(0x19f)](_0x18d720(0x194));}_0x17bd81[_0x18d720(0x1a0)]=_0x186251,_0x17bd81[_0x18d720(0x189)][_0x18d720(0x1a3)]=_0x18d720(0x1a4),setTimeout(()=>{const _0x29a344=_0x18d720;_0x17bd81[_0x29a344(0x189)][_0x29a344(0x1a3)]=_0x29a344(0x19e);},0xbb8);}}));function _0x4fa2(){const _0x110f9d=['success','8ykdUck','error','5160448jlNeCt','2361456sVUSrn','addEventListener','getElementById','none','add','textContent','12878572vIfnVS','notification\x20unselectable','display','block','1359462iVkzfz','Please\x20enter\x20a\x20Centre/School\x20Number.','href','trim','style','/CECePortal/centre-enroll.html?centreNumber=','classList','centreNumber','305263HsWKyK','105984OwAQyV','className','notification','35vkHMRG','location','3348260vHcVqz','info','click','value'];_0x4fa2=function(){return _0x110f9d;};return _0x4fa2();}
+document.addEventListener("DOMContentLoaded", function () {
+    const submitButton = document.getElementById("submit");
+    const centreNumberInput = document.getElementById("centreNumber");
+    const notificationElement = document.getElementById("notification");
+
+    submitButton.addEventListener("click", function () {
+        const centreNumber = centreNumberInput.value.trim();
+
+        if (centreNumber === "") {
+            showNotification("error", "Please enter a Centre/School Number.");
+        } else {
+            // Redirect to centre-enroll.html with the centreNumber as a query parameter
+            window.location.href = `/CECePortal/centre-enroll.html?centreNumber=${encodeURIComponent(centreNumber)}`;
+        }
+    });
+
+    function showNotification(type, message) {
+        const notification = document.getElementById('notification');
+
+        // Clear any existing notification classes
+        notification.className = 'notification unselectable';
+
+        // Add the appropriate class based on the type
+        if (type === 'error') {
+            notification.classList.add('error');
+        } else if (type === 'success') {
+            notification.classList.add('success');
+        } else if (type === 'info') {
+            notification.classList.add('info');
+        }
+
+        // Set the message and show the notification
+        notification.textContent = message;
+        notification.style.display = 'block';
+
+        // Hide the notification after a few seconds
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 3000);
+    }
+});

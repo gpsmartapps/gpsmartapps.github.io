@@ -1,30 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
     const submitButton = document.getElementById("submit");
-    const centreNumberInput = document.getElementById("centreNumber");
-    const emailAddressInput = document.getElementById("emailAddress");
-    const passwordInput = document.getElementById("passwd");
+    const emailInput = document.getElementById("email");
     const notificationElement = document.getElementById("notification");
 
     submitButton.addEventListener("click", async function (e) {
         e.preventDefault(); // Prevent default form submission
 
-        const centreNumber = centreNumberInput.value.trim();
-        const emailAddress = emailAddressInput.value.trim();
-        const password = passwordInput.value.trim();
+        const email = emailInput.value.trim();
 
-        if (!centreNumber) {
-            showNotification("Please enter a Centre/School Number.", "error");
-        } else if (!emailAddress) {
+        if (!email) {
             showNotification("Please enter an email address.", "error");
-        } else if (!password) {
-            showNotification("Please enter a password.", "error");
-        } else if (!/^\d+$/.test(centreNumber)) {
-            showNotification("Centre Number should only contain numeric values.", "error");
-        } else if (!validateEmail(emailAddress)) {
+        } else if (!validateEmail(email)) {
             showNotification("Please enter a valid email address.", "error");
         } else {
             // Send data securely to the server
-            sendLoginData({ centreNumber, emailAddress, password });
+            sendResetData({ email });
         }
     });
 
@@ -43,9 +33,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 3000); // Hide notification after 3 seconds
     }
 
-    async function sendLoginData(data) {
+    async function sendResetData(data) {
         try {
-            const response = await fetch('/CECePortal/login', { // Ensure your endpoint is secure
+            const response = await fetch('/CECePortal/password-reset', { // Ensure your endpoint is secure
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,15 +44,11 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             if (response.ok) {
-                // Handle successful response
-                showNotification("Login successful!", "success");
-                window.location.href = '/CECePortal/dashboard.html'; // Redirect after successful login
+                showNotification("Password reset instructions sent!", "success");
             } else {
-                // Handle error response
-                showNotification("Login failed. Please try again.", "error");
+                showNotification("Failed to send reset instructions. Please try again.", "error");
             }
         } catch (error) {
-            // Handle network or other errors
             showNotification("An error occurred. Please try again later.", "error");
         }
     }

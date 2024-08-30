@@ -1,1 +1,241 @@
-function _0x2173(_0x4e8d82, _0x254c34) { const _0x1a2044 = _0x1a20(); return _0x2173 = function (_0x217307, _0x284366) { _0x217307 = _0x217307 - 0x109; let _0x29515c = _0x1a2044[_0x217307]; return _0x29515c; }, _0x2173(_0x4e8d82, _0x254c34); } const _0x132e68 = _0x2173; (function (_0x1987db, _0x7d5a6d) { const _0xf30b44 = _0x2173, _0x4a18b1 = _0x1987db(); while (!![]) { try { const _0x587460 = -parseInt(_0xf30b44(0x129)) / 0x1 * (-parseInt(_0xf30b44(0x1ea)) / 0x2) + parseInt(_0xf30b44(0x2d4)) / 0x3 * (parseInt(_0xf30b44(0x208)) / 0x4) + parseInt(_0xf30b44(0x2ac)) / 0x5 + -parseInt(_0xf30b44(0x191)) / 0x6 + parseInt(_0xf30b44(0x1da)) / 0x7 * (parseInt(_0xf30b44(0x1e9)) / 0x8) + -parseInt(_0xf30b44(0x115)) / 0x9 + -parseInt(_0xf30b44(0x32d)) / 0xa * (parseInt(_0xf30b44(0x341)) / 0xb); if (_0x587460 === _0x7d5a6d) break; else _0x4a18b1['push'](_0x4a18b1['shift']()); } catch (_0x4a61c9) { _0x4a18b1['push'](_0x4a18b1['shift']()); } } }(_0x1a20, 0x69b24), document[_0x132e68(0x310)](_0x132e68(0x360))['addEventListener'](_0x132e68(0x10e), function (_0x4b4238) { const _0x48713e = _0x132e68, _0x3409dc = _0x4b4238[_0x48713e(0x257)][_0x48713e(0x12a)][0x0]; if (_0x3409dc) { if (_0x3409dc[_0x48713e(0x322)] > 0x3c00) { alert('The\x20selected\x20file\x20is\x20too\x20large.\x20Please\x20choose\x20an\x20image\x20under\x2015kb.'), _0x4b4238[_0x48713e(0x257)][_0x48713e(0x247)] = '', document['getElementById']('passportPreview')[_0x48713e(0x249)][_0x48713e(0x2f4)] = _0x48713e(0x296); return; } if (_0x3409dc['type'] === _0x48713e(0x1a8) || _0x3409dc[_0x48713e(0x206)] === _0x48713e(0x150)) { const _0x1f5495 = new FileReader(); _0x1f5495[_0x48713e(0x294)] = function (_0x160beb) { const _0x1f8e86 = _0x48713e, _0x355552 = document[_0x1f8e86(0x310)](_0x1f8e86(0x13b)); _0x355552[_0x1f8e86(0x2ab)] = _0x160beb[_0x1f8e86(0x257)][_0x1f8e86(0x1cc)], _0x355552[_0x1f8e86(0x249)][_0x1f8e86(0x2f4)] = _0x1f8e86(0x113); }, _0x1f5495['readAsDataURL'](_0x3409dc); } else alert(_0x48713e(0x186)), _0x4b4238['target'][_0x48713e(0x247)] = '', document['getElementById']('passportPreview')[_0x48713e(0x249)][_0x48713e(0x2f4)] = 'none'; } else document[_0x48713e(0x310)]('passportPreview')[_0x48713e(0x249)][_0x48713e(0x2f4)] = _0x48713e(0x296); })); function _0x1a20() { const _0x6d6260 = ['Giade', 'Ihiala', 'Yabo', 'Wasagu/Danko', 'Gwagwalada', 'Jama\x27are', 'Birnin\x20Kebbi', 'Orolu', 'Kurfi', 'Buji', 'Zango-Kataf', 'Ganaye', 'Ukpoba', 'Jos\x20East', 'Birnin\x20Magaji', 'Etsako\x20Central', 'Ibi', 'Imeko-Afon', 'Doma', 'Ikeduru', 'Moro', 'Marte', 'Ekiti-East', 'appendChild', 'Donga', 'Bakassi', 'Yala', 'getElementById', 'Gabasawa', 'Ogun\x20Waterside', 'Central', 'Ifedore', 'Ikere', 'Udu', 'Umu-Neochi', 'Abak', 'Abuja\x20Municipal', 'Yorro', 'Offa', 'Ethiope\x20East', 'Ikenne', 'Shagamu', 'Epe', 'Ife\x20North', 'Augie', 'size', 'Ovia\x20SouthWest', 'Ijero,', 'Ilorin\x20East', 'Udenu.', 'Isiala-Ngwa\x20South', 'Ibadan\x20North\x20West', 'Aba\x20North', 'Uvwie', 'Akwanga', 'Ede\x20South', '5160ndLnOo', 'Bunkure', 'Ibarapa\x20North', 'Burutu', 'Ezinihitte', 'Boluwaduro', 'Maigatari', 'Owerri\x20West', 'Nasarawa', 'Madobi', 'Abeokuta\x20South', 'Boki', 'Brass', 'Ekiti-West', 'Aleiro', 'Hong', 'jaba', 'Ile-Oluji', 'Idemili\x20south', 'Etim\x20Ekpo', '6776XBvvVE', 'Kaugama\x20Kazaure', 'Osisioma', 'Uruan', 'Wudil', 'lga', 'Bakura', 'Aboh-Mbaise', 'Ethiope\x20West', 'Nsit\x20Atai', 'Toto', 'Bogoro', 'Sakaba', 'Kala/Balge', 'Guzamala', 'Akinyele', 'Etung', 'Biase', 'kumbotso', 'Ido/Osi', 'Igabi', 'Koko/Besse', 'Awka\x20South', 'Ngaski', 'Ussa', 'Machina', 'Adavi', 'Eti-Osa', 'Tafawa-Balewa', 'Malumfashi', 'Makoda', 'passport', 'Dekina', 'Birni-Gwari', 'Ikono', 'Fakai', 'Pailoro', 'Bonny', 'change', 'Dan\x20Musa', 'Shomgom', 'Ngwa', 'Ika', 'block', 'Ijebu\x20North', '2934693XYBfRe', 'Ayamelum', 'Ankpa', 'Langtang\x20North', 'Mubi\x20North', 'Song', 'Nsukka', 'Aguata', 'Ikwuano', 'Darazo', 'Ado', 'Asa', 'Mbo', 'Mafa', 'Auyo', 'Tofa', 'Talata\x20Mafara', 'Ardo-kola', 'Jos\x20South', 'Shani', '9jdwsuQ', 'files', 'Ogbomosho\x20South', 'Zaki', 'Aiyedade', 'Akoko\x20South\x20West', 'Eleme', 'Ukum', 'Orumba\x20South', 'Gbako', 'Yarkur', 'Nkanu\x20East', 'Nembe', 'Babura', 'Takum', 'Edu', 'Agege', 'Billiri', 'passportPreview', 'Odigbo', 'Owo', 'Ikwerre', 'Orhionwon', 'option', 'Maiduguri', 'Ikorodu', 'Odeda', 'Guma', 'Kubau', 'Roni', 'Warawa', 'Jahun', 'Batagarawa', 'Okrika', 'Takali', 'Ibadan\x20South\x20East', 'Sokoto\x20South', 'Bayo', 'Kontagora', 'image/jpg', 'Kajuru', 'Bade', 'Sule-Tankarkar', 'Awka\x20North', 'Soba', 'Njaba', 'Yamaltu/Delta.', 'Ikara', 'lkwo', 'Atisbo', 'Batsari', 'Obokun', 'Mushin', 'Omala', 'Ogori/Mangongo', 'Shinkafi', 'Ekiti\x20South-West', 'Gudu', 'Awe', 'Dutsi', 'Orsu', 'Yenegoa', 'forEach', 'Sanga', 'Konduga', 'Bagwai', 'Esit\x20Eket', 'Ose', 'Oju', 'Zaria', 'Isin', 'Ihitte/Uboma', 'Alimosho', 'Tarauni', 'Ivo', 'Maiyama', 'Jema\x27a', 'Etinan', 'Ibiono\x20Ibom', 'Ojo', 'Ohaozara', 'Ibarapa\x20Central', 'Gwoza', 'Bama', 'Misau', 'Oron', 'Ikole', 'Lau', 'Magama', 'Yankwashi', 'Ife\x20East', 'Onna', 'Kiru', 'Invalid\x20file\x20type.\x20Please\x20select\x20a\x20JPEG\x20image.', 'Ringim', 'Iwo', 'Ijebu\x20North\x20ast', 'Ohimini', 'Udi\x20Agwu', 'Ajeromi-Ifelodun', 'Gwer\x20West', 'Kankia', 'Oshimili\x20North', 'Isiala-Ngwa\x20North', '2511492oALAbr', 'Etche', 'Badagry', 'Lokoja', 'Idemili\x20North', 'Karawa', 'Abadam', 'Kano\x20Municipal', 'Warji', 'Ebonyi', 'Okpe', 'Irepo', 'Aniocha\x20South', 'Fagge', 'IgboEze\x20orth', 'Ekwusigo', 'Ghari', 'Orlu', 'Gwaram', 'Njikoka', 'Buruku', 'Jere', 'Dawakin\x20Tofa', 'image/jpeg', 'Oji-River', 'Kibiya', 'Idah', 'Obi\x20Nwa', 'Sandamu', 'Dandume', 'Wurno', 'Okehi', 'Atiba', 'Ideato\x20North', 'Ifedayo', 'Oshimili', 'Nnewi\x20South', 'Dutse', 'Chanchaga', 'Karaye', 'Ogbaru', 'Oyun', 'Biriniwa', 'Arewa-Dandi', 'Kukawa', 'Kafur', 'Gummi', 'Kajola', 'Ilejemeje.', 'Owerri-Municipal', 'Dunukofia', 'Akoko\x20North\x20West', 'Gbonyin', 'Chibok', 'Daura', 'Ezeagu', 'Bekwara', 'Emohua', 'Ori\x20Ire', 'result', 'Arochukwu', 'Calabar\x20South', 'Enugu\x20North', 'Sabuwa', 'Lagelu\x20Ogbomosho\x20North', 'Riyom', 'Ibadan\x20South\x20West', 'Katcha', 'Warri\x20South', 'Ukwa\x20East', 'Mashegu', 'Tai', 'Shira', '28FsgHZy', 'Logo', 'Emure/Ise/Orun', 'Ibeno', 'Esan\x20West', 'Namoda', 'Ilorin\x20West', 'Isokan', 'Yewa\x20North', 'Baruten', 'Isa', 'Ewekoro', 'Gwarzo', 'Fika', 'Yagba\x20East', '202952FhIQba', '53702xVzdoA', 'Bursari', 'Katsina', 'Anaocha', 'Kogi', 'Maiha', 'Abua/Odual', 'Jalingo', 'Bodinga', 'Kachia', 'Dukku', 'Udung\x20Uko', 'Nwangele', 'Gada', 'Ndokwa\x20East', 'Kankara', 'Ohaji/Egbema', 'Oshodi-Isolo', 'Wase', 'Gujba', 'Ibaji', 'Minjibir', 'Ola-Oluwa', 'Urue-Offong/Oruko\x20', 'Ishielu', 'Ifelodun', 'Tarmua', 'Mani', 'type', 'Kanke', '4FjYsPM', 'Tarka', 'Ajaokuta', 'Gagarawa', 'Faskari', 'Garum', 'Ijumu', 'Mangu', 'Aniocha', 'Abeokuta\x20North', 'Lapai', 'Damaturu', 'Ngor-Okpala', 'Magumeri', 'Chikun', 'Gombi', 'Askira/Uba', 'Gulani', 'Irewole', 'Gboko', 'Ehime-Mbano', 'Yunusari', 'Gombe', 'Bali', 'Yola\x20North', 'Bwari', 'Olamabolo', 'Lagos\x20Island', 'Mikang', 'Akamkpa', 'Mbaitoli', 'Ahoada\x20East', 'Ofu', 'Obafemi-Owode', 'Moba', 'Ahiazu-Mbaise', 'Kirfi', 'Ado-Odo/Ota', 'Bebeji', 'Ilesha\x20East', 'Bomadi', 'Kolokuma/Opokuma', 'Atakumosa\x20West', 'Mobbar', 'Edda', 'Ife\x20South', 'Apa', 'Demsa', 'Odubra', 'Mokwa', 'Tudun\x20Wada', 'Nasarawa-Eggon', 'Muya', 'Illela', 'Ovia\x20South-East', 'Oruk\x20Anam', 'Mkpat\x20Enin', 'Rabah', 'Onitsha\x20South', 'Pategi', 'Shiroro', 'Fune', 'Itu', 'value', 'Gurara', 'style', 'Jakusko', 'Gawabawa', 'Karu', 'Southern\x20Jaw', 'Rimin\x20Gado', 'Ingawa', 'Itesiwaju', 'Efon', 'Shelleng', 'Kura', 'Kware', 'Orumba\x20North', 'Ibeju/Lekki', 'target', 'Bida', 'Numan', 'Balanga', '<option\x20value=\x22\x22>Select\x20an\x20LGA</option>', 'Egbeda', 'Aiyedire', 'Oyigbo', 'Kalgo', 'Kudan', 'Aba\x20South', 'Ibarapa\x20East', 'Itas/Gadau', 'Wushishi', 'Ezza\x20South', 'Ogo\x20Oluwa', 'Amuwo-Odofin', 'Toungo', 'Oru\x20West', 'Owerri\x20North', 'Khana', 'Matazuu', 'Gusau', 'Ajingi', 'Ibadan\x20North', 'Ipokia', 'Zango', 'Bindawa', 'Edati', 'Ningi', 'Sumaila', 'Ilesha\x20West', 'innerHTML', 'Kuje', 'Akure\x20North', 'createElement', 'Kaiama', 'Dikwa', 'Hawul', 'Ona-Ara', 'Goronyo', 'Suleja', 'Maru', 'Ese-Odo', 'Bungudu', 'Degema', 'Agwara', 'Ondo\x20West', 'Garki', 'Abakaliki', 'Tqngaza', 'Yewa\x20South', 'Ahoada\x20West', 'kebbe', 'Katsina-Ala', 'Oru\x20East', 'Rano', 'Ushongo', 'Konshisha', 'Ughelli\x20South', 'Ikom', 'onload', 'Nkwerre', 'none', 'Warri\x20Central', 'Bassa', 'Funtua', 'Calabar\x20Municipality', 'Garko', 'Bunza', 'Nguru\x20Potiskum', 'Doguwa', 'Lavun', 'Zing', 'Argungu', 'Ideato\x20South', 'Nkanu', 'state', 'Ikot\x20Ekpene', 'Atakumosa\x20East', 'Toro', 'Birni\x20Kudu', 'Ibadan\x20Central', 'Kurmi', 'src', '2692825SLDxPD', 'Ogbia', 'Ibesikpo\x20Asutan', 'Iseyin', 'Enugu\x20Eas', 'Kwande', 'Gezawa', 'Anambra\x20West', 'Kosofe', 'Mubi\x20South', 'Obi', 'Charanchi', 'Oye', 'Shanono', 'Umuahia\x20South', 'Odo-Otin', 'Giwa', 'Eastern\x20Obolo', 'Oyo\x20East', 'Dass', 'Makurdi', 'Jega', 'Dutsin-Ma', 'Hadejia', 'Akoko\x20South\x20Akure\x20East', 'Gwale', 'Ukwa\x20West', 'Afikpo', 'Rogo', 'Andoni', 'Dala', 'Yagba\x20West', 'Kabba/Bunu', 'Esan\x20Central', 'Okitipupa', 'Kaga', 'Kaura', 'Pankshin', 'Guyuk', 'Karasuwa', '1841241GhAjpE', 'Ekeremor', 'Mallam', 'Ekiti', 'Sabon\x20birni', 'Tsanyawa', 'Alkaleri', 'Ndokwa\x20West', 'Maradun', 'Ika\x20North-East', 'Taura', 'Lamurde', 'Malam\x20Madori', 'Nafada/Bajoga', 'Monguno', 'Ise/Orun', 'Cassol', 'Uhunmwonde', 'Ifo', 'Isoko\x20south', 'Sagbama', 'Tambuwal', 'textContent', 'Ogu/Bolo', 'Bauchi', 'Jos\x20North', 'Michika', 'Patani', 'Uzo-Uwani', 'Akure\x20South', 'sort', 'Ogba/Egbema/Ndoni', 'display']; _0x1a20 = function () { return _0x6d6260; }; return _0x1a20(); } const stateAndLGAData = { 'Abia': [_0x132e68(0x329), _0x132e68(0x261), _0x132e68(0x1cd), 'Bende', _0x132e68(0x11d), _0x132e68(0x190), _0x132e68(0x327), 'Isuikwato', _0x132e68(0x1ac), 'Ohafia', _0x132e68(0x343), _0x132e68(0x111), 'Ugwunagbo', _0x132e68(0x1d6), _0x132e68(0x2c6), 'Umuahia\x20North', _0x132e68(0x2ba), _0x132e68(0x317)], 'Adamawa': [_0x132e68(0x237), 'Fufore', _0x132e68(0x300), 'Gireri', _0x132e68(0x217), _0x132e68(0x2d2), _0x132e68(0x33c), 'Jada', _0x132e68(0x2df), 'Madagali', _0x132e68(0x1ef), 'Mayo-Belwa', _0x132e68(0x2ee), _0x132e68(0x119), _0x132e68(0x2b5), _0x132e68(0x259), _0x132e68(0x252), _0x132e68(0x11a), _0x132e68(0x268), _0x132e68(0x220), 'Yola\x20South'], 'Anambra': [_0x132e68(0x11c), 'Anambra\x20East', _0x132e68(0x2b3), _0x132e68(0x1ed), _0x132e68(0x154), _0x132e68(0x357), _0x132e68(0x116), _0x132e68(0x1c3), _0x132e68(0x1a0), _0x132e68(0x195), _0x132e68(0x33f), _0x132e68(0x2f6), _0x132e68(0x1a4), 'Nnewi\x20North', _0x132e68(0x1b5), _0x132e68(0x1b9), 'Onitsha\x20North', _0x132e68(0x242), _0x132e68(0x255), _0x132e68(0x131), 'Oyi'], 'Akwa\x20Ibom': [_0x132e68(0x318), _0x132e68(0x2bd), 'Eket', _0x132e68(0x16b), 'Essien\x20Udim', _0x132e68(0x340), _0x132e68(0x176), _0x132e68(0x1dd), _0x132e68(0x2ae), _0x132e68(0x177), _0x132e68(0x112), _0x132e68(0x10a), 'Ikot\x20Abasi', _0x132e68(0x2a5), 'Ini', _0x132e68(0x246), _0x132e68(0x121), _0x132e68(0x240), _0x132e68(0x34a), 'Obot\x20Akara', 'Okobo', _0x132e68(0x184), _0x132e68(0x17e), _0x132e68(0x23f), _0x132e68(0x1f5), 'Ukanafun', _0x132e68(0x344), _0x132e68(0x201), 'Uyo'], 'Bauchi': [_0x132e68(0x2da), _0x132e68(0x2ec), _0x132e68(0x34c), 'Damban', _0x132e68(0x11e), _0x132e68(0x2bf), 'Ganjuwa', _0x132e68(0x2f5), _0x132e68(0x263), _0x132e68(0x2fa), 'Katagum', _0x132e68(0x22c), _0x132e68(0x17d), _0x132e68(0x274), _0x132e68(0x1d9), _0x132e68(0x35d), _0x132e68(0x2a7), _0x132e68(0x199), _0x132e68(0x12c)], 'Bayelsa': [_0x132e68(0x339), _0x132e68(0x2d5), _0x132e68(0x231), _0x132e68(0x135), _0x132e68(0x2ad), _0x132e68(0x2e8), _0x132e68(0x24d), _0x132e68(0x166)], 'Benue': [_0x132e68(0x11f), 'Agatu', _0x132e68(0x236), _0x132e68(0x1a5), _0x132e68(0x21b), _0x132e68(0x144), 'Gwer\x20East', _0x132e68(0x18d), _0x132e68(0x28d), _0x132e68(0x291), _0x132e68(0x2b1), _0x132e68(0x1db), _0x132e68(0x2c0), _0x132e68(0x2b6), 'Ogbadibo', _0x132e68(0x16d), 'Okpokwu', _0x132e68(0x18a), 'Oturkpo', _0x132e68(0x209), _0x132e68(0x130), _0x132e68(0x290), 'Vandeikya'], 'Borno': [_0x132e68(0x197), _0x132e68(0x218), _0x132e68(0x17c), _0x132e68(0x14e), 'Biu', _0x132e68(0x1c6), 'Damboa', _0x132e68(0x27c), 'Gubio', _0x132e68(0x34f), _0x132e68(0x17b), _0x132e68(0x27d), _0x132e68(0x1a6), _0x132e68(0x2cf), _0x132e68(0x34e), _0x132e68(0x169), _0x132e68(0x1bd), 'Kwaya\x20Kusar', _0x132e68(0x122), _0x132e68(0x215), _0x132e68(0x141), _0x132e68(0x30a), _0x132e68(0x233), _0x132e68(0x2e2), 'Ngala', 'Nganzai', _0x132e68(0x128)], 'Cross\x20River': ['Akpabuyo', 'Odukpani', _0x132e68(0x225), _0x132e68(0x352), 'Abi', _0x132e68(0x293), _0x132e68(0x133), _0x132e68(0x238), _0x132e68(0x338), 'Ogoja', _0x132e68(0x30f), 'Obanliku', 'Obudu', _0x132e68(0x1ce), _0x132e68(0x351), _0x132e68(0x1c9), _0x132e68(0x30e), _0x132e68(0x29a)], 'Delta': [_0x132e68(0x1b4), _0x132e68(0x210), _0x132e68(0x19d), 'Ika\x20South', _0x132e68(0x2dd), _0x132e68(0x2db), _0x132e68(0x1f8), _0x132e68(0x2e7), 'Isoko\x20North', _0x132e68(0x230), _0x132e68(0x330), _0x132e68(0x292), 'Ughelli\x20North', _0x132e68(0x349), _0x132e68(0x31c), 'Sapele', _0x132e68(0x19b), 'Warri\x20North', _0x132e68(0x1d5), _0x132e68(0x32a), _0x132e68(0x316), _0x132e68(0x297), 'Ukwani', _0x132e68(0x18f), _0x132e68(0x2ef)], 'Ebonyi': [_0x132e68(0x234), _0x132e68(0x2c7), 'Onicha', _0x132e68(0x179), _0x132e68(0x288), _0x132e68(0x202), _0x132e68(0x159), 'Ezza', _0x132e68(0x265), 'Ohaukwu', _0x132e68(0x19a), _0x132e68(0x173)], 'Enugu': ['Enugu\x20South,', 'Igbo-Eze\x20South', _0x132e68(0x1cf), _0x132e68(0x2a3), _0x132e68(0x18b), _0x132e68(0x1a9), _0x132e68(0x1c8), _0x132e68(0x19f), 'Isi-Uzo', _0x132e68(0x11b), 'Igbo-Ekiti', _0x132e68(0x2f0), _0x132e68(0x2b0), 'Aninri', _0x132e68(0x134), _0x132e68(0x326)], 'Edo': ['Esan\x20North-East', _0x132e68(0x2cd), _0x132e68(0x1de), 'Egor', _0x132e68(0x301), _0x132e68(0x313), _0x132e68(0x304), 'Igueben', 'Oredo', _0x132e68(0x323), _0x132e68(0x23e), _0x132e68(0x13f), _0x132e68(0x2e5), 'Etsako\x20East', 'Esan\x20South-East'], 'Ekiti': [_0x132e68(0x11f), _0x132e68(0x30b), _0x132e68(0x33a), _0x132e68(0x1dc), _0x132e68(0x161), _0x132e68(0x315), 'Irepodun', _0x132e68(0x324), _0x132e68(0x354), _0x132e68(0x2b8), _0x132e68(0x17f), _0x132e68(0x22a), _0x132e68(0x1c5), _0x132e68(0x251), _0x132e68(0x2e3), _0x132e68(0x1c1)], 'FCT\x20-\x20Abuja': ['Abaji', _0x132e68(0x319), _0x132e68(0x221), _0x132e68(0x2f9), _0x132e68(0x278), 'Kwali'], 'Gombe': ['Akko', _0x132e68(0x25a), _0x132e68(0x13a), _0x132e68(0x1f4), 'Kaltungo', 'Kwami', _0x132e68(0x110), 'Funakaye', _0x132e68(0x21e), _0x132e68(0x2e1), _0x132e68(0x157)], 'Imo': [_0x132e68(0x348), _0x132e68(0x22b), _0x132e68(0x21c), _0x132e68(0x331), _0x132e68(0x1b2), _0x132e68(0x2a2), _0x132e68(0x170), _0x132e68(0x308), 'Isiala\x20Mbano', 'Isu', _0x132e68(0x226), _0x132e68(0x226), _0x132e68(0x214), _0x132e68(0x156), _0x132e68(0x1f6), _0x132e68(0x295), 'Obowo', 'Oguta', _0x132e68(0x1fa), 'Okigwe', _0x132e68(0x1a2), _0x132e68(0x165), _0x132e68(0x28e), _0x132e68(0x269), _0x132e68(0x1c2), _0x132e68(0x26a), _0x132e68(0x334)], 'Jigawa': [_0x132e68(0x123), _0x132e68(0x136), _0x132e68(0x2a8), _0x132e68(0x1bb), _0x132e68(0x2fe), _0x132e68(0x1b6), _0x132e68(0x20b), _0x132e68(0x287), 'Gumel', 'Guri', _0x132e68(0x1a3), 'Gwiwa', _0x132e68(0x2c3), _0x132e68(0x148), 'Kafin\x20Hausa', _0x132e68(0x342), 'Kiri\x20Kasamma', 'Kiyawa', _0x132e68(0x333), _0x132e68(0x2e0), 'Miga', _0x132e68(0x187), _0x132e68(0x146), _0x132e68(0x153), _0x132e68(0x2de), _0x132e68(0x182)], 'Kaduna': [_0x132e68(0x109), _0x132e68(0x216), _0x132e68(0x2bc), _0x132e68(0x355), _0x132e68(0x158), _0x132e68(0x33d), _0x132e68(0x175), _0x132e68(0x1f3), 'Kaduna\x20North', 'Kaduna\x20South', 'Kagarko', _0x132e68(0x151), _0x132e68(0x2d0), 'Kauru', _0x132e68(0x145), _0x132e68(0x260), 'Lere', 'Makarfi', 'Sabon-Gari', _0x132e68(0x168), _0x132e68(0x155), _0x132e68(0x2ff), _0x132e68(0x16e)], 'Kano': [_0x132e68(0x26e), 'Albasu', _0x132e68(0x16a), _0x132e68(0x22e), 'Bichi', _0x132e68(0x32e), _0x132e68(0x2ca), 'Dambatta', 'Dawakin\x20Kudu', _0x132e68(0x1a7), _0x132e68(0x29e), _0x132e68(0x19e), _0x132e68(0x311), _0x132e68(0x29b), _0x132e68(0x20d), _0x132e68(0x2d6), 'Gaya', _0x132e68(0x2b2), _0x132e68(0x2c5), _0x132e68(0x1e6), 'Kabo', _0x132e68(0x198), _0x132e68(0x1b8), _0x132e68(0x1aa), _0x132e68(0x185), _0x132e68(0x353), _0x132e68(0x1a1), _0x132e68(0x253), _0x132e68(0x336), _0x132e68(0x35f), _0x132e68(0x1ff), _0x132e68(0x335), _0x132e68(0x28f), _0x132e68(0x24e), _0x132e68(0x2c8), _0x132e68(0x2b9), _0x132e68(0x275), _0x132e68(0x14b), _0x132e68(0x172), _0x132e68(0x124), _0x132e68(0x2d9), _0x132e68(0x23a), 'Ungogo', _0x132e68(0x147), _0x132e68(0x345)], 'Katsina': ['Bakori', _0x132e68(0x149), _0x132e68(0x15b), 'Baure', _0x132e68(0x272), _0x132e68(0x2b7), _0x132e68(0x1ae), 'Danja', _0x132e68(0x10f), _0x132e68(0x1c7), _0x132e68(0x164), _0x132e68(0x2c2), _0x132e68(0x20c), _0x132e68(0x299), _0x132e68(0x24f), 'Jibia', _0x132e68(0x1be), 'Kaita', _0x132e68(0x1f9), _0x132e68(0x18e), _0x132e68(0x1ec), _0x132e68(0x2fd), 'Kusada', 'Mai\x27Adua', _0x132e68(0x35e), _0x132e68(0x205), 'Mashi', _0x132e68(0x26c), 'Musawa', 'Rimi', _0x132e68(0x1d0), 'Safana', _0x132e68(0x1ad), _0x132e68(0x271)], 'Kebbi': [_0x132e68(0x33b), _0x132e68(0x1bc), _0x132e68(0x2a1), _0x132e68(0x321), 'Bagudo', _0x132e68(0x2fb), _0x132e68(0x29c), 'Dandi', _0x132e68(0x10b), 'Gwandu', _0x132e68(0x2c1), _0x132e68(0x25f), _0x132e68(0x356), _0x132e68(0x174), _0x132e68(0x358), _0x132e68(0x34d), 'Shanga', 'Suru', _0x132e68(0x2f8), 'Yauri', 'Zuru'], 'Kogi': [_0x132e68(0x35b), _0x132e68(0x20a), _0x132e68(0x117), _0x132e68(0x298), _0x132e68(0x361), _0x132e68(0x1fe), _0x132e68(0x1ab), 'Igalamela-Odolu', _0x132e68(0x20e), _0x132e68(0x2cc), _0x132e68(0x1ee), _0x132e68(0x194), 'Mopa-Muro', _0x132e68(0x228), _0x132e68(0x15f), _0x132e68(0x1b0), 'Okene', _0x132e68(0x222), _0x132e68(0x15e), _0x132e68(0x1e8), _0x132e68(0x2cb)], 'Kwara': [_0x132e68(0x120), _0x132e68(0x1e3), _0x132e68(0x138), _0x132e68(0x2d7), _0x132e68(0x203), _0x132e68(0x325), _0x132e68(0x1e0), 'Irepodun', _0x132e68(0x16f), _0x132e68(0x27b), _0x132e68(0x309), _0x132e68(0x31b), 'Oke-Ero', _0x132e68(0x1ba), _0x132e68(0x243)], 'Lagos': [_0x132e68(0x139), _0x132e68(0x18c), _0x132e68(0x171), _0x132e68(0x267), 'Apapa', _0x132e68(0x193), _0x132e68(0x31f), _0x132e68(0x35c), _0x132e68(0x256), 'Ifako-Ijaye', 'Ikeja', _0x132e68(0x142), _0x132e68(0x2b4), _0x132e68(0x223), 'Lagos\x20Mainland', _0x132e68(0x15d), _0x132e68(0x178), _0x132e68(0x1fb), 'Shomolu', 'Surulere'], 'Nasarawa': [_0x132e68(0x32b), _0x132e68(0x163), _0x132e68(0x307), _0x132e68(0x24c), 'Keana', 'Keffi', 'Kokona', 'Lafia', _0x132e68(0x335), _0x132e68(0x23b), _0x132e68(0x2b6), _0x132e68(0x34b), 'Wamba'], 'Niger': ['Agaie', _0x132e68(0x285), _0x132e68(0x258), 'Borgu', 'Bosso', _0x132e68(0x1b7), _0x132e68(0x273), _0x132e68(0x132), _0x132e68(0x248), _0x132e68(0x1d4), _0x132e68(0x14f), _0x132e68(0x212), _0x132e68(0x29f), _0x132e68(0x181), 'Mariga', _0x132e68(0x1d7), _0x132e68(0x239), _0x132e68(0x23c), _0x132e68(0x10c), 'Rafi', 'Rijau', _0x132e68(0x244), _0x132e68(0x280), 'Tafa', _0x132e68(0x264)], 'Ogun': [_0x132e68(0x211), _0x132e68(0x337), _0x132e68(0x22d), _0x132e68(0x1e2), _0x132e68(0x28a), _0x132e68(0x1e5), _0x132e68(0x2e6), 'Ijebu\x20East', _0x132e68(0x114), _0x132e68(0x189), 'Ijebu\x20Ode', _0x132e68(0x31d), _0x132e68(0x306), _0x132e68(0x270), _0x132e68(0x229), _0x132e68(0x312), _0x132e68(0x143), 'Odogbolu', 'Remo\x20North', _0x132e68(0x31e)], 'Ondo': ['Akoko\x20North\x20East', _0x132e68(0x1c4), _0x132e68(0x2c4), _0x132e68(0x12e), _0x132e68(0x279), _0x132e68(0x2f1), _0x132e68(0x282), 'Idanre', _0x132e68(0x314), 'Ilaje', _0x132e68(0x33e), 'Okeigbo', 'Irele', _0x132e68(0x13c), _0x132e68(0x2ce), 'Ondo\x20East', _0x132e68(0x286), _0x132e68(0x16c), _0x132e68(0x13d)], 'Osun': [_0x132e68(0x12d), _0x132e68(0x25d), _0x132e68(0x2a6), _0x132e68(0x232), _0x132e68(0x332), 'Boripe', 'Ede\x20North', _0x132e68(0x32c), 'Egbedore', 'Ejigbo', 'Ife\x20Central', _0x132e68(0x183), _0x132e68(0x320), _0x132e68(0x235), _0x132e68(0x1b3), 'Ifelodun', 'Ila', _0x132e68(0x22f), _0x132e68(0x276), 'Irepodun', _0x132e68(0x21a), _0x132e68(0x1e1), _0x132e68(0x188), _0x132e68(0x15c), _0x132e68(0x2bb), _0x132e68(0x200), 'Olorunda', 'Oriade', _0x132e68(0x2fc), 'Osogbo'], 'Oyo': ['Afijio', _0x132e68(0x350), _0x132e68(0x1b1), _0x132e68(0x15a), _0x132e68(0x25c), _0x132e68(0x2a9), _0x132e68(0x26f), _0x132e68(0x328), _0x132e68(0x14c), _0x132e68(0x1d3), _0x132e68(0x17a), _0x132e68(0x262), _0x132e68(0x32f), 'Ido', _0x132e68(0x19c), _0x132e68(0x2af), _0x132e68(0x250), 'Iwajowa', _0x132e68(0x1c0), _0x132e68(0x1d1), _0x132e68(0x12b), _0x132e68(0x266), 'Olorunsogo', 'Oluyole', _0x132e68(0x27e), 'Orelope', _0x132e68(0x1cb), _0x132e68(0x2be), 'Oyo\x20West', 'Saki\x20East', 'Saki\x20West', 'Surulere'], 'Plateau': ['Barikin\x20Ladi', 'Bassa', 'Bokkos', _0x132e68(0x302), _0x132e68(0x2ed), _0x132e68(0x127), 'Kanam', _0x132e68(0x207), _0x132e68(0x118), 'Langtang\x20South', _0x132e68(0x20f), _0x132e68(0x224), _0x132e68(0x2d1), 'Qua\x27an\x20Pan', _0x132e68(0x1d2), 'Shendam', _0x132e68(0x1fc)], 'Rivers': [_0x132e68(0x1f0), _0x132e68(0x227), _0x132e68(0x28b), 'Akuku\x20Toru', _0x132e68(0x2c9), 'Asari-Toru', _0x132e68(0x10d), _0x132e68(0x284), _0x132e68(0x1ca), _0x132e68(0x12f), _0x132e68(0x192), 'Gokana', _0x132e68(0x13e), _0x132e68(0x26b), 'Obio/Akpor', _0x132e68(0x2f3), _0x132e68(0x2eb), _0x132e68(0x14a), 'Omumma', 'Opobo/Nkoro', _0x132e68(0x25e), 'Port-Harcourt', _0x132e68(0x1d8)], 'Sokoto': ['Binji', _0x132e68(0x1f2), 'Dange-shnsi', _0x132e68(0x1f7), _0x132e68(0x27f), _0x132e68(0x162), _0x132e68(0x24b), _0x132e68(0x23d), _0x132e68(0x1e4), _0x132e68(0x254), _0x132e68(0x28c), _0x132e68(0x241), _0x132e68(0x2d8), 'Shagari', 'Silame', 'Sokoto\x20North', _0x132e68(0x14d), _0x132e68(0x2e9), _0x132e68(0x289), 'Tureta', 'Wamako', _0x132e68(0x1af), _0x132e68(0x2f7)], 'Taraba': [_0x132e68(0x126), _0x132e68(0x21f), _0x132e68(0x30d), 'Gashaka', _0x132e68(0x2e4), _0x132e68(0x305), _0x132e68(0x1f1), 'Karin-Lamido', _0x132e68(0x2aa), _0x132e68(0x180), 'Sardauna', _0x132e68(0x137), _0x132e68(0x359), 'Wukari', _0x132e68(0x31a), _0x132e68(0x2a0)], 'Yobe': [_0x132e68(0x152), _0x132e68(0x1eb), _0x132e68(0x213), _0x132e68(0x1e7), _0x132e68(0x245), 'Geidam', _0x132e68(0x1fd), _0x132e68(0x219), _0x132e68(0x24a), _0x132e68(0x2d3), _0x132e68(0x196), _0x132e68(0x35a), 'Nangere', _0x132e68(0x29d), _0x132e68(0x204), _0x132e68(0x21d), 'Yusufari'], 'Zamfara': ['Anka', _0x132e68(0x347), _0x132e68(0x303), 'Bukkuyum', _0x132e68(0x283), _0x132e68(0x1bf), _0x132e68(0x26d), _0x132e68(0x2d0), _0x132e68(0x1df), _0x132e68(0x2dc), _0x132e68(0x281), _0x132e68(0x160), _0x132e68(0x125), 'Tsafe', 'Zurmi'] }; window[_0x132e68(0x294)] = function () { const _0x1c0e57 = _0x132e68, _0x5526ec = document[_0x1c0e57(0x310)]('state'), _0x7c07c1 = Object['keys'](stateAndLGAData)[_0x1c0e57(0x2f2)](); _0x7c07c1[_0x1c0e57(0x167)](_0x2b19ae => { const _0xe46b05 = _0x1c0e57; let _0x226531 = document[_0xe46b05(0x27a)](_0xe46b05(0x140)); _0x226531['value'] = _0x2b19ae, _0x226531[_0xe46b05(0x2ea)] = _0x2b19ae, _0x5526ec['appendChild'](_0x226531); }); }; function populateLGA() { const _0x5dacbb = _0x132e68, _0x4d4bba = document[_0x5dacbb(0x310)](_0x5dacbb(0x2a4)), _0x54eab9 = document[_0x5dacbb(0x310)](_0x5dacbb(0x346)), _0x576cc6 = _0x4d4bba[_0x5dacbb(0x247)]; _0x54eab9[_0x5dacbb(0x277)] = _0x5dacbb(0x25b); if (_0x576cc6) { const _0x155aae = stateAndLGAData[_0x576cc6][_0x5dacbb(0x2f2)](); _0x155aae[_0x5dacbb(0x167)](_0x36e3b9 => { const _0x1eaa79 = _0x5dacbb, _0x409401 = document[_0x1eaa79(0x27a)]('option'); _0x409401[_0x1eaa79(0x247)] = _0x36e3b9, _0x409401['textContent'] = _0x36e3b9, _0x54eab9[_0x1eaa79(0x30c)](_0x409401); }); } }
+document.getElementById('passport').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+
+    // Check if a file was selected
+    if (file) {
+        // Check the file size (15kb limit)
+        if (file.size > 15360) {
+            alert('The selected file is too large. Please choose an image under 15kb.');
+            // Clear the input and hide the preview
+            event.target.value = '';
+            document.getElementById('passportPreview').style.display = 'none';
+            return;
+        }
+
+        // Check if the file is a valid image
+        if (file.type === "image/jpeg" || file.type === "image/jpg") {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const preview = document.getElementById('passportPreview');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+
+            reader.readAsDataURL(file); // Read the file as a data URL
+        } else {
+            alert('Invalid file type. Please select a JPEG image.');
+            // Clear the input and hide the preview
+            event.target.value = '';
+            document.getElementById('passportPreview').style.display = 'none';
+        }
+    } else {
+        // No file selected, hide the preview
+        document.getElementById('passportPreview').style.display = 'none';
+    }
+});
+
+
+const stateAndLGAData = {
+    "Abia": [
+        "Aba North", "Aba South", "Arochukwu", "Bende", "Ikwuano", "Isiala-Ngwa North", "Isiala-Ngwa South", "Isuikwato", "Obi Nwa", "Ohafia", "Osisioma", "Ngwa", "Ugwunagbo", "Ukwa East", "Ukwa West", "Umuahia North", "Umuahia South", "Umu-Neochi"
+    ],
+    "Adamawa": [
+        "Demsa", "Fufore", "Ganaye", "Gireri", "Gombi", "Guyuk", "Hong", "Jada", "Lamurde", "Madagali", "Maiha", "Mayo-Belwa", "Michika", "Mubi North", "Mubi South", "Numan", "Shelleng", "Song", "Toungo", "Yola North", "Yola South"
+    ],
+    "Anambra": [
+        "Aguata", "Anambra East", "Anambra West", "Anaocha", "Awka North", "Awka South",
+        "Ayamelum", "Dunukofia", "Ekwusigo", "Idemili North", "Idemili south", "Ihiala", "Njikoka", "Nnewi North", "Nnewi South", "Ogbaru", "Onitsha North",
+        "Onitsha South", "Orumba North", "Orumba South", "Oyi"
+    ],
+    "Akwa Ibom": [
+        "Abak", "Eastern Obolo", "Eket", "Esit Eket", "Essien Udim", "Etim Ekpo", "Etinan", "Ibeno", "Ibesikpo Asutan", "Ibiono Ibom", "Ika", "Ikono",
+        "Ikot Abasi", "Ikot Ekpene", "Ini", "Itu", "Mbo", "Mkpat Enin", "Nsit Atai", "Obot Akara", "Okobo", "Onna", "Oron", "Oruk Anam", "Udung Uko", "Ukanafun",
+        "Uruan", "Urue-Offong/Oruko ", "Uyo"
+    ],
+    "Bauchi": [
+        "Alkaleri", "Bauchi", "Bogoro", "Damban", "Darazo", "Dass", "Ganjuwa", "Giade", "Itas/Gadau", "Jama'are", "Katagum", "Kirfi", "Misau",
+        "Ningi", "Shira", "Tafawa-Balewa", "Toro", "Warji", "Zaki"
+    ],
+    "Bayelsa": [
+        "Brass", "Ekeremor", "Kolokuma/Opokuma", "Nembe", "Ogbia", "Sagbama", "Southern Jaw", "Yenegoa"
+    ],
+    "Benue": [
+        "Ado", "Agatu", "Apa", "Buruku", "Gboko", "Guma", "Gwer East", "Gwer West", "Katsina-Ala", "Konshisha", "Kwande", "Logo", "Makurdi", "Obi", "Ogbadibo", "Oju", "Okpokwu", "Ohimini", "Oturkpo", "Tarka", "Ukum", "Ushongo", "Vandeikya"
+    ],
+    "Borno": [
+        "Abadam", "Askira/Uba", "Bama", "Bayo", "Biu", "Chibok", "Damboa", "Dikwa", "Gubio", "Guzamala", "Gwoza", "Hawul", "Jere", "Kaga", "Kala/Balge", "Konduga", "Kukawa", "Kwaya Kusar", "Mafa", "Magumeri", "Maiduguri", "Marte", "Mobbar", "Monguno", "Ngala", "Nganzai", "Shani"
+    ],
+    "Cross River": [
+        "Akpabuyo", "Odukpani", "Akamkpa", "Biase", "Abi", "Ikom", "Yarkur", "Odubra", "Boki", "Ogoja", "Yala", "Obanliku", "Obudu", "Calabar South", "Etung", "Bekwara", "Bakassi", "Calabar Municipality"
+    ],
+    "Delta": [
+        "Oshimili", "Aniocha", "Aniocha South", "Ika South", "Ika North-East", "Ndokwa West", "Ndokwa East", "Isoko south", "Isoko North", "Bomadi", "Burutu", "Ughelli South", "Ughelli North", "Ethiope West", "Ethiope East", "Sapele", "Okpe", "Warri North", "Warri South", "Uvwie", "Udu", "Warri Central", "Ukwani",
+        "Oshimili North", "Patani"
+    ],
+    "Ebonyi": [
+        "Edda", "Afikpo", "Onicha", "Ohaozara", "Abakaliki", "Ishielu", "lkwo", "Ezza", "Ezza South", "Ohaukwu", "Ebonyi", "Ivo"
+    ],
+    "Enugu": [
+        "Enugu South,", "Igbo-Eze South", "Enugu North", "Nkanu", "Udi Agwu", "Oji-River", "Ezeagu", "IgboEze orth", "Isi-Uzo", "Nsukka", "Igbo-Ekiti", "Uzo-Uwani", "Enugu Eas", "Aninri", "Nkanu East", "Udenu."
+    ],
+    "Edo": [
+        "Esan North-East", "Esan Central", "Esan West", "Egor", "Ukpoba", "Central", "Etsako Central", "Igueben", "Oredo", "Ovia SouthWest", "Ovia South-East", "Orhionwon", "Uhunmwonde", "Etsako East", "Esan South-East"
+    ],
+    "Ekiti": [
+        "Ado", "Ekiti-East", "Ekiti-West", "Emure/Ise/Orun", "Ekiti South-West", "Ikere", "Irepodun", "Ijero,", "Ido/Osi", "Oye", "Ikole", "Moba", "Gbonyin", "Efon", "Ise/Orun", "Ilejemeje."
+    ],
+    "FCT - Abuja": [
+        "Abaji", "Abuja Municipal", "Bwari", "Gwagwalada", "Kuje", "Kwali"
+    ],
+    "Gombe": [
+        "Akko", "Balanga", "Billiri", "Dukku", "Kaltungo", "Kwami", "Shomgom", "Funakaye", "Gombe", "Nafada/Bajoga", "Yamaltu/Delta."
+    ],
+    "Imo": [
+        "Aboh-Mbaise", "Ahiazu-Mbaise", "Ehime-Mbano", "Ezinihitte", "Ideato North", "Ideato South", "Ihitte/Uboma", "Ikeduru", "Isiala Mbano", "Isu", "Mbaitoli", "Mbaitoli", "Ngor-Okpala", "Njaba", "Nwangele", "Nkwerre", "Obowo", "Oguta", "Ohaji/Egbema", "Okigwe", "Orlu", "Orsu", "Oru East", "Oru West", "Owerri-Municipal", "Owerri North", "Owerri West"
+    ],
+    "Jigawa": [
+        "Auyo", "Babura", "Birni Kudu", "Biriniwa", "Buji", "Dutse", "Gagarawa", "Garki", "Gumel", "Guri", "Gwaram", "Gwiwa", "Hadejia", "Jahun", "Kafin Hausa", "Kaugama Kazaure", "Kiri Kasamma", "Kiyawa", "Maigatari", "Malam Madori", "Miga", "Ringim", "Roni", "Sule-Tankarkar", "Taura", "Yankwashi"
+    ],
+    "Kaduna": [
+        "Birni-Gwari", "Chikun", "Giwa", "Igabi", "Ikara", "jaba", "Jema'a", "Kachia", "Kaduna North", "Kaduna South", "Kagarko", "Kajuru", "Kaura", "Kauru", "Kubau", "Kudan", "Lere", "Makarfi", "Sabon-Gari", "Sanga", "Soba", "Zango-Kataf", "Zaria"
+    ],
+    "Kano": [
+        "Ajingi", "Albasu", "Bagwai", "Bebeji", "Bichi", "Bunkure", "Dala", "Dambatta", "Dawakin Kudu", "Dawakin Tofa", "Doguwa", "Fagge", "Gabasawa", "Garko", "Garum", "Mallam", "Gaya", "Gezawa", "Gwale", "Gwarzo", "Kabo", "Kano Municipal", "Karaye", "Kibiya", "Kiru", "kumbotso", "Ghari", "Kura", "Madobi", "Makoda", "Minjibir", "Nasarawa", "Rano", "Rimin Gado", "Rogo", "Shanono", "Sumaila", "Takali", "Tarauni", "Tofa", "Tsanyawa", "Tudun Wada", "Ungogo", "Warawa", "Wudil"
+    ],
+    "Katsina": [
+        "Bakori", "Batagarawa", "Batsari", "Baure", "Bindawa", "Charanchi", "Dandume", "Danja", "Dan Musa", "Daura", "Dutsi", "Dutsin-Ma", "Faskari", "Funtua", "Ingawa", "Jibia", "Kafur", "Kaita", "Kankara", "Kankia", "Katsina", "Kurfi", "Kusada", "Mai'Adua", "Malumfashi", "Mani", "Mashi", "Matazuu", "Musawa", "Rimi", "Sabuwa", "Safana", "Sandamu", "Zango"
+    ],
+    "Kebbi": [
+        "Aleiro", "Arewa-Dandi", "Argungu", "Augie", "Bagudo", "Birnin Kebbi", "Bunza", "Dandi", "Fakai", "Gwandu", "Jega", "Kalgo", "Koko/Besse", "Maiyama", "Ngaski", "Sakaba", "Shanga", "Suru", "Wasagu/Danko", "Yauri", "Zuru"
+    ],
+    "Kogi": [
+        "Adavi", "Ajaokuta", "Ankpa", "Bassa", "Dekina", "Ibaji", "Idah", "Igalamela-Odolu", "Ijumu", "Kabba/Bunu", "Kogi", "Lokoja", "Mopa-Muro", "Ofu", "Ogori/Mangongo", "Okehi", "Okene", "Olamabolo", "Omala", "Yagba East", "Yagba West"
+    ],
+    "Kwara": [
+        "Asa", "Baruten", "Edu", "Ekiti", "Ifelodun", "Ilorin East", "Ilorin West", "Irepodun", "Isin", "Kaiama", "Moro", "Offa", "Oke-Ero", "Oyun", "Pategi"
+    ],
+    "Lagos": [
+        "Agege", "Ajeromi-Ifelodun", "Alimosho", "Amuwo-Odofin", "Apapa", "Badagry", "Epe", "Eti-Osa", "Ibeju/Lekki", "Ifako-Ijaye", "Ikeja", "Ikorodu", "Kosofe", "Lagos Island", "Lagos Mainland", "Mushin", "Ojo", "Oshodi-Isolo", "Shomolu", "Surulere"
+    ],
+    "Nasarawa": [
+        "Akwanga", "Awe", "Doma", "Karu", "Keana", "Keffi", "Kokona", "Lafia", "Nasarawa", "Nasarawa-Eggon", "Obi", "Toto", "Wamba"
+    ],
+    "Niger": [
+        "Agaie", "Agwara", "Bida", "Borgu", "Bosso", "Chanchaga", "Edati", "Gbako", "Gurara", "Katcha", "Kontagora", "Lapai", "Lavun", "Magama", "Mariga", "Mashegu", "Mokwa", "Muya", "Pailoro", "Rafi", "Rijau", "Shiroro", "Suleja", "Tafa", "Wushishi"
+    ],
+    "Ogun": [
+        "Abeokuta North", "Abeokuta South", "Ado-Odo/Ota", "Yewa North", "Yewa South", "Ewekoro", "Ifo", "Ijebu East", "Ijebu North", "Ijebu North ast",
+        "Ijebu Ode", "Ikenne", "Imeko-Afon", "Ipokia", "Obafemi-Owode", "Ogun Waterside", "Odeda", "Odogbolu", "Remo North", "Shagamu"
+    ],
+    "Ondo": [
+        "Akoko North East", "Akoko North West", "Akoko South Akure East", "Akoko South West", "Akure North", "Akure South", "Ese-Odo", "Idanre", "Ifedore", "Ilaje", "Ile-Oluji", "Okeigbo", "Irele", "Odigbo", "Okitipupa", "Ondo East", "Ondo West", "Ose", "Owo"
+    ],
+    "Osun": [
+        "Aiyedade", "Aiyedire", "Atakumosa East", "Atakumosa West", "Boluwaduro", "Boripe", "Ede North", "Ede South", "Egbedore", "Ejigbo", "Ife Central",
+        "Ife East", "Ife North", "Ife South", "Ifedayo", "Ifelodun", "Ila", "Ilesha East", "Ilesha West", "Irepodun", "Irewole", "Isokan", "Iwo", "Obokun",
+        "Odo-Otin", "Ola-Oluwa", "Olorunda", "Oriade", "Orolu", "Osogbo"
+    ],
+    "Oyo": [
+        "Afijio", "Akinyele", "Atiba", "Atisbo", "Egbeda", "Ibadan Central", "Ibadan North", "Ibadan North West", "Ibadan South East", "Ibadan South West", "Ibarapa Central", "Ibarapa East", "Ibarapa North", "Ido", "Irepo", "Iseyin", "Itesiwaju", "Iwajowa", "Kajola", "Lagelu Ogbomosho North", "Ogbomosho South", "Ogo Oluwa", "Olorunsogo", "Oluyole", "Ona-Ara", "Orelope", "Ori Ire", "Oyo East", "Oyo West", "Saki East", "Saki West", "Surulere"
+    ],
+    "Plateau": [
+        "Barikin Ladi", "Bassa", "Bokkos", "Jos East", "Jos North", "Jos South", "Kanam", "Kanke", "Langtang North", "Langtang South", "Mangu", "Mikang", "Pankshin", "Qua'an Pan", "Riyom", "Shendam", "Wase"
+    ],
+    "Rivers": [
+        "Abua/Odual", "Ahoada East", "Ahoada West", "Akuku Toru", "Andoni", "Asari-Toru", "Bonny", "Degema", "Emohua", "Eleme", "Etche", "Gokana", "Ikwerre", "Khana", "Obio/Akpor", "Ogba/Egbema/Ndoni", "Ogu/Bolo", "Okrika", "Omumma", "Opobo/Nkoro", "Oyigbo", "Port-Harcourt", "Tai"
+    ],
+    "Sokoto": [
+        "Binji", "Bodinga", "Dange-shnsi", "Gada", "Goronyo", "Gudu", "Gawabawa", "Illela", "Isa", "Kware", "kebbe", "Rabah", "Sabon birni", "Shagari", "Silame", "Sokoto North", "Sokoto South", "Tambuwal", "Tqngaza", "Tureta", "Wamako", "Wurno", "Yabo"
+    ],
+    "Taraba": [
+        "Ardo-kola", "Bali", "Donga", "Gashaka", "Cassol", "Ibi", "Jalingo", "Karin-Lamido", "Kurmi", "Lau", "Sardauna", "Takum", "Ussa", "Wukari", "Yorro", "Zing"
+    ],
+    "Yobe": [
+        "Bade", "Bursari", "Damaturu", "Fika", "Fune", "Geidam", "Gujba", "Gulani", "Jakusko", "Karasuwa", "Karawa", "Machina", "Nangere", "Nguru Potiskum", "Tarmua", "Yunusari", "Yusufari"
+    ],
+    "Zamfara": [
+        "Anka", "Bakura", "Birnin Magaji", "Bukkuyum", "Bungudu", "Gummi", "Gusau", "Kaura", "Namoda", "Maradun", "Maru", "Shinkafi",
+        "Talata Mafara", "Tsafe", "Zurmi"
+    ]
+};
+
+window.onload = function () {
+    const stateSelect = document.getElementById('state');
+
+    // Get the states and sort them alphabetically
+    const sortedStates = Object.keys(stateAndLGAData).sort();
+
+    // Populate the state dropdown with sorted states
+    sortedStates.forEach(state => {
+        let option = document.createElement('option');
+        option.value = state;
+        option.textContent = state;
+        stateSelect.appendChild(option);
+    });
+};
+
+function populateLGA() {
+    const stateSelect = document.getElementById("state");
+    const lgaSelect = document.getElementById("lga");
+    const selectedState = stateSelect.value;
+
+    // Clear previous LGA options
+    lgaSelect.innerHTML = '<option value="">Select an LGA</option>';
+
+    if (selectedState) {
+        // Get the LGAs for the selected state and sort them alphabetically
+        const lgas = stateAndLGAData[selectedState].sort();
+
+        // Populate the LGA dropdown with sorted LGAs
+        lgas.forEach(lga => {
+            const option = document.createElement("option");
+            option.value = lga;
+            option.textContent = lga;
+            lgaSelect.appendChild(option);
+        });
+    }
+}
+
+
+
+// function populateLGA() {
+//     const stateSelect = document.getElementById("state");
+//     const lgaSelect = document.getElementById("lga");
+//     const selectedState = stateSelect.value;
+
+//     // Clear previous LGA options
+//     lgaSelect.innerHTML = '<option value="">Select an LGA</option>';
+
+//     if (selectedState) {
+//         const lgas = lgaData[selectedState];
+
+//         // Populate the LGA dropdown with the corresponding LGAs
+//         lgas.forEach(lga => {
+//             const option = document.createElement("option");
+//             option.value = lga;
+//             option.textContent = lga;
+//             lgaSelect.appendChild(option);
+//         });
+//     }
+// }
+
+
+
+// function populateLGA() {
+//     const stateSelect = document.getElementById('state');
+//     const lgaSelect = document.getElementById('lga');
+//     lgaSelect.innerHTML = '<option value="">Select LGA</option>'; // Clear previous LGAs
+
+//     let selectedState = stateSelect.value;
+//     if (selectedState) {
+//         let lgas = stateAndLGAData[selectedState];
+//         for (let i = 0; i < lgas.length; i++) {
+//             let option = document.createElement('option');
+//             option.value = lgas[i];
+//             option.textContent = lgas[i];
+//             lgaSelect.appendChild(option);
+//         }
+//     }
+// }
+
