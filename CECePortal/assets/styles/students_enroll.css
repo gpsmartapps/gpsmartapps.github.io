@@ -167,4 +167,10 @@
         margin-bottom: auto;
         margin-left: auto;
     }
+
+    .form-group input[type="date"] {
+        width: 100%;
+        box-sizing: border-box;
+        /* Include padding and border in the element's total width */
+    }
 }
