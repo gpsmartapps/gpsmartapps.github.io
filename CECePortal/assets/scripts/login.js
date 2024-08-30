@@ -1,27 +1,42 @@
- // Toggle Password Visibility
- const togglePassword = document.getElementById('togglePassword');
- const passwordField = document.getElementById('password');
 
- togglePassword.addEventListener('click', function () {
-     const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-     passwordField.setAttribute('type', type);
+//  Form Validation and Notification
+document.addEventListener("DOMContentLoaded", function () {
+    const submitButton = document.getElementById("submit");
+    const centreNumberInput = document.getElementById("centreNumber");
+    const emailAddressInput = document.getElementById("emailAddress");
+    const passwordInput = document.getElementById("passwd");
+    const notificationElement = document.getElementById("notification");
 
-     // Toggle the eye icon
-     this.classList.toggle('bi-eye');
-     this.classList.toggle('bi-eye-slash');
- });
+    submitButton.addEventListener("click", function (e) {
+        const centreNumber = centreNumberInput.value.trim();
+        const emailAddress = emailAddressInput.value.trim();
+        const pwd = passwordInput.value.trim();
 
- // Form Validation
- document.getElementById('loginForm').addEventListener('submit', function (e) {
-     const centreNumber = document.getElementById('centreNumber').value.trim();
-     const emailAddress = document.getElementById('emailAddress').value.trim();
-     const password = document.getElementById('password').value.trim();
+        if (centreNumber === "") {
+            showNotification("Please enter a Centre/School Number.", "error");
+            e.preventDefault();
+        } else if (emailAddress === "") {
+            showNotification("Please enter an email address.", "error");
+            e.preventDefault();
+        } else if (pwd === "") {
+            showNotification("Please enter a password.", "error");
+            e.preventDefault();
+        } else if (!/^\d+$/.test(centreNumber)) {
+            showNotification("Centre Number should only contain numeric values.", "error");
+            e.preventDefault();
+        } else {
+            // Redirect to schoolenrollment.html with the centreNumber as a query parameter
+            window.location.href = `/CECePortal/centre-enroll.html?cn=${encodeURIComponent(centreNumber)}?eml=${encodeURIComponent(emailAddress)}?pw=${encodeURIComponent(pwd)}`;
+        }
+    });
 
-     if (centreNumber === '' || emailAddress === '' || password === '') {
-         e.preventDefault();
-         alert('Please fill in all fields.');
-     } else if (!/^\d+$/.test(centreNumber)) {
-         e.preventDefault();
-         alert('Centre Number should only contain numeric values.');
-     }
- });
+    function showNotification(message, type) {
+        notificationElement.textContent = message;
+        notificationElement.className = `notification ${type}`;
+        notificationElement.style.display = "block";
+
+        setTimeout(function () {
+            notificationElement.style.display = "none";
+        }, 3000); // Hide notification after 3 seconds
+    }
+});

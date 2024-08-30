@@ -27,6 +27,7 @@
         </div>
         <!-- Right Panel -->
         <div class="login-right unselectable">
+            <div id="notification" class="notification unselectable"></div>
             <div class="header-icons unselectable">
                 <a href="index.html" class="house-icon unselectable">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -41,21 +42,21 @@
                 <div class="form-group unselectable">
                     <label for="centreNumber">Centre Number</label>
                     <input type="number" class="form-control" id="centreNumber" name="centreNumber"
-                        placeholder="Enter Centre Number" required>
+                        placeholder="Enter Centre Number">
                 </div>
                 <div class="form-group unselectable">
                     <label for="emailAddress">Email Address</label>
                     <input type="email" class="form-control" id="emailAddress" name="emailAddress"
-                        placeholder="Enter Email Address" required>
+                        placeholder="Enter Email Address">
                 </div>
                 <div class="form-group password-group unselectable">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password"
-                        placeholder="Enter Password" required>
+                    <input type="password" class="form-control" id="passwd" name="password"
+                        placeholder="Enter Password">
                     <i class="bi bi-eye-slash show-password unselectable" id="togglePassword"></i>
                 </div>
                 <div class="form-actions unselectable">
-                    <button type="submit" class="btn">Login</button>
+                    <button type="submit" id="submit" class="btn">Login</button>
                 </div>
                 <div class="form-links unselectable">
                     <a href="verify-centre.html">Register School</a>
@@ -64,8 +65,8 @@
                 </div>
             </form>
             <!-- Notification element -->
-            <div id="notification" class="notification unselectable"></div>
         </div>
+
     </div>
     <script src="/CECePortal/assets/scripts/bootstrap.bundle.min.js"></script>
     <script src="/CECePortal/assets/scripts/login.js"></script>
