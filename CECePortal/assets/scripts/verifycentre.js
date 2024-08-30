@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const centreNumber = centreNumberInput.value.trim();
 
         if (centreNumber === "") {
-            showNotification( "error","Please enter a Centre/School Number.");
+            showNotification("error", "Please enter a Centre/School Number.");
         } else {
             // Redirect to schoolenrollment.html with the centreNumber as a query parameter
             window.location.href = `/CECePortal/centre-enroll.html?centreNumber=${encodeURIComponent(centreNumber)}`;
