@@ -9,8 +9,8 @@
     <link href="/CECePortal/assets/styles/login.css" rel="stylesheet">
     <link rel="stylesheet" href="/CECePortal/assets/styles/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/CECePortal/assets/styles/students_enroll.css">
-    <!-- <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';"> -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';">
 </head>
 
 <body>
@@ -125,42 +125,6 @@
     </div>
     <script src="/CECePortal/assets/scripts/bootstrap.bundle.min.js"></script>
     <script src="/CECePortal/assets/scripts/students_enroll.js"></script>
-
-    <!-- <script>
-        // Fetch states and populate the state dropdown
-        fetch('https://example.com/api/states')
-            .then(response => response.json())
-            .then(data => {
-                const stateSelect = document.getElementById('state');
-                data.states.forEach(state => {
-                    const option = document.createElement('option');
-                    option.value = state.name;
-                    option.textContent = state.name;
-                    stateSelect.appendChild(option);
-                });
-            })
-            .catch(error => console.error('Error fetching states:', error));
-
-        // Fetch LGAs based on selected state
-        document.getElementById('state').addEventListener('change', function () {
-            const state = this.value;
-
-            fetch(`https://example.com/api/lgas?state=${state}`)
-                .then(response => response.json())
-                .then(data => {
-                    const lgaSelect = document.getElementById('lga');
-                    lgaSelect.innerHTML = '<option value="">Select LGA</option>'; // Clear existing options
-
-                    data.local_governments.forEach(lga => {
-                        const option = document.createElement('option');
-                        option.value = lga;
-                        option.textContent = lga;
-                        lgaSelect.appendChild(option);
-                    });
-                })
-                .catch(error => console.error('Error fetching LGAs:', error));
-        });
-    </script> -->
 </body>
 
 </html>
