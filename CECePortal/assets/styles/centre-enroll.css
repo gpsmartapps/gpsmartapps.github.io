@@ -154,6 +154,24 @@ button:hover {
     /* Opera */
 }
 
+/* Hide number wheel */
+/* For Webkit-based browsers (Chrome, Safari) */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* For Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* For Edge and other browsers */
+input[type=number] {
+    appearance: textfield;
+}
+
 @media (max-width: 768px) {
     .enrollment-container {
         padding: 10px;
