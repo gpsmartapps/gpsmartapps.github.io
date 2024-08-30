@@ -42,7 +42,7 @@
 .login-left img {
     max-width: 100px;
     margin-bottom: 20px;
-    margin-left: 140px;
+    margin-left: 120px;
 }
 
 .login-left h2 {
@@ -160,5 +160,11 @@
     .form-group {
         min-width: 100%;
         /* Ensure form groups take full width in portrait mode */
+    }
+
+    .login-left img {
+        max-width: 100px;
+        margin-bottom: auto;
+        margin-left: auto;
     }
 }
