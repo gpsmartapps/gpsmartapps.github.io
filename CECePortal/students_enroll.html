@@ -9,14 +9,13 @@
     <link href="/CECePortal/assets/styles/login.css" rel="stylesheet">
     <link rel="stylesheet" href="/CECePortal/assets/styles/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/CECePortal/assets/styles/students_enroll.css">
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';">
+    <!-- <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';"> -->
 </head>
 
 <body>
-    <div class="login-container unselectable"> <!-- Reuse .login-container class -->
-        <!-- Left Panel -->
-        <div class="login-left unselectable"> <!-- Reuse .login-left class -->
+    <div class="login-container unselectable">
+        <div class="login-left unselectable">
             <a href="/CECePortal/index.html">
                 <img src="/CECePortal/assets/logo/logo.png" alt="CEC ePortal Logo">
             </a>
@@ -30,8 +29,7 @@
             </ul>
             <p>If you need any help, please <a href="mailto:support@cec-portal.com">Contact Support</a>.</p>
         </div>
-        <!-- Right Panel -->
-        <div class="login-right unselectable"> <!-- Reuse .login-right class -->
+        <div class="login-right unselectable">
             <div class="header-icons unselectable">
                 <a href="index.html" class="house-icon unselectable">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -98,17 +96,15 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="state">State</label>
-                        <select id="state" name="state" required>
+                        <label for="state">State of Origin:</label>
+                        <select id="state" onchange="populateLGA()">
                             <option value="">Select State</option>
-                            <!-- Options will be populated by JavaScript -->
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="lga">LGA or City</label>
-                        <select id="lga" name="lga" required>
-                            <option value="">Select LGA</option>
-                            <!-- Options will be populated by JavaScript -->
+                        <label for="lga">Local Government Area:</label>
+                        <select id="lga">
+                            <option value="">Select an LGA</option>
                         </select>
                     </div>
                 </div>
@@ -130,7 +126,7 @@
     <script src="/CECePortal/assets/scripts/bootstrap.bundle.min.js"></script>
     <script src="/CECePortal/assets/scripts/students_enroll.js"></script>
 
-    <script>
+    <!-- <script>
         // Fetch states and populate the state dropdown
         fetch('https://example.com/api/states')
             .then(response => response.json())
@@ -164,7 +160,7 @@
                 })
                 .catch(error => console.error('Error fetching LGAs:', error));
         });
-    </script>
+    </script> -->
 </body>
 
 </html>
