@@ -1,247 +1,71 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 :root {
     --primary-color-darker: hsl(125, 65%, 33%);
     --primary-color: hsl(122, 39%, 49%);
     --secondary: #f3cd03;
     --text-color: #252b42;
+    --second-text-color: #737373;
+    --danger-color: #e74040;
     --background-color: #f7faff;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    padding: 20px;
+.header-icons .house-icon {
+    color: var(--primary-color);
 }
 
-.enrollment-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.header-icons .house-icon svg {
+    width: 24px;
+    height: 24px;
 }
 
-h2 {
-    text-align: center;
-    color: var(--background-color);
-    margin-bottom: 20px;
+.form-group {
+    margin-bottom: 15px;
 }
 
-.form-wrapper {
+.form-row {
     display: flex;
     justify-content: space-between;
     gap: 20px;
 }
 
-.left-panel,
-.right-panel {
-    flex: 1;
-}
-
-/* For the left panel logo */
-.left-panel .logo {
+.form-group label {
     display: block;
-    margin: 0 auto 20px auto;
-    max-width: 100px;
-    /* Adjust as needed */
-}
-
-
-.left-panel {
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    min-width: 250px;
-}
-
-.left-panel p {
-    margin-bottom: 15px;
-    margin-left: 20px;
-}
-
-.left-panel a {
-    color: #fff;
-    text-decoration: underline;
-}
-
-.left-panel ul {
-    list-style-type: disc;
-    padding: 0;
-    margin-bottom: 6rem;
-    align-items: center;
-}
-
-.left-panel ul li {
-    margin-bottom: 0.4rem;
-    margin-left: 40px;
-    align-items: center;
-}
-
-.right-panel {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    min-width: 450px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.form-group {
-    flex: 1;
-    min-width: 200px;
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
-    font-size: 14px;
     margin-bottom: 5px;
-    color: var(--text-color);
 }
 
-input[type="text"],
-input[type="date"],
-input[type="tel"],
-input[type="email"],
-select,
-input[type="file"] {
+.form-group input,
+.form-group select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-input[type="file"] {
-    padding: 5px;
+    border-radius: 4px;
 }
 
 .form-actions {
-    text-align: center;
     margin-top: 20px;
 }
 
-button {
+.form-actions button {
     background-color: var(--primary-color);
     color: #fff;
-    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 100%;
-}
-
-button:hover {
-    background-color: var(--primary-color-darker);
-}
-
-.logo {
-    display: block;
-    margin: 0 auto;
-    max-width: 100px;
-}
-
-/* Notification Styling */
-#notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
     padding: 10px 20px;
-    border-radius: 5px;
-    z-index: 1000;
-    display: none;
-    /* Hidden by default */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-/* Notification Types */
-.notification.error {
-    background-color: #f8d7da;
-    color: #721c24;
-}
-
-.notification.success {
-    background-color: #d4edda;
-    color: #155724;
+.notification {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
 }
 
 .notification.info {
-    background-color: #fff3cd;
-    color: #856404;
+    background-color: lightyellow;
+    color: var(--text-color);
 }
 
-/* Unselectable class */
-.unselectable {
-    user-select: none;
-    /* Prevents text selection */
-    -webkit-user-select: none;
-    /* Safari */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* IE/Edge */
-    -o-user-select: none;
-    /* Opera */
-}
-
-/* Hide number wheel */
-/* For Webkit-based browsers (Chrome, Safari) */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-/* For Firefox */
-input[type=number] {
-    -moz-appearance: textfield;
-}
-
-/* For Edge and other browsers */
-input[type=number] {
-    appearance: textfield;
-}
-
-@media (max-width: 768px) {
-    .enrollment-container {
-        padding: 10px;
-    }
-
-    .form-wrapper {
-        flex-direction: column;
-    }
-
-    .left-panel,
-    .right-panel {
-        min-width: 100%;
-    }
-
-    .left-panel ul {
-        list-style-type: none;
-        padding: 0;
-        margin-bottom: 6rem;
-        align-items: center;
-    }
-
-    .left-panel ul li {
-        margin-bottom: 0.4rem;
-        margin-left: 40px;
-        align-items: center;
-        list-style-type: none;
-    }
+.notification.error {
+    background-color: var(--danger-color);
+    color: #fff;
 }
