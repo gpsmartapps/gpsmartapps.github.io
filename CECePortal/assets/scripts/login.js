@@ -1,5 +1,4 @@
-
-//  Form Validation and Notification
+// Form Validation and Notification
 document.addEventListener("DOMContentLoaded", function () {
     const submitButton = document.getElementById("submit");
     const centreNumberInput = document.getElementById("centreNumber");
@@ -13,24 +12,24 @@ document.addEventListener("DOMContentLoaded", function () {
         const pwd = passwordInput.value.trim();
 
         if (centreNumber === "") {
-            showNotification("Please enter a Centre/School Number.", "error");
+            showNotification("error", "Please enter a Centre/School Number.");
             e.preventDefault();
         } else if (emailAddress === "") {
-            showNotification("Please enter an email address.", "error");
+            showNotification("error", "Please enter an email address.");
             e.preventDefault();
         } else if (pwd === "") {
-            showNotification("Please enter a password.", "error");
+            showNotification("error", "Please enter a password.");
             e.preventDefault();
         } else if (!/^\d+$/.test(centreNumber)) {
-            showNotification("Centre Number should only contain numeric values.", "error");
+            showNotification("error", "Centre Number should only contain numeric values.");
             e.preventDefault();
         } else {
             // Redirect to schoolenrollment.html with the centreNumber as a query parameter
-            window.location.href = `/CECePortal/centre-enroll.html?cn=${encodeURIComponent(centreNumber)}?eml=${encodeURIComponent(emailAddress)}?pw=${encodeURIComponent(pwd)}`;
+            window.location.href = `/CECePortal/centre-enroll.html?cn=${encodeURIComponent(centreNumber)}&eml=${encodeURIComponent(emailAddress)}&pw=${encodeURIComponent(pwd)}`;
         }
     });
 
-    function showNotification(message, type) {
+    function showNotification(type, message) {
         notificationElement.textContent = message;
         notificationElement.className = `notification ${type}`;
         notificationElement.style.display = "block";
