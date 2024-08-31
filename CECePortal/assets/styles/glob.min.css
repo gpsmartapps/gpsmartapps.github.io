@@ -157,6 +157,16 @@ textarea:focus {
     color: var(--text-color);
 }
 
+.login-left a {
+    color: var(--background-color);
+    text-decoration: underline
+}
+
+.login-left.login-hints ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 6rem
+}
 
 /* 
 @keyframes gradientAnimation {
