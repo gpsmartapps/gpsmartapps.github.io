@@ -36,18 +36,21 @@ document.addEventListener('DOMContentLoaded', function () {
         // Validate Centre/School Number
         if (!validateCentreNumber(centreNumber.value)) {
             showNotification('Please enter a valid Centre/School Number.', 'error');
+            const field = document.getElementById("centreNumber"); field.focus(); e.preventDefault();
             return;
         }
 
         // Validate Year
         if (!validateYear(year.value)) {
             showNotification('Please enter a valid Year.', 'error');
+            const field = document.getElementById("year"); field.focus(); e.preventDefault();
             return;
         }
 
         // Validate Candidate Examination Number
         if (!validateExamNumber(examNumber.value)) {
             showNotification('Please enter a valid Candidate Examination Number.', 'error');
+            const field = document.getElementById("examNumber"); field.focus(); e.preventDefault();
             return;
         }
 
