@@ -156,12 +156,6 @@
         min-width: 100%;
     }
 
-    .login-left img {
-        max-width: 100px;
-        margin-bottom: auto;
-        margin-left: auto;
-    }
-
     .form-group input[type=date] {
         width: 100%;
         box-sizing: border-box;
@@ -178,4 +172,33 @@
         list-style-type: none;
         margin-right: 30px
     }
+
+
+    .login-left {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .login-left img {
+        margin: 0 auto 20px auto;
+    }
+
+    .login-left h2,
+    .login-left p,
+    .login-left ul {
+        text-align: center;
+    }
+
+    .login-left ul {
+        padding: 0;
+        list-style-position: inside;
+    }
+}
+
+
+@media(max-width:768px) {
+    .login-left img {
+        margin: 0 auto 20px auto;
+    }
+
 }

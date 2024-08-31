@@ -58,41 +58,43 @@
                         <label for="schoolNumber">School Number</label>
                         <input type="text" id="schoolNumber" name="schoolNumber" readonly>
                     </div>
-                    <div class="form-group">
-                        <label for="state">State</label>
-                        <input type="text" id="state" name="state" readonly>
+                    <div class="form-group"><label for="state">State:</label>
+                        <select id="state">
+                            <option value="">Select State</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="lga">Local Government Area</label>
-                        <input type="text" id="lga" name="lga" readonly>
+                    <div class="form-group"><label for="lga">Local Government Area:</label>
+                        <select id="lga">
+                            <option value="">Select an LGA</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="registratorName">Full Name of Registrator</label>
-                        <input type="text" id="registratorName" name="registratorName" required>
+                        <input type="text" id="registratorName" name="registratorName">
                     </div>
                     <div class="form-group">
                         <label for="schoolEmail">School Email</label>
-                        <input type="email" id="schoolEmail" name="schoolEmail" required>
+                        <input type="email" id="schoolEmail" name="schoolEmail">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="registratorPhone">Registrator's Phone</label>
-                        <input type="tel" id="registratorPhone" name="registratorPhone" required>
+                        <input type="tel" id="registratorPhone" name="registratorPhone">
                     </div>
                     <div class="form-group">
                         <label for="principalPhone">Principal's Phone Number</label>
-                        <input type="tel" id="principalPhone" name="principalPhone" required>
+                        <input type="tel" id="principalPhone" name="principalPhone">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="schoolType">School Type</label>
-                        <select id="schoolType" name="schoolType" required>
+                        <select id="schoolType" name="schoolType">
                             <option value="">Select School Type</option>
                             <option value="Boys Only">Boys Only</option>
                             <option value="Girls Only">Girls Only</option>
@@ -102,7 +104,7 @@
                 </div>
                 <div class="form-group">
                     <label for="schoolAddress">School Address</label>
-                    <textarea id="schoolAddress" name="schoolAddress" rows="2" required></textarea>
+                    <textarea id="schoolAddress" name="schoolAddress" rows="2"></textarea>
                 </div>
                 <div class="form-actions">
                     <button type="submit" id="update">Update</button>
