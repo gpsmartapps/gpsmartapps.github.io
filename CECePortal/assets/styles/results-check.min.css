@@ -113,48 +113,6 @@ input[type=number] {
     -moz-appearance: textfield
 }
 
-#notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    z-index: 1000;
-    display: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, .1)
-}
-
-.notification.error {
-    background-color: #f8d7da;
-    color: #721c24
-}
-
-.notification.success {
-    background-color: #d4edda;
-    color: #155724
-}
-
-.notification.info {
-    background-color: #fff3cd;
-    color: #856404
-}
-
-.unselectable {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none
-}
-
-.selectable {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none
-}
-
 @media (max-width:768px) {
     .results-container {
         flex-direction: column

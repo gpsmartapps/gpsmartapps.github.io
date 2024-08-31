@@ -6,15 +6,6 @@
     padding: 0
 }
 
-:root {
-    --primary-color-darker: hsl(125, 65%, 33%);
-    --primary-color: hsl(122, 39%, 49%);
-    --secondary: #f3cd03;
-    --text-color: #252b42;
-    --second-text-color: #737373;
-    --danger-color: #e74040;
-    --background-color: #f7faff
-}
 
 .logo {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -182,22 +173,6 @@ nav .signup {
 .hero-info .cta-buttons button:first-child:hover,
 nav .signup:hover {
     background: var(--primary-color-darker)
-}
-
-.unselectable {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none
-}
-
-.selectable {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none
 }
 
 .curved-rectangle-1 {

@@ -1,13 +1,3 @@
-:root {
-    --primary-color-darker: hsl(125, 65%, 33%);
-    --primary-color: hsl(122, 39%, 49%);
-    --secondary: #f3cd03;
-    --text-color: #252b42;
-    --second-text-color: #737373;
-    --danger-color: #e74040;
-    --background-color: #f7faff
-}
-
 body {
     display: flex;
     justify-content: center;
@@ -148,21 +138,6 @@ body {
     margin-top: 20px
 }
 
-.unselectable {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none
-}
-
-.selectable {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none
-}
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -176,52 +151,6 @@ input[type=number] {
 
 input[type=number] {
     appearance: textfield
-}
-
-#notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    z-index: 1000;
-    display: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, .1)
-}
-
-.notification.error {
-    background-color: #f8d7da;
-    color: #721c24
-}
-
-.notification.success {
-    background-color: #d4edda;
-    color: #155724
-}
-
-.notification.info {
-    background-color: #fff3cd;
-    color: #856404
-}
-
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0 50%
-    }
-}
-
-body {
-    background: linear-gradient(45deg, var(--primary-color), var(--background-color), var(--primary-color));
-    background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite
 }
 
 @media(max-width:768px) {

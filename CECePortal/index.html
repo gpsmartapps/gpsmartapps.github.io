@@ -27,6 +27,7 @@
     <meta property="og:site_name" content="Catholic Education Board">
     <title>Catholic Education Board - ePortal</title>
     <link rel="stylesheet" href="/CECePortal/assets/styles/index.min.css">
+    <link rel="stylesheet" href="/CECePortal/assets/styles/glob.min.css">
     <link rel="stylesheet" href="/CECePortal/assets/styles/media.min.css">
     <link rel="stylesheet" href="/CECePortal/assets/styles/bootstrap-icons.min.css">
     <noscript>
@@ -39,7 +40,6 @@
 
 
 <body>
-    
     <header>
         <nav class="container unselectable">
             <div class="nav-wrapper unselectable"><a href="index.html" class="logo-link"><img
@@ -120,6 +120,12 @@
             </div>
         </div>
     </footer>
+    <!-- Notification Bar -->
+    <div id="notification-bar" class="notification-bar">
+        <span id="notification-message" class="notification-message">You are offline. Please check your internet
+            connection.</span>
+        <button id="close-notification" onclick="hideNotification()">×</button>
+    </div>
     <script src="/CECePortal/assets/scripts/bootstrap.bundle.min.js"></script>
     <script src="/CECePortal/assets/scripts/main.js"></script>
 </body>

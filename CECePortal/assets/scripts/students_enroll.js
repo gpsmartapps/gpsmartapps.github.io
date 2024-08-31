@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
 document.getElementById('passport').addEventListener('change', function (event) {
     const file = event.target.files[0];
 
@@ -222,6 +221,19 @@ function populateLGA() {
     }
 }
 
+document.getElementById('state').addEventListener('change', function () {
+    // Get the selected value from the dropdown
+    const selectedState = this.value;
+
+    // Call the function you want to execute when the state changes
+    populateLGA()
+});
+
+// // Example function to be called on change
+// function populateLGA(selectedState) {
+//     console.log('Selected state:', selectedState);
+//     // Logic to populate LGA or handle the change
+// }
 
 
 // function populateLGA() {
