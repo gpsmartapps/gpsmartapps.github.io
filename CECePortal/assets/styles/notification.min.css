@@ -1,0 +1,85 @@
+:root {
+    --primary-color-darker: hsl(125, 65%, 33%);
+    --primary-color: hsl(122, 39%, 49%);
+    --text-color: #252b42;
+    --second-text-color: #737373;
+    --danger-color: #e74040;
+    --background-color: #f7faff;
+    --success-color: #d4edda;
+    --error-color: #f8d7da;
+    --info-color: #fff3cd;
+    --success-text: #155724;
+    --error-text: #721c24;
+    --info-text: #856404;
+    --background-color: #f7faff;
+}
+
+.unselectable {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none
+}
+
+.selectable {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none
+}
+.notification-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--error-color);
+    color: var(--error-text);
+    text-align: center;
+    font-weight: bold;
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.notification-bar.success {
+    background-color: var(--success-color);
+    color: var(--success-text);
+}
+
+.notification-bar.error {
+    background-color: var(--error-color);
+    color: var(--error-text);
+}
+
+.notification-bar.info {
+    background-color: var(--info-color);
+    color: var(--info-text);
+}
+
+.notification-message {
+    flex: 1;
+    text-align: center;
+}
+
+.notification-bar button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    line-height: 20px;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 20px;
+}
+
+.notification-bar button:hover {
+    color: #000;
+}
+
+.content {
+    text-align: center;
+}
