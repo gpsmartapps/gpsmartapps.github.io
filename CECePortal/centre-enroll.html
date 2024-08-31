@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centre Enrollment - Catholic Education Board</title>
+    <link rel="icon" href="/CECePortal/assets/icons/favicon.svg" type="image/png">
+    <link rel="icon" href="/CECePortal/assets/icons/favicon.png" type="image/png">
+    <link href="/CECePortal/assets/styles/bootstrap.min.css" rel="stylesheet">
+    <link href="/CECePortal/assets/styles/centre-enroll.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/CECePortal/assets/styles/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/CECePortal/assets/styles/glob.min.css">
+
+<body>
+    <div class="login-container unselectable">
+        <div class="login-left unselectable">
+            <a href="/CECePortal/index.html"><img src="/CECePortal/assets/logo/logo.png" alt="CEC ePortal Logo"></a>
+            <h2>Centre Enrollment</h2>
+            <p>Update your school or centre's information.</p>
+            <ul>
+                <li>Verify and update your school details</li>
+                <li>Manage data efficiently</li>
+                <li>Stay updated with exam info</li>
+            </ul>
+            <p>If you need any help, please <a href="mailto:support@cec-portal.com">Contact Support</a>.</p>
+        </div>
+        <div class="login-right unselectable">
+            <div class="header-icons unselectable">
+                <a href="/CECePortal/index.html" class="house-icon unselectable">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        class="bi bi-house" viewBox="0 0 16 16">
+                        <path
+                            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+                    </svg>
+                </a>
+            </div>
+            <h2>Update School Information</h2>
+            <form id="centreEnrollForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="examType">Examination Type</label>
+                        <input type="text" id="examType" name="examType" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="schoolName">School Name</label>
+                        <input type="text" id="schoolName" name="schoolName" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="schoolNumber">School Number</label>
+                        <input type="text" id="schoolNumber" name="schoolNumber" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="state" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="lga">Local Government Area</label>
+                        <input type="text" id="lga" name="lga" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="registratorName">Full Name of Registrator</label>
+                        <input type="text" id="registratorName" name="registratorName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="schoolEmail">School Email</label>
+                        <input type="email" id="schoolEmail" name="schoolEmail" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="registratorPhone">Registrator's Phone</label>
+                        <input type="tel" id="registratorPhone" name="registratorPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="principalPhone">Principal's Phone Number</label>
+                        <input type="tel" id="principalPhone" name="principalPhone" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="schoolType">School Type</label>
+                        <select id="schoolType" name="schoolType" required>
+                            <option value="">Select School Type</option>
+                            <option value="Boys Only">Boys Only</option>
+                            <option value="Girls Only">Girls Only</option>
+                            <option value="Mixed">Mixed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="schoolAddress">School Address</label>
+                    <textarea id="schoolAddress" name="schoolAddress" rows="2" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" id="update">Update</button>
+                    <a href="/CECePortal/index.html" class="button-back">Back to Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/CECePortal/assets/scripts/bootstrap.bundle.min.js"></script>
+    <script src="/CECePortal/assets/scripts/centre_enroll.js"></script>
+</body>
+
+</html>
