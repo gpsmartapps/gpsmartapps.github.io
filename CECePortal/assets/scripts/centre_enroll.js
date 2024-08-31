@@ -27,15 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const examTypeField = document.getElementById("examType");
     const schoolNameField = document.getElementById("schoolName");
     const schoolNumberField = document.getElementById("schoolNumber");
-    // const stateField = document.getElementById("state");
-    // const lgaField = document.getElementById("lga");
 
     // Disable the fields
     if (examTypeField) examTypeField.disabled = true;
     if (schoolNameField) schoolNameField.disabled = true;
     if (schoolNumberField) schoolNumberField.disabled = true;
-    // if (stateField) stateField.disabled = true;
-    // if (lgaField) lgaField.disabled = true;
 });
 
 
@@ -198,7 +194,7 @@ async function populateLGA() {
             lgaSelect.appendChild(option);
         });
     }
-}
+};
 
 document.getElementById('state').addEventListener('change', function () {
     // Get the selected value from the dropdown
@@ -207,4 +203,83 @@ document.getElementById('state').addEventListener('change', function () {
     // Call the function you want to execute when the state changes
     populateLGA()
     // populateLGA(selectedState);
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    // JavaScript validation function
+    function validateField(field, regex, errorMsg) {
+        const value = field.value.trim();
+        if (!regex.test(value)) {
+            displayNotification(errorMsg, "error");
+            field.focus();
+            return false;
+        }
+        return true;
+    }
+
+    // Display notification
+    function displayNotification(message, type) {
+        const notification = document.getElementById("notification");
+        notification.innerText = message;
+        notification.className = type; // Type can be "success" or "error"
+        notification.style.display = "block";
+    }
+
+    // Hide notification
+    function hideNotification() {
+        const notification = document.getElementById("notification");
+        notification.style.display = "none";
+    }
+
+    // Validate form fields
+    function validateForm(event) {
+        hideNotification();
+
+        const fullName = document.getElementById("fullName");
+        const schoolEmail = document.getElementById("schoolEmail");
+        const schoolPhone = document.getElementById("schoolPhone");
+        const principalPhone = document.getElementById("principalPhone");
+        const schoolAddress = document.getElementById("schoolAddress");
+        const schooltype = document.getElementById("schooltype")
+
+        // Name validation (at least 3 characters)
+        if (!validateField(fullName, /^[a-zA-Z\s]{3,}$/, "Full Name must be at least 10 characters long and contain only letters and spaces.")) {
+            return false;
+        }
+
+        // Email validation (basic email format)
+        if (!validateField(schoolEmail, /^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Please enter a valid email address.")) {
+            return false;
+        }
+
+        // Phone validation (10-15 digits)
+        if (!validateField(schoolPhone, /^\d{11,}$/, "Phone number must be between 11 digits.")) {
+            return false;
+        }
+
+        if (!validateField(principalPhone, /^\d{11,}$/, "Principal Phone number must be 11 digits.")) {
+            return false;
+        }
+
+        if (!validateField(schooltype, /^[a-zA-Z\s]{3,}$/, "Principal Phone number must be 11 digits.")) {
+            return false;
+        }
+
+        // School address validation (at least 5 characters)
+        if (!validateField(schoolAddress, /^.{15,}$/, "School Address must be at least 5 characters long.")) {
+            return false;
+        }
+
+        // If all validations pass, form is ready for submission
+        return true;
+    }
+
+    // Attach the validation to the form submit event
+    const form = document.getElementById("centreEnrollForm");
+    form.addEventListener("update", function (event) {
+        if (!validateForm(event)) {
+            event.preventDefault(); // Prevent form submission if validation fails
+        }
+    });
 });

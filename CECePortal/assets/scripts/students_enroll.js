@@ -331,7 +331,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             // DATABASE THINGS DROP HERE.
             alert("YOU ARE GOOD TO GO!")
             // Send data securely to the server
-            sendResetData({ surname }, { firstname }, { othername }, { dob }, { gender }, { disability }, { phone }, { email }, { state }, { lga }, { passport })
+            sendCandidateData({ surname }, { firstname }, { othername }, { dob }, { gender }, { disability }, { phone }, { email }, { state }, { lga }, { passport })
         }
     });
 
@@ -361,7 +361,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
 
-    async function sendResetData(data) {
+    async function sendCandidateData(data) {
         try {
             const response = await fetch('/CECePortal/enroll', { // Ensure your endpoint is secure
                 method: 'POST',
