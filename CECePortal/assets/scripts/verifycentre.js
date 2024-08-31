@@ -33,7 +33,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (centreNumber === "") {
             showNotification("error", "Please enter a Centre/School Number.");
-            e.preventDefault(); // Prevent default form submission
+            // Focus on the field with the error if provided
+            const field = document.getElementById("centreNumber");
+            field.focus();
+            // Prevent default form submission
+            e.preventDefault();
         } else {
             // Redirect to centre-enroll.html with the centreNumber as a query parameter
             window.location.href = `/CECePortal/centre-enroll.html?centreNumber=${encodeURIComponent(centreNumber)}`;
@@ -65,3 +69,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 3000);
     }
 });
+
+

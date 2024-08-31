@@ -277,3 +277,109 @@ document.getElementById('state').addEventListener('change', function () {
 //     }
 // }
 
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const submitButton = document.getElementById("submit");
+    const notificationElement = document.getElementById("notification");
+
+    submitButton.addEventListener("click", function (e) {
+        // Get values from the form
+        const surname = document.getElementById("surname").value.trim();
+        const firstname = document.getElementById("firstname").value.trim();
+        const othername = document.getElementById("other").value.trim();
+        const dob = document.getElementById("dob").value.trim();
+        const gender = document.getElementById("gender").value.trim();
+        const disability = document.getElementById("disability").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const state = document.getElementById("state").value.trim();
+        const lga = document.getElementById("lga").value.trim();
+        const passport = document.getElementById("passport").files.length; // Check if file is selected
+
+        if (surname === "") {
+            showNotification("error", "Please enter a your surname.");
+            const field = document.getElementById("surname"); field.focus(); e.preventDefault();
+        } else if (firstname === "") {
+            showNotification("error", "Please enter your firstname.");
+            const field = document.getElementById("firstname"); field.focus(); e.preventDefault();
+        } else if (dob === "") {
+            showNotification("error", "Please enter your date of birth.");
+            const field = document.getElementById("dob"); field.focus(); e.preventDefault();
+        } else if (gender === "") {
+            showNotification("error", "Please select your gender.");
+            const field = document.getElementById("gender"); field.focus(); e.preventDefault();
+        } else if (disability === "") {
+            showNotification("error", "Please specify if you have a disability.");
+            const field = document.getElementById("disability"); field.focus(); e.preventDefault();
+        } else if (phone === "") {
+            showNotification("error", "Please enter your phone number.");
+            const field = document.getElementById("phone"); field.focus(); e.preventDefault();
+        } else if (email === "") {
+            showNotification("error", "Please enter your email address");
+            const field = document.getElementById("email"); field.focus(); e.preventDefault();
+        } else if (state === "" || state === "Select State") {
+            showNotification("error", "Please select a valid state of origin.");
+            const field = document.getElementById("state"); field.focus(); e.preventDefault();
+        } else if (lga === "" || lga === "Select an LGA") {
+            showNotification("error", "Please select a valid local government area.");
+            const field = document.getElementById("lga"); field.focus(); e.preventDefault();
+        } else if (passport === 0) {
+            showNotification("error", "Please upload a passport photo.");
+            const field = document.getElementById("passport"); field.focus(); e.preventDefault();
+        } else {
+            // DATABASE THINGS DROP HERE.
+            alert("YOU ARE GOOD TO GO!")
+            // Send data securely to the server
+            sendResetData({ surname }, { firstname }, { othername }, { dob }, { gender }, { disability }, { phone }, { email }, { state }, { lga }, { passport })
+        }
+    });
+
+    function showNotification(type, message) {
+        const notification = document.getElementById('notification');
+
+        // Clear any existing notification classes
+        notification.className = 'notification unselectable';
+
+        // Add the appropriate class based on the type
+        if (type === 'error') {
+            notification.classList.add('error');
+        } else if (type === 'success') {
+            notification.classList.add('success');
+        } else if (type === 'info') {
+            notification.classList.add('info');
+        }
+
+        // Set the message and show the notification
+        notification.textContent = message;
+        notification.style.display = 'block';
+
+        // Hide the notification after a few seconds
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 3000);
+    }
+
+
+    async function sendResetData(data) {
+        try {
+            const response = await fetch('/CECePortal/enroll', { // Ensure your endpoint is secure
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data) // Send data securely in the request body
+            });
+
+            if (response.ok) {
+                showNotification("Candidate has been registered successfully!", "success");
+            } else {
+                showNotification("Failed to register the candidate. Please try again.", "error");
+            }
+        } catch (error) {
+            showNotification("An error occurred. Please try again later.", "error");
+        }
+    }
+});
+
+

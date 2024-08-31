@@ -34,11 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const email = emailInput.value.trim();
 
         if (!email) {
-            showNotification("Please enter an email address.", "error");
-            e.preventDefault(); // Prevent default form submission
+            showNotification("error", "Please enter an email address.");
+            const field = document.getElementById("email"); field.focus(); e.preventDefault();
         } else if (!validateEmail(email)) {
-            showNotification("Please enter a valid email address.", "error");
-            e.preventDefault(); // Prevent default form submission
+            showNotification("error", "Please enter a valid email address.");
+            const field = document.getElementById("email"); field.focus(); e.preventDefault();
         } else {
             // Send data securely to the server
             sendResetData({ email });
@@ -50,14 +50,29 @@ document.addEventListener("DOMContentLoaded", function () {
         return emailPattern.test(email.toLowerCase());
     }
 
-    function showNotification(message, type) {
-        notificationElement.textContent = message;
-        notificationElement.className = `notification ${type}`;
-        notificationElement.style.display = "block";
+    function showNotification(type, message) {
+        const notification = document.getElementById('notification');
 
+        // Clear any existing notification classes
+        notification.className = 'notification unselectable';
+
+        // Add the appropriate class based on the type
+        if (type === 'error') {
+            notification.classList.add('error');
+        } else if (type === 'success') {
+            notification.classList.add('success');
+        } else if (type === 'info') {
+            notification.classList.add('info');
+        }
+
+        // Set the message and show the notification
+        notification.textContent = message;
+        notification.style.display = 'block';
+
+        // Hide the notification after a few seconds
         setTimeout(() => {
-            notificationElement.style.display = "none";
-        }, 3000); // Hide notification after 3 seconds
+            notification.style.display = 'none';
+        }, 3000);
     }
 
     async function sendResetData(data) {

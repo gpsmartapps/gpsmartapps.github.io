@@ -38,14 +38,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!centreNumber) {
             showNotification("Please enter a Centre/School Number.", "error");
+            const field = document.getElementById("centreNumber");
+            field.focus();
         } else if (!emailAddress) {
             showNotification("Please enter an email address.", "error");
+            const field = document.getElementById("emailAddress");
+            field.focus();
         } else if (!password) {
             showNotification("Please enter a password.", "error");
+            const field = document.getElementById("passwd");
+            field.focus();
         } else if (!/^\d+$/.test(centreNumber)) {
             showNotification("Centre Number should only contain numeric values.", "error");
+            const field = document.getElementById("centreNumber");
+            field.focus();
         } else if (!validateEmail(emailAddress)) {
             showNotification("Please enter a valid email address.", "error");
+            const field = document.getElementById("emailAddress");
+            field.focus();
         } else {
             // Send data securely to the server
             sendLoginData({ centreNumber, emailAddress, password });
@@ -58,13 +68,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function showNotification(message, type) {
-        notificationElement.textContent = message;
-        notificationElement.className = `notification ${type}`;
-        notificationElement.style.display = "block";
+        const notification = document.getElementById('notification');
 
+        // Clear any existing notification classes
+        notification.className = 'notification unselectable';
+
+        // Add the appropriate class based on the type
+        if (type === 'error') {
+            notification.classList.add('error');
+        } else if (type === 'success') {
+            notification.classList.add('success');
+        } else if (type === 'info') {
+            notification.classList.add('info');
+        }
+
+        // Set the message and show the notification
+        notification.textContent = message;
+        notification.style.display = 'block';
+
+        // Hide the notification after a few seconds
         setTimeout(() => {
-            notificationElement.style.display = "none";
-        }, 3000); // Hide notification after 3 seconds
+            notification.style.display = 'none';
+        }, 3000);
     }
 
     async function sendLoginData(data) {
