@@ -23,14 +23,14 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     const form = document.getElementById('results-form');
     const centreNumber = document.getElementById('centreNumber');
     const year = document.getElementById('year');
     const examNumber = document.getElementById('examNumber');
     const notification = document.getElementById('notification');
 
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', async function (e) {
         e.preventDefault(); // Prevent form submission for validation
 
         // Validate Centre/School Number

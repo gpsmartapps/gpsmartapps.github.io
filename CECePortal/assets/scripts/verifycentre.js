@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     // Check if JavaScript is enabled by simply attempting to execute code
     try {
         // Check if the fetch API is supported
@@ -23,12 +23,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     const submitButton = document.getElementById("submit");
     const centreNumberInput = document.getElementById("centreNumber");
     const notificationElement = document.getElementById("notification");
 
-    submitButton.addEventListener("click", function (e) {
+    submitButton.addEventListener("click", async function (e) {
         const centreNumber = centreNumberInput.value.trim();
 
         if (centreNumber === "") {

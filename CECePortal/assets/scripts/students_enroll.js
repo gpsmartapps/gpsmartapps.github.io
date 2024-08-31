@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     // Check if JavaScript is enabled by simply attempting to execute code
     try {
         // Check if the fetch API is supported
@@ -184,7 +184,7 @@ const stateAndLGAData = {
     ]
 };
 
-window.onload = function () {
+window.onload = async function () {
     const stateSelect = document.getElementById('state');
 
     // Get the states and sort them alphabetically
@@ -199,7 +199,7 @@ window.onload = function () {
     });
 };
 
-function populateLGA() {
+async function populateLGA() {
     const stateSelect = document.getElementById("state");
     const lgaSelect = document.getElementById("lga");
     const selectedState = stateSelect.value;
@@ -279,15 +279,15 @@ document.getElementById('state').addEventListener('change', function () {
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     const submitButton = document.getElementById("submit");
     const notificationElement = document.getElementById("notification");
 
-    submitButton.addEventListener("click", function (e) {
+    submitButton.addEventListener("click", async function (e) {
         // Get values from the form
         const surname = document.getElementById("surname").value.trim();
         const firstname = document.getElementById("firstname").value.trim();
-        const othername = document.getElementById("other").value.trim();
+        const othername = document.getElementById("othername").value.trim();
         const dob = document.getElementById("dob").value.trim();
         const gender = document.getElementById("gender").value.trim();
         const disability = document.getElementById("disability").value.trim();

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     // Check if JavaScript is enabled by simply attempting to execute code
     try {
         // Check if the fetch API is supported
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     const submitButton = document.getElementById("submit");
     const emailInput = document.getElementById("email");
     const notificationElement = document.getElementById("notification");
