@@ -194,11 +194,3 @@
         list-style-position: inside;
     }
 }
-
-
-@media(max-width:768px) {
-    .login-left img {
-        margin: 0 auto 20px auto;
-    }
-
-}
