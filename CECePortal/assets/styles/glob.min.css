@@ -124,6 +124,40 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0
 }
 
+
+textarea:focus {
+    border-color: var(--primary-color-darker);
+    outline: none;
+    box-shadow: 0 0 5px var(--primary-color-darker);
+    background-color: #f7faff;
+    /* Ensure background matches the form */
+    color: var(--text-color);
+    /* Adjust text color for better contrast */
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+    border-color: var(--primary-color-darker);
+    outline: none;
+    box-shadow: 0 0 5px var(--primary-color-darker);
+    background-color: #f7faff;
+    color: var(--text-color);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary-color-darker);
+    outline: none;
+    box-shadow: 0 0 5px var(--primary-color-darker);
+    background-color: #f7faff;
+    color: var(--text-color);
+}
+
+
 /* 
 @keyframes gradientAnimation {
     0% {

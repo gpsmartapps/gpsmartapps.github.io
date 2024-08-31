@@ -44,50 +44,60 @@
             <h2>Student Enrollment</h2>
             <form id="enrollmentForm" enctype="multipart/form-data">
                 <div class="form-row">
-                    <div class="form-group"><label for="surname">Surname</label><input type="text" id="surname" name="surname"></div>
-                    <div class="form-group"><label for="firstname">First Name</label><input type="text" id="firstname" name="firstname"></div>
+                    <div class="form-group"><label for="surname">Surname</label><input type="text" id="surname"
+                            name="surname"></div>
+                    <div class="form-group"><label for="firstname">First Name</label><input type="text" id="firstname"
+                            name="firstname"></div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group"><label for="othername">Other Name</label><input type="text" id="othername" name="othername"></div>
-                    <div class="form-group"><label for="dob">Date of Birth</label><input type="date" id="dob" name="dob"></div>
+                    <div class="form-group"><label for="othername">Other Name</label><input type="text" id="othername"
+                            name="othername"></div>
+                    <div class="form-group"><label for="dob">Date of Birth</label><input type="date" id="dob"
+                            name="dob"></div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group"><label for="gender">Gender</label><select id="gender" name="gender">
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select></div>
-                    <div class="form-group"><label for="disability">Disability</label><select id="disability" name="disability">
-                        <option value="">Select Disability</option>
-                        <option value="Normal">Normal</option>
-                        <option value="Visually Impaired">Visually Impaired</option>
-                        <option value="Hearing/Speech Impaired">Hearing/Speech Impaired</option>
-                        <option value="Physically Impaired">Physically Impaired</option>
-                        <option value="Mentally Impaired">Mentally Impaired</option>
-                        <option value="Spastic/Palsy/Epilectic Condition">Spastic/Palsy/Epilectic Condition</option>
-                        <option value="Low Vision">Low Vision</option>
-                    </select></div>
+                    <div class="form-group"><label for="gender">Gender</label><select id="gender" name="gender"
+                            type="text">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select></div>
+                    <div class="form-group"><label for="disability">Disability</label><select id="disability"
+                            name="disability">
+                            <option value="">Select Disability</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Visually Impaired">Visually Impaired</option>
+                            <option value="Hearing/Speech Impaired">Hearing/Speech Impaired</option>
+                            <option value="Physically Impaired">Physically Impaired</option>
+                            <option value="Mentally Impaired">Mentally Impaired</option>
+                            <option value="Spastic/Palsy/Epilectic Condition">Spastic/Palsy/Epilectic Condition</option>
+                            <option value="Low Vision">Low Vision</option>
+                        </select></div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone"></div>
-                    <div class="form-group"><label for="email">Email (Optional)</label><input type="email" id="email" name="email"></div>
+                    <div class="form-group"><label for="phone">Phone Number</label><input type="tel" id="phone"
+                            name="phone"></div>
+                    <div class="form-group"><label for="email">Email (Optional)</label><input type="email" id="email"
+                            name="email"></div>
                 </div>
                 <div class="form-row">
                     <div class="form-group"><label for="state">State of Origin:</label><select id="state">
-                        <option value="">Select State</option>
-                    </select></div>
+                            <option value="">Select State</option>
+                        </select></div>
                     <div class="form-group"><label for="lga">Local Government Area:</label><select id="lga">
-                        <option value="">Select an LGA</option>
-                    </select></div>
+                            <option value="">Select an LGA</option>
+                        </select></div>
                 </div>
-                <div class="form-group"><label for="passport">Passport Photo (Max 15kb)</label><input type="file" id="passport" name="passport" accept="image/jpeg, image/jpg"></div>
+                <div class="form-group"><label for="passport">Passport Photo (Max 15kb)</label><input type="file"
+                        id="passport" name="passport" accept="image/jpeg, image/jpg"></div>
                 <div class="passport-preview-container">
-                    <img id="passportPreview" alt="Passport Preview" style="display:none; width: 100px; height: 100px; margin-top: 10px;">
+                    <img id="passportPreview" alt="Passport Preview"
+                        style="display:none; width: 100px; height: 100px; margin-top: 10px;">
                 </div>
                 <div class="form-actions"><button type="submit" id="submit">Submit</button></div>
             </form>
             <div id="notification" class="notification unselectable"></div>
-            
+
         </div>
     </div>
     <script src="/CECePortal/assets/scripts/bootstrap.bundle.min.js"></script>
