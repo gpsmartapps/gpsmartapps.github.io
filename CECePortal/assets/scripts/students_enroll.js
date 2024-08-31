@@ -227,6 +227,53 @@ document.getElementById('state').addEventListener('change', function () {
 
     // Call the function you want to execute when the state changes
     populateLGA()
+    // populateLGA(selectedState);
 });
 
+// // Example function to be called on change
+// function populateLGA(selectedState) {
+//     console.log('Selected state:', selectedState);
+//     // Logic to populate LGA or handle the change
+// }
+
+
+// function populateLGA() {
+//     const stateSelect = document.getElementById("state");
+//     const lgaSelect = document.getElementById("lga");
+//     const selectedState = stateSelect.value;
+
+//     // Clear previous LGA options
+//     lgaSelect.innerHTML = '<option value="">Select an LGA</option>';
+
+//     if (selectedState) {
+//         const lgas = lgaData[selectedState];
+
+//         // Populate the LGA dropdown with the corresponding LGAs
+//         lgas.forEach(lga => {
+//             const option = document.createElement("option");
+//             option.value = lga;
+//             option.textContent = lga;
+//             lgaSelect.appendChild(option);
+//         });
+//     }
+// }
+
+
+
+// function populateLGA() {
+//     const stateSelect = document.getElementById('state');
+//     const lgaSelect = document.getElementById('lga');
+//     lgaSelect.innerHTML = '<option value="">Select LGA</option>'; // Clear previous LGAs
+
+//     let selectedState = stateSelect.value;
+//     if (selectedState) {
+//         let lgas = stateAndLGAData[selectedState];
+//         for (let i = 0; i < lgas.length; i++) {
+//             let option = document.createElement('option');
+//             option.value = lgas[i];
+//             option.textContent = lgas[i];
+//             lgaSelect.appendChild(option);
+//         }
+//     }
+// }
 
