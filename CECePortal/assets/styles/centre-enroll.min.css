@@ -90,6 +90,17 @@
     text-align: center;
 }
 
+.form-actions a:hover {
+    text-decoration: underline;
+    color: var(--primary-color)
+}
+
+.form-actions a {
+    color: var(--primary-color);
+    margin-bottom: 221px;
+}
+
+
 .form-actions button {
     background-color: var(--primary-color);
     color: #fff;
@@ -97,6 +108,11 @@
     padding: var(--button-padding);
     border-radius: var(--button-border-radius);
     cursor: pointer;
+    width: 100%;
+    color: var(--background-color);
+    text-decoration: none;
+    font-weight: 400;
+    margin: 10px
 }
 
 .form-actions button:hover {
@@ -148,5 +164,17 @@
     .form-group input[type=date] {
         width: 100%;
         box-sizing: border-box;
+    }
+
+    .login-left.selectable ul {
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 6rem
+    }
+
+    .login-left ul li {
+        margin-bottom: .5rem;
+        list-style-type: none;
+        margin-right: 30px
     }
 }
