@@ -32,8 +32,9 @@ body {
     padding: 20px;
 }
 
-.error-logo {
-    max-width: 80px;
+.error-logo,
+.error-image {
+    max-width: 100px;
     margin-bottom: 20px;
 }
 
