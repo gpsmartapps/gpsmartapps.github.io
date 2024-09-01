@@ -14,9 +14,7 @@
     <noscript>
         <meta http-equiv="refresh" content="0;url=/CECePortal/error-page.html">
     </noscript>
-    <!-- <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';">
-</head> -->
+</head>
 
 <body>
     <div class="login-container unselectable">
@@ -46,8 +44,15 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="examType">Examination Type</label>
-                        <input type="text" id="examType" name="examType" readonly>
+                        <input type="text" id="examType" name="examType" value="MOCK Examination" readonly>
                     </div>
+                    <div class="form-group">
+                        <label for="schoolNumber">School Number</label>
+                        <input type="text" id="schoolNumber" name="schoolNumber" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+
                     <div class="form-group">
                         <label for="schoolName">School Name</label>
                         <input type="text" id="schoolName" name="schoolName" readonly>
@@ -55,17 +60,11 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="schoolNumber">School Number</label>
-                        <input type="text" id="schoolNumber" name="schoolNumber" readonly>
-                    </div>
-                    <div class="form-group">
                         <label for="state">State</label>
                         <select id="state" name="state">
                             <option value="">Select State</option>
                         </select>
                     </div>
-                </div>
-                <div class="form-row">
                     <div class="form-group">
                         <label for="lga">Local Government Area</label>
                         <select id="lga" name="lga">
@@ -78,22 +77,23 @@
                         <label for="registratorName">Full Name of Registrator</label>
                         <input type="text" id="registratorName" name="registratorName">
                     </div>
+                </div>
+                <div class="form-row">
                     <div class="form-group">
                         <label for="schoolEmail">School Email</label>
                         <input type="email" id="schoolEmail" name="schoolEmail">
                     </div>
-                </div>
-                <div class="form-row">
                     <div class="form-group">
                         <label for="registratorPhone">Registrator's Phone</label>
                         <input type="tel" id="registratorPhone" name="registratorPhone">
                     </div>
+
+                </div>
+                <div class="form-row">
                     <div class="form-group">
                         <label for="principalPhone">Principal's Phone Number</label>
                         <input type="tel" id="principalPhone" name="principalPhone">
                     </div>
-                </div>
-                <div class="form-row">
                     <div class="form-group">
                         <label for="schoolType">School Type</label>
                         <select id="schoolType" name="schoolType">
@@ -106,7 +106,7 @@
                 </div>
                 <div class="form-group">
                     <label for="schoolAddress">School Address</label>
-                    <textarea id="schoolAddress" name="schoolAddress" rows="2"></textarea>
+                    <textarea id="schoolAddress" name="schoolAddress" rows="3"></textarea>
                 </div>
                 <div class="form-actions">
                     <button type="submit" id="update">Update</button>

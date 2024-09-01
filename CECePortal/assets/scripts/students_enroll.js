@@ -334,7 +334,19 @@ document.addEventListener("DOMContentLoaded", async function () {
             // DATABASE THINGS DROP HERE.
             alert("YOU ARE GOOD TO GO!")
             // Send data securely to the server
-            sendCandidateData({ surname, firstname, othername, dob, gender, disability, phone, email, state, lga, passport });
+            sendCandidateData({
+                surname,
+                firstname,
+                othername,
+                dob,
+                gender,
+                disability,
+                phone,
+                email,
+                state,
+                lga,
+                passport
+            });
         }
     });
 

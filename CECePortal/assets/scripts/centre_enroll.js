@@ -232,12 +232,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (examType === "") {
             showNotification("error", "Examination Type is missing. Start school verification.");
             document.getElementById("examType").focus();
-        } else if (schoolName === "") {
-            showNotification("error", "School Name is missing. Start school verification.");
-            document.getElementById("schoolName").focus();
         } else if (schoolNumber === "") {
             showNotification("error", "School Number is missing. Start school verification.");
             document.getElementById("schoolNumber").focus();
+        } else if (schoolName === "") {
+            showNotification("error", "School Name is missing. Start school verification.");
+            document.getElementById("schoolName").focus();
         } else if (registratorName === "") {
             showNotification("error", "Please enter the full name of the registrator.");
             document.getElementById("registratorName").focus();
