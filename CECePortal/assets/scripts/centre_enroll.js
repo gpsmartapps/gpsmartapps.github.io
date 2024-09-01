@@ -205,81 +205,133 @@ document.getElementById('state').addEventListener('change', function () {
     // populateLGA(selectedState);
 });
 
-
 document.addEventListener("DOMContentLoaded", function () {
-    // JavaScript validation function
-    function validateField(field, regex, errorMsg) {
-        const value = field.value.trim();
-        if (!regex.test(value)) {
-            displayNotification(errorMsg, "error");
-            field.focus();
-            return false;
-        }
-        return true;
-    }
+    const updateButton = document.getElementById("update");
 
-    // Display notification
-    function displayNotification(message, type) {
-        const notification = document.getElementById("notification");
-        notification.innerText = message;
-        notification.className = type; // Type can be "success" or "error"
-        notification.style.display = "block";
-    }
+    updateButton.addEventListener("click", function (e) {
+        e.preventDefault(); // Prevent form submission for validation
 
-    // Hide notification
-    function hideNotification() {
-        const notification = document.getElementById("notification");
-        notification.style.display = "none";
-    }
+        // Get values from the form
+        const examType = document.getElementById("examType").value.trim();
+        const schoolName = document.getElementById("schoolName").value.trim();
+        const schoolNumber = document.getElementById("schoolNumber").value.trim();
+        const registratorName = document.getElementById("registratorName").value.trim();
+        const schoolEmail = document.getElementById("schoolEmail").value.trim();
+        const registratorPhone = document.getElementById("registratorPhone").value.trim();
+        const principalPhone = document.getElementById("principalPhone").value.trim();
+        const state = document.getElementById("state").value.trim();
+        const lga = document.getElementById("lga").value.trim();
+        const schoolType = document.getElementById("schoolType").value.trim();
+        const schoolAddress = document.getElementById("schoolAddress").value.trim();
 
-    // Validate form fields
-    function validateForm(event) {
-        hideNotification();
+        // Regex patterns
+        const phonePattern = /^[0-9]{10,15}$/; // Adjust pattern to match your required phone format
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-        const fullName = document.getElementById("fullName");
-        const schoolEmail = document.getElementById("schoolEmail");
-        const schoolPhone = document.getElementById("schoolPhone");
-        const principalPhone = document.getElementById("principalPhone");
-        const schoolAddress = document.getElementById("schoolAddress");
-        const schooltype = document.getElementById("schooltype")
-
-        // Name validation (at least 3 characters)
-        if (!validateField(fullName, /^[a-zA-Z\s]{3,}$/, "Full Name must be at least 10 characters long and contain only letters and spaces.")) {
-            return false;
-        }
-
-        // Email validation (basic email format)
-        if (!validateField(schoolEmail, /^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Please enter a valid email address.")) {
-            return false;
-        }
-
-        // Phone validation (10-15 digits)
-        if (!validateField(schoolPhone, /^\d{11,}$/, "Phone number must be between 11 digits.")) {
-            return false;
-        }
-
-        if (!validateField(principalPhone, /^\d{11,}$/, "Principal Phone number must be 11 digits.")) {
-            return false;
-        }
-
-        if (!validateField(schooltype, /^[a-zA-Z\s]{3,}$/, "School Type is required.")) {
-            return false;
-        }
-
-        // School address validation (at least 5 characters)
-        if (!validateField(schoolAddress, /^.{15,}$/, "School Address must be at least 5 characters long.")) {
-            return false;
-        }
-
-        // If all validations pass, form is ready for submission
-        return true;
-    }
-
-    // Attach the validation to the form submit event
-    const form = document.getElementById("centreEnrollForm");
-    form.addEventListener("update", function (event) {
-        if (!validateForm(event)) {
-            event.preventDefault(); // Prevent form submission if validation fails
+        // Validation checks
+        if (examType === "") {
+            showNotification("error", "Examination Type is missing. Start school verification.");
+            document.getElementById("examType").focus();
+        } else if (schoolName === "") {
+            showNotification("error", "School Name is missing. Start school verification.");
+            document.getElementById("schoolName").focus();
+        } else if (schoolNumber === "") {
+            showNotification("error", "School Number is missing. Start school verification.");
+            document.getElementById("schoolNumber").focus();
+        } else if (registratorName === "") {
+            showNotification("error", "Please enter the full name of the registrator.");
+            document.getElementById("registratorName").focus();
+        } else if (schoolEmail === "" || !emailPattern.test(schoolEmail)) {
+            showNotification("error", "Please enter a valid school email address.");
+            document.getElementById("schoolEmail").focus();
+        } else if (registratorPhone === "" || !phonePattern.test(registratorPhone)) {
+            showNotification("error", "Please enter a valid registrator's phone number.");
+            document.getElementById("registratorPhone").focus();
+        } else if (principalPhone === "" || !phonePattern.test(principalPhone)) {
+            showNotification("error", "Please enter a valid principal's phone number.");
+            document.getElementById("principalPhone").focus();
+        } else if (state === "" || state === "Select State") {
+            showNotification("error", "Please select a valid state.");
+            document.getElementById("state").focus();
+        } else if (lga === "" || lga === "Select an LGA") {
+            showNotification("error", "Please select a valid local government area.");
+            document.getElementById("lga").focus();
+        } else if (schoolType === "" || schoolType === "Select School Type") {
+            showNotification("error", "Please select a school type.");
+            document.getElementById("schoolType").focus();
+        } else if (schoolAddress === "") {
+            showNotification("error", "Please enter the school address.");
+            document.getElementById("schoolAddress").focus();
+        } else {
+            // DATABASE THINGS DROP HERE.
+            alert("YOU ARE GOOD TO GO!")
+            // Send data securely to the server
+            sendCentreData({
+                examType,
+                schoolName,
+                schoolNumber,
+                registratorName,
+                schoolEmail,
+                registratorPhone,
+                principalPhone,
+                state,
+                lga,
+                schoolType,
+                schoolAddress
+            });
         }
     });
+
+    function showNotification(type, message) {
+        const notification = document.getElementById('notification') || createNotificationElement();
+
+        // Clear any existing notification classes
+        notification.className = 'notification unselectable';
+
+        // Add the appropriate class based on the type
+        if (type === 'error') {
+            notification.classList.add('error');
+        } else if (type === 'success') {
+            notification.classList.add('success');
+        } else if (type === 'info') {
+            notification.classList.add('info');
+        }
+
+        // Set the message and show the notification
+        notification.textContent = message;
+        notification.style.display = 'block';
+
+        // Hide the notification after a few seconds
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 3000);
+    }
+
+    function createNotificationElement() {
+        const notification = document.createElement('div');
+        notification.id = 'notification';
+        document.body.appendChild(notification);
+        return notification;
+    }
+
+    async function sendCentreData(data) {
+        try {
+            const response = await fetch('/CECePortal/enroll', { // Ensure your endpoint is secure
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data) // Send data securely in the request body
+            });
+
+            if (response.ok) {
+                showNotification("success", "Centre details have been updated successfully!");
+            } else {
+                showNotification("error", "Failed to update the centre. Please try again.");
+            }
+        } catch (error) {
+            showNotification("error", "An error occurred. Please try again later.");
+        }
+    }
 });
+

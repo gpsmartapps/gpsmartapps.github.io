@@ -278,7 +278,6 @@ document.getElementById('state').addEventListener('change', function () {
 // }
 
 
-
 document.addEventListener("DOMContentLoaded", async function () {
     const submitButton = document.getElementById("submit");
     const notificationElement = document.getElementById("notification");
@@ -297,8 +296,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         const lga = document.getElementById("lga").value.trim();
         const passport = document.getElementById("passport").files.length; // Check if file is selected
 
+        // Regex patterns
+        const phonePattern = /^[0-9]{11,11}$/; // Adjust pattern to match your required phone format
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
         if (surname === "") {
-            showNotification("error", "Please enter a your surname.");
+            showNotification("error", "Please enter your surname.");
             const field = document.getElementById("surname"); field.focus(); e.preventDefault();
         } else if (firstname === "") {
             showNotification("error", "Please enter your firstname.");
@@ -312,11 +315,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         } else if (disability === "") {
             showNotification("error", "Please specify if you have a disability.");
             const field = document.getElementById("disability"); field.focus(); e.preventDefault();
-        } else if (phone === "") {
-            showNotification("error", "Please enter your phone number.");
+        } else if (phone === "" || !phonePattern.test(phone)) {
+            showNotification("error", "Please enter a valid phone number.");
             const field = document.getElementById("phone"); field.focus(); e.preventDefault();
-        } else if (email === "") {
-            showNotification("error", "Please enter your email address");
+        } else if (email === "" || !emailPattern.test(email)) {
+            showNotification("error", "Please enter a valid email address.");
             const field = document.getElementById("email"); field.focus(); e.preventDefault();
         } else if (state === "" || state === "Select State") {
             showNotification("error", "Please select a valid state of origin.");
@@ -331,7 +334,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             // DATABASE THINGS DROP HERE.
             alert("YOU ARE GOOD TO GO!")
             // Send data securely to the server
-            sendCandidateData({ surname }, { firstname }, { othername }, { dob }, { gender }, { disability }, { phone }, { email }, { state }, { lga }, { passport })
+            sendCandidateData({ surname, firstname, othername, dob, gender, disability, phone, email, state, lga, passport });
         }
     });
 
@@ -360,7 +363,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         }, 3000);
     }
 
-
     async function sendCandidateData(data) {
         try {
             const response = await fetch('/CECePortal/enroll', { // Ensure your endpoint is secure
@@ -372,14 +374,12 @@ document.addEventListener("DOMContentLoaded", async function () {
             });
 
             if (response.ok) {
-                showNotification("Candidate has been registered successfully!", "success");
+                showNotification("success", "Candidate has been registered successfully!");
             } else {
-                showNotification("Failed to register the candidate. Please try again.", "error");
+                showNotification("error", "Failed to register the candidate. Please try again.");
             }
         } catch (error) {
-            showNotification("An error occurred. Please try again later.", "error");
+            showNotification("error", "An error occurred. Please try again later.");
         }
     }
 });
-
-
