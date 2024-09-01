@@ -262,7 +262,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return false;
         }
 
-        if (!validateField(schooltype, /^[a-zA-Z\s]{3,}$/, "Principal Phone number must be 11 digits.")) {
+        if (!validateField(schooltype, /^[a-zA-Z\s]{3,}$/, "School Type is required.")) {
             return false;
         }
 
