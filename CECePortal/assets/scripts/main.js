@@ -3,9 +3,10 @@ document.addEventListener("DOMContentLoaded", (async function () { try { "fetch"
 // Function to check the internet connection
 async function checkInternetConnection() {
     if (!navigator.onLine) {
-        showNotification('You are offline. Please check your internet connection.', 'error');
+        showNotification('Your internet connection is lost.', 'error');
     } else {
-        hideNotification();
+        showNotification('Your internet connection is now restored.', 'success');
+        hideNotification();  // Hide after showing the restored message
     }
 }
 
@@ -19,8 +20,10 @@ function showNotification(message, type) {
 
 // Hide notification function
 function hideNotification() {
-    const notificationBar = document.getElementById('notification-bar');
-    notificationBar.style.display = 'none';
+    setTimeout(() => {
+        const notificationBar = document.getElementById('notification-bar');
+        notificationBar.style.display = 'none';
+    }, 3000);
 }
 
 // Set up event listeners for online and offline events
