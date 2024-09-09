@@ -1,38 +1,42 @@
-// Function to show the notification
-function showNotification(message, type) {
-    const notificationBar = document.getElementById('notification-bar');
-    const notificationMessage = document.getElementById('notification-message');
-
-    notificationMessage.textContent = message;
-    notificationBar.className = `notification-bar ${type}`;
-    notificationBar.style.display = 'flex';
-}
-
-// Function to hide the notification
-function hideNotification() {
-    const notificationBar = document.getElementById('notification-bar');
-    notificationBar.style.display = 'none';
-}
+let wasOffline = false; // Track if the user was offline
 
 // Function to check the internet connection
-function checkInternetConnection() {
+async function checkInternetConnection() {
     if (!navigator.onLine) {
-        showNotification('You are offline. Please check your internet connection.', 'error');
-    } else {
-        hideNotification();
+        showNotification('No internet connection available.', 'error');
+        wasOffline = true; // Mark user as offline
+    } else if (wasOffline) {
+        showNotification('Your internet connection is restored.', 'success');
+        hideNotification();  // Hide after 3 seconds
+        wasOffline = false; // Reset offline state
     }
 }
 
-// Event listeners for online and offline events
-window.addEventListener('online', function () {
-    hideNotification();
-    showNotification('You are back online.', 'success');
-    setTimeout(hideNotification, 3000); // Hide success message after 3 seconds
-});
+// Show notification function
+function showNotification(message, type) {
+    const notificationBar = document.getElementById('notification-bar');
+    notificationBar.textContent = message;
 
-window.addEventListener('offline', function () {
-    showNotification('You are offline. Please check your internet connection.', 'error');
-});
+    // Apply different styles for error and success
+    notificationBar.className = `notification-bar ${type}`;
+    notificationBar.style.display = 'block';
 
-// Initial check when the page loads
-window.addEventListener('load', checkInternetConnection);
+    if (type === 'success') {
+        hideNotification(); // Hide the success message after a few seconds
+    }
+}
+
+// Hide notification function
+function hideNotification() {
+    setTimeout(() => {
+        const notificationBar = document.getElementById('notification-bar');
+        notificationBar.style.display = 'none';
+    }, 3000);  // Hide after 3 seconds
+}
+
+// Set up event listeners for online and offline events
+window.addEventListener('online', checkInternetConnection);
+window.addEventListener('offline', checkInternetConnection);
+
+// Initial check
+checkInternetConnection();
