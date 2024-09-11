@@ -40,3 +40,26 @@ window.addEventListener('offline', checkInternetConnection);
 
 // Initial check
 checkInternetConnection();
+
+// students_enroll.js
+document.addEventListener('DOMContentLoaded', function () {
+    const passportInput = document.getElementById('passport');
+    const passportPreview = document.getElementById('passportPreview');
+
+    passportInput.addEventListener('change', function () {
+        const file = passportInput.files[0];
+        if (file && file.size <= 15000) { // 15kb
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                passportPreview.src = e.target.result;
+                passportPreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            passportPreview.src = '';
+            passportPreview.style.display = 'none';
+            showNotification('File is too large. Maximum size is 15kb.', "error");
+        }
+    });
+});
+
