@@ -152,21 +152,21 @@ input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="number"]:focus,
 textarea:focus {
-    border-color: var(--primary-color-darker);
-    outline: none;
-    box-shadow: 0 0 5px var(--primary-color-darker);
-    background-color: #f7faff;
-    color: var(--text-color);
+    border-color: var(--primary-color-darker) !important;
+    outline: none !important;
+    box-shadow: 0 0 5px var(--primary-color-darker) !important;
+    background-color: #f7faff !important;
+    color: var(--text-color) !important;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-    border-color: var(--primary-color-darker);
-    outline: none;
-    box-shadow: 0 0 5px var(--primary-color-darker);
-    background-color: #f7faff;
-    color: var(--text-color);
+    border-color: var(--primary-color-darker) !important;
+    outline: none !important;
+    box-shadow: 0 0 5px var(--primary-color-darker) !important;
+    background-color: #f7faff !important;
+    color: var(--text-color) !important;
 }
 
 
