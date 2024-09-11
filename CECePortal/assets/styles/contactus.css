@@ -21,6 +21,7 @@ body {
     align-items: center;
     min-height: 100vh;
     flex-direction: row;
+    flex-wrap: wrap; /* Allow the panels to stack on small screens */
 }
 
 .left-panel {
@@ -33,6 +34,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+    min-width: 300px;
 }
 
 .right-panel {
@@ -84,4 +86,24 @@ textarea.form-control {
 
 .btn-primary:hover {
     background-color: var(--primary-color-darker);
+}
+
+/* Media query for mobile view */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-panel {
+        order: -1; /* Move the left panel to the top on mobile */
+        width: 100%; /* Full width for mobile */
+    }
+
+    .right-panel {
+        width: 100%; /* Full width for mobile */
+    }
+
+    .form-actions {
+        text-align: center; /* Center the button for mobile */
+    }
 }
