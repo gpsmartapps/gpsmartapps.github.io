@@ -1,54 +1,81 @@
-document.getElementById("contactForm").addEventListener("submit", function (event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', function () {
+    const submitButton = document.getElementById("submit");
+    const fullNameInput = document.getElementById("fullName");
+    const emailAddressInput = document.getElementById("emailAddress");
+    const messageInput = document.getElementById("message");
+    const notificationElement = document.getElementById("notification");
 
-    // Retrieve form data
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const subject = document.getElementById("subject").value.trim();
-    const message = document.getElementById("message").value.trim();
+    submitButton.addEventListener("click", function (e) {
+        e.preventDefault(); // Prevent form submission
+        const fullName = fullNameInput.value.trim();
+        const emailAddress = emailAddressInput.value.trim();
+        const message = messageInput.value.trim();
 
-    // Basic validation checks
-    if (!name || !email || !subject || !message) {
-        showNotification("All fields are required!", "error");
-        return;
+        if (!fullName) {
+            showNotification("Please enter your full name.", "error");
+            fullNameInput.focus();
+        } else if (!emailAddress) {
+            showNotification("Please enter your email address.", "error");
+            emailAddressInput.focus();
+        } else if (!message) {
+            showNotification("Please enter a message.", "error");
+            messageInput.focus();
+        } else if (!validateEmail(emailAddress)) {
+            showNotification("Please enter a valid email address.", "error");
+            emailAddressInput.focus();
+        } else {
+            // Send data securely to the server
+            sendMessage({ fullName, emailAddress, message });
+        }
+    });
+
+    function validateEmail(email) {
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return emailPattern.test(email.toLowerCase());
     }
 
-    if (!validateEmail(email)) {
-        showNotification("Please enter a valid email address.", "error");
-        return;
+    function showNotification(message, type) {
+        const notification = document.getElementById('notification');
+
+        // Clear any existing notification classes
+        notification.className = 'notification unselectable';
+
+        // Add the appropriate class based on the type
+        if (type === 'error') {
+            notification.classList.add('error');
+        } else if (type === 'success') {
+            notification.classList.add('success');
+        } else if (type === 'info') {
+            notification.classList.add('info');
+        }
+
+        // Set the message and show the notification
+        notification.textContent = message;
+        notification.style.display = 'block';
+
+        // Hide the notification after a few seconds
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 3000);
     }
 
-    // If validation passes
-    alert("Message sent successfully!");
-    // You can add code to submit the data via AJAX or to a backend API
+    async function sendMessage(data) {
+        try {
+            const response = await fetch('/CECePortal/send-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data) // Send data securely
+            });
+
+            if (response.ok) {
+                showNotification("Message sent successfully!", "success");
+            } else {
+                showNotification("Failed to send message. Please try again.", "error");
+            }
+        } catch (error) {
+            showNotification("An error occurred. Please try again later.", "error");
+        }
+    }
 });
-
-function validateEmail(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-}
-
-function showNotification(message, type) {
-    const notification = document.getElementById('notification');
-
-    // Clear any existing notification classes
-    notification.className = 'notification unselectable';
-
-    // Add the appropriate class based on the type
-    if (type === 'error') {
-        notification.classList.add('error');
-    } else if (type === 'success') {
-        notification.classList.add('success');
-    } else if (type === 'info') {
-        notification.classList.add('info');
-    }
-
-    // Set the message and show the notification
-    notification.textContent = message;
-    notification.style.display = 'block';
-
-    // Hide the notification after a few seconds
-    setTimeout(() => {
-        notification.style.display = 'none';
-    }, 3000);
-}
