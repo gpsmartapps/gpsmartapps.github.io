@@ -151,7 +151,7 @@ input[type="date"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="number"]:focus,
-input[type="textarea"]:focus {
+textarea:focus {
     border-color: var(--primary-color-darker);
     outline: none;
     box-shadow: 0 0 5px var(--primary-color-darker);
@@ -168,6 +168,7 @@ textarea:focus {
     background-color: #f7faff;
     color: var(--text-color);
 }
+
 
 .login-left a {
     color: var(--background-color);
