@@ -1,6 +1,6 @@
 const stateAndLGAData = {
     "Abia": [
-        "Aba North", "Aba South", "Arochukwu", "Bende", "Ikwuano", "Isiala-Ngwa North", "Isiala-Ngwa South", "Isuikwato", "Obi Nwa", "Ohafia", "Osisioma", "Ngwa", "Ugwunagbo", "Ukwa East", "Ukwa West", "Umuahia North", "Umuahia South", "Umu-Neochi"
+        "Aba North", "Aba South", "Arochukwu", "Bende", "Ikwuano", "Isiala-Ngwa North", "Isiala-Ngwa South", "Isuikwuato", "Obi Nwa", "Ohafia", "Osisioma", "Ngwa", "Ugwunagbo", "Ukwa East", "Ukwa West", "Umuahia North", "Umuahia South", "Umu-Neochi"
     ],
     "Adamawa": [
         "Demsa", "Fufore", "Ganaye", "Gireri", "Gombi", "Guyuk", "Hong", "Jada", "Lamurde", "Madagali", "Maiha", "Mayo-Belwa", "Michika", "Mubi North", "Mubi South", "Numan", "Shelleng", "Song", "Toungo", "Yola North", "Yola South"
@@ -168,243 +168,243 @@ document.getElementById('state').addEventListener('change', function () {
     // populateLGA(selectedState);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const steps = document.querySelectorAll('.form-step');
-    const nextButtons = document.querySelectorAll('.btn-next');
-    const prevButtons = document.querySelectorAll('.btn-prev');
-    const progressBar = document.getElementById('progressBar');
-    const totalSteps = steps.length;
-    let currentStep = 0;
+// document.addEventListener('DOMContentLoaded', () => {
+//     const steps = document.querySelectorAll('.form-step');
+//     const nextButtons = document.querySelectorAll('.btn-next');
+//     const prevButtons = document.querySelectorAll('.btn-prev');
+//     const progressBar = document.getElementById('progressBar');
+//     const totalSteps = steps.length;
+//     let currentStep = 0;
 
-    // Function to show a specific form step
-    function showStep(index) {
-        steps.forEach((step, i) => {
-            step.classList.toggle('form-step-active', i === index);
-        });
-        progressBar.style.width = `${((index + 1) / totalSteps) * 100}%`;
-        toggleSubmitButton(); // Check submit button visibility when changing steps
-    }
+//     // Initialize the form by showing the first step
+//     showStep(currentStep);
 
-    // Function to handle the Next button click
-    function handleNext() {
-        if (validateStep(currentStep)) {
-            if (currentStep < totalSteps - 1) {
-                currentStep++;
-                showStep(currentStep);
-            }
-        } else {
-            showNotification(null, 'Please complete all fields in the current step.', 'error');
-        }
-    }
+//     // Event listeners for the Next and Previous buttons
+//     nextButtons.forEach(button => button.addEventListener('click', handleNext));
+//     prevButtons.forEach(button => button.addEventListener('click', handlePrev));
 
-    // Function to handle the Previous button click
-    function handlePrev() {
-        if (currentStep > 0) {
-            currentStep--;
-            showStep(currentStep);
-        }
-    }
+//     // Function to show a specific form step
+//     function showStep(index) {
+//         steps.forEach((step, i) => {
+//             step.classList.toggle('form-step-active', i === index);
+//         });
+//         progressBar.style.width = `${((index + 1) / totalSteps) * 100}%`;
 
-    // Event listeners for the Next and Previous buttons
-    nextButtons.forEach(button => button.addEventListener('click', handleNext));
-    prevButtons.forEach(button => button.addEventListener('click', handlePrev));
+//         setTimeout(() => {
+//             toggleNextButton(); // Check if the next button should be enabled/disabled
+//         }, 0);
+//     }
 
-    // Initialize the form by showing the first step
-    showStep(currentStep);
+//     // Function to handle the Next button click
+//     function handleNext() {
+//         if (validateStep(currentStep)) {
+//             if (currentStep < totalSteps - 1) {
+//                 currentStep++;
+//                 showStep(currentStep);
+//             }
+//         } else {
+//             showNotification('Please correct the errors in the current step.', 'error');
+//         }
+//     }
 
-    // Function to validate a specific form step
-    function validateStep(stepIndex) {
-        const currentStepElement = steps[stepIndex];
-        let isValid = true;
+//     // Function to handle the Previous button click
+//     function handlePrev() {
+//         if (currentStep > 0) {
+//             currentStep--;
+//             showStep(currentStep);
+//         }
+//     }
 
-        // Clear previous error messages
-        currentStepElement.querySelectorAll('.error-message').forEach(el => el.remove());
+//     // Function to validate a specific form step
+//     function validateStep(stepIndex) {
+//         const currentStepElement = steps[stepIndex];
+//         let isValid = true;
 
-        // Validate inputs based on the current step
-        switch (stepIndex) {
-            case 0:
-                isValid = validatePersonalInfo();
-                break;
-            case 1:
-                isValid = validateContactInfo();
-                break;
-            case 2:
-                isValid = validateAdditionalInfo();
-                break;
-            case 3:
-                isValid = validatePassportPhoto();
-                break;
-            default:
-                break;
-        }
+//         // Clear previous error messages
+//         currentStepElement.querySelectorAll('.error-message').forEach(el => el.remove());
 
-        return isValid;
-    }
+//         // Validate inputs based on the current step
+//         switch (stepIndex) {
+//             case 0:
+//                 isValid = validatePersonalInfo();
+//                 break;
+//             case 1:
+//                 isValid = validateContactInfo();
+//                 break;
+//             case 2:
+//                 isValid = validateAdditionalInfo();
+//                 break;
+//             case 3:
+//                 isValid = validatePassportPhoto();
+//                 break;
+//             default:
+//                 break;
+//         }
 
-    // Personal Information validation
-    function validatePersonalInfo() {
-        let isValid = true;
-        const fields = ['surname', 'firstname', 'dob'];
-        fields.forEach(id => {
-            const element = document.getElementById(id);
-            if (!element.value.trim()) {
-                showNotification(element, `${capitalizeFirstLetter(id)} is required.`, 'error');
-                isValid = false;
-            }
-        });
-        return isValid;
-    }
+//         return isValid;
+//     }
 
-    // Contact Information validation
-    function validateContactInfo() {
-        let isValid = true;
+//     // Personal Information validation
+//     function validatePersonalInfo() {
+//         let isValid = true;
+//         const textFields = ['surname', 'firstname'];
+//         const dob = document.getElementById('dob');
 
-        const phone = document.getElementById('phone');
-        const email = document.getElementById('email');
-        const state = document.getElementById('state');
-        const lga = document.getElementById('lga');
+//         textFields.forEach(id => {
+//             const element = document.getElementById(id);
+//             if (!element.value.trim() || !isTextValid(element)) {
+//                 showNotification(`${capitalizeFirstLetter(id)} is required and must contain only letters.`, 'error');
+//                 isValid = false;
+//             }
+//         });
 
-        const phonePattern = /^[0-9]{11}$/;
-        if (!phone.value.trim() || !phonePattern.test(phone.value)) {
-            showNotification(phone, 'A valid phone number is required.', 'error');
-            isValid = false;
-        }
+//         if (!dob.value.trim()) {
+//             showNotification('Date of Birth is required.', 'error');
+//             isValid = false;
+//         }
 
-        if (email.value.trim() && !/\S+@\S+\.\S+/.test(email.value)) {
-            showNotification(email, 'Enter a valid email address.', 'error');
-            isValid = false;
-        }
+//         return isValid;
+//     }
 
-        if (!state.value) {
-            showNotification(state, 'State of origin is required.', 'error');
-            isValid = false;
-        }
+//     // Contact Information validation
+//     function validateContactInfo() {
+//         let isValid = true;
 
-        if (!lga.value) {
-            showNotification(lga, 'Local Government Area is required.', 'error');
-            isValid = false;
-        }
+//         const phone = document.getElementById('phone');
+//         const email = document.getElementById('email');
+//         const state = document.getElementById('state');
+//         const lga = document.getElementById('lga');
 
-        return isValid;
-    }
+//         const phonePattern = /^[0-9]{11}$/;
+//         if (!phone.value.trim() || !phonePattern.test(phone.value)) {
+//             showNotification('A valid phone number is required.', 'error');
+//             isValid = false;
+//         }
 
-    // Additional Information validation
-    function validateAdditionalInfo() {
-        let isValid = true;
+//         if (email.value.trim() && !/\S+@\S+\.\S+/.test(email.value)) {
+//             showNotification('Enter a valid email address.', 'error');
+//             isValid = false;
+//         }
 
-        const gender = document.getElementById('gender');
-        const disability = document.getElementById('disability');
+//         if (!state.value) {
+//             showNotification('State of origin is required.', 'error');
+//             isValid = false;
+//         }
 
-        if (!gender.value) {
-            showNotification(gender, 'Gender is required.', 'error');
-            isValid = false;
-        }
+//         if (!lga.value) {
+//             showNotification('Local Government Area is required.', 'error');
+//             isValid = false;
+//         }
 
-        if (!disability.value) {
-            showNotification(disability, 'Disability status is required.', 'error');
-            isValid = false;
-        }
+//         return isValid;
+//     }
 
-        return isValid;
-    }
+//     // Additional Information validation
+//     function validateAdditionalInfo() {
+//         let isValid = true;
 
-    // Passport Photo validation
-    function validatePassportPhoto() {
-        const passportInput = document.getElementById('passport');
-        const file = passportInput.files[0];
+//         const gender = document.getElementById('gender');
+//         const disability = document.getElementById('disability');
 
-        if (!file) {
-            showNotification(passportInput, 'Passport photo is required.', 'error');
-            return false;
-        }
+//         if (!gender.value) {
+//             showNotification('Gender is required.', 'error');
+//             isValid = false;
+//         }
 
-        if (file.size > 15000) { // 15kb
-            showNotification(passportInput, 'File is too large. Maximum size is 15kb.', 'error');
-            return false;
-        }
+//         if (!disability.value) {
+//             showNotification('Disability status is required.', 'error');
+//             isValid = false;
+//         }
 
-        return true;
-    }
+//         return isValid;
+//     }
 
-    // Function to show notification messages
-    function showNotification(inputElement, message, type) {
-        const notification = document.getElementById('notification');
-        notification.className = `notification ${type} unselectable`;
-        notification.textContent = message;
-        notification.style.display = 'block';
+//     // Passport Photo validation
+//     function validatePassportPhoto() {
+//         const passportInput = document.getElementById('passport');
+//         const file = passportInput.files[0];
 
-        setTimeout(() => {
-            notification.style.display = 'none';
-        }, 3000);
-    }
+//         if (!file) {
+//             showNotification('Passport photo is required.', 'error');
+//             return false;
+//         }
 
-    // Function to capitalize the first letter of a string
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
+//         if (file.size > 15000) { // 15kb
+//             showNotification('File is too large. Maximum size is 15kb.', 'error');
+//             return false;
+//         }
 
-    // Function to check form validity
-    function checkFormValidity() {
-        const currentStepElement = steps[currentStep];
-        const inputs = currentStepElement.querySelectorAll('input, select, textarea');
-        return Array.from(inputs).every(input => input.checkValidity());
-    }
+//         return true;
+//     }
 
-    // Function to toggle the visibility and state of the submit button
-    function toggleSubmitButton() {
-        const submitButton = document.getElementById('submitBtn');
-        if (currentStep === totalSteps - 1 && checkFormValidity()) {
-            submitButton.style.display = 'inline-block';
-            submitButton.disabled = false;
-        } else {
-            submitButton.style.display = 'none';
-            submitButton.disabled = true;
-        }
-    }
+//     // Function to preview the passport photo
+//     function previewPassportPhoto() {
+//         const passportInput = document.getElementById('passport');
+//         const passportPreview = document.getElementById('passportPreview');
 
-    // Event listeners for input changes to trigger validation
-    document.querySelectorAll('input, select, textarea').forEach(input => {
-        input.addEventListener('input', toggleSubmitButton);
-    });
+//         // Listen for changes in the file input
+//         passportInput.addEventListener('change', function () {
+//             const file = passportInput.files[0];
 
-    // Trigger initial validation on page load
-    window.addEventListener('load', toggleSubmitButton);
+//             if (file) {
+//                 const reader = new FileReader();
 
-    // Function to handle form submission
-    async function handleSubmit() {
-        if (validateStep(currentStep)) {
-            const formData = new FormData(document.querySelector('form'));
-            try {
-                const response = await fetch('/your-backend-endpoint', {
-                    method: 'POST',
-                    body: formData
-                });
-                if (response.ok) {
-                    showNotification(null, 'Form submitted successfully!', 'success');
-                    clearForm();
-                } else {
-                    showNotification(null, 'Form submission failed. Please try again.', 'error');
-                }
-            } catch (error) {
-                showNotification(null, 'An error occurred. Please try again later.', 'error');
-            }
-        } else {
-            showNotification(null, 'Please complete all fields in the current step.', 'error');
-        }
-    }
+//                 reader.onload = function (event) {
+//                     passportPreview.src = event.target.result;  // Set image source to the file data
+//                     passportPreview.style.display = 'block';   // Make the preview visible
+//                 };
 
-    // Function to clear the form
-    function clearForm() {
-        document.querySelector('form').reset();
-        steps.forEach((step, i) => {
-            if (i !== 0) {
-                step.classList.remove('form-step-active');
-            }
-        });
-        currentStep = 0;
-        showStep(currentStep);
-    }
+//                 reader.readAsDataURL(file);  // Read the image file as a data URL
+//             } else {
+//                 passportPreview.style.display = 'none';  // Hide the preview if no file is selected
+//             }
+//         });
+//     }
 
-    // Event listener for the Submit button
-    document.getElementById('submitBtn').addEventListener('click', handleSubmit);
-});
+//     // Call the preview function when the page loads
+//     previewPassportPhoto();
+
+//     // Function to show notification messages
+//     function showNotification(message, type) {
+//         const notification = document.createElement('div');
+//         notification.className = `notification ${type} unselectable`;
+//         notification.textContent = message;
+//         document.body.appendChild(notification);
+
+//         setTimeout(() => {
+//             document.body.removeChild(notification);
+//         }, 3000); // Disappears after 3 seconds
+//     }
+
+//     // Function to capitalize the first letter of a string
+//     function capitalizeFirstLetter(string) {
+//         return string.charAt(0).toUpperCase() + string.slice(1);
+//     }
+
+//     // Function to check form validity
+//     function checkFormValidity() {
+//         return validateStep(currentStep);
+//     }
+
+//     // Function to toggle the visibility and state of the Next button
+//     function toggleNextButton() {
+//         const nextButton = steps[currentStep].querySelector('.btn-next');
+//         if (checkFormValidity()) {
+//             nextButton.disabled = false;
+//         } else {
+//             nextButton.disabled = true;
+//         }
+//     }
+
+//     // Function to check if a text field contains valid text
+//     function isTextValid(input) {
+//         return /^[A-Za-z\s]+$/.test(input.value.trim());
+//     }
+
+//     // Event listeners for input changes to trigger validation
+//     document.querySelectorAll('input, select, textarea').forEach(input => {
+//         input.addEventListener('input', toggleNextButton);
+//     });
+// });
+
+
