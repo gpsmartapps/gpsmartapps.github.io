@@ -240,14 +240,6 @@ body {
     background-color: #45a049;
 }
 
-/* Error message styles */
-/* .error-message {
-    color: #e74040;
-    font-size: 12px;
-    margin-top: 5px;
-    display: block;
-} */
-
 /* Hide the submit button initially */
 #submitBtn {
     display: none;

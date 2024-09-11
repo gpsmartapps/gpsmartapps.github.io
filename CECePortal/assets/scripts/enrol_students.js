@@ -168,31 +168,32 @@ document.getElementById('state').addEventListener('change', function () {
     // populateLGA(selectedState);
 });
 
+
 // document.addEventListener('DOMContentLoaded', () => {
 //     const steps = document.querySelectorAll('.form-step');
 //     const nextButtons = document.querySelectorAll('.btn-next');
 //     const prevButtons = document.querySelectorAll('.btn-prev');
 //     const progressBar = document.getElementById('progressBar');
+//     const submitButton = document.getElementById('submitBtn'); // Ensure this exists in HTML
+//     const notification = document.getElementById('notification'); // Notification element
 //     const totalSteps = steps.length;
 //     let currentStep = 0;
-
-//     // Initialize the form by showing the first step
-//     showStep(currentStep);
-
-//     // Event listeners for the Next and Previous buttons
-//     nextButtons.forEach(button => button.addEventListener('click', handleNext));
-//     prevButtons.forEach(button => button.addEventListener('click', handlePrev));
 
 //     // Function to show a specific form step
 //     function showStep(index) {
 //         steps.forEach((step, i) => {
 //             step.classList.toggle('form-step-active', i === index);
 //         });
-//         progressBar.style.width = `${((index + 1) / totalSteps) * 100}%`;
 
-//         setTimeout(() => {
-//             toggleNextButton(); // Check if the next button should be enabled/disabled
-//         }, 0);
+//         // Update the progress bar
+//         if (progressBar) {
+//             progressBar.style.width = `${((index + 1) / totalSteps) * 100}%`;
+//         } else {
+//             console.error("Progress bar element with id 'progressBar' not found.");
+//         }
+
+//         // Toggle the submit button visibility
+//         toggleSubmitButton();
 //     }
 
 //     // Function to handle the Next button click
@@ -203,7 +204,7 @@ document.getElementById('state').addEventListener('change', function () {
 //                 showStep(currentStep);
 //             }
 //         } else {
-//             showNotification('Please correct the errors in the current step.', 'error');
+//             showNotification('Please complete all fields in the current step.', 'error');
 //         }
 //     }
 
@@ -215,13 +216,20 @@ document.getElementById('state').addEventListener('change', function () {
 //         }
 //     }
 
+//     // Event listeners for the Next and Previous buttons
+//     nextButtons.forEach(button => button.addEventListener('click', handleNext));
+//     prevButtons.forEach(button => button.addEventListener('click', handlePrev));
+
+//     // Initialize the form by showing the first step
+//     showStep(currentStep);
+
 //     // Function to validate a specific form step
 //     function validateStep(stepIndex) {
 //         const currentStepElement = steps[stepIndex];
 //         let isValid = true;
 
 //         // Clear previous error messages
-//         currentStepElement.querySelectorAll('.error-message').forEach(el => el.remove());
+//         clearErrors(currentStepElement);
 
 //         // Validate inputs based on the current step
 //         switch (stepIndex) {
@@ -244,24 +252,26 @@ document.getElementById('state').addEventListener('change', function () {
 //         return isValid;
 //     }
 
+//     // Function to clear error messages within a step
+//     function clearErrors(stepElement) {
+//         stepElement.querySelectorAll('.error-message').forEach(el => el.remove());
+//     }
+
 //     // Personal Information validation
 //     function validatePersonalInfo() {
 //         let isValid = true;
-//         const textFields = ['surname', 'firstname'];
-//         const dob = document.getElementById('dob');
+//         const fields = ['surname', 'firstname', 'dob'];
 
-//         textFields.forEach(id => {
+//         fields.forEach(id => {
 //             const element = document.getElementById(id);
-//             if (!element.value.trim() || !isTextValid(element)) {
-//                 showNotification(`${capitalizeFirstLetter(id)} is required and must contain only letters.`, 'error');
+//             if (!element.value.trim()) {
+//                 showNotification(`${capitalizeFirstLetter(id)} is required.`, 'error');
+//                 isValid = false;
+//             } else if (!isTextValid(element)) {
+//                 showNotification(`${capitalizeFirstLetter(id)} must contain only letters.`, 'error');
 //                 isValid = false;
 //             }
 //         });
-
-//         if (!dob.value.trim()) {
-//             showNotification('Date of Birth is required.', 'error');
-//             isValid = false;
-//         }
 
 //         return isValid;
 //     }
@@ -277,7 +287,324 @@ document.getElementById('state').addEventListener('change', function () {
 
 //         const phonePattern = /^[0-9]{11}$/;
 //         if (!phone.value.trim() || !phonePattern.test(phone.value)) {
-//             showNotification('A valid phone number is required.', 'error');
+//             showNotification('A valid 11-digit phone number is required.', 'error');
+//             isValid = false;
+//         }
+
+//         if (email.value.trim() && !/\S+@\S+\.\S+/.test(email.value)) {
+//             showNotification('Enter a valid email address.', 'error');
+//             isValid = false;
+//         }
+
+//         if (!state.value) {
+//             showNotification('State of origin is required.', 'error');
+//             isValid = false;
+//         }
+
+//         if (!lga.value) {
+//             showNotification('Local Government Area is required.', 'error');
+//             isValid = false;
+//         }
+
+//         return isValid;
+//     }
+
+//     // Additional Information validation
+//     function validateAdditionalInfo() {
+//         let isValid = true;
+
+//         const gender = document.getElementById('gender');
+//         const disability = document.getElementById('disability');
+
+//         if (!gender.value) {
+//             showNotification(gender, 'Gender is required.');
+//             isValid = false;
+//         }
+
+//         if (!disability.value) {
+//             showNotification('Disability status is required.', 'error');
+//             isValid = false;
+//         }
+
+//         return isValid;
+//     }
+
+//     // Passport Photo validation
+//     function validatePassportPhoto() {
+//         let isValid = true;
+//         const passportInput = document.getElementById('passport');
+//         const file = passportInput.files[0];
+
+//         if (!file) {
+//             showNotification('Passport photo is required.', 'error');
+//             isValid = false;
+//         } else if (!file.type.startsWith('image/')) {
+//             showNotification('Only image files are allowed.', 'error');
+//             isValid = false;
+//         } else if (file.size > 1500000) { // 1.5MB (adjust as needed)
+//             showNotification('File is too large. Maximum size is 1.5MB.'), 'error';
+//             isValid = false;
+//         }
+
+//         if (isValid) {
+//             previewPassportPhoto(file);
+//         }
+
+//         return isValid;
+//     }
+
+//     // Function to show notification messages
+//     function showNotification(message, type) {
+//         if (!notification) {
+//             console.error("Notification element with id 'notification' not found.");
+//             return;
+//         }
+
+//         notification.className = `notification ${type} unselectable`;
+//         notification.textContent = message;
+
+//         // Position the notification
+//         if (type === 'error') {
+//             notification.style.position = 'fixed';
+//             notification.style.top = '20px';
+//             notification.style.right = '20px';
+//         } else if (type === 'success') {
+//             notification.style.position = 'fixed';
+//             notification.style.top = '20px';
+//             notification.style.right = '20px';
+//         } else {
+//             notification.style.position = 'fixed';
+//             notification.style.top = '20px';
+//             notification.style.right = '20px';
+//         }
+
+//         notification.style.display = 'block';
+
+//         setTimeout(() => {
+//             notification.style.display = 'none';
+//         }, 3000);
+//     }
+
+//     // Function to capitalize the first letter of a string
+//     function capitalizeFirstLetter(string) {
+//         return string.charAt(0).toUpperCase() + string.slice(1);
+//     }
+
+//     // Function to check if a text field contains only letters and spaces
+//     function isTextValid(input) {
+//         return /^[A-Za-z\s]+$/.test(input.value.trim());
+//     }
+
+//     // Function to toggle the visibility and state of the submit button
+//     function toggleSubmitButton() {
+//         if (!submitButton) {
+//             console.error("Submit button with id 'submitBtn' not found.");
+//             return;
+//         }
+
+//         if (currentStep === totalSteps - 1) {
+//             // On the last step, check if the passport photo is valid to enable the submit button
+//             if (validatePassportPhoto()) {
+//                 submitButton.style.display = 'inline-block';
+//                 submitButton.disabled = false;
+//             } else {
+//                 submitButton.style.display = 'none';
+//                 submitButton.disabled = true;
+//             }
+//         } else {
+//             submitButton.style.display = 'none';
+//             submitButton.disabled = true;
+//         }
+//     }
+
+//     // Function to preview the passport photo
+//     function previewPassportPhoto(file) {
+//         const passportPreview = document.getElementById('passportPreview');
+//         if (!passportPreview) {
+//             console.error("Passport preview element with id 'passportPreview' not found.");
+//             return;
+//         }
+
+//         const reader = new FileReader();
+//         reader.onload = function (event) {
+//             passportPreview.src = event.target.result;
+//             passportPreview.style.display = 'block';
+//         };
+//         reader.readAsDataURL(file);
+//     }
+
+//     // Event listeners for input changes to trigger validation and button toggling
+//     document.querySelectorAll('input, select, textarea').forEach(input => {
+//         input.addEventListener('input', () => {
+//             // Optionally, you can validate on input change
+//             // validateStep(currentStep);
+//             // toggleSubmitButton();
+//         });
+//     });
+
+//     // Function to handle form submission
+//     async function handleSubmit(event) {
+//         event.preventDefault(); // Prevent default form submission
+
+//         if (validateStep(currentStep)) {
+//             const formData = new FormData(document.getElementById('enrollmentForm'));
+//             try {
+//                 const response = await fetch('/your-backend-endpoint', { // Replace with your backend endpoint
+//                     method: 'POST',
+//                     body: formData
+//                 });
+
+//                 if (response.ok) {
+//                     showNotification('Form submitted successfully!', 'success');
+//                     clearForm();
+//                 } else {
+//                     showNotification('Form submission failed. Please try again.', 'error');
+//                 }
+//             } catch (error) {
+//                 console.error('Error submitting form:', error);
+//                 showNotification('An error occurred. Please try again later.', 'error');
+//             }
+//         } else {
+//             showNotification('Please complete all required fields before submitting.', 'error');
+//         }
+//     }
+
+//     // Function to clear the form after successful submission
+//     function clearForm() {
+//         document.getElementById('enrollmentForm').reset();
+//         document.getElementById('passportPreview').style.display = 'none';
+//         currentStep = 0;
+//         showStep(currentStep);
+//     }
+
+//     // Event listener for the Submit button
+//     if (submitButton) {
+//         submitButton.addEventListener('click', handleSubmit);
+//     } else {
+//         console.error("Submit button with id 'submitBtn' not found.");
+//     }
+// });
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const steps = document.querySelectorAll('.form-step');
+//     const nextButtons = document.querySelectorAll('.btn-next');
+//     const prevButtons = document.querySelectorAll('.btn-prev');
+//     const progressBar = document.getElementById('progressBar');
+//     const submitButton = document.getElementById('submitBtn'); // Ensure this exists in HTML
+//     const notification = document.getElementById('notification'); // Notification element
+//     const totalSteps = steps.length;
+//     let currentStep = 0;
+
+//     // Function to show a specific form step
+//     function showStep(index) {
+//         steps.forEach((step, i) => {
+//             step.classList.toggle('form-step-active', i === index);
+//         });
+
+//         // Update the progress bar
+//         if (progressBar) {
+//             progressBar.style.width = `${((index + 1) / totalSteps) * 100}%`;
+//         } else {
+//             console.error("Progress bar element with id 'progressBar' not found.");
+//         }
+
+//         // Toggle the submit button visibility
+//         toggleSubmitButton();
+//     }
+
+//     // Function to handle the Next button click
+//     function handleNext(event) {
+//         if (validateStep(currentStep)) {
+//             if (currentStep < totalSteps - 1) {
+//                 currentStep++;
+//                 showStep(currentStep);
+//             }
+//         } else {
+//             showNotification('Please complete all fields in the current step.', 'error');
+//             event.preventDefault(); // Prevent moving to the next step if validation fails
+//         }
+//     }
+
+//     // Function to handle the Previous button click
+//     function handlePrev() {
+//         if (currentStep > 0) {
+//             currentStep--;
+//             showStep(currentStep);
+//         }
+//     }
+
+//     // Event listeners for the Next and Previous buttons
+//     nextButtons.forEach(button => button.addEventListener('click', handleNext));
+//     prevButtons.forEach(button => button.addEventListener('click', handlePrev));
+
+//     // Initialize the form by showing the first step
+//     showStep(currentStep);
+
+//     // Function to validate a specific form step
+//     function validateStep(stepIndex) {
+//         const currentStepElement = steps[stepIndex];
+//         let isValid = true;
+
+//         // Clear previous error messages
+//         clearErrors(currentStepElement);
+
+//         // Validate inputs based on the current step
+//         switch (stepIndex) {
+//             case 0:
+//                 isValid = validatePersonalInfo();
+//                 break;
+//             case 1:
+//                 isValid = validateContactInfo();
+//                 break;
+//             case 2:
+//                 isValid = validateAdditionalInfo();
+//                 break;
+//             case 3:
+//                 isValid = validatePassportPhoto();
+//                 break;
+//             default:
+//                 break;
+//         }
+
+//         return isValid;
+//     }
+
+//     // Function to clear error messages within a step
+//     function clearErrors(stepElement) {
+//         stepElement.querySelectorAll('.error-message').forEach(el => el.remove());
+//     }
+
+//     // Personal Information validation
+//     function validatePersonalInfo() {
+//         let isValid = true;
+//         const fields = ['surname', 'firstname', 'dob'];
+
+//         fields.forEach(id => {
+//             const element = document.getElementById(id);
+//             if (!element.value.trim()) {
+//                 showNotification(`${capitalizeFirstLetter(id)} is required.`, 'error');
+//                 isValid = false;
+//             } else if (!isTextValid(element)) {
+//                 showNotification(`${capitalizeFirstLetter(id)} must contain only letters.`, 'error');
+//                 isValid = false;
+//             }
+//         });
+
+//         return isValid;
+//     }
+
+//     // Contact Information validation
+//     function validateContactInfo() {
+//         let isValid = true;
+
+//         const phone = document.getElementById('phone');
+//         const email = document.getElementById('email');
+//         const state = document.getElementById('state');
+//         const lga = document.getElementById('lga');
+
+//         const phonePattern = /^[0-9]{11}$/;
+//         if (!phone.value.trim() || !phonePattern.test(phone.value)) {
+//             showNotification('A valid 11-digit phone number is required.', 'error');
 //             isValid = false;
 //         }
 
@@ -321,59 +648,46 @@ document.getElementById('state').addEventListener('change', function () {
 
 //     // Passport Photo validation
 //     function validatePassportPhoto() {
+//         let isValid = true;
 //         const passportInput = document.getElementById('passport');
 //         const file = passportInput.files[0];
 
 //         if (!file) {
 //             showNotification('Passport photo is required.', 'error');
-//             return false;
+//             isValid = false;
+//         } else if (!file.type.startsWith('image/')) {
+//             showNotification('Only image files are allowed.', 'error');
+//             isValid = false;
+//         } else if (file.size > 1500000) { // 1.5MB (adjust as needed)
+//             showNotification('File is too large. Maximum size is 1.5MB.', 'error');
+//             isValid = false;
 //         }
 
-//         if (file.size > 15000) { // 15kb
-//             showNotification('File is too large. Maximum size is 15kb.', 'error');
-//             return false;
+//         if (isValid) {
+//             previewPassportPhoto(file);
 //         }
 
-//         return true;
+//         return isValid;
 //     }
-
-//     // Function to preview the passport photo
-//     function previewPassportPhoto() {
-//         const passportInput = document.getElementById('passport');
-//         const passportPreview = document.getElementById('passportPreview');
-
-//         // Listen for changes in the file input
-//         passportInput.addEventListener('change', function () {
-//             const file = passportInput.files[0];
-
-//             if (file) {
-//                 const reader = new FileReader();
-
-//                 reader.onload = function (event) {
-//                     passportPreview.src = event.target.result;  // Set image source to the file data
-//                     passportPreview.style.display = 'block';   // Make the preview visible
-//                 };
-
-//                 reader.readAsDataURL(file);  // Read the image file as a data URL
-//             } else {
-//                 passportPreview.style.display = 'none';  // Hide the preview if no file is selected
-//             }
-//         });
-//     }
-
-//     // Call the preview function when the page loads
-//     previewPassportPhoto();
 
 //     // Function to show notification messages
 //     function showNotification(message, type) {
-//         const notification = document.createElement('div');
+//         if (!notification) {
+//             console.error("Notification element with id 'notification' not found.");
+//             return;
+//         }
+
 //         notification.className = `notification ${type} unselectable`;
 //         notification.textContent = message;
-//         document.body.appendChild(notification);
+
+//         notification.style.position = 'fixed';
+//         notification.style.top = '20px';
+//         notification.style.right = '20px';
+//         notification.style.display = 'block';
 
 //         setTimeout(() => {
-//             document.body.removeChild(notification);
-//         }, 3000); // Disappears after 3 seconds
+//             notification.style.display = 'none';
+//         }, 3000);
 //     }
 
 //     // Function to capitalize the first letter of a string
@@ -381,30 +695,207 @@ document.getElementById('state').addEventListener('change', function () {
 //         return string.charAt(0).toUpperCase() + string.slice(1);
 //     }
 
-//     // Function to check form validity
-//     function checkFormValidity() {
-//         return validateStep(currentStep);
-//     }
-
-//     // Function to toggle the visibility and state of the Next button
-//     function toggleNextButton() {
-//         const nextButton = steps[currentStep].querySelector('.btn-next');
-//         if (checkFormValidity()) {
-//             nextButton.disabled = false;
-//         } else {
-//             nextButton.disabled = true;
-//         }
-//     }
-
-//     // Function to check if a text field contains valid text
+//     // Function to check if a text field contains only letters and spaces
 //     function isTextValid(input) {
 //         return /^[A-Za-z\s]+$/.test(input.value.trim());
 //     }
 
-//     // Event listeners for input changes to trigger validation
-//     document.querySelectorAll('input, select, textarea').forEach(input => {
-//         input.addEventListener('input', toggleNextButton);
-//     });
+//     // Function to toggle the visibility and state of the submit button
+//     function toggleSubmitButton() {
+//         if (!submitButton) {
+//             console.error("Submit button with id 'submitBtn' not found.");
+//             return;
+//         }
+
+//         if (currentStep === totalSteps - 1) {
+//             // On the last step, check if the passport photo is valid to enable the submit button
+//             if (validatePassportPhoto()) {
+//                 submitButton.style.display = 'inline-block';
+//                 submitButton.disabled = false;
+//             } else {
+//                 submitButton.style.display = 'none';
+//                 submitButton.disabled = true;
+//             }
+//         } else {
+//             submitButton.style.display = 'none';
+//             submitButton.disabled = true;
+//         }
+//     }
+
+//     // Function to preview the passport photo
+//     function previewPassportPhoto(file) {
+//         const passportPreview = document.getElementById('passportPreview');
+//         if (!passportPreview) {
+//             console.error("Passport preview element with id 'passportPreview' not found.");
+//             return;
+//         }
+
+//         const reader = new FileReader();
+//         reader.onload = function (event) {
+//             passportPreview.src = event.target.result;
+//             passportPreview.style.display = 'block';
+//         };
+//         reader.readAsDataURL(file);
+//     }
+
+//     // Event listener for the Submit button
+//     if (submitButton) {
+//         submitButton.addEventListener('click', handleSubmit);
+//     } else {
+//         console.error("Submit button with id 'submitBtn' not found.");
+//     }
+
+//     // Function to handle form submission
+//     async function handleSubmit(event) {
+//         event.preventDefault(); // Prevent default form submission
+
+//         if (validateStep(currentStep)) {
+//             const formData = new FormData(document.getElementById('enrollmentForm'));
+//             try {
+//                 const response = await fetch('/your-backend-endpoint', { // Replace with your backend endpoint
+//                     method: 'POST',
+//                     body: formData
+//                 });
+
+//                 if (response.ok) {
+//                     showNotification('Form submitted successfully!', 'success');
+//                     clearForm();
+//                 } else {
+//                     showNotification('Form submission failed. Please try again.', 'error');
+//                 }
+//             } catch (error) {
+//                 console.error('Error submitting form:', error);
+//                 showNotification('An error occurred. Please try again later.', 'error');
+//             }
+//         } else {
+//             showNotification('Please complete all required fields before submitting.', 'error');
+//         }
+//     }
+
+//     // Function to clear the form after successful submission
+//     function clearForm() {
+//         document.getElementById('enrollmentForm').reset();
+//         document.getElementById('passportPreview').style.display = 'none';
+//     }
 // });
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const steps = document.querySelectorAll('.form-step');
+    const nextButtons = document.querySelectorAll('.btn-next');
+    const prevButtons = document.querySelectorAll('.btn-prev');
+    const progressBar = document.getElementById('progressBar');
+    const submitButton = document.getElementById('submitBtn'); // Ensure this exists in HTML
+    const notification = document.getElementById('notification'); // Notification element
+    const totalSteps = steps.length;
+    let currentStep = 0;
+
+    // Function to show a specific form step
+    function showStep(index) {
+        steps.forEach((step, i) => {
+            step.classList.toggle('form-step-active', i === index);
+        });
+
+        // Update the progress bar
+        if (progressBar) {
+            progressBar.style.width = `${((index + 1) / totalSteps) * 100}%`;
+        } else {
+            console.error("Progress bar element with id 'progressBar' not found.");
+        }
+
+        // Toggle the submit button visibility
+        toggleSubmitButton();
+    }
+
+    // Function to handle the Next button click
+    function handleNext(event) {
+        if (validateStep(currentStep)) {
+            if (currentStep < totalSteps - 1) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        } else {
+            showNotification("Please fill out all required fields.", "error");
+        }
+    }
+
+    // Function to handle the Previous button click
+    function handlePrev(event) {
+        if (currentStep > 0) {
+            currentStep--;
+            showStep(currentStep);
+        }
+    }
+
+    // Function to validate the current step
+    function validateStep(index) {
+        const step = steps[index];
+        const inputs = step.querySelectorAll('input, select');
+        let valid = true;
+
+        inputs.forEach(input => {
+            if (input.required && !input.value) {
+                valid = false;
+                input.classList.add('input-error');
+            } else {
+                input.classList.remove('input-error');
+            }
+        });
+
+        return valid;
+    }
+
+    // Function to show notifications
+    function showNotification(message, type) {
+        notification.textContent = message;
+        notification.className = `notification ${type}`;
+        setTimeout(() => {
+            notification.textContent = '';
+            notification.className = 'notification';
+        }, 3000);
+    }
+
+    // Function to toggle submit button visibility
+    function toggleSubmitButton() {
+        if (currentStep === totalSteps - 1) {
+            submitButton.style.display = 'block';
+        } else {
+            submitButton.style.display = 'none';
+        }
+    }
+
+    // Add event listeners
+    nextButtons.forEach(button => button.addEventListener('click', handleNext));
+    prevButtons.forEach(button => button.addEventListener('click', handlePrev));
+
+    // Initialize the form by showing the first step
+    showStep(currentStep);
+
+    // Handle passport preview
+    const passportInput = document.getElementById('passport');
+    const passportPreview = document.getElementById('passportPreview');
+
+    passportInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                passportPreview.src = e.target.result;
+                passportPreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            passportPreview.style.display = 'none';
+        }
+    });
+
+    // Handle form submission
+    submitButton.addEventListener('click', (event) => {
+        if (validateStep(currentStep)) {
+            // Form submission logic here
+            showNotification('Form submitted successfully!', 'success');
+        } else {
+            showNotification('Please fill out all required fields.', 'error');
+        }
+    });
+});
