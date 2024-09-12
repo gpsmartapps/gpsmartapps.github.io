@@ -97,11 +97,11 @@ input[type="submit"]:hover {
 }
 
 /* Disabled state for buttons */
-button:disabled,
+/* button:disabled,
 input[type="submit"]:disabled {
     background-color: #ccc;
     cursor: not-allowed;
-}
+} */
 
 /* Specific styling for .btn-next, .btn-prev, and .submit */
 .btn-next,
@@ -119,7 +119,7 @@ input[type="submit"]:disabled {
 }
 
 .submit {
-    background-color: #007bff;
+    background-color: #4caf50;
     color: #fff;
     border: none;
     margin-left: auto;
@@ -134,7 +134,7 @@ input[type="submit"]:disabled {
 }
 
 .submit:disabled {
-    opacity: 0.5;
+    /* opacity: 0.5; */
     /* Make disabled button appear faded */
 }
 

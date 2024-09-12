@@ -190,8 +190,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const phonePattern = /^[0-9]{11}$/;
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-
-
     // Function to validate the entire form
     function validateForm() {
         let valid = true;
@@ -242,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Function to show notifications
-    function showNotification(message, type) {
+    function showNotification(type, message) {
         const notification = document.getElementById('notification');
         notification.className = `notification ${type} unselectable`;
         notification.textContent = message;
