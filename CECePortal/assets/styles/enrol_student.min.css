@@ -120,14 +120,11 @@ input[type="submit"]:disabled {
 }
 
 .submit {
-    display: block;
     background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    font-size: 16px;
+    margin-left: auto;
     cursor: not-allowed;
-    /* Default cursor for disabled button */
 }
 
 .submit:enabled {
@@ -150,7 +147,10 @@ input[type="submit"]:disabled {
 .form-actions {
     display: flex;
     justify-content: space-between;
-    /* Ensure buttons are spaced evenly */
+    /* Distribute space evenly */
+    align-items: center;
+    /* Align items vertically centered */
+    margin-top: 20px;
 }
 
 /* Media queries for responsiveness */
