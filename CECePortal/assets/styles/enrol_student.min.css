@@ -73,13 +73,9 @@
 
 .form-actions {
     margin-top: 20px;
-    text-align: center;
     display: flex;
-    justify-content: flex-end;
-    /* Align buttons to the right */
-    gap: 10px;
-    /* Add spacing between buttons */
-
+    justify-content: space-between;
+    /* Align buttons to the right and ensure space between them */
 }
 
 /* General button styling for all form actions */
@@ -123,9 +119,63 @@ input[type="submit"]:disabled {
     text-align: center;
 }
 
-.btn-next:hover,
-.btn-prev:hover {
-    background-color: #45a049;
+.submit {
+    display: block;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: not-allowed;
+    /* Default cursor for disabled button */
+}
+
+.submit:enabled {
+    cursor: pointer;
+    /* Pointer cursor when button is enabled */
+}
+
+.submit:disabled {
+    opacity: 0.5;
+    /* Make disabled button appear faded */
+}
+
+/* Flex container for buttons to align them side by side in desktop */
+.form-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    /* Ensure buttons are spaced evenly */
+}
+
+/* Media queries for responsiveness */
+@media(max-width: 768px) {
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-next,
+    .btn-prev,
+    .submit {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+@media(max-width: 480px) {
+
+    .btn-next,
+    .btn-prev,
+    .submit {
+        width: 100%;
+        margin: 10px 0;
+    }
 }
 
 .passport-preview-container {
@@ -147,16 +197,6 @@ input[type="submit"]:disabled {
     border: 1px solid var(--border-color);
     border-radius: 4px;
 }
-
-.btn-prev {
-    order: 0;
-}
-
-.submit {
-    order: 1;
-    margin-left: auto;
-}
-
 
 /* New CSS for progress bar and step navigation */
 body {
@@ -186,29 +226,4 @@ body {
 
 .form-step.form-step-active {
     display: block;
-}
-
-/* Flex container for buttons to align them side by side in desktop */
-@media(max-width: 768px) {
-    .form-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .btn-next,
-    .btn-prev,
-    .submit {
-        width: 100%;
-        margin: 10px 0;
-    }
-}
-
-@media(max-width: 480px) {
-
-    .btn-next,
-    .btn-prev,
-    .submit {
-        width: 100%;
-        margin: 10px 0;
-    }
 }
