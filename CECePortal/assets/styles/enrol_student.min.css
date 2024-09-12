@@ -153,47 +153,6 @@ input[type="submitBtn"]:disabled {
     border-radius: 4px;
 }
 
-@media(max-width:768px) {
-    .login-container {
-        flex-direction: column;
-    }
-
-    .login-left,
-    .login-right {
-        padding: 20px;
-    }
-
-    .form-row {
-        flex-direction: column;
-    }
-
-    .form-group {
-        min-width: 100%;
-    }
-
-    .login-left img {
-        max-width: 100px;
-        margin-bottom: auto;
-        margin-left: auto;
-    }
-
-    .form-group input[type=date] {
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .passport-preview-container {
-        position: static;
-        margin-top: 10px;
-        text-align: center;
-    }
-
-    .passport-preview-container img {
-        margin: 0 auto;
-    }
-}
-
-
 /* New CSS for progress bar and step navigation */
 body {
     font-family: Arial, sans-serif;
@@ -268,6 +227,44 @@ body {
         gap: 10px;
         /* Add spacing between buttons */
     }
+
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-left,
+    .login-right {
+        padding: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-group {
+        min-width: 100%;
+    }
+
+    .login-left img {
+        max-width: 100px;
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+
+    .form-group input[type=date] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .passport-preview-container {
+        position: static;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .passport-preview-container img {
+        margin: 0 auto;
+    }
 }
 
 @media(max-width: 480px) {
@@ -292,5 +289,43 @@ body {
         justify-content: space-between;
         gap: 10px;
         /* Add spacing between buttons */
+    }
+
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-left,
+    .login-right {
+        padding: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-group {
+        min-width: 100%;
+    }
+
+    .login-left img {
+        max-width: 100px;
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+
+    .form-group input[type=date] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .passport-preview-container {
+        position: static;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .passport-preview-container img {
+        margin: 0 auto;
     }
 }
