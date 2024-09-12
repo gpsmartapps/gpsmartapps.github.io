@@ -72,13 +72,20 @@
 }
 
 .form-actions {
-    margin-top: 20px;
+    /* margin-top: 20px;
     text-align: center;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end; */
     /* Align buttons to the right */
-    gap: 10px;
+    /* gap: 10px; */
     /* Add spacing between buttons */
+    display: flex;
+    justify-content: flex-start;
+    /* Align buttons to the left */
+    gap: 10px;
+    /* Reduce spacing between buttons */
+    margin-top: 10px;
+    /* Adjust spacing from the file input */
 }
 
 /* General button styling for all form actions */
@@ -147,6 +154,16 @@ input[type="submit"]:disabled {
     border-radius: 4px;
 }
 
+.btn-prev {
+    order: 0;
+}
+
+.submit {
+    order: 1;
+    margin-left: 0;
+    /* Remove excessive spacing */
+}
+
 /* Flex container for buttons to align them side by side in desktop */
 @media(max-width: 768px) {
     .login-container {
@@ -190,11 +207,8 @@ input[type="submit"]:disabled {
     /* Flex container for buttons to align them side by side */
     .form-actions {
         display: flex;
-        justify-content: space-between;
-        gap: 10px;
         flex-direction: column;
-        /* Stack buttons vertically on mobile */
-        justify-content: center;
+        align-items: stretch;
     }
 
     .btn-next,
@@ -203,6 +217,7 @@ input[type="submit"]:disabled {
         width: 100%;
         margin: 10px 0;
     }
+
 }
 
 @media(max-width: 480px) {
