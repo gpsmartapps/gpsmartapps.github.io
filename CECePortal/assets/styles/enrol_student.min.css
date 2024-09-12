@@ -148,21 +148,6 @@ input[type="submit"]:disabled {
 }
 
 /* Flex container for buttons to align them side by side in desktop */
-@media(min-width: 769px) {
-    .form-actions {
-        display: flex;
-        justify-content: flex-end;
-        /* Align buttons to the right */
-        gap: 10px;
-        /* Add spacing between buttons */
-    }
-
-    .submit {
-        order: -1;
-        /* Move submit button to the left of previous button */
-    }
-}
-
 @media(max-width: 768px) {
     .login-container {
         flex-direction: column;
@@ -217,16 +202,6 @@ input[type="submit"]:disabled {
     .submit {
         width: 100%;
         margin: 10px 0;
-    }
-
-    .submit {
-        order: -1;
-        /* Move submit button to the right */
-    }
-
-    .btn-prev {
-        order: 0;
-        /* Keep previous button to the left of submit */
     }
 }
 
