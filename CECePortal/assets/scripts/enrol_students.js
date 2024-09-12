@@ -168,6 +168,7 @@ document.getElementById('state').addEventListener('change', function () {
     // populateLGA(selectedState);
 });
 
+
 document.addEventListener("DOMContentLoaded", function () {
     const steps = document.querySelectorAll('.form-step');
     const nextButtons = document.querySelectorAll('.btn-next');
@@ -199,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Progress bar element with id 'progressBar' not found.");
         }
 
-        // Toggle submit button visibility and state
+        // Toggle submit button state
         toggleSubmitButton();
     }
 
@@ -231,10 +232,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         inputs.forEach(input => {
             const value = input.value.trim();
-            if (input.required && !value) {
+            if (input.required && input.id !== 'othername' && input.id !== 'email' && !value) {
                 valid = false;
                 input.classList.add('input-error');
-                showNotification("error", `${input.name} is required.`);
+                showNotification("error", `${input.previousElementSibling.textContent} is required.`);
             } else {
                 input.classList.remove('input-error');
             }
@@ -259,9 +260,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else if (input.id === 'phone' && (!value || !phonePattern.test(value))) {
                     valid = false;
                     showNotification("error", "Please enter a valid phone number.");
-                } else if (input.id === 'email' && (!value || !emailPattern.test(value))) {
-                    valid = false;
-                    showNotification("error", "Please enter a valid email address.");
                 } else if (input.id === 'state' && (!value || value === "Select State")) {
                     valid = false;
                     showNotification("error", "Please select a valid state of origin.");
@@ -288,13 +286,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 3000);
     }
 
-    // Function to toggle submit button visibility and enable/disable state
+    // Function to toggle submit button state
     function toggleSubmitButton() {
         if (currentStep === totalSteps - 1) {
             submitButton.style.display = 'block';
             submitButton.disabled = !passportValid; // Enable or disable based on passport validation
-        } else {
-            submitButton.style.display = 'none';
         }
     }
 
@@ -376,5 +372,4 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initialize the form by showing the first step
     showStep(currentStep);
 });
-
 
