@@ -169,6 +169,7 @@ document.getElementById('state').addEventListener('change', function () {
 });
 
 
+
 document.addEventListener("DOMContentLoaded", function () {
     const steps = document.querySelectorAll('.form-step');
     const nextButtons = document.querySelectorAll('.btn-next');
@@ -180,49 +181,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const passportPreview = document.getElementById('passportPreview');
 
     const totalSteps = steps.length;
-    let currentStep = 0;
     let passportValid = false;
+    // Initialize step index
+    let currentStep = 0;
+
 
     // Regex patterns
     const phonePattern = /^[0-9]{11}$/;
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    // Function to show a specific form step
-    function showStep(index) {
-        steps.forEach((step, i) => {
-            step.classList.toggle('form-step-active', i === index);
-        });
 
-        // Update the progress bar
-        if (progressBar) {
-            progressBar.style.width = `${((index + 1) / totalSteps) * 100}%`;
-        } else {
-            console.error("Progress bar element with id 'progressBar' not found.");
-        }
-
-        // Toggle submit button state
-        toggleSubmitButton();
-    }
-
-    // Function to handle the Next button click
-    function handleNext(event) {
-        if (validateStep(currentStep)) {
-            if (currentStep < totalSteps - 1) {
-                currentStep++;
-                showStep(currentStep);
-            }
-        } else {
-            showNotification("error", "Please fill out all required fields correctly.");
-        }
-    }
-
-    // Function to handle the Previous button click
-    function handlePrev(event) {
-        if (currentStep > 0) {
-            currentStep--;
-            showStep(currentStep);
-        }
-    }
 
     // Function to validate the entire form
     function validateForm() {
@@ -282,6 +250,64 @@ document.addEventListener("DOMContentLoaded", function () {
             notification.className = 'notification';
         }, 3000);
     }
+
+    // Function to validate user inputs
+    function validateInputs(step) {
+        const inputs = step.querySelectorAll('input, select');
+        let isValid = true;
+
+        inputs.forEach(input => {
+            if (input.required && !input.value) {
+                input.classList.add('invalid');
+                isValid = false;
+            } else {
+                input.classList.remove('invalid');
+            }
+        });
+
+        return isValid;
+    }
+
+    // Function to handle next button click
+    function nextStep() {
+        const currentStepElement = steps[currentStep];
+        if (validateInputs(currentStepElement)) {
+            currentStep++;
+            updateProgress();
+            showCurrentStep();
+        } else {
+            notificationMessage.textContent = 'Please fill in all required fields.';
+            notificationBar.classList.add('show');
+            setTimeout(() => {
+                notificationBar.classList.remove('show');
+            }, 3000);
+        }
+    }
+
+    // Function to handle previous button click
+    function prevStep() {
+        currentStep--;
+        updateProgress();
+        showCurrentStep();
+    }
+
+    // Function to update progress bar
+    function updateProgress() {
+        const progressWidth = (currentStep / (steps.length - 1)) * 100;
+        progressBar.style.width = `${progressWidth}%`;
+    }
+
+    // Function to show current step
+    function showCurrentStep() {
+        steps.forEach((step, index) => {
+            if (index === currentStep) {
+                step.classList.add('form-step-active');
+            } else {
+                step.classList.remove('form-step-active');
+            }
+        });
+    }
+
 
     // Function to toggle submit button state
     function toggleSubmitButton() {
@@ -360,12 +386,19 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Submit button with id 'submit' not found.");
     }
 
+    // Function to show a specific form step
+    function showStep(index) {
+        steps.forEach((step, i) => {
+            step.classList.toggle('form-step-active', i === index);
+        });
+        progressBar.style.width = `${((index + 1) / totalSteps) * 100}%`;
+        toggleSubmitButton();
+    }
+
     // Add event listeners for step navigation
-    nextButtons.forEach(button => button.addEventListener('click', handleNext));
-    prevButtons.forEach(button => button.addEventListener('click', handlePrev));
+    nextButtons.forEach(button => button.addEventListener('click', nextButtons));
+    prevButtons.forEach(button => button.addEventListener('click', prevButtons));
 
     // Initialize the form by showing the first step
     showStep(currentStep);
 });
-
-
