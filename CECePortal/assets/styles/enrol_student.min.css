@@ -23,7 +23,7 @@
 .login-left img {
     max-width: 100px;
     margin-bottom: 20px;
-    margin-left: 120px;
+    margin-left: 0px;
 }
 
 .login-left h2 {
@@ -72,10 +72,9 @@
 }
 
 .form-actions {
-    margin-top: 20px;
     display: flex;
     justify-content: space-between;
-    /* Align buttons to the right and ensure space between them */
+    margin-top: 20px;
 }
 
 /* General button styling for all form actions */
@@ -125,6 +124,8 @@ input[type="submit"]:disabled {
     border: none;
     margin-left: auto;
     cursor: not-allowed;
+    margin-left: auto;
+    /* Push the button to the far right */
 }
 
 .submit:enabled {
@@ -144,15 +145,6 @@ input[type="submit"]:disabled {
     align-items: center;
 }
 
-.form-actions {
-    display: flex;
-    justify-content: space-between;
-    /* Distribute space evenly */
-    align-items: center;
-    /* Align items vertically centered */
-    margin-top: 20px;
-}
-
 /* Media queries for responsiveness */
 @media(max-width: 768px) {
     .form-actions {
@@ -165,6 +157,12 @@ input[type="submit"]:disabled {
     .submit {
         width: 100%;
         margin: 10px 0;
+        margin-left: 0px;
+    }
+
+    .login-left img {
+        max-width: 100px;
+        margin-bottom: 20px;
     }
 }
 
@@ -175,6 +173,12 @@ input[type="submit"]:disabled {
     .submit {
         width: 100%;
         margin: 10px 0;
+        margin-left: 0px;
+    }
+
+    .login-left img {
+        max-width: 100px;
+        margin-bottom: 20px;
     }
 }
 

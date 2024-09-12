@@ -224,54 +224,51 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Function to validate the current step
-    function validateStep(index) {
-        const step = steps[index];
-        const inputs = step.querySelectorAll('input, select');
+    // Function to validate the entire form
+    function validateForm() {
         let valid = true;
+        let firstError = null;
 
-        inputs.forEach(input => {
-            const value = input.value.trim();
-            if (input.required && input.id !== 'othername' && input.id !== 'email' && !value) {
-                valid = false;
-                input.classList.add('input-error');
-                showNotification("error", `${input.previousElementSibling.textContent} is required.`);
-            } else {
-                input.classList.remove('input-error');
-            }
+        steps.forEach((step, index) => {
+            const inputs = step.querySelectorAll('input, select');
+            inputs.forEach(input => {
+                const value = input.value.trim();
+                let inputValid = true;
 
-            // Specific validations for the last step
-            if (index === totalSteps - 1) {
-                if (input.id === 'surname' && !value) {
-                    valid = false;
-                    showNotification("error", "Please enter your surname.");
-                } else if (input.id === 'firstname' && !value) {
-                    valid = false;
-                    showNotification("error", "Please enter your firstname.");
-                } else if (input.id === 'dob' && !value) {
-                    valid = false;
-                    showNotification("error", "Please enter your date of birth.");
-                } else if (input.id === 'gender' && !value) {
-                    valid = false;
-                    showNotification("error", "Please select your gender.");
-                } else if (input.id === 'disability' && !value) {
-                    valid = false;
-                    showNotification("error", "Please specify if you have a disability.");
+                if (input.required && input.id !== 'othername' && input.id !== 'email' && !value) {
+                    inputValid = false;
+                    input.classList.add('input-error');
+                    showNotification("error", `${input.previousElementSibling.textContent} is required.`);
+                    if (!firstError) firstError = input;
                 } else if (input.id === 'phone' && (!value || !phonePattern.test(value))) {
-                    valid = false;
+                    inputValid = false;
                     showNotification("error", "Please enter a valid phone number.");
-                } else if (input.id === 'state' && (!value || value === "Select State")) {
-                    valid = false;
-                    showNotification("error", "Please select a valid state of origin.");
-                } else if (input.id === 'lga' && (!value || value === "Select an LGA")) {
-                    valid = false;
-                    showNotification("error", "Please select a valid local government area.");
-                } else if (input.id === 'passport' && passportInput.files.length === 0) {
-                    valid = false;
-                    showNotification("error", "Please upload a passport photo.");
+                    if (!firstError) firstError = input;
+                } else if (input.id === 'email' && (!value || !emailPattern.test(value))) {
+                    inputValid = false;
+                    showNotification("error", "Please enter a valid email address.");
+                    if (!firstError) firstError = input;
+                } else if (index === totalSteps - 1) { // Specific validations for the last step
+                    if (input.id === 'passport' && passportInput.files.length === 0) {
+                        inputValid = false;
+                        showNotification("error", "Please upload a passport photo.");
+                        if (!firstError) firstError = input;
+                    }
                 }
-            }
+
+                if (!inputValid) {
+                    valid = false;
+                } else {
+                    input.classList.remove('input-error');
+                }
+            });
         });
+
+        // Focus on the first error field
+        if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            firstError.focus();
+        }
 
         return valid;
     }
@@ -323,7 +320,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to handle form submission
     async function handleSubmit(event) {
-        if (validateStep(currentStep)) {
+        event.preventDefault(); // Prevent default form submission
+        if (validateForm()) {
             const formData = new FormData(document.getElementById('enrollmentForm'));
             try {
                 const response = await fetch('/your-backend-endpoint', { // Replace with your backend endpoint
@@ -336,16 +334,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     clearForm();
                 } else {
                     showNotification('error', 'Form submission failed. Please try again.');
-                    event.preventDefault(); // Prevent default form submission
                 }
             } catch (error) {
                 console.error('Error submitting form:', error);
                 showNotification('error', 'An error occurred. Please try again later.');
-                event.preventDefault(); // Prevent default form submission
             }
         } else {
             showNotification('error', 'Please complete all required fields before submitting.');
-            event.preventDefault(); // Prevent default form submission
         }
     }
 
@@ -372,4 +367,5 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initialize the form by showing the first step
     showStep(currentStep);
 });
+
 
