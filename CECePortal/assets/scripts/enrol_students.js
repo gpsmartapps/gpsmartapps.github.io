@@ -242,12 +242,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Function to show notifications
-    function showNotification(type, message) {
-        notification.textContent = message;
+    function showNotification(message, type) {
+        const notification = document.getElementById('notification');
         notification.className = `notification ${type} unselectable`;
+        notification.textContent = message;
+        notification.style.display = 'block';
+
         setTimeout(() => {
-            notification.textContent = '';
-            notification.className = 'notification';
+            notification.style.display = 'none';
         }, 3000);
     }
 

@@ -145,6 +145,30 @@ input[type="submit"]:disabled {
     align-items: center;
 }
 
+.passport-preview-container {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* Adjust the size and position of the preview image */
+#passportPreview {
+    display: none;
+    width: 80px;
+    /* Adjust the size as needed */
+    height: 80px;
+    margin-bottom: 20px;
+    position: absolute;
+    right: 80px;
+    top: 1px;
+    border: 1px solid var(--border-color);
+    /* Optional: Add border for visibility */
+    border-radius: 4px;
+    /* Optional: Round the corners */
+}
+
 /* Media queries for responsiveness */
 @media(max-width: 768px) {
     .form-actions {
@@ -164,6 +188,16 @@ input[type="submit"]:disabled {
         max-width: 100px;
         margin-bottom: 20px;
     }
+
+    .passport-preview-container {
+        position: static;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .passport-preview-container img {
+        margin: 0 auto;
+    }
 }
 
 @media(max-width: 480px) {
@@ -180,27 +214,18 @@ input[type="submit"]:disabled {
         max-width: 100px;
         margin-bottom: 20px;
     }
+
+    .passport-preview-container {
+        position: static;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .passport-preview-container img {
+        margin: 0 auto;
+    }
 }
 
-.passport-preview-container {
-    position: absolute;
-    right: 10px;
-    top: 20px;
-    margin-bottom: 50px;
-    text-align: center;
-}
-
-#passportPreview {
-    display: none;
-    width: 80px;
-    height: 80px;
-    margin-bottom: 20px;
-    position: absolute;
-    right: 80px;
-    top: 1px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-}
 
 /* New CSS for progress bar and step navigation */
 body {
@@ -230,4 +255,22 @@ body {
 
 .form-step.form-step-active {
     display: block;
+}
+
+@media(max-width: 768px) {
+    #passportPreview {
+        right: 20px;
+        top: 80px;
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media(max-width: 480px) {
+    #passportPreview {
+        right: 15px;
+        top: 60px;
+        width: 50px;
+        height: 50px;
+    }
 }
