@@ -173,7 +173,7 @@ document.getElementById('state').addEventListener('change', function () {
 //     const nextButtons = document.querySelectorAll('.btn-next');
 //     const prevButtons = document.querySelectorAll('.btn-prev');
 //     const progressBar = document.getElementById('progressBar');
-//     const submitButton = document.getElementById('submitBtn'); // Ensure this exists in HTML
+//     const submitButton = document.getElementById('submit'); // Ensure this exists in HTML
 //     const notification = document.getElementById('notification'); // Notification element
 //     const passportInput = document.getElementById('passport');
 //     const passportPreview = document.getElementById('passportPreview');
@@ -347,7 +347,7 @@ document.getElementById('state').addEventListener('change', function () {
 //     if (submitButton) {
 //         submitButton.addEventListener('click', handleSubmit);
 //     } else {
-//         console.error("Submit button with id 'submitBtn' not found.");
+//         console.error("Submit button with id 'submit' not found.");
 //     }
 
 //     // Initialize the form by showing the first step
@@ -364,7 +364,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const nextButtons = document.querySelectorAll('.btn-next');
     const prevButtons = document.querySelectorAll('.btn-prev');
     const progressBar = document.getElementById('progressBar');
-    const submitButton = document.getElementById('submitBtn'); // Ensure this exists in HTML
+    const submitButton = document.getElementById('submit'); // Ensure this exists in HTML
     const notification = document.getElementById('notification'); // Notification element
     const passportInput = document.getElementById('passport');
     const passportPreview = document.getElementById('passportPreview');
@@ -557,7 +557,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (submitButton) {
         submitButton.addEventListener('click', handleSubmit);
     } else {
-        console.error("Submit button with id 'submitBtn' not found.");
+        console.error("Submit button with id 'submit' not found.");
     }
 
     // Add event listeners for step navigation

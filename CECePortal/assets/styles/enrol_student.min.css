@@ -76,10 +76,9 @@
     text-align: center;
 }
 
-
 /* General button styling for all form actions */
 button,
-input[type="submitBtn"] {
+input[type="submit"] {
     background-color: var(--primary-color);
     color: #fff;
     border: 0;
@@ -91,19 +90,19 @@ input[type="submitBtn"] {
 
 /* Hover effect for all buttons */
 button:hover,
-input[type="submitBtn"]:hover {
+input[type="submit"]:hover {
     background-color: var(--primary-color-darker);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Disabled state for buttons */
 button:disabled,
-input[type="submitBtn"]:disabled {
+input[type="submit"]:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
 
-/* Specific styling for .btn-next and .btn-prev */
+/* Specific styling for .btn-next, .btn-prev, and .submit */
 .btn-next,
 .btn-prev,
 .submit {
@@ -115,22 +114,12 @@ input[type="submitBtn"]:disabled {
     border-radius: 5px;
     margin: 10px;
     width: 120px;
-    /* Set the same width for both buttons */
     text-align: center;
-    /* Center the text */
 }
 
 .btn-next:hover,
 .btn-prev:hover {
     background-color: #45a049;
-}
-
-
-/* Specific styling for form actions */
-.form-actions button,
-.form-actions input[type="submitBtn"] {
-    width: 100%;
-    /* Make the submit button full width or adjust as necessary */
 }
 
 .passport-preview-container {
@@ -151,6 +140,77 @@ input[type="submitBtn"]:disabled {
     top: 1px;
     border: 1px solid var(--border-color);
     border-radius: 4px;
+}
+
+@media(max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-left,
+    .login-right {
+        padding: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-group {
+        min-width: 100%;
+    }
+
+    .login-left img {
+        max-width: 100px;
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+
+    .form-group input[type=date] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .passport-preview-container {
+        position: static;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .passport-preview-container img {
+        margin: 0 auto;
+    }
+
+    /* Flex container for buttons to align them side by side */
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .btn-next,
+    .btn-prev,
+    .submit {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+@media(max-width: 480px) {
+    #passportPreview {
+        right: 15px;
+        top: 60px;
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Make buttons full width in mobile */
+    .btn-next,
+    .btn-prev,
+    .submit {
+        width: 100%;
+        margin: 10px 0;
+    }
 }
 
 /* New CSS for progress bar and step navigation */
@@ -181,151 +241,4 @@ body {
 
 .form-step.form-step-active {
     display: block;
-}
-
-.btn-next,
-.btn-prev {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin: 10px;
-}
-
-.btn-next:hover,
-.btn-prev:hover {
-    background-color: #45a049;
-}
-
-/* Hide the submit button initially */
-#submitBtn {
-    display: none;
-}
-
-@media(max-width: 768px) {
-    #passportPreview {
-        right: 20px;
-        top: 80px;
-        width: 60px;
-        height: 60px;
-    }
-
-    /* Make buttons full width in mobile */
-    .btn-next,
-    .btn-prev,
-    .submit {
-        width: 100%;
-        margin: 10px 0;
-    }
-
-    /* Flex container for buttons to align them side by side */
-    .form-actions {
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
-        /* Add spacing between buttons */
-    }
-
-    .login-container {
-        flex-direction: column;
-    }
-
-    .login-left,
-    .login-right {
-        padding: 20px;
-    }
-
-    .form-row {
-        flex-direction: column;
-    }
-
-    .form-group {
-        min-width: 100%;
-    }
-
-    .login-left img {
-        max-width: 100px;
-        margin-bottom: auto;
-        margin-left: auto;
-    }
-
-    .form-group input[type=date] {
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .passport-preview-container {
-        position: static;
-        margin-top: 10px;
-        text-align: center;
-    }
-
-    .passport-preview-container img {
-        margin: 0 auto;
-    }
-}
-
-@media(max-width: 480px) {
-    #passportPreview {
-        right: 15px;
-        top: 60px;
-        width: 50px;
-        height: 50px;
-    }
-
-    /* Make buttons full width in mobile */
-    .btn-next,
-    .btn-prev,
-    .submit {
-        width: 100%;
-        margin: 10px 0;
-    }
-
-    /* Flex container for buttons to align them side by side */
-    .form-actions {
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
-        /* Add spacing between buttons */
-    }
-
-    .login-container {
-        flex-direction: column;
-    }
-
-    .login-left,
-    .login-right {
-        padding: 20px;
-    }
-
-    .form-row {
-        flex-direction: column;
-    }
-
-    .form-group {
-        min-width: 100%;
-    }
-
-    .login-left img {
-        max-width: 100px;
-        margin-bottom: auto;
-        margin-left: auto;
-    }
-
-    .form-group input[type=date] {
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .passport-preview-container {
-        position: static;
-        margin-top: 10px;
-        text-align: center;
-    }
-
-    .passport-preview-container img {
-        margin: 0 auto;
-    }
 }
