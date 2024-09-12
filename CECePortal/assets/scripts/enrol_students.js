@@ -356,10 +356,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 if (response.ok) {
-                    showNotification('success', 'Form submitted successfully!');
+                    showNotification('success', 'Candidate has been registered successfully!');
                     clearForm();
                 } else {
-                    showNotification('error', 'Form submission failed. Please try again.');
+                    showNotification('error', 'Candidate registration failed. Please try again.');
                 }
             } catch (error) {
                 console.error('Error submitting form:', error);
