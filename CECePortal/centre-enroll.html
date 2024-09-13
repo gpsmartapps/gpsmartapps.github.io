@@ -14,8 +14,8 @@
     <noscript>
         <meta http-equiv="refresh" content="0;url=/CECePortal/error-page.html">
     </noscript>
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';">
+    <!-- <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';"> -->
 </head>
 
 <body>
@@ -50,14 +50,15 @@
                     </div>
                     <div class="form-group">
                         <label for="schoolNumber">School Number</label>
-                        <input type="text" id="schoolNumber" name="schoolNumber" readonly>
+                        <input type="text" id="schoolNumber" name="schoolNumber" value="0010291">
                     </div>
                 </div>
                 <div class="form-row">
 
                     <div class="form-group">
                         <label for="schoolName">School Name</label>
-                        <input type="text" id="schoolName" name="schoolName" readonly>
+                        <input type="text" id="schoolName" name="schoolName" value="FATIMA SECONDARY TECHNICAL SCHOOL"
+                            readonly>
                     </div>
                 </div>
                 <div class="form-row">
@@ -77,24 +78,24 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="registratorName">Full Name of Registrator</label>
-                        <input type="text" id="registratorName" name="registratorName">
+                        <input type="text" id="registratorName" name="registratorName" value="Ogwo Godspower Chinaza">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="schoolEmail">School Email</label>
-                        <input type="email" id="schoolEmail" name="schoolEmail">
+                        <input type="email" id="schoolEmail" name="schoolEmail" value="ogwogp@gmail.com">
                     </div>
                     <div class="form-group">
                         <label for="registratorPhone">Registrator's Phone</label>
-                        <input type="tel" id="registratorPhone" name="registratorPhone">
+                        <input type="tel" id="registratorPhone" name="registratorPhone" value="08136048834">
                     </div>
 
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="principalPhone">Principal's Phone Number</label>
-                        <input type="tel" id="principalPhone" name="principalPhone">
+                        <input type="tel" id="principalPhone" name="principalPhone" value="07026421903">
                     </div>
                     <div class="form-group">
                         <label for="schoolType">School Type</label>
@@ -118,7 +119,7 @@
         </div>
         <div id="notification-bar" class="notification-bar">
             <span id="notification-message" class="notification-message"></span>
-               </div>
+        </div>
         <div id="notification" class="notification unselectable"></div>
     </div>
     <script src="/CECePortal/assets/scripts/bootstrap.bundle.min.js"></script>
