@@ -1,21 +1,21 @@
 document.addEventListener("DOMContentLoaded", async function () {
     const submitButton = document.getElementById("submit");
-    const centreNumberInput = document.getElementById("centreNumber");
+    const schoolNumber = document.getElementById("schoolNumber");
     const notificationElement = document.getElementById("notification");
 
     submitButton.addEventListener("click", async function (e) {
-        const centreNumber = centreNumberInput.value.trim();
+        const schoolNumber = schoolNumberInput.value.trim();
 
-        if (centreNumber === "") {
+        if (schoolNumber === "") {
             showNotification("error", "Please enter a Centre/School Number.");
             // Focus on the field with the error if provided
-            const field = document.getElementById("centreNumber");
+            const field = document.getElementById("schoolNumber");
             field.focus();
             // Prevent default form submission
             e.preventDefault();
         } else {
-            // Redirect to centre-enroll.html with the centreNumber as a query parameter
-            window.location.href = `/CECePortal/centre-enroll.html?centreNumber=${encodeURIComponent(centreNumber)}`;
+            // Redirect to centre-enroll.html with the schoolNumber as a query parameter
+            window.location.href = `/CECePortal/centre-enroll.html?schoolNumber=${encodeURIComponent(schoolNumber)}`;
         }
     });
 
