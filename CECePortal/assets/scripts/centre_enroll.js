@@ -1,3 +1,4 @@
+
 //DISABLING FIELDS
 document.addEventListener("DOMContentLoaded", function () {
     // Get the fields to be disabled
@@ -187,7 +188,6 @@ document.getElementById('state').addEventListener('change', function () {
 
 //POPULATE DATA BASED ON SCHOOLNUMBER
 // centre-enroll.js
-
 window.onload = function () {
     const schoolNumber = localStorage.getItem('schoolNumber');
     const schoolName = localStorage.getItem('schoolName');
