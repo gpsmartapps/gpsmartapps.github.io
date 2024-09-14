@@ -19,6 +19,12 @@ document.addEventListener("DOMContentLoaded", async function () {
             if (response.ok) {
                 const data = await response.json();
                 // School number verified, redirect to centre-enroll.html
+                // Store the data in localStorage
+                localStorage.setItem('schoolNumber', data.schoolNumber);
+                localStorage.setItem('schoolName', data.schoolName);
+                localStorage.setItem('state', data.state);
+                localStorage.setItem('lga', data.lga);
+
                 window.location.href = `/CECePortal/centre-enroll.html?schoolNumber=${encodeURIComponent(schoolNumber)}`;
             } else {
                 const errorData = await response.json();

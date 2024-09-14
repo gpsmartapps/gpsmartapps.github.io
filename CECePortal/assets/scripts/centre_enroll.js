@@ -1,3 +1,4 @@
+//DISABLING FIELDS
 document.addEventListener("DOMContentLoaded", function () {
     // Get the fields to be disabled
     const examTypeField = document.getElementById("examType");
@@ -10,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (schoolNumberField) schoolNumberField.disabled = true;
 });
 
-
+//LIST OF STATES AND LGAS
 const stateAndLGAData = {
     "Abia": [
         "Aba North", "Aba South", "Arochukwu", "Bende", "Ikwuano", "Isiala-Ngwa North", "Isiala-Ngwa South", "Isuikwato", "Obi Nwa", "Ohafia", "Osisioma", "Ngwa", "Ugwunagbo", "Ukwa East", "Ukwa West", "Umuahia North", "Umuahia South", "Umu-Neochi"
@@ -135,6 +136,7 @@ const stateAndLGAData = {
     ]
 };
 
+//LOADING STATES ON FORM LOAD
 window.onload = async function () {
     const stateSelect = document.getElementById('state');
 
@@ -172,6 +174,8 @@ async function populateLGA() {
     }
 };
 
+
+//GET LGA BASED ON STATE SELECTED
 document.getElementById('state').addEventListener('change', function () {
     // Get the selected value from the dropdown
     const selectedState = this.value;
@@ -181,6 +185,31 @@ document.getElementById('state').addEventListener('change', function () {
     // populateLGA(selectedState);
 });
 
+//POPULATE DATA BASED ON SCHOOLNUMBER
+// centre-enroll.js
+
+window.onload = function () {
+    const schoolNumber = localStorage.getItem('schoolNumber');
+    const schoolName = localStorage.getItem('schoolName');
+    const state = localStorage.getItem('state');
+    const lga = localStorage.getItem('lga');
+
+    if (schoolNumber) {
+        document.getElementById('schoolNumber').value = schoolNumber;
+    }
+    if (schoolName) {
+        document.getElementById('schoolName').value = schoolName;
+    }
+    if (state) {
+        document.getElementById('state').value = state;
+    }
+    if (lga) {
+        document.getElementById('lga').value = lga;
+    }
+};
+
+
+//CHECKS ALL INPUT BEFORE SUBMITTING
 document.addEventListener("DOMContentLoaded", function () {
     const updateButton = document.getElementById("update");
 
