@@ -1,21 +1,29 @@
 document.addEventListener("DOMContentLoaded", async function () {
     const submitButton = document.getElementById("submit");
-    const schoolNumber = document.getElementById("schoolNumber");
+    const schoolNumberInput = document.getElementById("schoolNumber");
     const notificationElement = document.getElementById("notification");
 
     submitButton.addEventListener("click", async function (e) {
+        e.preventDefault();  // Prevent default form submission
+
         const schoolNumber = schoolNumberInput.value.trim();
 
         if (schoolNumber === "") {
             showNotification("error", "Please enter a Centre/School Number.");
-            // Focus on the field with the error if provided
-            const field = document.getElementById("schoolNumber");
-            field.focus();
-            // Prevent default form submission
-            e.preventDefault();
+            schoolNumberInput.focus();
         } else {
-            // Redirect to centre-enroll.html with the schoolNumber as a query parameter
-            window.location.href = `/CECePortal/centre-enroll.html?schoolNumber=${encodeURIComponent(schoolNumber)}`;
+            // Verify the school number with the backend
+            const response = await fetch(`http://localhost:3000/verify-centre/${encodeURIComponent(schoolNumber)}`);
+
+
+            if (response.ok) {
+                const data = await response.json();
+                // School number verified, redirect to centre-enroll.html
+                window.location.href = `/CECePortal/centre-enroll.html?schoolNumber=${encodeURIComponent(schoolNumber)}`;
+            } else {
+                const errorData = await response.json();
+                showNotification("error", errorData.error || "School not found.");
+            }
         }
     });
 
@@ -44,5 +52,3 @@ document.addEventListener("DOMContentLoaded", async function () {
         }, 3000);
     }
 });
-
-
