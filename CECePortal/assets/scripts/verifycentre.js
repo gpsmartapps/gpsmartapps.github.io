@@ -13,18 +13,19 @@ document.addEventListener("DOMContentLoaded", async function () {
             schoolNumberInput.focus();
         } else {
             // Verify the school number with the backend
-            const response = await fetch(`http://localhost:3000/verify-centre/${encodeURIComponent(schoolNumber)}`);
+            const response = await fetch(`http://localhost:3000/verify-centre`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ schoolNumber }), // Send the schoolNumber securely in the body
+            });
 
             if (response.ok) {
                 const data = await response.json();
-                // School number verified, redirect to centre-enroll.html
-                // Store the data in localStorage
-                localStorage.setItem('schoolNumber', data.schoolNumber);
-                localStorage.setItem('schoolName', data.schoolName);
-                localStorage.setItem('state', data.state);
-                localStorage.setItem('lga', data.lga);
-
-                window.location.href = `/CECePortal/centre-enroll.html?schoolNumber=${encodeURIComponent(schoolNumber)}`;
+                // Instead of storing in localStorage, the backend can manage the session
+                // Redirect to centre-enroll.html without exposing schoolNumber in the URL
+                window.location.href = `/CECePortal/centre-enroll.html`;
             } else {
                 const errorData = await response.json();
                 showNotification("error", errorData.error || `The centre/school number ${schoolNumber} was not found`);
@@ -53,9 +54,3 @@ document.addEventListener("DOMContentLoaded", async function () {
         }, 3000);
     }
 });
-
-
-
-
-
-

@@ -136,8 +136,7 @@ const stateAndLGAData = {
         "Talata Mafara", "Tsafe", "Zurmi"
     ]
 };
-
-//LOADING STATES ON FORM LOAD
+// LOADING STATES ON FORM LOAD
 window.onload = async function () {
     const stateSelect = document.getElementById('state');
 
@@ -153,6 +152,7 @@ window.onload = async function () {
     });
 };
 
+// Function to populate LGAs based on selected state
 async function populateLGA() {
     const stateSelect = document.getElementById("state");
     const lgaSelect = document.getElementById("lga");
@@ -173,40 +173,12 @@ async function populateLGA() {
             lgaSelect.appendChild(option);
         });
     }
-};
+}
 
-
-//GET LGA BASED ON STATE SELECTED
+// EVENT LISTENER: Update LGA dropdown when state is selected
 document.getElementById('state').addEventListener('change', function () {
-    // Get the selected value from the dropdown
-    const selectedState = this.value;
-
-    // Call the function you want to execute when the state changes
-    populateLGA()
-    // populateLGA(selectedState);
+    populateLGA();  // Call the function to populate LGAs
 });
-
-//POPULATE DATA BASED ON SCHOOLNUMBER
-// centre-enroll.js
-window.onload = function () {
-    const schoolNumber = localStorage.getItem('schoolNumber');
-    const schoolName = localStorage.getItem('schoolName');
-    const state = localStorage.getItem('state');
-    const lga = localStorage.getItem('lga');
-
-    if (schoolNumber) {
-        document.getElementById('schoolNumber').value = schoolNumber;
-    }
-    if (schoolName) {
-        document.getElementById('schoolName').value = schoolName;
-    }
-    if (state) {
-        document.getElementById('state').value = state;
-    }
-    if (lga) {
-        document.getElementById('lga').value = lga;
-    }
-};
 
 
 //CHECKS ALL INPUT BEFORE SUBMITTING
