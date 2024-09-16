@@ -12,23 +12,28 @@ document.addEventListener("DOMContentLoaded", async function () {
             showNotification("error", "Please enter a Centre/School Number.");
             schoolNumberInput.focus();
         } else {
-            // Verify the school number with the backend
-            const response = await fetch(`http://localhost:3000/verify-centre`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ schoolNumber }), // Send the schoolNumber securely in the body
-            });
+            try {
+                // Verify the school number with the backend
+                const response = await fetch(`http://localhost:3000/verify-centre`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ schoolNumber }), // Send the schoolNumber securely in the body
+                });
 
-            if (response.ok) {
-                const data = await response.json();
-                // Instead of storing in localStorage, the backend can manage the session
-                // Redirect to centre-enroll.html without exposing schoolNumber in the URL
-                window.location.href = `/CECePortal/centre-enroll.html`;
-            } else {
-                const errorData = await response.json();
-                showNotification("error", errorData.error || `The centre/school number ${schoolNumber} was not found`);
+                if (response.ok) {
+                    const data = await response.json();
+                    // Instead of storing in localStorage, the backend can manage the session
+                    // Redirect to centre-enroll.html without exposing schoolNumber in the URL
+                    window.location.href = `/CECePortal/centre-enroll.html`;
+                } else {
+                    const errorData = await response.json();
+                    showNotification("error", errorData.error || `The centre/school number ${schoolNumber} was not found`);
+                }
+            } catch (error) {
+                // Handle network errors or unexpected issues
+                showNotification("error", "An unexpected error occurred. Please try again later.");
             }
         }
     });
