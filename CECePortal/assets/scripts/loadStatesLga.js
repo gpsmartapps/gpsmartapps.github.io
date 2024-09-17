@@ -1,40 +1,98 @@
-// GET LIST OF STATES AND LGAS BASED ON SELECTED STATE
-document.addEventListener('DOMContentLoaded', () => {
-  const stateSelect = document.getElementById('state');
-  const lgaSelect = document.getElementById('lga');
 
-  // Update URL to match the server's port
-  fetch('http://127.0.0.1:3000/api/states')
-    .then(response => response.json())
-    .then(states => {
-      states.forEach(state => {
-        const option = document.createElement('option');
-        option.value = state.state_id;  // Use state_id for fetching LGAs
-        option.textContent = state.state;
-        stateSelect.appendChild(option);
-      });
-    })
-    .catch(err => console.error('Error fetching states:', err));
+// document.addEventListener("DOMContentLoaded", function() {
+//     // Function to populate school types
+//     function populateSchoolTypes() {
+//         const schoolTypeSelect = document.getElementById("schoolType");
 
-  // Fetch and populate LGAs based on selected state
-  stateSelect.addEventListener('change', () => {
-    const stateId = stateSelect.value;
-    fetch(`http://127.0.0.1:3000/api/lgas/${stateId}`)
-      .then(response => response.json())
-      .then(lgas => {
-        lgaSelect.innerHTML = '';  // Clear previous LGAs
-        const defaultOption = document.createElement('option');
-        defaultOption.value = '';
-        defaultOption.textContent = 'Select an LGA';
-        lgaSelect.appendChild(defaultOption);
+//         // Fetch the school types from the server
+//         fetch('http://localhost:3000/schooltypes')
+//             .then(response => response.json())
+//             .then(data => {
+//                 data.forEach(type => {
+//                     const option = document.createElement("option");
+//                     option.value = type;
+//                     option.textContent = type;
+//                     schoolTypeSelect.appendChild(option);
+//                 });
+//             })
+//             .catch(error => {
+//                 console.error('Error fetching school types:', error);
+//             });
+//     }
 
-        lgas.forEach(lga => {
-          const option = document.createElement('option');
-          option.value = lga.lga_id;
-          option.textContent = lga.lga;
-          lgaSelect.appendChild(option);
-        });
-      })
-      .catch(err => console.error('Error fetching LGAs:', err));
-  });
+//     // Call the function to populate the school types
+//     populateSchoolTypes();
+// });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Function to populate school types
+    function populateSchoolTypes() {
+        const schoolTypeSelect = document.getElementById("schoolType");
+
+        fetch('http://localhost:3000/schooltypes')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(type => {
+                    const option = document.createElement("option");
+                    option.value = type;
+                    option.textContent = type;
+                    schoolTypeSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching school types:', error);
+            });
+    }
+
+    // Function to populate states
+    function populateStates() {
+        const stateSelect = document.getElementById("state");
+
+        fetch('http://localhost:3000/states')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(state => {
+                    const option = document.createElement("option");
+                    option.value = state;
+                    option.textContent = state;
+                    stateSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching states:', error);
+            });
+    }
+
+    // Function to populate LGAs based on the selected state
+    function populateLGAs(state) {
+        const lgaSelect = document.getElementById("lga");
+        lgaSelect.innerHTML = '<option value="">Select an LGA</option>'; // Reset LGA dropdown
+
+        fetch(`http://localhost:3000/lgas/${state}`)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(lga => {
+                    const option = document.createElement("option");
+                    option.value = lga;
+                    option.textContent = lga;
+                    lgaSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching LGAs:', error);
+            });
+    }
+
+    // Event listener for when a state is selected
+    document.getElementById("state").addEventListener("change", function() {
+        const selectedState = this.value;
+        if (selectedState) {
+            populateLGAs(selectedState);
+        }
+    });
+
+    // Populate the states and school types when the page loads
+    populateSchoolTypes();
+    populateStates();
 });
