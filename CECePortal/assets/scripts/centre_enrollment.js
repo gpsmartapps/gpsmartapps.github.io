@@ -435,7 +435,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function sendCentreData(data) {
     try {
-      const response = await fetch("http://localhost:3000/enroll-centre", {
+      const response = await fetch("http://localhost:3000/enrollcentre", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
