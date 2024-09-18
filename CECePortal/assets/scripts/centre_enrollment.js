@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const schoolAddress = document.getElementById("schoolAddress").value.trim();
 
     // Regex patterns
-    const phonePattern = /^[0-9]{11}$/; // Adjust pattern to match your required phone format
+    const phonePattern = /^[0-9]{11,11}$/; // Adjust pattern to match your required phone format
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     // Validation checks
