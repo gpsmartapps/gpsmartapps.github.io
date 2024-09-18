@@ -12,6 +12,55 @@ document.addEventListener("DOMContentLoaded", function () {
     if (schoolNumberField) schoolNumberField.disabled = true;
 });
 
+// LOAD SCHOOL/CENTRE DATA
+document.addEventListener("DOMContentLoaded", function () {
+    const schoolNumber = getQueryParam("schoolNumber"); // Get schoolNumber from URL query params
+
+    if (schoolNumber) {
+        loadSchoolData(schoolNumber);
+    } else {
+        showNotification("error", "School number not provided. Please verify again.");
+    }
+
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    async function loadSchoolData(schoolNumber) {
+        try {
+            const response = await fetch(`http://localhost:3000/schoolregistry/${schoolNumber}`, {
+                method: 'GET',
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                populateForm(data);
+            } else {
+                showNotification("error", "Failed to load school data. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error fetching school data:", error);
+            showNotification("error", "An error occurred. Please try again later.");
+        }
+    }
+
+    function populateForm(data) {
+        document.getElementById("schoolNumber").value = schoolNumber; // Already retrieved from the URL
+        document.getElementById("schoolName").value = data.school_name;
+        document.getElementById("state").value = data.state;
+        document.getElementById("lga").value = data.lga;
+        showNotification("success", "School data loaded successfully!");
+    }
+
+    function showNotification(type, message) {
+        // Existing notification logic here...
+    }
+});
+
+
+
+// VALIDATE INPUTS BEFORE SUBMISSION
 document.addEventListener("DOMContentLoaded", function () {
     const updateButton = document.getElementById("update");
 
