@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         if (response.ok) {
           // Session will store the schoolNumber, redirect without exposing it
+          sessionStorage.setItem("schoolNumber", schoolNumber);
           window.location.href = `/CECePortal/centre-enroll.html`;
         } else {
           const errorData = await response.json();

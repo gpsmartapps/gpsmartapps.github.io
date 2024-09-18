@@ -4,7 +4,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   const schoolNumber = sessionStorage.getItem("schoolNumber");
 
   if (!schoolNumber) {
-    showNotification("error",  `The school/centre number ${schoolNumber} was not found`);
+    showNotification(
+      "error",
+      `The school/centre number ${schoolNumber} was not found`
+    );
     return;
   }
 
@@ -29,8 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-//Get States, LGAS and School Types
-
+// Get school types
 document.addEventListener("DOMContentLoaded", function () {
   // Function to populate school types
   function populateSchoolTypes() {
@@ -127,16 +129,3 @@ function showNotification(type, message) {
     notification.style.display = "none";
   }, 3000); // You can adjust the time as needed
 }
-
-function showNotification(type, message) {
-    const notification = document.getElementById("notification");
-    notification.className = "notification unselectable";
-    notification.classList.add(type === "error" ? "error" : "success");
-    notification.textContent = message;
-    notification.style.display = "block";
-
-    setTimeout(() => {
-      notification.style.display = "none";
-    }, 3000);
-  }
-});
