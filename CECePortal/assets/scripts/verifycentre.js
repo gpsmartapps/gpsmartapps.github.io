@@ -1,61 +1,55 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    const submitButton = document.getElementById("submit");
-    const schoolNumberInput = document.getElementById("schoolNumber");
-    const notificationElement = document.getElementById("notification");
+  const submitButton = document.getElementById("submit");
+  const schoolNumberInput = document.getElementById("schoolNumber");
 
-    submitButton.addEventListener("click", async function (e) {
-        e.preventDefault();  // Prevent default form submission
+  submitButton.addEventListener("click", async function (e) {
+    e.preventDefault(); // Prevent default form submission
 
-        const schoolNumber = schoolNumberInput.value.trim();
+    const schoolNumber = schoolNumberInput.value.trim();
 
-        if (schoolNumber === "") {
-            showNotification("error", "Please enter a Centre/School Number.");
-            schoolNumberInput.focus();
+    if (schoolNumber === "") {
+      showNotification("error", "Please enter a Centre/School Number.");
+      schoolNumberInput.focus();
+    } else {
+      try {
+        // Verify the school number with the backend and securely manage the session
+        const response = await fetch(`http://localhost:3000/verify-centre`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ schoolNumber }), // Send the schoolNumber securely in the body
+        });
+
+        if (response.ok) {
+          // Session will store the schoolNumber, redirect without exposing it
+          window.location.href = `/CECePortal/centre-enroll.html`;
         } else {
-            try {
-                // Verify the school number with the backend
-                const response = await fetch(`http://localhost:3000/verify-centre`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ schoolNumber }), // Send the schoolNumber securely in the body
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    // Instead of storing in localStorage, the backend can manage the session
-                    // Redirect to centre-enroll.html without exposing schoolNumber in the URL
-                    window.location.href = `/CECePortal/centre-enroll.html`;
-                } else {
-                    const errorData = await response.json();
-                    showNotification("error", errorData.error || `The centre/school number ${schoolNumber} was not found`);
-                }
-            } catch (error) {
-                // Handle network errors or unexpected issues
-                showNotification("error", "An unexpected error occurred. Please try again later.");
-            }
+          const errorData = await response.json();
+          showNotification(
+            "error",
+            errorData.error ||
+              `The centre/school number ${schoolNumber} was not found`
+          );
         }
-    });
-
-    function showNotification(type, message) {
-        const notification = document.getElementById('notification');
-        // Clear any existing notification classes
-        notification.className = 'notification unselectable';
-        // Add the appropriate class based on the type
-        if (type === 'error') {
-            notification.classList.add('error');
-        } else if (type === 'success') {
-            notification.classList.add('success');
-        } else if (type === 'info') {
-            notification.classList.add('info');
-        }
-        // Set the message and show the notification
-        notification.textContent = message;
-        notification.style.display = 'block';
-        // Hide the notification after a few seconds
-        setTimeout(() => {
-            notification.style.display = 'none';
-        }, 3000);
+      } catch (error) {
+        showNotification(
+          "error",
+          "An unexpected error occurred. Please try again later."
+        );
+      }
     }
+  });
+
+  function showNotification(type, message) {
+    const notification = document.getElementById("notification");
+    notification.className = "notification unselectable";
+    notification.classList.add(type === "error" ? "error" : "success");
+    notification.textContent = message;
+    notification.style.display = "block";
+
+    setTimeout(() => {
+      notification.style.display = "none";
+    }, 3000);
+  }
 });

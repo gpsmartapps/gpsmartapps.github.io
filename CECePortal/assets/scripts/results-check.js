@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // If all validations pass
         showNotification('Validation successful!', 'success');
-        form.submit(); // Submit the form if all validations pass
+        form.submit(); //  if all validations pass
     });
 
     function validateCentreNumber(value) {
