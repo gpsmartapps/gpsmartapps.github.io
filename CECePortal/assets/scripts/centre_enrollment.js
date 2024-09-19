@@ -270,8 +270,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function sendCentreData(data) {
     try {
-      console.log("Sending data:", data); // Check what data is being sent
-
       const response = await fetch("http://localhost:3000/enrollcentre", {
         method: "POST",
         headers: {
