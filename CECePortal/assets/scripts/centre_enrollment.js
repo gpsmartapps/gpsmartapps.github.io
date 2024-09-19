@@ -3,10 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const schoolNumber = sessionStorage.getItem("schoolNumber");
 
   if (!schoolNumber) {
-    showNotification(
-      "error",
-      `The school/centre number ${schoolNumber} was not found`
-    );
+    window.location.href = `/CECePortal/verify-centre.html`;
     return;
   }
 
@@ -19,6 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         "error",
         `Failed to fetch school data: ${response.statusText}`
       );
+      window.location.href = `/CECePortal/verify-centre.html`;
     }
     const data = await response.json();
     // Populate the form fields with the fetched data
@@ -141,64 +139,6 @@ function showNotification(type, message) {
     notification.style.display = "none";
   }, 3000); // You can adjust the time as needed
 }
-
-// Validate input types
-document.addEventListener('DOMContentLoaded', () => {
-  const formatFormData = (data) => {
-    // Import the formatting functions
-    const { formatSchoolName, formatPhoneNumber, toProperCase, formatAddress } = require('./formatData');
-
-    return {
-      schoolName: formatSchoolName(data.schoolName).toUpperCase(),
-      principalPhone: formatPhoneNumber(data.principalPhone),
-      registratorName: toProperCase(data.registratorName).toUpperCase(),
-      schoolAddress: formatAddress(data.schoolAddress).toUpperCase(),
-      schoolEmail: data.schoolEmail.toLowerCase(),
-      registratorEmail: data.registratorEmail.toLowerCase()
-    };
-  };
-
-  // Select all relevant fields
-  const fields = {
-    schoolName: document.getElementById('schoolName'),
-    principalPhone: document.getElementById('principalPhone'),
-    registratorName: document.getElementById('registratorName'),
-    schoolAddress: document.getElementById('schoolAddress'),
-    schoolEmail: document.getElementById('schoolEmail'),
-    registratorEmail: document.getElementById('registratorEmail')
-  };
-
-  // Add blur event listeners to format fields
-  Object.keys(fields).forEach(fieldId => {
-    fields[fieldId].addEventListener('blur', (event) => {
-      const field = event.target;
-      let formattedValue = field.value;
-
-      switch (fieldId) {
-        case 'schoolName':
-          formattedValue = formattedValue.toUpperCase(); // Convert to UPPERCASE
-          break;
-        case 'principalPhone':
-        case 'registratorPhone':
-          formattedValue = formatPhoneNumber(formattedValue); // Format phone numbers
-          break;
-        case 'registratorName':
-          formattedValue = formattedValue.toUpperCase(); // Convert to UPPERCASE
-          break;
-        case 'schoolAddress':
-          formattedValue = formattedValue.toUpperCase(); // Convert to UPPERCASE
-          break;
-        case 'schoolEmail':
-        case 'registratorEmail':
-          formattedValue = formattedValue.toLowerCase(); // Convert to lowercase
-          break;
-      }
-
-      field.value = formattedValue;
-    });
-  });
-});
-
 
 //Validate before submission
 document.addEventListener("DOMContentLoaded", function () {
@@ -342,6 +282,8 @@ document.addEventListener("DOMContentLoaded", function () {
           "success",
           "Centre details have been updated successfully!"
         );
+        sessionStorage.clear();
+        window.location.href = `/CECePortal/login.html`;
       } else {
         const errorData = await response.json(); // Get the error message
         showNotification(

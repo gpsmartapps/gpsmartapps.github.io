@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
   const submitButton = document.getElementById("submit");
   const schoolNumberInput = document.getElementById("schoolNumber");
-
+  sessionStorage.clear();
   submitButton.addEventListener("click", async function (e) {
     e.preventDefault(); // Prevent default form submission
 
