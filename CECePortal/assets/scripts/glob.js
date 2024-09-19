@@ -37,5 +37,3 @@ function hideNotificationII() {
 // Set up event listeners for online and offline events
 window.addEventListener('online', checkInternetConnection);
 window.addEventListener('offline', checkInternetConnection);
-
-

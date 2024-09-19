@@ -1,3 +1,24 @@
+// Define loading screen and form elements
+const loadingScreen = document.createElement('div');
+loadingScreen.id = 'loading';
+loadingScreen.style.display = 'none';
+loadingScreen.innerHTML = `
+  <div class="loader"></div>
+  <p>Loading...</p>
+`;
+
+document.body.appendChild(loadingScreen); // Append loading screen to the body
+
+// Show loading screen
+function showLoading() {
+  loadingScreen.style.display = 'flex';
+}
+
+// Hide loading screen
+function hideLoading() {
+  loadingScreen.style.display = 'none';
+}
+
 //Load school from backend
 document.addEventListener("DOMContentLoaded", async () => {
   const schoolNumber = sessionStorage.getItem("schoolNumber");
@@ -6,6 +27,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.href = `/CECePortal/verify-centre.html`;
     return;
   }
+
+  // Show loading screen before fetching data
+  showLoading();
 
   try {
     const response = await fetch(
@@ -18,17 +42,23 @@ document.addEventListener("DOMContentLoaded", async () => {
       // );
       // window.location.href = `/CECePortal/verify-centre.html`;
     }
+
     const data = await response.json();
     // Populate the form fields with the fetched data
     document.getElementById("schoolNumber").value = data.school_number || "";
     document.getElementById("schoolName").value = data.school_name || "";
     document.getElementById("state").value = data.state || "";
     document.getElementById("lga").value = data.lga || "";
+
   } catch (error) {
     // showNotification("error", error);
     console.error(error);
+  } finally {
+    // Hide loading screen when data is fully loaded
+    hideLoading();
   }
 });
+
 
 //DISABLING FIELDS
 document.addEventListener("DOMContentLoaded", function () {
