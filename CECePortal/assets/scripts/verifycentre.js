@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", async function () {
   const submitButton = document.getElementById("submit");
   const schoolNumberInput = document.getElementById("schoolNumber");
-  sessionStorage.clear();
+  sessionStorage.clear(); // Clear any previous session data
+
   submitButton.addEventListener("click", async function (e) {
     e.preventDefault(); // Prevent default form submission
 
@@ -12,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       schoolNumberInput.focus();
     } else {
       try {
-        // Verify the school number with the backend and securely manage the session
+        // Verify the school number with the backend
         const response = await fetch(`http://localhost:3000/verify-centre`, {
           method: "POST",
           headers: {
@@ -22,15 +23,26 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
         if (response.ok) {
-          // Session will store the schoolNumber, redirect without exposing it
+          const responseData = await response.json();
+
+          // Store the schoolNumber in sessionStorage, redirect without exposing it
           sessionStorage.setItem("schoolNumber", schoolNumber);
-          window.location.href = `/CECePortal/centre-enroll.html`;
+
+          // Check for duplicate or other backend validations (if needed)
+          if (responseData.duplicate) {
+            showNotification(
+              "error",
+              `The centre/school number ${schoolNumber} already exists.`
+            );
+          } else {
+            window.location.href = `/CECePortal/centre-enroll.html`;
+          }
         } else {
           const errorData = await response.json();
           showNotification(
             "error",
             errorData.error ||
-              `The centre/school number ${schoolNumber} was not found`
+              `The centre/school number ${schoolNumber} was not found.`
           );
         }
       } catch (error) {

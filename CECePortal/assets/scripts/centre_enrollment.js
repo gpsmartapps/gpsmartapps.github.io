@@ -9,14 +9,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const response = await fetch(
-      `http://localhost:3000/school/get-school/${schoolNumber}`
+      `http://localhost:3000/schools/get-school/${schoolNumber}`
     );
     if (!response.ok) {
-      showNotification(
-        "error",
-        `Failed to fetch school data: ${response.statusText}`
-      );
-      window.location.href = `/CECePortal/verify-centre.html`;
+      // showNotification(
+      //   "error",
+      //   `Failed to fetch school data: ${response.statusText}`
+      // );
+      // window.location.href = `/CECePortal/verify-centre.html`;
     }
     const data = await response.json();
     // Populate the form fields with the fetched data
@@ -25,7 +25,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("state").value = data.state || "";
     document.getElementById("lga").value = data.lga || "";
   } catch (error) {
-    showNotification("error", error);
+    // showNotification("error", error);
+    console.error(error);
   }
 });
 
@@ -140,7 +141,7 @@ function showNotification(type, message) {
   }, 3000); // You can adjust the time as needed
 }
 
-//Validate before submission
+// Validate before submission
 document.addEventListener("DOMContentLoaded", function () {
   const updateButton = document.getElementById("update");
 
@@ -269,6 +270,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function sendCentreData(data) {
     try {
+      console.log("Sending data:", data); // Check what data is being sent
+
       const response = await fetch("http://localhost:3000/enrollcentre", {
         method: "POST",
         headers: {
@@ -292,6 +295,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
       }
     } catch (error) {
+      console.log("Error:", error); // Catch any network or fetch errors
       showNotification(
         "error",
         "An error occurred during form submission. Please try again later."
