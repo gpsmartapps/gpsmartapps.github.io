@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
       notification.style.display = "none";
     }, 3000);
-  }
+      }
 
   function createNotificationElement() {
     const notification = document.createElement("div");
@@ -307,14 +307,19 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         body: JSON.stringify(data), // Ensure data is being correctly sent
       });
-
+  
       if (response.ok) {
+        // Show success notification
         showNotification(
           "success",
           "Centre details have been updated successfully!"
         );
-        sessionStorage.clear();
-        window.location.href = `/CECePortal/login.html`;
+        
+        // Wait for the notification to disappear, then redirect to the login page
+        setTimeout(() => {
+          sessionStorage.clear();
+          window.location.href = "/CECePortal/login.html";
+        }, 3000); // 3 seconds delay before redirecting
       } else {
         const errorData = await response.json(); // Get the error message
         showNotification(
@@ -330,4 +335,5 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     }
   }
+  
 });
