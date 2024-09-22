@@ -101,8 +101,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((data) => {
         data.forEach((state) => {
           const option = document.createElement("option");
-          option.value = state;
-          option.textContent = state;
+          option.value = state.state_id; // Correct field for state_id
+          option.textContent = state.state; // Correct field for state name
           stateSelect.appendChild(option);
         });
       })
@@ -112,17 +112,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Function to populate LGAs based on the selected state
-  function populateLGAs(state) {
+  function populateLGAs(stateid) {
     const lgaSelect = document.getElementById("lga");
     lgaSelect.innerHTML = '<option value="">Select an LGA</option>'; // Reset LGA dropdown
 
-    fetch(`http://localhost:3000/api/lgas/${state}`)
+    fetch(`http://localhost:3000/api/lgas/${stateid}`)
       .then((response) => response.json())
       .then((data) => {
         data.forEach((lga) => {
           const option = document.createElement("option");
-          option.value = lga;
-          option.textContent = lga;
+          option.value = lga.lga_id; // Correct field for LGA id
+          option.textContent = lga.lga; // Correct field for LGA name
           lgaSelect.appendChild(option);
         });
       })
