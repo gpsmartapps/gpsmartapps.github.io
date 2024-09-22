@@ -74,21 +74,22 @@ document.addEventListener("DOMContentLoaded", function () {
 // Get school types
 document.addEventListener("DOMContentLoaded", function () {
   // Function to populate school types
+  // Function to populate school types
   function populateSchoolTypes() {
     const schoolTypeSelect = document.getElementById("schoolType");
 
-    fetch("http://localhost:3000/api/schooltypes")
+    fetch("http://localhost:3000/api/schooldata/schooltypes")
       .then((response) => response.json())
       .then((data) => {
         data.forEach((type) => {
           const option = document.createElement("option");
-          option.value = type;
-          option.textContent = type;
+          option.value = type.id; // Assuming there's an 'id' field
+          option.textContent = type.description; // Display the description
           schoolTypeSelect.appendChild(option);
         });
       })
       .catch((error) => {
-        showNotification("error", "There was an error getting School Types.");
+        showNotification("error", "There was an error getting school types");
       });
   }
 
