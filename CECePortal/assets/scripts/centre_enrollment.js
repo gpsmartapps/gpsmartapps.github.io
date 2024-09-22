@@ -4,7 +4,7 @@ loadingScreen.id = "loading";
 loadingScreen.style.display = "none";
 loadingScreen.innerHTML = `
   <div class="loader"></div>
-  <p>Loading...</p>
+  <p>The request is been processed. Please wait...</p>
 `;
 
 document.body.appendChild(loadingScreen); // Append loading screen to the body
