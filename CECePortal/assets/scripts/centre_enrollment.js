@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function populateSchoolTypes() {
     const schoolTypeSelect = document.getElementById("schoolType");
 
-    fetch("http://localhost:3000/schooltypes")
+    fetch("http://localhost:3000/api/schooltypes")
       .then((response) => response.json())
       .then((data) => {
         data.forEach((type) => {
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function populateStates() {
     const stateSelect = document.getElementById("state");
 
-    fetch("http://localhost:3000/states")
+    fetch("http://localhost:3000/api/states")
       .then((response) => response.json())
       .then((data) => {
         data.forEach((state) => {
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const lgaSelect = document.getElementById("lga");
     lgaSelect.innerHTML = '<option value="">Select an LGA</option>'; // Reset LGA dropdown
 
-    fetch(`http://localhost:3000/lgas/${state}`)
+    fetch(`http://localhost:3000/api/lgas/${state}`)
       .then((response) => response.json())
       .then((data) => {
         data.forEach((lga) => {
