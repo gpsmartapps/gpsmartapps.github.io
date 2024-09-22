@@ -1,7 +1,7 @@
 // Define loading screen and form elements
-const loadingScreen = document.createElement('div');
-loadingScreen.id = 'loading';
-loadingScreen.style.display = 'none';
+const loadingScreen = document.createElement("div");
+loadingScreen.id = "loading";
+loadingScreen.style.display = "none";
 loadingScreen.innerHTML = `
   <div class="loader"></div>
   <p>Loading...</p>
@@ -11,12 +11,12 @@ document.body.appendChild(loadingScreen); // Append loading screen to the body
 
 // Show loading screen
 function showLoading() {
-  loadingScreen.style.display = 'flex';
+  loadingScreen.style.display = "flex";
 }
 
 // Hide loading screen
 function hideLoading() {
-  loadingScreen.style.display = 'none';
+  loadingScreen.style.display = "none";
 }
 
 //Load school from backend
@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("schoolName").value = data.school_name || "";
     document.getElementById("state").value = data.state || "";
     document.getElementById("lga").value = data.lga || "";
-
   } catch (error) {
     // showNotification("error", error);
     console.error(error);
@@ -58,7 +57,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     hideLoading();
   }
 });
-
 
 //DISABLING FIELDS
 document.addEventListener("DOMContentLoaded", function () {
@@ -289,7 +287,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
       notification.style.display = "none";
     }, 3000);
-      }
+  }
 
   function createNotificationElement() {
     const notification = document.createElement("div");
@@ -307,14 +305,14 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         body: JSON.stringify(data), // Ensure data is being correctly sent
       });
-  
+
       if (response.ok) {
         // Show success notification
         showNotification(
           "success",
           "Centre details have been updated successfully!"
         );
-        
+
         // Wait for the notification to disappear, then redirect to the login page
         setTimeout(() => {
           sessionStorage.clear();
@@ -335,5 +333,4 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     }
   }
-  
 });
