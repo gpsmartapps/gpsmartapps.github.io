@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const response = await fetch(
-      `http://localhost:3000/schools/get-school/${schoolNumber}`
+      `http://localhost:3000/api/schools/${schoolNumber}`
     );
     if (!response.ok) {
       // showNotification(
