@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   loadingScreen.style.display = "none";
   loadingScreen.innerHTML = `
     <div class="loader"></div>
-    <p>The request is been processed. Please wait...</p>
+    <p>Please wait...</p>
   `;
   document.body.appendChild(loadingScreen); // Append loading screen to the body
 
