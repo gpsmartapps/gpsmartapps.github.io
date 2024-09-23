@@ -69,6 +69,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (examTypeField) examTypeField.disabled = true;
   if (schoolNameField) schoolNameField.disabled = true;
   if (schoolNumberField) schoolNumberField.disabled = true;
+
+ 
 });
 
 // Get school types
@@ -335,3 +337,39 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+ // Start activity monitor
+// Define the timeout duration (in milliseconds) - here, 10 minutes (600,000 ms)
+const inactivityTimeout = 600000; 
+
+let inactivityTimer;
+
+function resetTimer() {
+  // Clear the existing timer if any activity is detected
+  clearTimeout(inactivityTimer);
+
+  // Start a new timer to log out after inactivityTimeout period
+  inactivityTimer = setTimeout(logoutUser, inactivityTimeout);
+}
+
+// Function to log out user and redirect
+function logoutUser() {
+  // showNotification("info","You have been logged out due to inactivity.");
+  // Clear any session or token (optional depending on how login is managed)
+  localStorage.clear(); // Clear user data (if stored in localStorage)
+  // Redirect to login page or home page
+  window.location.href = 'verify-centre.html'; // Change this to the login page URL
+}
+
+// Listen for activity (mouse, keyboard, and touch events) and reset timer
+window.onload = function() {
+  window.addEventListener('mousemove', resetTimer);
+  window.addEventListener('keypress', resetTimer);
+  window.addEventListener('mousedown', resetTimer);  // for mouse clicks
+  window.addEventListener('touchstart', resetTimer); // for touch devices
+  window.addEventListener('scroll', resetTimer);     // for scrolling
+  window.addEventListener('keydown', resetTimer);    // for key presses
+
+  // Start the inactivity timer for the first time
+  resetTimer();
+};
