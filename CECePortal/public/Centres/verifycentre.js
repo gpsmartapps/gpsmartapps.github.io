@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   loadingScreen.style.display = "none";
   loadingScreen.innerHTML = `
     <div class="loader"></div>
-    <p>Please wait...</p>
+    <p>  Loading... Please wait.</p>
   `;
   document.body.appendChild(loadingScreen); // Append loading screen to the body
 
@@ -27,13 +27,16 @@ document.addEventListener("DOMContentLoaded", async function () {
         showLoading();
 
         // Verify the school number with the backend
-        const response = await fetch(`http://localhost:3000/api/school-lookup`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ schoolNumber }), // Send the schoolNumber securely in the body
-        });
+        const response = await fetch(
+          `http://localhost:3000/api/school-lookup`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ schoolNumber }), // Send the schoolNumber securely in the body
+          }
+        );
 
         if (response.ok) {
           const responseData = await response.json();

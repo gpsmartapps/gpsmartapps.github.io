@@ -69,8 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (examTypeField) examTypeField.disabled = true;
   if (schoolNameField) schoolNameField.disabled = true;
   if (schoolNumberField) schoolNumberField.disabled = true;
-
- 
 });
 
 // Get school types
@@ -183,23 +181,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const examType = document.getElementById("examType").value.trim();
     const schoolName = document.getElementById("schoolName").value.trim();
     const schoolNumber = document.getElementById("schoolNumber").value.trim();
-    const registratorName = document
-      .getElementById("registratorName")
-      .value.trim();
+    const registratorName = document.getElementById("registratorName").value.trim();
     const schoolEmail = document.getElementById("schoolEmail").value.trim();
-    const registratorPhone = document
-      .getElementById("registratorPhone")
-      .value.trim();
-    const principalPhone = document
-      .getElementById("principalPhone")
-      .value.trim();
+    const registratorEmail = document.getElementById("registratorEmail").value.trim();
+    const registratorPhone = document.getElementById("registratorPhone").value.trim();
+    const principalPhone = document.getElementById("principalPhone").value.trim();
     const state = document.getElementById("state").value.trim();
     const lga = document.getElementById("lga").value.trim();
     const schoolType = document.getElementById("schoolType").value.trim();
     const schoolAddress = document.getElementById("schoolAddress").value.trim();
+    const enteredOtp = document.getElementById("otp").value.trim(); // OTP input
 
     // Regex patterns
-    const phonePattern = /^[0-9]{11,11}$/; // Adjust pattern to match your required phone format
+    const phonePattern = /^[0-9]{11}$/; // Adjust pattern to match your required phone format
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     // Validation checks
@@ -228,6 +222,12 @@ document.addEventListener("DOMContentLoaded", function () {
       showNotification("error", "Please enter a valid school email address.");
       document.getElementById("schoolEmail").focus();
     } else if (
+      registratorEmail === "" ||
+      !emailPattern.test(registratorEmail)
+    ) {
+      showNotification("error", "Please enter a valid registrator email.");
+      document.getElementById("registratorEmail").focus();
+    } else if (
       registratorPhone === "" ||
       !phonePattern.test(registratorPhone)
     ) {
@@ -249,19 +249,35 @@ document.addEventListener("DOMContentLoaded", function () {
       showNotification("error", "Please enter the school address.");
       document.getElementById("schoolAddress").focus();
     } else {
-      // Proceed with submission (Database logic integration)
-      sendCentreData({
-        examType,
+      // Proceed to generate OTP first
+      generateAndSendOTP({
         schoolNumber,
-        schoolName,
-        state,
-        lga,
-        schoolType,
-        schoolAddress,
-        principalPhone,
-        registratorName,
-        registratorPhone,
         schoolEmail,
+        registratorEmail,
+      }).then((otpSent) => {
+        if (otpSent) {
+          // Once OTP is sent, validate OTP input
+          if (enteredOtp === "") {
+            showNotification("error", "Please enter the OTP.");
+            document.getElementById("otp").focus();
+          } else {
+            // Proceed with OTP verification and form submission
+            verifyAndSubmitData({
+              examType,
+              schoolNumber,
+              schoolName,
+              state,
+              lga,
+              schoolType,
+              schoolAddress,
+              principalPhone,
+              registratorName,
+              registratorPhone,
+              schoolEmail,
+              enteredOtp,
+            });
+          }
+        }
       });
     }
   });
@@ -270,10 +286,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const notification =
       document.getElementById("notification") || createNotificationElement();
 
-    // Clear any existing notification classes
     notification.className = "notification unselectable";
 
-    // Add the appropriate class based on the type
     if (type === "error") {
       notification.classList.add("error");
     } else if (type === "success") {
@@ -282,11 +296,9 @@ document.addEventListener("DOMContentLoaded", function () {
       notification.classList.add("info");
     }
 
-    // Set the message and show the notification
     notification.textContent = message;
     notification.style.display = "block";
 
-    // Hide the notification after a few seconds
     setTimeout(() => {
       notification.style.display = "none";
     }, 3000);
@@ -299,33 +311,82 @@ document.addEventListener("DOMContentLoaded", function () {
     return notification;
   }
 
-  async function sendCentreData(data) {
+  async function generateAndSendOTP(data) {
     try {
-      const response = await fetch("http://localhost:3000/enrollcentre", {
+      const response = await fetch("http://localhost:3000/otp/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data), // Ensure data is being correctly sent
+        body: JSON.stringify(data),
       });
 
+      const result = await response.json();
       if (response.ok) {
-        // Show success notification
-        showNotification(
-          "success",
-          "Centre details have been updated successfully!"
-        );
-
-        // Wait for the notification to disappear, then redirect to the login page
-        setTimeout(() => {
-          sessionStorage.clear();
-          window.location.href = "/CECePortal/login.html";
-        }, 3000); // 3 seconds delay before redirecting
+        showNotification("success", "OTP sent successfully!");
+        return true;
       } else {
-        const errorData = await response.json(); // Get the error message
+        showNotification("error", result.error || "Failed to send OTP.");
+        return false;
+      }
+    } catch (error) {
+      console.log("Error:", error);
+      showNotification(
+        "error",
+        "An error occurred while sending the OTP. Please try again later."
+      );
+      return false;
+    }
+  }
+
+  async function verifyAndSubmitData(data) {
+    try {
+      // Verify OTP first
+      const verifyResponse = await fetch("http://localhost:3000/otp/verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          schoolNumber: data.schoolNumber,
+          schoolEmail: data.schoolEmail,
+          enteredOtp: data.enteredOtp,
+        }),
+      });
+
+      const verifyResult = await verifyResponse.json();
+      if (verifyResponse.ok) {
+        showNotification("success", "OTP verified!");
+
+        // If OTP is verified, submit the form data
+        const response = await fetch("http://localhost:3000/enrollcentre", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data), // Ensure data is being correctly sent
+        });
+
+        if (response.ok) {
+          showNotification(
+            "success",
+            "Centre details have been updated successfully!"
+          );
+          setTimeout(() => {
+            sessionStorage.clear();
+            window.location.href = "/CECePortal/login.html";
+          }, 3000); // 3 seconds delay before redirecting
+        } else {
+          const errorData = await response.json(); // Get the error message
+          showNotification(
+            "error",
+            errorData.error || "An error occurred during registration."
+          );
+        }
+      } else {
         showNotification(
           "error",
-          errorData.error || "An error occurred during registration."
+          verifyResult.message || "OTP verification failed."
         );
       }
     } catch (error) {
@@ -338,9 +399,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
- // Start activity monitor
+// Start activity monitor
 // Define the timeout duration (in milliseconds) - here, 10 minutes (600,000 ms)
-const inactivityTimeout = 600000; 
+const inactivityTimeout = 600000;
 
 let inactivityTimer;
 
@@ -358,17 +419,17 @@ function logoutUser() {
   // Clear any session or token (optional depending on how login is managed)
   localStorage.clear(); // Clear user data (if stored in localStorage)
   // Redirect to login page or home page
-  window.location.href = 'verify-centre.html'; // Change this to the login page URL
+  window.location.href = "verify-centre.html"; // Change this to the login page URL
 }
 
 // Listen for activity (mouse, keyboard, and touch events) and reset timer
-window.onload = function() {
-  window.addEventListener('mousemove', resetTimer);
-  window.addEventListener('keypress', resetTimer);
-  window.addEventListener('mousedown', resetTimer);  // for mouse clicks
-  window.addEventListener('touchstart', resetTimer); // for touch devices
-  window.addEventListener('scroll', resetTimer);     // for scrolling
-  window.addEventListener('keydown', resetTimer);    // for key presses
+window.onload = function () {
+  window.addEventListener("mousemove", resetTimer);
+  window.addEventListener("keypress", resetTimer);
+  window.addEventListener("mousedown", resetTimer); // for mouse clicks
+  window.addEventListener("touchstart", resetTimer); // for touch devices
+  window.addEventListener("scroll", resetTimer); // for scrolling
+  window.addEventListener("keydown", resetTimer); // for key presses
 
   // Start the inactivity timer for the first time
   resetTimer();
