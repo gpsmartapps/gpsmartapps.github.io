@@ -1,22 +1,22 @@
 // Define loading screen and form elements
-const loadingScreen = document.createElement('div');
-loadingScreen.id = 'loading';
-loadingScreen.style.display = 'none';
+const loadingScreen = document.createElement("div");
+loadingScreen.id = "loading";
+loadingScreen.style.display = "none";
 loadingScreen.innerHTML = `
   <div class="loader"></div>
-  <p>Loading...</p>
+  <p>Please wait...</p>
 `;
 
 document.body.appendChild(loadingScreen); // Append loading screen to the body
 
 // Show loading screen
 function showLoading() {
-  loadingScreen.style.display = 'flex';
+  loadingScreen.style.display = "flex";
 }
 
 // Hide loading screen
 function hideLoading() {
-  loadingScreen.style.display = 'none';
+  loadingScreen.style.display = "none";
 }
 
 //Load school from backend
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const response = await fetch(
-      `http://localhost:3000/schools/get-school/${schoolNumber}`
+      `http://localhost:3000/api/schools/${schoolNumber}`
     );
     if (!response.ok) {
       // showNotification(
@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("schoolName").value = data.school_name || "";
     document.getElementById("state").value = data.state || "";
     document.getElementById("lga").value = data.lga || "";
-
   } catch (error) {
     // showNotification("error", error);
     console.error(error);
@@ -58,7 +57,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     hideLoading();
   }
 });
-
 
 //DISABLING FIELDS
 document.addEventListener("DOMContentLoaded", function () {
@@ -76,21 +74,22 @@ document.addEventListener("DOMContentLoaded", function () {
 // Get school types
 document.addEventListener("DOMContentLoaded", function () {
   // Function to populate school types
+  // Function to populate school types
   function populateSchoolTypes() {
     const schoolTypeSelect = document.getElementById("schoolType");
 
-    fetch("http://localhost:3000/schooltypes")
+    fetch("http://localhost:3000/api/schooldata/schooltypes")
       .then((response) => response.json())
       .then((data) => {
         data.forEach((type) => {
           const option = document.createElement("option");
-          option.value = type;
-          option.textContent = type;
+          option.value = type.id; // Assuming there's an 'id' field
+          option.textContent = type.description; // Display the description
           schoolTypeSelect.appendChild(option);
         });
       })
       .catch((error) => {
-        showNotification("error", "There was an error getting School Types.");
+        showNotification("error", "There was an error getting school types");
       });
   }
 
@@ -98,13 +97,13 @@ document.addEventListener("DOMContentLoaded", function () {
   function populateStates() {
     const stateSelect = document.getElementById("state");
 
-    fetch("http://localhost:3000/states")
+    fetch("http://localhost:3000/api/states")
       .then((response) => response.json())
       .then((data) => {
         data.forEach((state) => {
           const option = document.createElement("option");
-          option.value = state;
-          option.textContent = state;
+          option.value = state.state_id; // Correct field for state_id
+          option.textContent = state.state; // Correct field for state name
           stateSelect.appendChild(option);
         });
       })
@@ -114,17 +113,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Function to populate LGAs based on the selected state
-  function populateLGAs(state) {
+  function populateLGAs(stateid) {
     const lgaSelect = document.getElementById("lga");
     lgaSelect.innerHTML = '<option value="">Select an LGA</option>'; // Reset LGA dropdown
 
-    fetch(`http://localhost:3000/lgas/${state}`)
+    fetch(`http://localhost:3000/api/lgas/${stateid}`)
       .then((response) => response.json())
       .then((data) => {
         data.forEach((lga) => {
           const option = document.createElement("option");
-          option.value = lga;
-          option.textContent = lga;
+          option.value = lga.lga_id; // Correct field for LGA id
+          option.textContent = lga.lga; // Correct field for LGA name
           lgaSelect.appendChild(option);
         });
       })
@@ -331,3 +330,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+
+// Start activity monitor
+// Define the timeout duration (in milliseconds) - here, 10 minutes (600,000 ms)
+const inactivityTimeout = 600000;
+
+let inactivityTimer;
+
+function resetTimer() {
+  // Clear the existing timer if any activity is detected
+  clearTimeout(inactivityTimer);
+
+  // Start a new timer to log out after inactivityTimeout period
+  inactivityTimer = setTimeout(logoutUser, inactivityTimeout);
+}
+
+// Function to log out user and redirect
+function logoutUser() {
+  // showNotification("info","You have been logged out due to inactivity.");
+  // Clear any session or token (optional depending on how login is managed)
+  localStorage.clear(); // Clear user data (if stored in localStorage)
+  // Redirect to login page or home page
+  window.location.href = "verify-centre.html"; // Change this to the login page URL
+}
+
+// Listen for activity (mouse, keyboard, and touch events) and reset timer
+window.onload = function () {
+  window.addEventListener("mousemove", resetTimer);
+  window.addEventListener("keypress", resetTimer);
+  window.addEventListener("mousedown", resetTimer); // for mouse clicks
+  window.addEventListener("touchstart", resetTimer); // for touch devices
+  window.addEventListener("scroll", resetTimer); // for scrolling
+  window.addEventListener("keydown", resetTimer); // for key presses
+
+  // Start the inactivity timer for the first time
+  resetTimer();
+};
