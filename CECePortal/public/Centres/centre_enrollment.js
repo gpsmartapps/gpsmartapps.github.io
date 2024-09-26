@@ -4,7 +4,7 @@ loadingScreen.id = "loading";
 loadingScreen.style.display = "none";
 loadingScreen.innerHTML = `
   <div class="loader"></div>
-  <p>Please wait...</p>
+<p>  Loading... Please wait.</p>
 `;
 
 document.body.appendChild(loadingScreen); // Append loading screen to the body
@@ -35,13 +35,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     const response = await fetch(
       `http://localhost:3000/api/schools/${schoolNumber}`
     );
-    if (!response.ok) {
-      // showNotification(
-      //   "error",
-      //   `Failed to fetch school data: ${response.statusText}`
-      // );
-      // window.location.href = `/CECePortal/verify-centre.html`;
-    }
+    // if (!response.ok) {
+    //   showNotification(
+    //     "error",
+    //     `Failed to fetch school data: ${response.statusText}`
+    //   );
+    //   window.location.href = `/CECePortal/verify-centre.html`;
+    // }
 
     const data = await response.json();
     // Populate the form fields with the fetched data
@@ -181,16 +181,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const examType = document.getElementById("examType").value.trim();
     const schoolName = document.getElementById("schoolName").value.trim();
     const schoolNumber = document.getElementById("schoolNumber").value.trim();
-    const registratorName = document
-      .getElementById("registratorName")
-      .value.trim();
+    const registratorName = document.getElementById("registratorName").value.trim();
     const schoolEmail = document.getElementById("schoolEmail").value.trim();
-    const registratorPhone = document
-      .getElementById("registratorPhone")
-      .value.trim();
-    const principalPhone = document
-      .getElementById("principalPhone")
-      .value.trim();
+    const registratorPhone = document.getElementById("registratorPhone").value.trim();
+    const principalPhone = document.getElementById("principalPhone").value.trim();
     const state = document.getElementById("state").value.trim();
     const lga = document.getElementById("lga").value.trim();
     const schoolType = document.getElementById("schoolType").value.trim();

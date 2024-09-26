@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         // Verify the school number with the backend
         const response = await fetch(
-          `http://localhost:3000/api/school-lookup`,
+          `http://localhost:3000/api/schools`,
           {
             method: "POST",
             headers: {
