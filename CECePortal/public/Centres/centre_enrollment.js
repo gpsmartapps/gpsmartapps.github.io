@@ -73,8 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Get school types
 document.addEventListener("DOMContentLoaded", function () {
-  // Function to populate school types
-  // Function to populate school types
+    // Function to populate school types
   function populateSchoolTypes() {
     const schoolTypeSelect = document.getElementById("schoolType");
 
@@ -173,24 +172,26 @@ function showNotification(type, message) {
 // Validate before submission
 document.addEventListener("DOMContentLoaded", function () {
   const updateButton = document.getElementById("update");
-
-  updateButton.addEventListener("click", function (e) {
+  
+     updateButton.addEventListener("click", function (e) {
     e.preventDefault(); // Prevent form submission for validation
 
     // Get values from the form
     const examType = document.getElementById("examType").value.trim();
-    const schoolName = document.getElementById("schoolName").value.trim();
     const schoolNumber = document.getElementById("schoolNumber").value.trim();
-    const registratorName = document.getElementById("registratorName").value.trim();
-    const schoolEmail = document.getElementById("schoolEmail").value.trim();
-    const registratorPhone = document.getElementById("registratorPhone").value.trim();
-    const principalPhone = document.getElementById("principalPhone").value.trim();
+    const schoolName = document.getElementById("schoolName").value.trim();
     const state = document.getElementById("state").value.trim();
     const lga = document.getElementById("lga").value.trim();
-    const schoolType = document.getElementById("schoolType").value.trim();
+    const schoolTypeElement = document.getElementById("schoolType");
+    const schoolEmail = document.getElementById("schoolEmail").value.trim();
+    const principalPhone = document.getElementById("principalPhone").value.trim();
+    const registratorName = document.getElementById("registratorName").value.trim();
+    const registratorPhone = document.getElementById("registratorPhone").value.trim();
+    const registratorEmail = document.getElementById("registratorEmail").value.trim();
     const schoolAddress = document.getElementById("schoolAddress").value.trim();
 
-    // Regex patterns
+    const schoolType = schoolTypeElement.options[schoolTypeElement.selectedIndex].text;
+      // Regex patterns
     const phonePattern = /^[0-9]{11,11}$/; // Adjust pattern to match your required phone format
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -210,33 +211,24 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (lga === "" || lga === "Select an LGA") {
       showNotification("error", "Please select a valid local government area.");
       document.getElementById("lga").focus();
-    } else if (registratorName === "") {
-      showNotification(
-        "error",
-        "Please enter the full name of the registrator."
-      );
-      document.getElementById("registratorName").focus();
-    } else if (schoolEmail === "" || !emailPattern.test(schoolEmail)) {
-      showNotification("error", "Please enter a valid school email address.");
-      document.getElementById("schoolEmail").focus();
-    } else if (
-      registratorPhone === "" ||
-      !phonePattern.test(registratorPhone)
-    ) {
-      showNotification(
-        "error",
-        "Please enter a valid registrator's phone number."
-      );
-      document.getElementById("registratorPhone").focus();
-    } else if (principalPhone === "" || !phonePattern.test(principalPhone)) {
-      showNotification(
-        "error",
-        "Please enter a valid principal's phone number."
-      );
-      document.getElementById("principalPhone").focus();
     } else if (schoolType === "" || schoolType === "Select School Type") {
       showNotification("error", "Please select a school type.");
       document.getElementById("schoolType").focus();
+    } else if (schoolEmail === "" || !emailPattern.test(schoolEmail)) {
+      showNotification("error", "Please enter a valid school email address.");
+      document.getElementById("schoolEmail").focus();
+    } else if (principalPhone === "" || !phonePattern.test(principalPhone)) {
+      showNotification("error", "Please enter a valid principal's phone number.");
+      document.getElementById("principalPhone").focus();
+    } else if (registratorName === "") {
+      showNotification("error", "Please enter the full name of the registrator.");
+      document.getElementById("registratorName").focus();
+    } else if (registratorPhone === "" || !phonePattern.test(registratorPhone)) {
+      showNotification("error", "Please enter a valid registrator's phone number.");
+      document.getElementById("registratorPhone").focus();
+    } else if (registratorEmail === "" || !emailPattern.test(registratorEmail)) {
+      showNotification("error", "Please enter a valid registrator's email address.");
+      document.getElementById("registratorEmail").focus();
     } else if (schoolAddress === "") {
       showNotification("error", "Please enter the school address.");
       document.getElementById("schoolAddress").focus();
@@ -249,11 +241,12 @@ document.addEventListener("DOMContentLoaded", function () {
         state,
         lga,
         schoolType,
-        schoolAddress,
+        schoolEmail,
         principalPhone,
         registratorName,
         registratorPhone,
-        schoolEmail,
+        registratorEmail,
+        schoolAddress,
       });
     }
   });
@@ -324,6 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
 
 
 // Start activity monitor
