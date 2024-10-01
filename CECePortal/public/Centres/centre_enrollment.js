@@ -286,36 +286,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function sendCentreData(data) {
     try {
-      const response = await fetch("http://localhost:3000/enrollcentre", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data), // Ensure data is being correctly sent
-      });
+        const response = await fetch("http://localhost:3000/enrollcentre", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data), // Ensure data is being correctly sent
+        });
 
-      if (response.ok) {
-        showNotification(
-          "success",
-          "Centre details have been updated successfully!"
-        );
-        sessionStorage.clear();
-        window.location.href = `/CECePortal/login.html`;
-      } else {
-        const errorData = await response.json(); // Get the error message
-        showNotification(
-          "error",
-          errorData.error || "An error occurred during registration."
-        );
-      }
+        if (response.ok) {
+            showNotification(
+                "success",
+                "Centre details have been updated successfully!"
+            );
+
+            // Store schoolNumber and schoolEmail in session storage
+            sessionStorage.setItem("schoolNumber", data.schoolNumber);
+            sessionStorage.setItem("schoolEmail", data.schoolEmail);
+            
+            window.location.href = `/CECePortal/verification.html`;
+        } else {
+            const errorData = await response.json(); // Get the error message
+            showNotification(
+                "error",
+                errorData.error || "An error occurred during registration."
+            );
+        }
     } catch (error) {
-      console.log("Error:", error); // Catch any network or fetch errors
-      showNotification(
-        "error",
-        "An error occurred during form submission. Please try again later."
-      );
+        console.log("Error:", error); // Catch any network or fetch errors
+        showNotification(
+            "error",
+            "An error occurred during form submission. Please try again later."
+        );
     }
-  }
+}
+
 });
 
 

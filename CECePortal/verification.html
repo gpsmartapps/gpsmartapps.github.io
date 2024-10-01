@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/CECePortal/assets/icons/favicon.ico" type="image/ico">
+    <link rel="icon" href="/CECePortal/assets/icons/favicon.png" type="image/png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="1122.css">
+    <link rel="stylesheet" href="/CECePortal/public/OTPs/verification.min.css">
     <title>OTP Verification</title>
+    <noscript>
+        <meta http-equiv="refresh" content="0;url=/CECePortal/error-page.html">
+    </noscript>
 </head>
 <body class="container-fluid bg-body-tertiary d-flex flex-column min-vh-100">
     <div class="row justify-content-center flex-grow-1">
@@ -22,9 +27,14 @@
                         <input type="text" maxlength="1" disabled />
                         <input type="text" maxlength="1" disabled />
                     </div>
-                    <button class="btn btn-primary mb-3" disabled>
-                        Verify
-                    </button>
+                    <!-- <button class="btn btn-primary mb-3" disabled id="btnVerifyOTP">
+                        Verify OTP
+                    </button> -->
+
+                    <div class="form-actions unselectable">
+                        <button type="submit" id="btnVerifyOTP" class="btn">Verify OTP</button>
+                    </div>
+                    
                     <p class="resend text-muted mb-0">
                         Didn't receive code? <a href="#">Request again</a>
                     </p>
@@ -33,9 +43,21 @@
         </div>
     </div>
 
-    <div class="footer">
-        Made with ❤️ by Marcus | Visit <a href="https://shopblocks.com" target="_blank">Shopblocks</a>
+    <footer>
+        <div class="footer-content unselectable">
+            <div class="footer-links unselectable"><a href="index.html">Home</a><a
+                    href="enrol_students.html">Registration</a><a href="contact-us.html">Contact</a>
+            </div>
+            <div class="footer-info unselectable">
+                <p>&copy; 2024 Catholic Education Comission (CEC). All rights reserved.</p>
+                <p>Catholic Education Comission, Nigeria</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Notification Bar -->
+    <div id="notification-bar" class="notification-bar">
+        <span id="notification-message" class="notification-message"></span>
     </div>
-    <script src="3344.js"></script>
+    <script src="/CECePortal/public/OTPs/verification.min.js"></script>
 </body>
 </html>
