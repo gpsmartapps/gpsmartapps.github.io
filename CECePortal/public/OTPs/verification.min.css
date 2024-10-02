@@ -17,6 +17,22 @@ body {
     font-family: Arial, sans-serif; /* Set a default font */
 }
 
+.header-icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.header-icons .house-icon {
+    color: var(--primary-color-darker); /* Same color as primary darker */
+    transition: color 0.3s ease;
+}
+
+.header-icons .house-icon:hover {
+    color: var(--primary-color); /* Slightly lighter color on hover */
+}
+
+
 .otp-field {
     flex-direction: row;
     column-gap: 10px;
@@ -33,6 +49,7 @@ body {
     font-size: 1.125rem;
     text-align: center;
     border: 1px solid #ddd;
+    transition: width 0.2s, height 0.2s;
 }
 
 .otp-field input:focus {
@@ -40,14 +57,17 @@ body {
     border-color: var(--primary-color);
 }
 
-.otp-field input::-webkit-inner-spin-button,
-.otp-field input::-webkit-outer-spin-button {
-    display: none;
+.resend a {
+    color: var(--primary-color-darker); /* Match the primary darker color */
+    text-decoration: none; /* Remove underline by default */
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transition */
 }
 
-.resend {
-    font-size: 12px;
+.resend a:hover {
+    color: var(--primary-color-darker); /* Keep the color the same on hover */
+    text-decoration: underline; /* Add underline on hover */
 }
+
 
 .btn {
     background-color: var(--primary-color); /* Primary green color */
@@ -61,10 +81,15 @@ body {
     margin-bottom: 10px;
 }
 
-.btn:hover {
-    background-color: var(--primary-color-darker); /* Darker green on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
-    color: #fff;
+.btn:enabled:hover, .btn:enabled:active {
+    background-color: var(--primary-color-darker); /* Darker green when hovered or clicked */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover or click */
+    color: #fff; /* Keep text white */
+}
+
+.btn:disabled {
+    background-color: #ccc; /* Gray color when button is disabled */
+    cursor: not-allowed; /* Show disabled cursor */
 }
 
 footer {
@@ -107,45 +132,21 @@ footer {
 }
 
 /* Mobile Responsiveness */
+
 @media (max-width: 768px) {
     .otp-field {
-        flex-direction: column; /* Stack elements vertically */
-        align-items: flex-start; /* Align items to start */
-        column-gap: 0; /* Remove column gap */
+        column-gap: 5px;
     }
 
     .otp-field input {
-        width: 100%; /* Full width for input fields */
-        margin-bottom: 10px; /* Add margin for spacing */
-    }
-
-    .btn {
-        padding: 10px; /* Reduce padding for smaller screens */
-        margin-bottom: 10px; /* Maintain margin for spacing */
-    }
-
-    footer {
-        padding: 1rem; /* Reduce padding in footer */
-    }
-
-    .footer-content {
-        flex-direction: column; /* Stack footer content */
-        align-items: center; /* Center items */
-    }
-
-    .footer-links a {
-        margin-right: 0; /* Remove margin for links */
-        margin-bottom: 10px; /* Add bottom margin */
-        font-size: 0.9rem; /* Smaller font size for links */
+        width: 38px;
+        height: 40px;
     }
 }
 
 @media (max-width: 480px) {
-    .btn {
-        padding: 8px; /* Further reduce padding for extra small screens */
-    }
-
-    .footer-info {
-        text-align: center; /* Center text on small screens */
+    .otp-field input {
+        width: 36px;
+        height: 36px;
     }
 }
