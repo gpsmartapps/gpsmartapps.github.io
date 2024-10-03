@@ -303,6 +303,8 @@ document.addEventListener("DOMContentLoaded", function () {
             // Store schoolNumber and schoolEmail in session storage
             sessionStorage.setItem("schoolNumber", data.schoolNumber);
             sessionStorage.setItem("schoolEmail", data.schoolEmail);
+            sessionStorage.setItem("schoolName", data.schoolName)
+            sessionStorage.setItem("registratorEmail", data.registratorEmail)
             
             window.location.href = `/CECePortal/verification.html`;
         } else {
