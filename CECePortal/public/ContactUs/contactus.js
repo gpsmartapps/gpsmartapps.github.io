@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function sendMessage(data) {
         try {
-            const response = await fetch('/CECePortal/send-message', {
+            const response = await fetch('http://localhost:3000/sendmsg', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -353,7 +353,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     async function sendCandidateData(data) {
         try {
-            const response = await fetch('/CECePortal/enroll', { // Ensure your endpoint is secure
+            const response = await fetch('http://localhost:3000/candidates/registration', { // Ensure your endpoint is secure
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

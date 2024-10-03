@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     async function sendLoginData(data) {
         try {
-            const response = await fetch('/CECePortal/login', { // Ensure your endpoint is secure
+            const response = await fetch('http://localhost:3000/login', { // Ensure your endpoint is secure
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1082,7 +1082,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (validateForm()) {
       const formData = new FormData(document.getElementById("enrollmentForm"));
       try {
-        const response = await fetch("/your-backend-endpoint", {
+        const response = await fetch("http://localhost:3000/candidates/reg", {
           // Replace with your backend endpoint
           method: "POST",
           body: formData,

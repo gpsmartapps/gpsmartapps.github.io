@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     async function sendResetData(data) {
         try {
-            const response = await fetch('/CECePortal/password-reset', { // Ensure your endpoint is secure
+            const response = await fetch('http://localhost:3000/password-reset', { // Ensure your endpoint is secure
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

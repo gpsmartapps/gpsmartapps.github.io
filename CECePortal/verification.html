@@ -7,6 +7,7 @@
     <link rel="icon" href="/CECePortal/assets/icons/favicon.png" type="image/png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/CECePortal/public/OTPs/verification.min.css">
+    <link rel="stylesheet" href="/CECePortal/public/Global/glob.min.css">
     <title>OTP Verification</title>
     <noscript>
         <meta http-equiv="refresh" content="0;url=/CECePortal/error-page.html">
@@ -27,12 +28,12 @@
                     <h4>Verify your Account</h4>
                     <p>Your code was sent to you via email</p>
                     <div class="otp-field mb-4">
-                        <input type="text" maxlength="1" id="otp-1" name="otp-1" />
-                        <input type="text" maxlength="1" id="otp-2" name="otp-2" disabled />
-                        <input type="text" maxlength="1" id="otp-3" name="otp-3" disabled />
-                        <input type="text" maxlength="1" id="otp-4" name="otp-4" disabled />
-                        <input type="text" maxlength="1" id="otp-5" name="otp-5" disabled />
-                        <input type="text" maxlength="1" id="otp-6" name="otp-6" disabled />
+                        <input type="text" maxlength="1" id="otp-1" name="otp-1" autocomplete="off"/>
+                        <input type="text" maxlength="1" id="otp-2" name="otp-2" autocomplete="off" disabled />
+                        <input type="text" maxlength="1" id="otp-3" name="otp-3" autocomplete="off" disabled />
+                        <input type="text" maxlength="1" id="otp-4" name="otp-4" autocomplete="off" disabled />
+                        <input type="text" maxlength="1" id="otp-5" name="otp-5" autocomplete="off" disabled />
+                        <input type="text" maxlength="1" id="otp-6" name="otp-6" autocomplete="off" disabled />
                     </div>
                     <div class="form-actions unselectable">
                         <button type="submit" id="btnVerifyOTP" class="btn">Verify OTP</button>
@@ -50,6 +51,8 @@
     <div id="notification-bar" class="notification-bar">
         <span id="notification-message" class="notification-message"></span>
     </div>
+    <div id="notification" class="notification unselectable"></div>
     <script src="/CECePortal/public/OTPs/verification.min.js"></script>
+    <script type="text/javascript" src="/CECePortal/public/Global/glob.js"></script>
 </body>
 </html>
