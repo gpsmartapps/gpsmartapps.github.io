@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   loadingScreen.style.display = "none";
   loadingScreen.innerHTML = `
     <div class="loader"></div>
-    <p>  Loading... Please wait.</p>
+    <p>Loading... Please wait.</p>
   `;
   document.body.appendChild(loadingScreen); // Append loading screen to the body
 
@@ -27,16 +27,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         showLoading();
 
         // Verify the school number with the backend
-        const response = await fetch(
-          `http://localhost:3000/api/schools`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ schoolNumber }), // Send the schoolNumber securely in the body
-          }
-        );
+        const response = await fetch(`http://localhost:3000/api/schools`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ schoolNumber }), // Send the schoolNumber securely in the body
+        });
 
         if (response.ok) {
           const responseData = await response.json();
@@ -51,14 +48,15 @@ document.addEventListener("DOMContentLoaded", async function () {
               `The centre/school number ${schoolNumber} already exists.`
             );
           } else {
-            window.location.href = `/CECePortal/centre-enroll.html`;
+            // Redirect to the next page without showing the school number in the URL
+            window.location.href = "/CECePortal/centre-enroll.html";
           }
         } else {
           const errorData = await response.json();
           showNotification(
             "error",
             errorData.error ||
-              `The centre/school number ${schoolNumber} was not found.`
+            `The centre/school number ${schoolNumber} was not found.`
           );
         }
       } catch (error) {
