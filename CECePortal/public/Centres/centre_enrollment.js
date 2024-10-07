@@ -325,8 +325,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-
-
 // Start activity monitor
 // Define the timeout duration (in milliseconds) - here, 10 minutes (600,000 ms)
 const inactivityTimeout = 600000;
