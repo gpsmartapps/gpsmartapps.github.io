@@ -195,10 +195,12 @@ textarea:focus {
 }
 
 body {
-    background: linear-gradient(45deg, var(--primary-color), var(--background-color), var(--primary-color));
+    background: linear-gradient(45deg, rgb(249, 241, 241), rgb(227, 221, 221), rgb(242, 231, 231));
     background-size: 400% 400%;
-    animation: gradientAnimation 15s ease infinite
+    animation: gradientAnimation 15s ease infinite;
 }
+
+
 
 
 #loading {
