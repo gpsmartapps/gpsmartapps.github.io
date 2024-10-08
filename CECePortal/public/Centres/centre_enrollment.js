@@ -58,6 +58,107 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+
+function nextStep(currentStep) {
+  const current = document.getElementById(`step-${currentStep}`);
+  const next = document.getElementById(`step-${currentStep + 1}`);
+   const phonePattern = /^[0-9]{11,11}$/; // Adjust pattern to match your required phone format
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  // Perform validation before moving to the next step
+  if (currentStep === 1) {
+    const examType = document.getElementById("examType").value.trim();
+    const schoolNumber = document.getElementById("schoolNumber").value.trim();
+    const schoolName = document.getElementById("schoolName").value.trim();
+
+    if (examType === "") {
+      showNotification("error", "Examination type is missing.");
+      document.getElementById("examType").focus();
+      return;
+    } else if (schoolNumber === "") {
+      showNotification("error", "School/Centre number is missing.");
+      document.getElementById("schoolNumber").focus();
+      return;
+    } else if (schoolName === "") {
+      showNotification("error", "School name is missing.");
+      document.getElementById("schoolName").focus();
+      return;
+    }
+
+  } else if (currentStep === 2) {
+    const state = document.getElementById("state").value;
+    const lga = document.getElementById("lga").value;
+
+    if (state === "" || state === "Select State") {
+      showNotification("error", "Please select a valid state.");
+      document.getElementById("state").focus();
+      return;
+    } else if (lga === "" || lga === "Select an LGA") {
+      showNotification("error", "Please select a valid local government area.");
+      document.getElementById("lga").focus();
+      return;
+    }
+
+  } else if (currentStep === 3) {
+    const schoolType = document.getElementById("schoolType").value;
+    const schoolEmail = document.getElementById("schoolEmail").value;
+    if (schoolType === "" || schoolType === "Select School Type") {
+      showNotification("error", "Please select a school type.");
+      document.getElementById("schoolType").focus();
+      return;
+    } else if (schoolEmail === "" || !emailPattern.test(schoolEmail)) {
+      showNotification("error", "Please enter a valid school email address.");
+      document.getElementById("schoolEmail").focus();
+      return;
+    }
+
+  } else if (currentStep === 4) {
+    const principalPhone = document.getElementById("principalPhone").value;
+    const registratorName = document.getElementById("registratorName").value;
+    const registratorPhone = document.getElementById("registratorPhone").value;
+    const registratorEmail = document.getElementById("registratorEmail").value;
+
+    if (principalPhone === "" || !phonePattern.test(principalPhone)) {
+      showNotification("error", "Please enter a valid principal's phone number.");
+      document.getElementById("principalPhone").focus();
+      return;
+    } else if (registratorName === "") {
+      showNotification("error", "Please enter the full name of the registrator.");
+      document.getElementById("registratorName").focus();
+      return;
+    } else if (registratorPhone === "" || !phonePattern.test(registratorPhone)) {
+      showNotification("error", "Please enter a valid registrator's phone number.");
+      document.getElementById("registratorPhone").focus();
+      return;
+    } else if (registratorEmail === "" || !emailPattern.test(registratorEmail)) {
+      showNotification("error", "Please enter a valid registrator's email address.");
+      document.getElementById("registratorEmail").focus();
+      return;
+    }
+
+  } else if (currentStep === 5) {
+    const schoolAddress = document.getElementById("schoolAddress").value;
+
+    if (schoolAddress === "") {
+      showNotification("error", "Please enter the school address.");
+      document.getElementById("schoolAddress").focus();
+      return
+    }
+  }
+
+  current.style.display = 'none';
+  next.style.display = 'block';
+}
+
+function prevStep(currentStep) {
+  const current = document.getElementById(`step-${currentStep}`);
+  const prev = document.getElementById(`step-${currentStep - 1}`);
+
+  current.style.display = 'none';
+  prev.style.display = 'block';
+}
+
+
 //DISABLING FIELDS
 document.addEventListener("DOMContentLoaded", function () {
   // Get the fields to be disabled
@@ -73,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Get school types
 document.addEventListener("DOMContentLoaded", function () {
-    // Function to populate school types
+  // Function to populate school types
   function populateSchoolTypes() {
     const schoolTypeSelect = document.getElementById("schoolType");
 
@@ -172,8 +273,8 @@ function showNotification(type, message) {
 // Validate before submission
 document.addEventListener("DOMContentLoaded", function () {
   const updateButton = document.getElementById("update");
-  
-     updateButton.addEventListener("click", function (e) {
+
+  updateButton.addEventListener("click", function (e) {
     e.preventDefault(); // Prevent form submission for validation
 
     // Get values from the form
@@ -191,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const schoolAddress = document.getElementById("schoolAddress").value.trim();
 
     const schoolType = schoolTypeElement.options[schoolTypeElement.selectedIndex].text;
-      // Regex patterns
+    // Regex patterns
     const phonePattern = /^[0-9]{11,11}$/; // Adjust pattern to match your required phone format
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -251,79 +352,79 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  function showNotification(type, message) {
-    const notification =
-      document.getElementById("notification") || createNotificationElement();
-
-    // Clear any existing notification classes
-    notification.className = "notification unselectable";
-
-    // Add the appropriate class based on the type
-    if (type === "error") {
-      notification.classList.add("error");
-    } else if (type === "success") {
-      notification.classList.add("success");
-    } else if (type === "info") {
-      notification.classList.add("info");
-    }
-
-    // Set the message and show the notification
-    notification.textContent = message;
-    notification.style.display = "block";
-
-    // Hide the notification after a few seconds
-    setTimeout(() => {
-      notification.style.display = "none";
-    }, 3000);
-  }
-
-  function createNotificationElement() {
-    const notification = document.createElement("div");
-    notification.id = "notification";
-    document.body.appendChild(notification);
-    return notification;
-  }
-
   async function sendCentreData(data) {
     try {
-        const response = await fetch("http://localhost:3000/enrollcentre", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data), // Ensure data is being correctly sent
-        });
+      const response = await fetch("http://localhost:3000/enrollcentre", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data), // Ensure data is being correctly sent
+      });
 
-        if (response.ok) {
-            showNotification(
-                "success",
-                "Centre details have been updated successfully!"
-            );
-
-            // Store schoolNumber and schoolEmail in session storage
-            sessionStorage.setItem("schoolNumber", data.schoolNumber);
-            sessionStorage.setItem("schoolEmail", data.schoolEmail);
-            sessionStorage.setItem("schoolName", data.schoolName)
-            sessionStorage.setItem("registratorEmail", data.registratorEmail)
-            
-            window.location.href = `/CECePortal/verification.html`;
-        } else {
-            const errorData = await response.json(); // Get the error message
-            showNotification(
-                "error",
-                errorData.error || "An error occurred during registration."
-            );
-        }
-    } catch (error) {
-        console.log("Error:", error); // Catch any network or fetch errors
+      if (response.ok) {
         showNotification(
-            "error",
-            "An error occurred during form submission. Please try again later."
+          "success",
+          "Centre details have been updated successfully!"
         );
+
+        // Store schoolNumber and schoolEmail in session storage
+        sessionStorage.setItem("schoolNumber", data.schoolNumber);
+        sessionStorage.setItem("schoolEmail", data.schoolEmail);
+        sessionStorage.setItem("schoolName", data.schoolName)
+        sessionStorage.setItem("registratorEmail", data.registratorEmail)
+
+        window.location.href = `/CECePortal/verification.html`;
+      } else {
+        const errorData = await response.json(); // Get the error message
+        showNotification(
+          "error",
+          errorData.error || "An error occurred during registration."
+        );
+      }
+    } catch (error) {
+      console.log("Error:", error); // Catch any network or fetch errors
+      showNotification(
+        "error",
+        "An error occurred during form submission. Please try again later."
+      );
     }
-}
+  }
 
 });
+
+function showNotification(type, message) {
+  const notification =
+    document.getElementById("notification") || createNotificationElement();
+
+  // Clear any existing notification classes
+  notification.className = "notification unselectable";
+
+  // Add the appropriate class based on the type
+  if (type === "error") {
+    notification.classList.add("error");
+  } else if (type === "success") {
+    notification.classList.add("success");
+  } else if (type === "info") {
+    notification.classList.add("info");
+  }
+
+  // Set the message and show the notification
+  notification.textContent = message;
+  notification.style.display = "block";
+
+  // Hide the notification after a few seconds
+  setTimeout(() => {
+    notification.style.display = "none";
+  }, 3000);
+}
+
+function createNotificationElement() {
+  const notification = document.createElement("div");
+  notification.id = "notification";
+  document.body.appendChild(notification);
+  return notification;
+}
 
 // Start activity monitor
 // Define the timeout duration (in milliseconds) - here, 10 minutes (600,000 ms)
