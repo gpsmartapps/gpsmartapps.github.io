@@ -55,10 +55,11 @@ document.addEventListener("DOMContentLoaded", function () {
                       window.location.href = "/CECePortal/verification.html"; // Redirect to verification
                   }, 3000);
               } else if (responseData.enrollmentRequired) {
-                  showNotification("info", `The school number ${schoolNumber} is not registered. Redirecting to enrollment.`);
-                  setTimeout(() => {
-                      window.location.href = "/CECePortal/centre-enroll.html"; // Redirect to enrollment
-                  }, 3000);
+                window.location.href = "/CECePortal/centre-enroll.html";
+                  // showNotification("info", `The school number ${schoolNumber} is not registered. Redirecting to enrollment.`);
+                  // setTimeout(() => {
+                  //     window.location.href = "/CECePortal/centre-enroll.html"; // Redirect to enrollment
+                  // }, 3000);
               }
 
           } else {
