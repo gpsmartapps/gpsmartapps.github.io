@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 function nextStep(currentStep) {
   const current = document.getElementById(`step-${currentStep}`);
   const next = document.getElementById(`step-${currentStep + 1}`);
-   const phonePattern = /^[0-9]{11,11}$/; // Adjust pattern to match your required phone format
+  const phonePattern = /^[0-9]{11,11}$/; // Adjust pattern to match your required phone format
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   // Perform validation before moving to the next step
@@ -371,22 +371,18 @@ document.addEventListener("DOMContentLoaded", function () {
         // Store schoolNumber and schoolEmail in session storage
         sessionStorage.setItem("schoolNumber", data.schoolNumber);
         sessionStorage.setItem("schoolEmail", data.schoolEmail);
-        sessionStorage.setItem("schoolName", data.schoolName)
-        sessionStorage.setItem("registratorEmail", data.registratorEmail)
+        sessionStorage.setItem("schoolName", data.schoolName);
+        sessionStorage.setItem("registratorEmail", data.registratorEmail);
 
         window.location.href = `/CECePortal/verification.html`;
       } else {
         const errorData = await response.json(); // Get the error message
-        showNotification(
-          "error",
-          errorData.error || "An error occurred during registration."
+        showNotification("error", errorData.error || "An error occurred during registration."
         );
       }
     } catch (error) {
       console.log("Error:", error); // Catch any network or fetch errors
-      showNotification(
-        "error",
-        "An error occurred during form submission. Please try again later."
+      showNotification("error", "An error occurred during form submission. Please try again later."
       );
     }
   }
@@ -394,8 +390,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function showNotification(type, message) {
-  const notification =
-    document.getElementById("notification") || createNotificationElement();
+  const notification = document.getElementById("notification") || createNotificationElement();
 
   // Clear any existing notification classes
   notification.className = "notification unselectable";
