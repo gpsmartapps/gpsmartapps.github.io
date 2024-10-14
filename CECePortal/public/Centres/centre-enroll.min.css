@@ -12,6 +12,15 @@
     --button-border-radius: 4px;
 }
 
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    margin: 0
+}
+
 .login-container {
     display: flex;
     max-width: 1200px;
@@ -101,23 +110,56 @@
     text-decoration: none;
 }
 
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
 
-.form-actions button {
+
+/* General button styling for all form actions */
+button,
+input[type="submit"] {
     background-color: var(--primary-color);
     color: #fff;
     border: 0;
-    padding: var(--button-padding);
+    padding: 10px 20px;
     border-radius: var(--button-border-radius);
     cursor: pointer;
-    width: 100%;
-    color: var(--background-color);
-    text-decoration: none;
-    font-weight: 400;
-    margin: 10px
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.form-actions button:hover {
+/* Hover effect for all buttons */
+button:hover,
+input[type="submit"]:hover {
     background-color: var(--primary-color-darker);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific styling for .btn-next, .btn-prev, and .submit */
+ .next,
+ .prev,
+ .submit {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+    
+}
+
+.submit {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    margin-left: auto;
+    cursor: not-allowed;
+    margin-left: auto;
+    /* Push the button to the far right */
 }
 
 .header-icons {
@@ -136,6 +178,11 @@
 
 .form-group textarea:focus {
     border-color: var(--primary-color-darker);
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
 }
 
 @media(max-width:768px) {
@@ -192,5 +239,11 @@
     .login-left ul {
         padding: 0;
         list-style-position: inside;
+    }
+
+    .form-actions button {
+        width: 100%;
+        margin: 10px 0;
+        margin-left: 0px;
     }
 }
