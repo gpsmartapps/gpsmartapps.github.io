@@ -134,11 +134,6 @@ input[type="submit"]:disabled {
     /* Pointer cursor when button is enabled */
 }
 
-.submit:disabled {
-    /* opacity: 0.5; */
-    /* Make disabled button appear faded */
-}
-
 /* Flex container for buttons to align them side by side in desktop */
 .form-step {
     display: flex;

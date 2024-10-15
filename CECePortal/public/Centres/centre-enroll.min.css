@@ -150,11 +150,6 @@ input[type="submit"]:hover {
     /* Pointer cursor when button is enabled */
 }
 
-.submit:disabled {
-    /* opacity: 0.5; */
-    /* Make disabled button appear faded */
-}
-
 .step {
     display: flex;
     flex-direction: column;
