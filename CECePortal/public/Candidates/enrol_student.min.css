@@ -23,7 +23,7 @@
 .login-left img {
     max-width: 100px;
     margin-bottom: 20px;
-    margin-left: 0px;
+    margin-left: 120px;
 }
 
 .login-left h2 {
@@ -63,7 +63,8 @@
 }
 
 .form-group input,
-.form-group select {
+.form-group select,
+.form-group textarea {
     width: 100%;
     padding: var(--input-padding);
     border: 1px solid var(--border-color);
@@ -187,6 +188,7 @@ input[type="submit"]:disabled {
     .login-left img {
         max-width: 100px;
         margin-bottom: 20px;
+        margin-left: 0px;
     }
 
     .passport-preview-container {
@@ -213,6 +215,7 @@ input[type="submit"]:disabled {
     .login-left img {
         max-width: 100px;
         margin-bottom: 20px;
+        margin-left: 0px;
     }
 
     .passport-preview-container {
