@@ -39,18 +39,24 @@ label {
     font-weight: bold;
 }
 
+/* Basic styling for the input fields */
 input {
     width: 100%;
-    /* Ensure input fields take up 100% of the container width */
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 15px;
     margin-left: 10px;
-    /* Add space on the left */
     margin-right: 10px;
-    /* Add space on the right */
     border-radius: 5px;
     border: 1px solid #ddd;
+}
+
+/* Error styling for the input fields when invalid */
+input.error {
+    border-color: crimson;
+    /* Red border for error */
+    box-shadow: 0 0 5px crimson;
+    /* Red glow around the input field */
 }
 
 button {
@@ -126,7 +132,7 @@ img {
 }
 
 .toast.error {
-    background-color: #f44336;
+    background-color: crimson;
 }
 
 @keyframes toast-slide-in {

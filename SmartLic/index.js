@@ -33,21 +33,34 @@ const generateLicense = async () => {
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
 
+    // Clear previous errors (if any)
+    document.getElementById('system-id').classList.remove('error');
+    document.getElementById('email').classList.remove('error');
+    document.getElementById('phone').classList.remove('error');
+
+    // Input validation
+    // Validation logic
     if (!systemId) {
         showToast("System ID is required.", 'error');
-        document.getElementById('system-id').focus();
+        const systemIdField = document.getElementById('system-id');
+        systemIdField.classList.add('error');
+        systemIdField.focus();
         return;
     }
 
     if (!email || !isValidEmail(email)) {
         showToast("Invalid or missing email.", 'error');
-        document.getElementById('email').focus();
+        const emailField = document.getElementById('email');
+        emailField.classList.add('error');
+        emailField.focus();
         return;
     }
 
     if (!phone || !isValidPhone(phone)) {
         showToast("Phone number must be 11 digits.", 'error');
-        document.getElementById('phone').focus();
+        const phoneField = document.getElementById('phone');
+        phoneField.classList.add('error');
+        phoneField.focus();
         return;
     }
 
