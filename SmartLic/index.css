@@ -29,70 +29,52 @@ h1 {
 .form-group {
     width: 100%;
     margin-bottom: 20px;
-    /* Increased space between fields */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-/* Control margins for labels */
 label {
     margin-bottom: 10px;
-    /* Margin between label and input */
     font-weight: bold;
 }
 
-/* Control margin for input fields */
 input {
     width: 100%;
+    /* Ensure input fields take up 100% of the container width */
     padding: 10px;
     margin-top: 5px;
-    /* Space above the input field */
     margin-bottom: 15px;
-    /* Space below the input field */
-    margin-left: 0;
-    /* Left margin */
-    margin-right: 0;
-    /* Right margin */
+    margin-left: 10px;
+    /* Add space on the left */
+    margin-right: 10px;
+    /* Add space on the right */
     border-radius: 5px;
     border: 1px solid #ddd;
 }
 
-/* Button styling */
-/* Button styling */
 button {
     width: 100%;
+    /* Ensure the button takes up 100% of the container width */
     padding: 10px;
     background-color: #4BAD4E;
-    /* Updated button color */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
     transition: background-color 0.2s ease;
-    /* Smooth transition on hover and click */
 }
 
-/* Button active state (click effect) */
 button:active {
     background-color: #429d3b;
-    /* Darker shade for button when clicked */
 }
-
-/* Disabled button */
-button:disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
-}
-
 
 button:disabled {
     background-color: #ddd;
     cursor: not-allowed;
 }
 
-/* Styling for the generated key block */
 .generated-key {
     margin-top: 20px;
     text-align: center;
@@ -107,7 +89,6 @@ button:disabled {
     font-weight: bold;
 }
 
-/* Styling for the logo */
 img {
     width: 150px;
     margin-bottom: 20px;
@@ -119,19 +100,14 @@ img {
 #toast-container {
     position: fixed;
     top: 20px;
-    /* Position from the top */
     left: 50%;
     transform: translateX(-50%);
-    /* Center horizontally */
     z-index: 9999;
-    /* Make sure it appears above other content */
     width: auto;
     max-width: 90%;
-    /* Limit the width to 90% of the screen */
     display: flex;
     flex-direction: column;
     gap: 10px;
-    /* Space between multiple toasts */
 }
 
 /* Styling for individual toasts */
@@ -145,23 +121,17 @@ img {
     animation: toast-slide-in 0.5s ease-out;
 }
 
-/* Success toast */
 .toast.success {
     background-color: #4CAF50;
-    /* Green */
 }
 
-/* Error toast */
 .toast.error {
     background-color: #f44336;
-    /* Red */
 }
 
-/* Toast slide-in animation */
 @keyframes toast-slide-in {
     from {
         transform: translateY(-30px);
-        /* Start above the screen */
         opacity: 0;
     }
 
@@ -170,7 +140,6 @@ img {
         opacity: 1;
     }
 }
-
 
 /* Media Queries for Larger Screens */
 
@@ -192,7 +161,6 @@ img {
     input {
         padding: 12px;
         margin-bottom: 20px;
-        /* Adjust margin for input fields */
     }
 
     button {
@@ -222,7 +190,6 @@ img {
     input {
         padding: 14px;
         margin-bottom: 25px;
-        /* Adjust margin for input fields */
     }
 
     button {
@@ -231,5 +198,34 @@ img {
 
     .generated-key {
         padding: 30px;
+    }
+}
+
+/* Mobile first adjustments for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        /* Reduce container width on smaller devices */
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    input {
+        width: 92%;
+        /* Ensure input fields are the same width as the button */
+        padding: 10px;
+        margin-bottom: 15px;
+        margin-left: 10px;
+        /* Add space on the left */
+        margin-right: 10px;
+        /* Add space on the right */
+    }
+
+    button {
+        width: 95%;
+        /* Ensure button is full width */
+        padding: 10px;
     }
 }
