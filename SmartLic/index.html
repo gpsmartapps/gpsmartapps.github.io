@@ -117,6 +117,10 @@
 
     <div id="toast-container"></div>
 
+    <div id="loading-spinner" class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
     <script type="module" src="index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-toastify/9.1.2/ReactToastify.min.js"></script>
 
@@ -134,6 +138,16 @@
         img.onerror = function () {
             logoImage.src = "logo2.png";
         };
+
+        // Function to show the loading spinner
+        function showLoading() {
+            document.getElementById('loading-spinner').style.display = 'block';
+        }
+
+        // Function to hide the loading spinner
+        function hideLoading() {
+            document.getElementById('loading-spinner').style.display = 'none';
+        }
     </script>
 
 </body>

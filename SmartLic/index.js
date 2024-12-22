@@ -1,3 +1,5 @@
+
+
 // Encryption script for generating the license key
 export const generateLicenseKey = async (input, identifier) => {
     if (identifier.length !== 15) {
@@ -66,6 +68,9 @@ const generateLicense = async () => {
     const identifier = "928374651032587"; // Replace with your identifier
 
     try {
+        // Show loading spinner
+        showLoading();
+
         // Generate the license key
         const generatedKey = await generateLicenseKey(systemId, identifier);
         const upperCaseKey = generatedKey.toUpperCase();  // Convert the key to uppercase
@@ -78,6 +83,9 @@ const generateLicense = async () => {
     } catch (error) {
         showToast("Failed to generate license key.", 'error');
         console.error("Error generating license:", error);
+    } finally {
+        // Hide loading spinner
+        hideLoading();
     }
 };
 
@@ -106,6 +114,16 @@ const sendLicenseViaMailto = (licenseKey, email, systemId) => {
 
     window.location.href = mailtoLink; // Opens the default email client with pre-filled details
 };
+
+// Function to show the loading spinner
+function showLoading() {
+    document.getElementById('loading-spinner').style.display = 'block';
+}
+
+// Function to hide the loading spinner
+function hideLoading() {
+    document.getElementById('loading-spinner').style.display = 'none';
+}
 
 // Event listener for the button
 document.addEventListener('DOMContentLoaded', () => {
