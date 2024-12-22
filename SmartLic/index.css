@@ -63,18 +63,21 @@ input {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #4BAD4E; /* Updated button color */
+    background-color: #4BAD4E;
+    /* Updated button color */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
-    transition: background-color 0.2s ease; /* Smooth transition on hover and click */
+    transition: background-color 0.2s ease;
+    /* Smooth transition on hover and click */
 }
 
 /* Button active state (click effect) */
 button:active {
-    background-color: #429d3b; /* Darker shade for button when clicked */
+    background-color: #429d3b;
+    /* Darker shade for button when clicked */
 }
 
 /* Disabled button */
@@ -111,6 +114,63 @@ img {
     display: block;
     object-fit: contain;
 }
+
+/* Toast container positioning */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    /* Position from the top */
+    left: 50%;
+    transform: translateX(-50%);
+    /* Center horizontally */
+    z-index: 9999;
+    /* Make sure it appears above other content */
+    width: auto;
+    max-width: 90%;
+    /* Limit the width to 90% of the screen */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Space between multiple toasts */
+}
+
+/* Styling for individual toasts */
+.toast {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: toast-slide-in 0.5s ease-out;
+}
+
+/* Success toast */
+.toast.success {
+    background-color: #4CAF50;
+    /* Green */
+}
+
+/* Error toast */
+.toast.error {
+    background-color: #f44336;
+    /* Red */
+}
+
+/* Toast slide-in animation */
+@keyframes toast-slide-in {
+    from {
+        transform: translateY(-30px);
+        /* Start above the screen */
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 
 /* Media Queries for Larger Screens */
 
