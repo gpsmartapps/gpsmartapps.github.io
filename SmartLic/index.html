@@ -2,58 +2,60 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>License Key Generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License Key Generator</title>
 
-  <!-- Corrected External CSS Link -->
-  <link rel="icon" href="https://dl.dropboxusercontent.com/s/7nfhhr0f8hmq4743ngexq/favicon1.ico" />
-  <link rel="stylesheet" href="https://dl.dropboxusercontent.com/scl/fi/kaxhtaw1vt6ju5gpf4cm3/index.css?rlkey=4hmtr90vky86rxkylcm7v7pew&dl=1" />
+    <!-- Corrected External CSS Link -->
+    <link rel="icon" href="https://dl.dropboxusercontent.com/s/7nfhhr0f8hmq4743ngexq/favicon1.ico" />
+    <link rel="stylesheet"
+        href="https://dl.dropboxusercontent.com/scl/fi/kaxhtaw1vt6ju5gpf4cm3/index.css?rlkey=4hmtr90vky86rxkylcm7v7pew&dl=1" />
 
-  <!-- Include React Toastify CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/react-toastify/9.1.2/ReactToastify.min.css" />
+    <!-- Include React Toastify CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/react-toastify/9.1.2/ReactToastify.min.css" />
 </head>
 
 <body>
 
-  <div class="container">
-    <!-- Logo -->
-    <img src="https://www.dropbox.com/scl/fi/8f0bbi5enh8a8m5gi97o7/logo2.png?rlkey=p87ertb6ku1rfcxcntmm7krgu&dl=1" alt="Logo"
-      style="width: 150px; margin-bottom: 20px;" oncontextmenu="handleRightClick(event)" />
+    <div class="container">
+        <!-- Logo -->
+        <img src="https://www.dropbox.com/scl/fi/8f0bbi5enh8a8m5gi97o7/logo2.png?rlkey=p87ertb6ku1rfcxcntmm7krgu&dl=1"
+            alt="Logo" style="width: 150px; margin-bottom: 20px;" oncontextmenu="handleRightClick(event)" />
 
-    <h1>License Key Generator</h1>
+        <h1>License Key Generator</h1>
 
-    <!-- Input fields -->
-    <div>
-      <label for="system-id">System ID:</label>
-      <input id="system-id" type="text" placeholder="Enter System ID" />
+        <!-- Input fields -->
+        <div class="form-group">
+            <label for="system-id">System ID:</label>
+            <input id="system-id" type="text" placeholder="Enter System ID" />
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" type="email" placeholder="Enter your email" />
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input id="phone" type="tel" placeholder="Enter your phone number" />
+        </div>
+
+        <button id="generate-btn">Generate License Key</button>
+
+        <!-- Generated License Key -->
+        <div id="generated-key" class="generated-key" style="display: none;">
+            <h2>Generated License Key:</h2>
+            <p id="license-key"></p>
+        </div>
     </div>
 
-    <div>
-      <label for="email">Email:</label>
-      <input id="email" type="email" placeholder="Enter your email" />
-    </div>
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
 
-    <div>
-      <label for="phone">Phone Number:</label>
-      <input id="phone" type="tel" placeholder="Enter your phone number" />
-    </div>
-
-    <button id="generate-btn">Generate License Key</button>
-
-    <!-- Generated License Key -->
-    <div id="generated-key" class="generated-key" style="display: none;">
-      <h2>Generated License Key:</h2>
-      <p id="license-key"></p>
-    </div>
-  </div>
-
-  <!-- Toast Notifications -->
-  <div id="toast-container"></div>
-
-  <!-- Corrected External JS Link -->
-  <script src="https://dl.dropboxusercontent.com/scl/fi/7q1y63fud98h4lnacjq3o/index.js?rlkey=akhkh7kyjoy8ovzxhz0m7robr&dl=1"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-toastify/9.1.2/ReactToastify.min.js"></script>
+    <!-- Corrected External JS Link -->
+    <script
+        src="https://dl.dropboxusercontent.com/scl/fi/7q1y63fud98h4lnacjq3o/index.js?rlkey=akhkh7kyjoy8ovzxhz0m7robr&dl=1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-toastify/9.1.2/ReactToastify.min.js"></script>
 </body>
 
 </html>
