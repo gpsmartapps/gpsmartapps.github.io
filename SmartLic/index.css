@@ -165,7 +165,7 @@ img {
     }
 
     .form-group {
-        width: 75%;
+        width: 100%;
     }
 
     input {
@@ -194,7 +194,7 @@ img {
     }
 
     .form-group {
-        width: 70%;
+        width: 100%;
     }
 
     input {
@@ -223,8 +223,8 @@ img {
     }
 
     input {
-        width: 92%;
-        /* Ensure input fields are the same width as the button */
+        width: 90%;
+        /* Ensure input fields are full width */
         padding: 10px;
         margin-bottom: 15px;
         margin-left: 10px;
@@ -234,7 +234,7 @@ img {
     }
 
     button {
-        width: 95%;
+        width: 100%;
         /* Ensure button is full width */
         padding: 10px;
     }
