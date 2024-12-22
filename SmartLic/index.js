@@ -73,8 +73,8 @@ const generateLicense = async () => {
         document.getElementById('generated-key').style.display = 'block';
         showToast("License key generated successfully!", 'success');
 
-        // Send the license key via email (mailto)
-        sendLicenseViaMailto(upperCaseKey, email);  // Pass the uppercase key
+        // Send the license key via email (mailto) with systemId
+        sendLicenseViaMailto(upperCaseKey, email, systemId);  // Pass the uppercase key and systemId
     } catch (error) {
         showToast("Failed to generate license key.", 'error');
         console.error("Error generating license:", error);
@@ -82,13 +82,18 @@ const generateLicense = async () => {
 };
 
 // Function to create a mailto link and trigger the email client
-const sendLicenseViaMailto = (licenseKey, email) => {
-    const subject = encodeURIComponent("Your License Key");
-    const body = encodeURIComponent(`Hello,
+const sendLicenseViaMailto = (licenseKey, email, systemId) => {
+    const subject = encodeURIComponent("YOUR EXCLUSIVE LICENSE KEY INSIDE");
+    const body = encodeURIComponent(`
+        Hello,
 
-Your license key is: ${licenseKey}
+        Your system ID is: ${systemId}
+        Your license key is: ${licenseKey}
 
-Thank you for using our service!`);
+        Thank you for using our service!
+
+        Copyright © 2024 Digispower LLC. All rights reserved.
+    `);
 
     const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
 
