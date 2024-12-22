@@ -1,5 +1,5 @@
 {
-  "name": "license-generator",
+  "name": "licgen",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
