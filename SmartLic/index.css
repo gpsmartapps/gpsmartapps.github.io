@@ -6,9 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Center everything horizontally */
     justify-content: center;
-    /* Center everything vertically */
     min-height: 100vh;
 }
 
@@ -22,7 +20,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Center the content inside the container */
 }
 
 h1 {
@@ -32,16 +29,13 @@ h1 {
 .form-group {
     width: 100%;
     margin-bottom: 15px;
-    /* Space between fields */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* Align labels and inputs to the left */
 }
 
 label {
     margin-bottom: 5px;
-    /* Space between label and input */
     font-weight: bold;
 }
 
@@ -62,7 +56,6 @@ button {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
-    /* Add spacing above the button */
 }
 
 button:disabled {
@@ -87,11 +80,65 @@ button:disabled {
 /* Styling for the logo */
 img {
     width: 150px;
-    /* Control the logo size */
     margin-bottom: 20px;
-    /* Space below the logo */
     display: block;
-    /* Ensures it behaves like a block element */
     object-fit: contain;
-    /* Ensures the logo is properly contained */
+}
+
+/* Media Queries for Larger Screens */
+
+/* For tablets (min-width: 768px) */
+@media (min-width: 768px) {
+    .container {
+        padding: 40px;
+        width: 80%;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .form-group {
+        width: 75%;
+    }
+
+    input {
+        padding: 12px;
+    }
+
+    button {
+        padding: 12px;
+    }
+
+    .generated-key {
+        padding: 25px;
+    }
+}
+
+/* For desktops (min-width: 1024px) */
+@media (min-width: 1024px) {
+    .container {
+        padding: 50px;
+        width: 60%;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .form-group {
+        width: 70%;
+    }
+
+    input {
+        padding: 14px;
+    }
+
+    button {
+        padding: 14px;
+    }
+
+    .generated-key {
+        padding: 30px;
+    }
 }
