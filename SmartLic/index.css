@@ -1,0 +1,97 @@
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f4f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center everything horizontally */
+    justify-content: center;
+    /* Center everything vertically */
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center the content inside the container */
+}
+
+h1 {
+    text-align: center;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 15px;
+    /* Space between fields */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Align labels and inputs to the left */
+}
+
+label {
+    margin-bottom: 5px;
+    /* Space between label and input */
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1e90ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    /* Add spacing above the button */
+}
+
+button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+.generated-key {
+    margin-top: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.generated-key p {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Styling for the logo */
+img {
+    width: 150px;
+    /* Control the logo size */
+    margin-bottom: 20px;
+    /* Space below the logo */
+    display: block;
+    /* Ensures it behaves like a block element */
+    object-fit: contain;
+    /* Ensures the logo is properly contained */
+}
