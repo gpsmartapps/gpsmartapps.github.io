@@ -73,7 +73,7 @@ const generateLicense = async () => {
         document.getElementById('generated-key').style.display = 'block';
         showToast("License key generated successfully!", 'success');
 
-        // Send the license key via email (mailto) with systemId
+        // Send the license key via email (mailto) with systemId and copyright info
         sendLicenseViaMailto(upperCaseKey, email, systemId);  // Pass the uppercase key and systemId
     } catch (error) {
         showToast("Failed to generate license key.", 'error');
@@ -87,10 +87,17 @@ const sendLicenseViaMailto = (licenseKey, email, systemId) => {
     const body = encodeURIComponent(`
         Hello,
 
+        Here is your exclusive license key for our software:
+               
         Your system ID is: ${systemId}
         Your license key is: ${licenseKey}
 
         Thank you for using our service!
+
+        If you have any questions or need further assistance, please do not hesitate to contact our support team.
+
+        Best regards,
+        The Digispower Team
 
         Copyright © 2024 Digispower LLC. All rights reserved.
     `);
