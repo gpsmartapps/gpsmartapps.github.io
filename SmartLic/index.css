@@ -81,6 +81,7 @@ button:disabled {
     cursor: not-allowed;
 }
 
+/* Styling for the generated key */
 .generated-key {
     margin-top: 20px;
     text-align: center;
@@ -90,9 +91,12 @@ button:disabled {
     border: 1px solid #ddd;
 }
 
+/* Apply color same as button for the license key text */
 .generated-key p {
-    font-size: 1.2em;
+    font-size: 1.6em;
     font-weight: bold;
+    color: #4BAD4E;
+    /* Same as button and logo */
 }
 
 img {

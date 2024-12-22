@@ -39,7 +39,6 @@ const generateLicense = async () => {
     document.getElementById('phone').classList.remove('error');
 
     // Input validation
-    // Validation logic
     if (!systemId) {
         showToast("System ID is required.", 'error');
         const systemIdField = document.getElementById('system-id');
@@ -67,14 +66,33 @@ const generateLicense = async () => {
     const identifier = "928374651032587"; // Replace with your identifier
 
     try {
+        // Generate the license key
         const generatedKey = await generateLicenseKey(systemId, identifier);
-        document.getElementById('license-key').textContent = generatedKey.toUpperCase();
+        const upperCaseKey = generatedKey.toUpperCase();  // Convert the key to uppercase
+        document.getElementById('license-key').textContent = upperCaseKey;
         document.getElementById('generated-key').style.display = 'block';
         showToast("License key generated successfully!", 'success');
+
+        // Send the license key via email (mailto)
+        sendLicenseViaMailto(upperCaseKey, email);  // Pass the uppercase key
     } catch (error) {
         showToast("Failed to generate license key.", 'error');
         console.error("Error generating license:", error);
     }
+};
+
+// Function to create a mailto link and trigger the email client
+const sendLicenseViaMailto = (licenseKey, email) => {
+    const subject = encodeURIComponent("Your License Key");
+    const body = encodeURIComponent(`Hello,
+
+Your license key is: ${licenseKey}
+
+Thank you for using our service!`);
+
+    const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
+
+    window.location.href = mailtoLink; // Opens the default email client with pre-filled details
 };
 
 // Event listener for the button
