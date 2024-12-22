@@ -28,41 +28,68 @@ h1 {
 
 .form-group {
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    /* Increased space between fields */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
+/* Control margins for labels */
 label {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    /* Margin between label and input */
     font-weight: bold;
 }
 
+/* Control margin for input fields */
 input {
     width: 100%;
     padding: 10px;
-    margin: 5px 0;
+    margin-top: 5px;
+    /* Space above the input field */
+    margin-bottom: 15px;
+    /* Space below the input field */
+    margin-left: 0;
+    /* Left margin */
+    margin-right: 0;
+    /* Right margin */
     border-radius: 5px;
     border: 1px solid #ddd;
 }
 
+/* Button styling */
+/* Button styling */
 button {
     width: 100%;
     padding: 10px;
-    background-color: #1e90ff;
+    background-color: #4BAD4E; /* Updated button color */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+    transition: background-color 0.2s ease; /* Smooth transition on hover and click */
 }
+
+/* Button active state (click effect) */
+button:active {
+    background-color: #429d3b; /* Darker shade for button when clicked */
+}
+
+/* Disabled button */
+button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
 
 button:disabled {
     background-color: #ddd;
     cursor: not-allowed;
 }
 
+/* Styling for the generated key block */
 .generated-key {
     margin-top: 20px;
     text-align: center;
@@ -104,6 +131,8 @@ img {
 
     input {
         padding: 12px;
+        margin-bottom: 20px;
+        /* Adjust margin for input fields */
     }
 
     button {
@@ -132,6 +161,8 @@ img {
 
     input {
         padding: 14px;
+        margin-bottom: 25px;
+        /* Adjust margin for input fields */
     }
 
     button {
