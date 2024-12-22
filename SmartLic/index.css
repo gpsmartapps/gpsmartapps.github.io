@@ -28,27 +28,29 @@ h1 {
 
 .form-group {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 2px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    /* Ensure inputs are centered */
 }
 
 label {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-weight: bold;
 }
 
 /* Basic styling for the input fields */
 input {
     width: 100%;
+    /* Ensure input fields take up full width */
     padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-top: 2px;
+    margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
+    box-sizing: border-box;
+    /* Ensure padding doesn't add extra width */
 }
 
 /* Error styling for the input fields when invalid */
@@ -61,14 +63,16 @@ input.error {
 
 button {
     width: 100%;
-    /* Ensure the button takes up 100% of the container width */
+    /* Ensure button takes up full width */
     padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
     background-color: #4BAD4E;
     color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
     transition: background-color 0.2s ease;
 }
 
@@ -122,7 +126,8 @@ img {
 
 /* Styling for individual toasts */
 .toast {
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.8);
+    /* Slightly transparent dark background */
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
@@ -223,19 +228,16 @@ img {
     }
 
     input {
-        width: 90%;
+        width: 100%;
         /* Ensure input fields are full width */
         padding: 10px;
-        margin-bottom: 15px;
-        margin-left: 10px;
-        /* Add space on the left */
-        margin-right: 10px;
-        /* Add space on the right */
+        margin-bottom: 10px;
     }
 
     button {
         width: 100%;
         /* Ensure button is full width */
         padding: 10px;
+        margin-top: 10px;
     }
 }
