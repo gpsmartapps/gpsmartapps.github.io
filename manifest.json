@@ -1,25 +1,58 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "LicGen",
+  "name": "License Generator",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/images/logo-icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
     },
     {
-      "src": "logo192.png",
+      "src": "/images/logo-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "/images/logo-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "id": "/?source=pwa",
+  "start_url": "/?source=pwa",
+  "background_color": "#ffffff",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "scope": "/",
+  "theme_color": "#1E90FF",
+  "shortcuts": [
+    {
+      "name": "Generate a License",
+      "short_name": "Generate",
+      "description": "Start generating a license key",
+      "url": "/generate?source=pwa",
+      "icons": [{ "src": "/images/generate-shortcut.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "View Documentation",
+      "short_name": "Docs",
+      "description": "Read the user documentation for LicGen",
+      "url": "/docs?source=pwa",
+      "icons": [{ "src": "/images/docs-shortcut.png", "sizes": "192x192" }]
+    }
+  ],
+  "description": "Generate secure license keys for your applications.",
+  "screenshots": [
+    {
+      "src": "/images/screenshot-main.png",
+      "type": "image/png",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/images/screenshot-key.png",
+      "type": "image/png",
+      "sizes": "720x540",
+      "form_factor": "wide"
+    }
+  ]
 }
