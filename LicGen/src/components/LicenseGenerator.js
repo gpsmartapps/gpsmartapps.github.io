@@ -70,8 +70,8 @@ const LicenseGenerator = () => {
   const [error, setError] = useState(""); // To display any error message
 
   // Retrieve the static identifier from the environment variable
-  const identifier = process.env.REACT_APP_IDENTIFIER;
-  console.log("Identifier from .env:", process.env.REACT_APP_IDENTIFIER);
+  const identifier = process.env.Lic_Secret
+  console.log("Identifier from .env:", identifier);
 
   // Function to call generateLicenseKey and generate the license key
   const generateLicense = async () => {

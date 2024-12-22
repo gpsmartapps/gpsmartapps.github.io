@@ -1,5 +1,5 @@
 import React from "react";
-import LicenseGenerator from "./components/LicenseGenerator";
+import LicenseGenerator from "./components/LicenseGenerator.js";
 import "./styles.css";
 import "./components/licenseUtils.js"
 
@@ -12,3 +12,4 @@ function App() {
 }
 
 export default App;
+
