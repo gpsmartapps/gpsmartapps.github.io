@@ -1,0 +1,154 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    margin: 0
+}
+
+.registration-container {
+    display: flex;
+    max-width: 800px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    overflow: hidden
+}
+
+.left-panel {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 30px;
+    flex: 1
+}
+
+.left-panel .home-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700
+}
+
+.left-panel .home-link i {
+    margin-right: 5px
+}
+
+.left-panel p a {
+    color: #fff
+}
+
+.right-panel {
+    padding: 30px;
+    flex: 1;
+    position: relative
+}
+
+.right-panel h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px
+}
+
+.header-icons {
+    position: absolute;
+    top: 10px;
+    right: 10px
+}
+
+.header-icons .house-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color .3s ease
+}
+
+.header-icons .house-icon:hover {
+    color: var(--primary-color-darker)
+}
+
+.left-panel img {
+    max-width: 100px;
+    margin-bottom: 20px
+}
+
+.form-group {
+    margin-bottom: 15px
+}
+
+.form-actions {
+    margin-top: 20px
+}
+
+.form-actions button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: 0;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color .3s ease, box-shadow .3s ease;
+    width: 100%
+}
+
+.form-actions button:hover {
+    background-color: var(--primary-color-darker);
+    color: #fff
+}
+
+.form-actions button:active,
+.form-actions button:focus {
+    background-color: var(--primary-color-darker);
+    color: #fff;
+    box-shadow: none;
+    outline: 0
+}
+
+.form-actions a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 400;
+    margin-left: 10px
+}
+
+.form-actions a:hover {
+    text-decoration: underline;
+    color: var(--primary-color)
+}
+
+.form-links {
+    text-align: center;
+    margin-top: 8px
+}
+
+.form-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 400;
+    margin: 0 10px
+}
+
+
+@media (max-width:768px) {
+    .registration-container {
+        flex-direction: column
+    }
+
+    .left-panel,
+    .right-panel {
+        padding: 20px;
+        text-align: center
+    }
+
+    .header-icons {
+        position: static;
+        margin-top: 1rem
+    }
+
+    .left-panel ul {
+        list-style: none
+    }
+}
+

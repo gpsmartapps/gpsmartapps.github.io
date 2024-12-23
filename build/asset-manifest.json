@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/LicGen/static/css/main.65c8f0d1.css",
+    "main.js": "/LicGen/static/js/main.7bb48224.js",
+    "static/js/488.e51043b9.chunk.js": "/LicGen/static/js/488.e51043b9.chunk.js",
+    "index.html": "/LicGen/index.html",
+    "main.65c8f0d1.css.map": "/LicGen/static/css/main.65c8f0d1.css.map",
+    "main.7bb48224.js.map": "/LicGen/static/js/main.7bb48224.js.map",
+    "488.e51043b9.chunk.js.map": "/LicGen/static/js/488.e51043b9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.65c8f0d1.css",
+    "static/js/main.7bb48224.js"
+  ]
+}

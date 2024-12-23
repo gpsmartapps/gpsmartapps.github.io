@@ -1,0 +1,171 @@
+.login-container {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+.login-left {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-left img {
+    max-width: 100px;
+    margin-bottom: 20px;
+    margin-left: 120px;
+}
+
+.login-left h2 {
+    margin-top: 0;
+    justify-content: center;
+    text-align: center;
+}
+
+.login-right {
+    padding: 30px;
+    flex: 2;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-right h2 {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: var(--input-padding);
+    border: 1px solid var(--border-color);
+    border-radius: var(--button-border-radius);
+    background-color: #fff;
+}
+
+.form-actions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.form-actions button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: 0;
+    padding: var(--button-padding);
+    border-radius: var(--button-border-radius);
+    cursor: pointer;
+}
+
+.form-actions button:hover {
+    background-color: var(--primary-color-darker);
+}
+
+.passport-preview-container {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+/* Adjust the size and position of the preview image */
+#passportPreview {
+    display: none;
+    width: 80px;
+    /* Adjust the size as needed */
+    height: 80px;
+    margin-bottom: 20px;
+    position: absolute;
+    right: 80px;
+    top: 1px;
+    border: 1px solid var(--border-color);
+    /* Optional: Add border for visibility */
+    border-radius: 4px;
+    /* Optional: Round the corners */
+}
+
+@media(max-width:768px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-left,
+    .login-right {
+        padding: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-group {
+        min-width: 100%;
+    }
+
+    .login-left img {
+        max-width: 100px;
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+
+    .form-group input[type=date] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .passport-preview-container {
+        position: static;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .passport-preview-container img {
+        margin: 0 auto;
+    }
+}
+
+@media(max-width: 768px) {
+    #passportPreview {
+        right: 20px;
+        top: 80px;
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media(max-width: 480px) {
+    #passportPreview {
+        right: 15px;
+        top: 60px;
+        width: 50px;
+        height: 50px;
+    }
+}

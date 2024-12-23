@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License Key Generator</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div id="toast-container" class="toast-container"></div> <!-- Toast Notifications -->
+
+    <div class="container">
+        <!-- Initial Loading Spinner -->
+        <div id="loading-spinner" class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Digispower LLC</p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="container" style="display:none;" id="main-content">
+            <div id="logo-container" style="margin-bottom: 20px;"></div> <!-- Dynamic Logo -->
+            <h1>License Key Generator</h1>
+
+            <!-- Input Fields -->
+            <div class="form-group">
+                <label for="system-id">System ID:</label>
+                <input id="system-id" type="text" placeholder="Enter System ID" />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input id="email" type="email" placeholder="Enter your email" />
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input id="phone" type="tel" placeholder="Enter your phone number" />
+            </div>
+
+            <button id="generate-btn">Generate License Key</button>
+
+            <div id="generated-key" class="generated-key" style="display: none;">
+                <h2>Generated License Key:</h2>
+                <p id="license-key"></p>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>

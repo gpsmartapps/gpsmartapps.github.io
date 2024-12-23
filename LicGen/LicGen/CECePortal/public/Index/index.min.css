@@ -1,0 +1,349 @@
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap);
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #f7faff;
+}
+
+
+.logo {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 2rem;
+    color: var(--primary-color-darker);
+    user-select: none
+}
+
+.logo-link {
+    display: inline-block;
+    text-decoration: none
+}
+
+.logo-image {
+    width: 50px;
+    height: auto;
+    user-select: none;
+    -webkit-touch-callout: none
+}
+
+body,
+html {
+    font-family: Montserrat, sans-serif;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat, sans-serif
+}
+
+.container {
+    max-width: 1050px;
+    margin: 0 auto
+}
+
+.custom-btn {
+    border: 0;
+    outline: 0;
+    font-family: Montserrat, sans-serif;
+    font-weight: 700;
+    cursor: pointer
+}
+
+p {
+    font-weight: 400;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    letter-spacing: .2px;
+    color: var(--second-text-color)
+}
+
+h2 {
+    font-size: 2.5rem;
+    line-height: 3.125rem;
+    letter-spacing: .2px;
+    color: var(--text-color)
+}
+
+h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    padding-right: 0;
+    color: var(--text-color)
+}
+
+h4 {
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+    letter-spacing: .2px;
+    color: var(--second-text-color)
+}
+
+h5 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    letter-spacing: .1px;
+    color: var(--primary-color)
+}
+
+h6 {
+    font-size: .875rem;
+    line-height: 1.5rem;
+    letter-spacing: .2px;
+    color: var(--primary-color)
+}
+
+.text-sm {
+    font-size: .875rem;
+    line-height: 1.5rem
+}
+
+header {
+    position: relative
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .9375rem 0;
+    background-color: #f7faff;
+
+}
+
+nav .nav-wrapper {
+    display: flex;
+    align-items: center
+}
+
+nav .nav-wrapper .logo {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    letter-spacing: .1px;
+    color: var(--text-color);
+    margin-right: 4.1875rem
+}
+
+nav .nav-wrapper ul {
+    display: flex;
+    gap: 1.3125rem
+}
+
+nav .nav-wrapper ul li {
+    list-style: none
+}
+
+nav .login,
+nav .nav-wrapper ul li a,
+nav .signup {
+    color: var(--second-text-color);
+    text-decoration: none;
+    transition: color .3s ease-in-out
+}
+
+nav .login:hover {
+    color: var(--primary-color-darker)
+}
+
+nav .nav-wrapper ul li a:hover {
+    color: var(--primary-color)
+}
+
+nav div:last-child {
+    display: flex;
+    gap: 2.8125rem;
+    align-items: center
+}
+
+nav .login {
+    color: var(--primary-color);
+    letter-spacing: .2px;
+    cursor: pointer
+}
+
+nav .signup {
+    background: var(--primary-color);
+    color: #f7faff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: .9375rem 1.5625rem;
+    gap: .9375rem;
+    border-radius: 5px;
+    transition: background .1s ease-in-out
+}
+
+.hero-info .cta-buttons button:first-child:hover,
+nav .signup:hover {
+    background: var(--primary-color-darker)
+}
+
+.curved-rectangle-1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    width: 49%;
+    height: 543.79px;
+    background: #f7faff;
+    border-bottom-left-radius: 150px
+}
+
+.curved-rectangle-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    width: 70%;
+    height: 617px;
+    border-top-right-radius: 200px;
+    border-bottom-right-radius: 200px;
+    background: #eff8ed
+}
+
+#hero {
+    position: relative
+}
+
+#hero .container {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr)
+}
+
+#hero .container .hero-img {
+    position: absolute;
+    top: -1.25rem;
+    right: -7.5rem
+}
+
+.hero-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5625rem;
+    margin-top: 5rem
+}
+
+.hero-info h1 {
+    font-size: 3.225rem;
+    line-height: 5rem;
+    letter-spacing: .2px;
+    color: var(--text-color);
+    opacity: .7
+}
+
+.hero-info .cta-buttons {
+    display: flex;
+    gap: .625rem
+}
+
+.hero-info .cta-buttons button {
+    padding: .9375rem 2.5rem;
+    border-radius: 5px;
+    letter-spacing: .2px;
+    transition: all .1s ease-in-out
+}
+
+.hero-info .cta-buttons button:first-child {
+    background: var(--primary-color);
+    color: #f7faff
+}
+
+.hero-info .cta-buttons button:last-child {
+    background: 0 0;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color)
+}
+
+.hero-info .cta-buttons button:last-child:hover {
+    border: 1px solid var(--primary-color-darker);
+    color: var(--primary-color-darker)
+}
+
+#hero .features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.875rem;
+    margin-top: 5rem
+}
+
+#hero .features .feature-item {
+    display: flex;
+    flex-direction: column;
+    padding: 2.1875rem 2.5rem;
+    gap: 1.25rem;
+    background-color: #f7faff;
+    box-shadow: 0 13px 19px rgba(0, 0, 0, .07)
+}
+
+#hero .features .feature-item img {
+    width: 4.5rem
+}
+
+#hero .features .feature-item h3 {
+    margin-right: -2.5rem
+}
+
+#hero .features .feature-item div {
+    height: 2px;
+    background: var(--danger-color);
+    width: 3.125rem
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    max-height: 900px;
+    object-fit: cover
+}
+
+.features {
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap
+}
+
+.feature {
+    text-align: center;
+    margin: 1rem
+}
+
+footer {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-top: 1px solid #e0e0e0
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap
+}
+
+.footer-links a {
+    margin-right: 1.5rem;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1rem
+}
+
+.footer-links a:hover {
+    text-decoration: underline
+}
+
+.footer-info {
+    text-align: right;
+    color: var(--text-color)
+}
+
+.footer-info p {
+    margin: 0
+}
+
+.hide-on-mobile {
+    display: none
+}

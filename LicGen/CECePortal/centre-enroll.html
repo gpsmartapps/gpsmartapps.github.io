@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Centre Enrollment - Catholic Education Board</title>
+    <link rel="icon" href="/CECePortal/assets/icons/favicon.svg" type="image/png" />
+    <link rel="icon" href="/CECePortal/assets/icons/favicon.png" type="image/png" />
+    <link href="/CECePortal/public/Global/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/CECePortal/public/Global/bootstrap-icons.min.css" />
+    <link href="/CECePortal/public/Centres/centre-enroll.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/CECePortal/public/Global/glob.min.css" />
+    <noscript>
+        <meta http-equiv="refresh" content="0;url=/CECePortal/public/Global/error-page.html" />
+    </noscript>
+</head>
+
+<body>
+    <div id="loading" style="display: none">
+        <div class="loader"></div>
+        <p>Loading... Please wait.</p>
+    </div>
+
+    <div class="login-container unselectable">
+        <div class="login-left unselectable">
+            <a href="/CECePortal/index.html"><img src="/CECePortal/assets/logo/logo.png" alt="CEC ePortal Logo" /></a>
+            <h2>Centre Enrollment</h2>
+            <p>Update your school or centre's information.</p>
+            <ul>
+                <li>Verify and update your school details</li>
+                <li>Manage data efficiently</li>
+                <li>Stay updated with exam info</li>
+            </ul>
+            <p>If you need any help, please <a href="mailto:support@cec-portal.com">Contact Support</a>.</p>
+        </div>
+
+        <div class="login-right unselectable">
+            <div class="header-icons unselectable">
+                <a href="/CECePortal/index.html" class="house-icon unselectable">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        class="bi bi-house" viewBox="0 0 16 16">
+                        <path
+                            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+                    </svg>
+                </a>
+            </div>
+            <h2>Update School Information</h2>
+            <form id="centreEnrollForm">
+                <!-- Step 1: School Information -->
+                <div class="step" id="step-1">
+                    <h3>Step 1: School Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="examType">Examination Type</label>
+                            <input type="text" id="examType" name="examType" value="MOCK Examination" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="schoolNumber">School Number</label>
+                            <input type="text" id="schoolNumber" name="schoolNumber" readonly />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="schoolName">School Name</label>
+                            <input type="text" id="schoolName" name="schoolName" readonly />
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="next" onclick="nextStep(1)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Location Details -->
+                <div class="step" id="step-2" style="display: none;">
+                    <h3>Step 2: Location Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <select id="state" name="state">
+                                <option value="" disabled selected>Select State</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="lga">Local Government Area</label>
+                            <select id="lga" name="lga">
+                                <option value="" disabled selected>Select an LGA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="prev" onclick="prevStep(2)">Back</button>
+                        <button type="button" class="next" onclick="nextStep(2)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: School Type and Email -->
+                <div class="step" id="step-3" style="display: none;">
+                    <h3>Step 3: School Type and Email</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="schoolType">School Type</label>
+                            <select id="schoolType" name="schoolType">
+                                <option value="" disabled selected>Select School Type</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="schoolEmail">School Email</label>
+                            <input type="email" id="schoolEmail" name="schoolEmail" />
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="prev" onclick="prevStep(3)">Back</button>
+                        <button type="button" class="next" onclick="nextStep(3)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Registrator Details -->
+                <div class="step" id="step-4" style="display: none;">
+                    <h3>Step 4: Registrator Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="principalPhone">Principal's Phone Number</label>
+                            <input type="tel" id="principalPhone" name="principalPhone" />
+                        </div>
+                        <div class="form-group">
+                            <label for="registratorName">Full Name of Registrator</label>
+                            <input type="text" id="registratorName" name="registratorName" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="registratorPhone">Registrator's Phone</label>
+                            <input type="tel" id="registratorPhone" name="registratorPhone" />
+                        </div>
+                        <div class="form-group">
+                            <label for="registratorEmail">Registrator's Email Address</label>
+                            <input type="email" id="registratorEmail" name="registratorEmail" />
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="prev" onclick="prevStep(4)">Back</button>
+                        <button type="button" class="next" onclick="nextStep(4)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 5: School Address -->
+                <div class="step" id="step-5" style="display: none;">
+                    <h3>Step 5: School Address</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="schoolAddress">School Address</label>
+                            <textarea id="schoolAddress" name="schoolAddress" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="prev" onclick="prevStep(5)">Back</button>
+                        <button type="submit" id="update">Update School Record</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div id="notification-bar" class="notification-bar">
+            <span id="notification-message" class="notification-message"></span>
+        </div>
+        <div id="notification" class="notification unselectable"></div>
+    </div>
+
+    <script src="/CECePortal/public/Centres/centre_enrollment.js"></script>
+    <script src="/CECePortal/public/Global/glob.js"></script>
+
+</body>
+
+</html>
