@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/CECePortal/assets/icons/favicon.ico" type="image/ico">
+    <link rel="icon" href="/CECePortal/assets/icons/favicon.png" type="image/png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/CECePortal/public/OTPs/verification.min.css">
+    <link rel="stylesheet" href="/CECePortal/public/Global/glob.min.css">
+    <title>OTP Verification</title>
+    <noscript>
+        <meta http-equiv="refresh" content="0;url=/CECePortal/error-page.html">
+    </noscript>
+</head>
+<body class="container-fluid bg-body-tertiary d-flex flex-column min-vh-100">
+    <div class="row justify-content-center flex-grow-1">
+        <div class="col-12 col-md-6 col-lg-4" style="min-width: 500px;">
+            <div class="card bg-white mb-5 mt-5 border-0" style="box-shadow: 0 12px 15px rgba(0, 0, 0, 0.1);">
+                <div class="header-icons unselectable">
+                    <a href="/CECePortal/index.html" class="house-icon unselectable">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="card-body p-5 text-center">
+                    <h4>Verify your Account</h4>
+                    <p>Your code was sent to you via email</p>
+                    <div class="otp-field mb-4">
+                        <input type="text" maxlength="1" id="otp-1" name="otp-1" autocomplete="off"/>
+                        <input type="text" maxlength="1" id="otp-2" name="otp-2" autocomplete="off" disabled />
+                        <input type="text" maxlength="1" id="otp-3" name="otp-3" autocomplete="off" disabled />
+                        <input type="text" maxlength="1" id="otp-4" name="otp-4" autocomplete="off" disabled />
+                        <input type="text" maxlength="1" id="otp-5" name="otp-5" autocomplete="off" disabled />
+                        <input type="text" maxlength="1" id="otp-6" name="otp-6" autocomplete="off" disabled />
+                    </div>
+                    <div class="form-actions unselectable">
+                        <button type="submit" id="btnVerifyOTP" class="btn">Verify OTP</button>
+                    </div>
+                    
+                    <p class="resend text-muted mb-0">
+                        Didn't receive code? <a href="#" id="resendOTP">Resend OTP verification code.</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Bar -->
+    <div id="notification-bar" class="notification-bar">
+        <span id="notification-message" class="notification-message"></span>
+    </div>
+    <div id="notification" class="notification unselectable"></div>
+    <script src="/CECePortal/public/OTPs/verification.min.js"></script>
+    <script type="text/javascript" src="/CECePortal/public/Global/glob.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</body>
+</html>

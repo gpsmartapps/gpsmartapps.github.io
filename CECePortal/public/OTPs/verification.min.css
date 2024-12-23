@@ -1,0 +1,191 @@
+/* Include your RootStyle here */
+:root {
+    --primary-color-darker: hsl(125, 65%, 33%);
+    --primary-color: hsl(122, 39%, 49%);
+    --text-color: #252b42;
+    --second-text-color: #737373;
+    --danger-color: #e74040;
+    --background-color: #f7faff;
+    --input-padding: 10px;
+    --border-color: #ccc;
+    --button-padding: 10px 20px;
+    --button-border-radius: 4px;
+}
+
+html, body {
+    background-color: var(--background-color); /* Light background for better contrast */
+    font-family: Arial, sans-serif; /* Set a default font */
+    /* height: 100%; */
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+         min-height: 100vh;
+    background-color: var(--background-color);
+    margin: 0
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.col-12.col-md-6.col-lg-4 {
+    min-width: 500px;
+    }
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 12px 15px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: center;
+}
+
+.card-body {
+    padding: 2rem;
+    background-color: #ffffff;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.house-icon {
+    text-decoration: none;
+    color: #000; /* Icon color */
+}
+
+
+
+
+.header-icons .house-icon {
+    color: var(--primary-color-darker); /* Same color as primary darker */
+    transition: color 0.3s ease;
+}
+
+.header-icons .house-icon:hover {
+    color: var(--primary-color); /* Slightly lighter color on hover */
+}
+
+
+.otp-field {
+    flex-direction: row;
+    column-gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.otp-field input {
+    height: 45px;
+    width: 42px;
+    border-radius: 6px;
+    outline: none;
+    font-size: 1.125rem;
+    text-align: center;
+    border: 1px solid #ddd;
+    transition: width 0.2s, height 0.2s;
+}
+
+.otp-field input:focus {
+    box-shadow: 0 0 5px var(--primary-color-darker);
+    border-color: var(--primary-color);
+}
+
+.resend a {
+    color: var(--primary-color-darker); /* Match the primary darker color */
+    text-decoration: none; /* Remove underline by default */
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transition */
+}
+
+.resend a:hover {
+    color: var(--primary-color-darker); /* Keep the color the same on hover */
+    text-decoration: underline; /* Add underline on hover */
+}
+
+
+.btn {
+    background-color: var(--primary-color); /* Primary green color */
+    color: #fff; /* Text color */
+    border: 0; /* Remove border */
+    padding: var(--button-padding); /* Use button padding variable */
+    border-radius: var(--button-border-radius); /* Use border radius variable */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background-color .3s ease, box-shadow .3s ease; /* Smooth transition */
+    width: 100%; /* Full width */
+    margin-bottom: 10px;
+}
+
+.btn:enabled:hover, .btn:enabled:active {
+    background-color: var(--primary-color-darker); /* Darker green when hovered or clicked */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover or click */
+    color: #fff; /* Keep text white */
+}
+
+.btn:disabled {
+    background-color: #ccc; /* Gray color when button is disabled */
+    cursor: not-allowed; /* Show disabled cursor */
+}
+
+footer {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    margin-right: 1.5rem;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-info {
+    text-align: right;
+    color: var(--text-color);
+}
+
+.footer-info p {
+    margin: 0;
+}
+
+.hide-on-mobile {
+    display: none;
+}
+
+/* Mobile Responsiveness */
+
+@media (max-width: 768px) {
+    .otp-field {
+        column-gap: 5px;
+    }
+
+    .otp-field input {
+        width: 38px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .otp-field input {
+        width: 36px;
+        height: 36px;
+    }
+}
