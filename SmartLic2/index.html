@@ -4,50 +4,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> Ensures compatibility mode in IE -->
+
+    <meta name="description" content="Seamlessly generate license key for your Academic apps.">
+    <meta name="keywords" content="license, key, academic, academy, academic hub">
+    <meta name="author" content="Digispower LLC">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Seamlessly generate license key for your Academic apps.">
+    <meta property="og:description" content="Seamlessly generate license key for your Academic apps.">
+    <meta property="og:image" content="https://gpsmartapps.github.io/CECePortal/assets/logo/logo2.png">
+    <meta property="og:url" content="https://gpsmartapps.github.io/LicGen">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Seamlessly generate license key for your Academic apps.">
+    <meta name="twitter:description" content="Seamlessly generate license key for your Academic apps.">
+    <meta name="twitter:image" content="https://gpsmartapps.github.io/CECePortal/assets/logo/logo2.png">
+    <meta name="twitter:site" content="@SmartLic">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="en_GB">
+    <meta property="og:site_name" content="Digispower LLC">
+    <link rel="icon" href="https://dl.dropboxusercontent.com/s/7nfhhr0f8hmq4743ngexq/favicon1.ico" />
+    <link rel="apple-touch-icon" href="https://dl.dropboxusercontent.com/s/7nfhhr0f8hmq4743ngexq/favicon1.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
     <title>License Key Generator</title>
-    <link rel="stylesheet" href="index.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/react-toastify/9.1.2/ReactToastify.min.css" />
+    <link rel="stylesheet" href="index.css" />
+
+    <!-- Polyfill for older browsers (Internet Explorer support) -->
+    <script
+        src="https://cdn.polyfill.io/v3/polyfill.min.js?features=default,fetch,Promise,Array.prototype.includes,Object.assign"></script>
+
+    <!-- Add CSS Vendor Prefixes for better Flexbox and other support -->
+    <style>
+        /* Flexbox and other CSS improvements for IE */
+        .container {
+            display: -ms-flexbox;
+            /* IE10 */
+            display: flex;
+            -ms-flex-direction: column;
+            /* IE10 */
+            flex-direction: column;
+            -ms-align-items: center;
+            /* IE10 */
+            align-items: center;
+            -ms-justify-content: center;
+            /* IE10 */
+            justify-content: center;
+        }
+
+        button {
+            display: block;
+            -ms-flex: 1;
+            /* IE10 */
+            flex: 1;
+        }
+
+        input {
+            display: block;
+            -ms-flex: 1;
+            /* IE10 */
+            flex: 1;
+        }
+
+        /* IE Fix for Toast Notifications */
+        #toast-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            width: auto;
+            max-width: 90%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="toast-container" class="toast-container"></div> <!-- Toast Notifications -->
 
     <div class="container">
-        <!-- Initial Loading Spinner -->
-        <div id="loading-spinner" class="loading-spinner">
-            <div class="spinner"></div>
-            <p>Digispower LLC</p>
+        <img src="logo2.png" alt="Logo" style="width: 120px; margin-bottom: 20px;" />
+        <h1>License Key Generator</h1>
+
+        <!-- Input fields -->
+        <div class="form-group">
+            <label for="system-id">System ID:</label>
+            <input id="system-id" type="text" placeholder="Enter System ID" />
         </div>
 
-        <!-- Main Content -->
-        <div class="container" style="display:none;" id="main-content">
-            <div id="logo-container" style="margin-bottom: 20px;"></div> <!-- Dynamic Logo -->
-            <h1>License Key Generator</h1>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" type="email" placeholder="Enter your email" />
+        </div>
 
-            <!-- Input Fields -->
-            <div class="form-group">
-                <label for="system-id">System ID:</label>
-                <input id="system-id" type="text" placeholder="Enter System ID" />
-            </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input id="phone" type="tel" placeholder="Enter your phone number" />
+        </div>
 
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input id="email" type="email" placeholder="Enter your email" />
-            </div>
+        <button id="generate-btn">Generate License Key</button>
 
-            <div class="form-group">
-                <label for="phone">Phone Number:</label>
-                <input id="phone" type="tel" placeholder="Enter your phone number" />
-            </div>
-
-            <button id="generate-btn">Generate License Key</button>
-
-            <div id="generated-key" class="generated-key" style="display: none;">
-                <h2>Generated License Key:</h2>
-                <p id="license-key"></p>
-            </div>
+        <!-- Generated License Key -->
+        <div id="generated-key" class="generated-key" style="display: none;">
+            <h2>Generated License Key:</h2>
+            <p id="license-key"></p>
         </div>
     </div>
+
+    <div id="toast-container"></div>
+
+    <div id="loading-spinner" class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
     <script type="module" src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-toastify/9.1.2/ReactToastify.min.js"></script>
+
+    <script>
+        const logoUrl = "https://www.dropbox.com/scl/fi/d5fujjjgab8f0ji6wsnlr/logo2.png?rlkey=8tw9w36dj8kqcma94xzhn2t3o&dl=1";
+        const logoImage = document.querySelector('img');
+
+        const img = new Image();
+        img.src = logoUrl;
+
+        img.onload = function () {
+            logoImage.src = logoUrl;
+        };
+
+        img.onerror = function () {
+            logoImage.src = "logo2.png";
+        };
+
+        // Function to show the loading spinner
+        function showLoading() {
+            document.getElementById('loading-spinner').style.display = 'block';
+        }
+
+        // Function to hide the loading spinner
+        function hideLoading() {
+            document.getElementById('loading-spinner').style.display = 'none';
+        }
+    </script>
+
 </body>
 
 </html>

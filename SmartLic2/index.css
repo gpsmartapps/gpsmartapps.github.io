@@ -1,94 +1,98 @@
+/* Basic styling */
 body {
     font-family: Arial, sans-serif;
+    padding: 20px;
     background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-
-/* Spinner Styling */
-.loading-spinner {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 500px;
     width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
-    z-index: 1000;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
     text-align: center;
 }
 
-.loading-spinner .spinner {
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #4BAD4E;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* Toast Notifications */
-.toast-container {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 1100;
+.form-group {
+    width: 100%;
+    margin-bottom: 2px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    /* Ensure inputs are centered */
 }
 
-.toast {
-    padding: 10px 20px;
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Basic styling for the input fields */
+input {
+    width: 100%;
+    /* Ensure input fields take up full width */
+    padding: 10px;
+    margin-top: 2px;
+    margin-bottom: 10px;
     border-radius: 5px;
-    color: #fff;
-    font-size: 14px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    animation: fadeInOut 3s ease-in-out;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    /* Ensure padding doesn't add extra width */
 }
 
-.toast.info {
-    background-color: #3498db;
+/* Error styling for the input fields when invalid */
+input.error {
+    border-color: crimson;
+    /* Red border for error */
+    box-shadow: 0 0 5px crimson;
+    /* Red glow around the input field */
 }
 
-.toast.success {
-    background-color: #2ecc71;
+button {
+    width: 100%;
+    /* Ensure button takes up full width */
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #4BAD4E;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-.toast.error {
-    background-color: #e74c3c;
+button:active {
+    background-color: #429d3b;
 }
 
-@keyframes fadeInOut {
+button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
 
-    0%,
-    100% {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    10%,
-    90% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Styling for the generated key */
+.generated-key {
+    margin-top: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
 }
 
 /* Apply color same as button for the license key text */
@@ -99,53 +103,165 @@ body {
     /* Same as button and logo */
 }
 
-/* Form Styling */
-.container {
-    max-width: 500px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
+img {
+    width: 150px;
+    margin-bottom: 20px;
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    object-fit: contain;
 }
 
-input {
-    width: 93%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+/* Toast container positioning */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: auto;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-button {
+/* Styling for individual toasts */
+.toast {
+    background-color: rgba(51, 51, 51, 0.8);
+    /* Slightly transparent dark background */
+    color: white;
     padding: 10px 20px;
-    font-size: 16px;
-    background-color: #4BAD4E;
-    color: #fff;
-    border: none;
     border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: toast-slide-in 0.5s ease-out;
 }
 
-button:hover {
-    background-color: #3a8e3c;
+.toast.success {
+    background-color: #4CAF50;
 }
 
-.generated-key {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.toast.error {
+    background-color: crimson;
+}
+
+@keyframes toast-slide-in {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Spinner style */
+   .spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #4BAD4E;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    display: none; /* Initially hidden */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+/* Media Queries for Larger Screens */
+
+/* For tablets (min-width: 768px) */
+@media (min-width: 768px) {
+    .container {
+        padding: 40px;
+        width: 80%;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    input {
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 12px;
+    }
+
+    .generated-key {
+        padding: 25px;
+    }
+}
+
+/* For desktops (min-width: 1024px) */
+@media (min-width: 1024px) {
+    .container {
+        padding: 50px;
+        width: 60%;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    input {
+        padding: 14px;
+        margin-bottom: 25px;
+    }
+
+    button {
+        padding: 14px;
+    }
+
+    .generated-key {
+        padding: 30px;
+    }
+}
+
+/* Mobile first adjustments for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        /* Reduce container width on smaller devices */
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    input {
+        width: 100%;
+        /* Ensure input fields are full width */
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        width: 100%;
+        /* Ensure button is full width */
+        padding: 10px;
+        margin-top: 10px;
+    }
 }
