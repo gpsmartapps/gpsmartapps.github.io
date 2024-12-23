@@ -8,6 +8,16 @@ body {
     justify-content: center;
     height: 100vh;
 }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
 
 /* Spinner Styling */
 .loading-spinner {
@@ -34,11 +44,17 @@ body {
     animation: spin 1s linear infinite;
 }
 
+.loading-spinner p {
+    font-size: 1.5em; /* Increased font size */
+    font-weight: bold; /* Added bold styling */
+    margin-top: 10px;
+    color: #333; /* Optional: Darker color for better visibility */
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);
     }
-
     100% {
         transform: rotate(360deg);
     }
