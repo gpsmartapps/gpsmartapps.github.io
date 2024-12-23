@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Contact Us - Catholic Education Board</title>
+    <link rel="icon" href="/CECePortal/assets/icons/favicon.svg" type="image/png">
+    <link rel="icon" href="/CECePortal/assets/icons/favicon.png" type="image/png">
+    <link href="/CECePortal/public/Global/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/CECePortal/public/Global/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/CECePortal/public/ContactUs/contactus.min.css">
+    <link rel="stylesheet" href="/CECePortal/public/Global/glob.min.css">
+    <noscript>
+        <meta http-equiv="refresh" content="0;url=/CECePortal/error-page.html">
+    </noscript>
+   </head>
+
+<body>
+    <div class="contact-container unselectable">
+        <div class="contact-left unselectable">
+            <img src="/CECePortal/assets/logo/logo.png" alt="CEC ePortal Logo">
+            <p>Contact the Catholic Education Board for any inquiries or support.</p>
+            <div class="contact-hints unselectable">
+                <ul>
+                    <li>School Enrollment Support</li>
+                    <li>Student Data Management</li>
+                    <li>Exam Information Access</li>
+                </ul>
+                <p>If you need immediate help, please <a href="mailto:support@cecexams.com">Contact Support</a></p>
+            </div>
+        </div>
+        <div class="contact-right unselectable">
+            <div class="header-icons unselectable">
+                <a href="index.html" class="house-icon unselectable">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        class="bi bi-house" viewBox="0 0 16 16">
+                        <path
+                            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+                    </svg>
+                </a>
+            </div>
+            <h2>Contact Us</h2>
+            <form id="contactForm" method="POST" action="/CECePortal/send-message">
+                <div class="form-group unselectable">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter Full Name"
+                        required>
+                </div>
+                <div class="form-group unselectable">
+                    <label for="emailAddress">Email Address</label>
+                    <input type="email" class="form-control" id="emailAddress" name="emailAddress"
+                        placeholder="Enter Email Address" required>
+                </div>
+                <div class="form-group unselectable">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" name="message" placeholder="Enter Your Message"
+                        required></textarea>
+                </div>
+                <div class="form-actions unselectable">
+                    <button type="submit" id="submit" class="btn">Send Message</button>
+                </div>
+            </form>
+        </div>
+        <div id="notification-bar" class="notification-bar">
+            <span id="notification-message" class="notification-message"></span>
+        </div>
+        <div id="notification" class="notification unselectable"></div>
+    </div>
+     <script src="/CECePortal/public/Global/glob.js"></script>
+    <script src="/CECePortal/public/ContactUs/contactus.js"></script>
+</body>
+
+</html>
