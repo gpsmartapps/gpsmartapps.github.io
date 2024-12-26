@@ -123,7 +123,7 @@ function hideLoading() {
 }
 
 // Image handling logic
-const logoUrl = 'https://gpsmartapps.github.io/CECePortal/assets/logo/logo2.png'; // Replace with your actual logo URL
+const logoUrl = 'https://www.dropbox.com/scl/fi/d5fujjjgab8f0ji6wsnlr/logo2.png?rlkey=8tw9w36dj8kqcma94xzhn2t3o&st=nffnc7uy&dl=1'; // Replace with your actual logo URL
 const logoImage = new Image();
 logoImage.src = logoUrl;
 
