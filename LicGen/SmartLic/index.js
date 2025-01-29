@@ -27,6 +27,9 @@ const showToast = (message, type = 'info') => {
     setTimeout(() => toast.remove(), 3000);
 };
 
+// Select the new button
+const sendEmailButton = document.getElementById('send-email-btn');
+
 // License key generation logic
 const generateLicense = async () => {
     const systemId = document.getElementById('system-id').value;
@@ -41,51 +44,56 @@ const generateLicense = async () => {
     // Input validation
     if (!systemId) {
         showToast("System ID is required.", 'error');
-        const systemIdField = document.getElementById('system-id');
-        systemIdField.classList.add('error');
-        systemIdField.focus();
+        document.getElementById('system-id').classList.add('error');
         return;
     }
 
     if (!email || !isValidEmail(email)) {
         showToast("Invalid or missing email.", 'error');
-        const emailField = document.getElementById('email');
-        emailField.classList.add('error');
-        emailField.focus();
+        document.getElementById('email').classList.add('error');
         return;
     }
 
     if (!phone || !isValidPhone(phone)) {
         showToast("Phone number must be 11 digits.", 'error');
-        const phoneField = document.getElementById('phone');
-        phoneField.classList.add('error');
-        phoneField.focus();
+        document.getElementById('phone').classList.add('error');
         return;
     }
 
     const identifier = "928374651032587"; // Replace with your identifier
 
     try {
-        // Show loading spinner
-        showLoading();
+        showLoading(); // Show loading spinner
 
         // Generate the license key
         const generatedKey = await generateLicenseKey(systemId, identifier);
         const upperCaseKey = generatedKey.toUpperCase(); // Convert the key to uppercase
         document.getElementById('license-key').textContent = upperCaseKey;
         document.getElementById('generated-key').style.display = 'block';
-        showToast("License key generated successfully!", 'success');
+        sendEmailButton.style.display = 'block'; // Show "Send Email" button
 
-        // Send the license key via email (mailto) with systemId and copyright info
-        sendLicenseViaMailto(upperCaseKey, email, systemId); // Pass the uppercase key and systemId
+        showToast("License key generated successfully!", 'success');
     } catch (error) {
         showToast("Failed to generate license key.", 'error');
         console.error("Error generating license:", error);
     } finally {
-        // Hide loading spinner
-        hideLoading();
+        hideLoading(); // Hide loading spinner
     }
 };
+
+// Send license key via email when clicking the "Send Email" button
+sendEmailButton.addEventListener('click', () => {
+    const licenseKey = document.getElementById('license-key').textContent;
+    const email = document.getElementById('email').value;
+    const systemId = document.getElementById('system-id').value;
+
+    if (!licenseKey) {
+        showToast("No license key to send.", 'error');
+        return;
+    }
+
+    sendLicenseViaMailto(licenseKey, email, systemId);
+});
 
 // Function to create a mailto link and trigger the email client
 const sendLicenseViaMailto = (licenseKey, email, systemId) => {
