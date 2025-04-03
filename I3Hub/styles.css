@@ -45,21 +45,49 @@ body {
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(15px);
     border-radius: 12px;
-    box-shadow: 0 0 5px #717070, 0 0 5px #717070;
-    border: 0.2px solid #717070;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 0, 0, 0.5);
+    border: 0.2px solid rgba(0, 0, 0, 0.5);
     animation: neonGlow 1.5s infinite alternate;
 }
 
 /* Neon Glow Animation */
-/* @keyframes neonGlow {
+@keyframes neonGlow {
     0% {
-        box-shadow: 0 0 10px #717070, 0 0 20px #717070;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    10% {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    20% {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    40% {
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    60% {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    80% {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    90% {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5);
     }
 
     100% {
-        box-shadow: 0 0 20px 717070, 0 0 30px #717070;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.5);
     }
-} */
+}
 
 /* Button for Toggling Random Color */
 #colorToggleBtn {
