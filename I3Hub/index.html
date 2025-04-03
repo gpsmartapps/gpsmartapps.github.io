@@ -4,125 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I3 Hub - Download My Apps</title>
-    <style>
-        /* Google Font */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-        /* Global Styles */
-        body {
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            color: white;
-            transition: background-color 0.3s ease;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 100px 20px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-        }
-
-        .hero h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        /* Branding */
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #FFD700;
-        }
-
-        /* App Container - Techy Neon Teal Glow */
-        .container {
-            max-width: 500px;
-            margin: 40px auto;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(15px);
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(30, 181, 128, 0.5),
-                0 0 25px rgba(30, 181, 128, 0.3);
-            border: 1px solid rgba(30, 181, 128, 0.5);
-            animation: neonGlow 1.5s infinite alternate;
-        }
-
-        /* Neon Glow Animation */
-        @keyframes neonGlow {
-            from {
-                box-shadow: 0 0 10px rgba(30, 181, 128, 0.3),
-                    0 0 20px rgba(30, 181, 128, 0.2);
-            }
-
-            to {
-                box-shadow: 0 0 20px rgba(30, 181, 128, 0.7),
-                    0 0 30px rgba(30, 181, 128, 0.5);
-            }
-        }
-
-        /* Button for Toggling Random Color */
-        #colorToggleBtn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: transparent;
-            border: none;
-            font-size: 28px;
-            color: white;
-            cursor: pointer;
-            z-index: 9999;
-            transition: transform 0.3s ease;
-        }
-
-        #colorToggleBtn:hover {
-            transform: scale(1.2);
-        }
-
-        .app-link {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 20px;
-            margin: 10px 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            border-radius: 8px;
-            transition: 0.3s;
-            font-weight: 500;
-        }
-
-        .app-link:hover {
-            background: rgba(0, 0, 0, 0.9);
-            transform: scale(1.05);
-        }
-
-        .app-link img {
-            width: 24px;
-            height: 24px;
-        }
-
-        .footer {
-            margin-top: 30px;
-            font-size: 14px;
-            opacity: 0.8;
-        }
-    </style>
+    <title>I3 Hub - App Library</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
-
     <!-- Hero Section -->
     <div class="hero">
         <div class="logo">I3 Hub</div>
@@ -130,28 +17,32 @@
         <p>Download our latest applications for an enhanced experience.</p>
     </div>
 
-    <!-- Color Toggle Button -->
-    <button id="colorToggleBtn">🌈</button>
-
     <!-- Download Section -->
     <div class="container">
-        <a class="app-link" href="https://www.dropbox.com/scl/fi/gnj/Academic-Hub.exe?rlkey=e1ambl&dl=1" download>
-            <img src="https://www.dropbox.com/scl/fi/tiq2bifo1h02hv93q29fn/logo.png?rlkey=c6pl=1" alt="App Icon">
+        <a class="app-link"
+            href="https://www.dropbox.com/scl/fi/gbqq776f8ncbd6h4vngnj/Academic-Hub.exe?rlkey=e1ac3irjobx987cr4ijidrmbl&dl=1"
+            download>
+            <img src="https://www.dropbox.com/scl/fi/tiq2bifo1h02hv93q29fn/logo.png?rlkey=c6p2ynwf9158gdlldfiioq3b4&dl=1"
+                alt="App Icon">
             Academic Hub (x64)
         </a>
-        <a class="app-link" href="https://www.dropbox.com/scl/fi/zd/Smart-SSCE.exe?rlkey=qb3yw7lx72arpzxezm9cq42ux&dl=1"
+        <a class="app-link"
+            href="https://www.dropbox.com/scl/fi/zd243ajmdlvbu6ohmhwvi/Smart-SSCE.exe?rlkey=qb3yw7lx72arpzxezm9cq42ux&dl=1"
             download>
-            <img src="https://www.dropbox.com/scl/fi/js/mdle_logo.png?rlkey=o1z&dl=1" alt="App Icon"> Smart
+            <img src="https://www.dropbox.com/scl/fi/jvghnhgmnjamk5jc8rmas/mdle_logo.png?rlkey=o1zqlwvjv7wdf3op4ffbi95ma&dl=1"
+                alt="App Icon"> Smart
             SSCE
         </a>
         <a class="app-link"
-            href="https://www.dropbox.com/scl/fi/955h/Academic-Hub-x32.exe?rlkey=zhhf34ynw99xlc827rjulwehq&dl=1"
+            href="https://www.dropbox.com/scl/fi/9vafmyae07jciw3n5s55h/Academic-Hub-x32.exe?rlkey=zhhf34ynw99xlc827rjulwehq&dl=1"
             download>
-            <img src="https://www.dropbox.com/scl/fi//logo.png?rlkey=c6p2ynwf9158gdlldfiioq3b4&dl=1" alt="App Icon">
+            <img src="https://www.dropbox.com/scl/fi/tiq2bifo1h02hv93q29fn/logo.png?rlkey=c6p2ynwf9158gdlldfiioq3b4&dl=1"
+                alt="App Icon">
             Academic Hub (x32)
         </a>
         <a class="app-link" href="https://www.i3hub.com/installation/smartbece.exe" download>
-            <img src="https://www.dropbox.com/scl/fi/lbgx10/_bcelogo_.png?rlkey=ifr7&dl=1" alt="App Icon"> Smart
+            <img src="https://www.dropbox.com/scl/fi/vd730yq3xsa4jiwlbgx10/_bcelogo_.png?rlkey=7e4knopvvq5pvdivb69ppifr7&dl=1"
+                alt="App Icon"> Smart
             BECE
         </a>
         <a class="app-link" href="https://bit.ly/w3marketplace" target="_blank">
@@ -160,11 +51,13 @@
         </a>
     </div>
 
+    <!-- Add this button at the bottom of your body section or wherever you'd like the button to appear -->
+    <button id="colorToggleBtn" class="toggle-btn">🎨</button>
+
     <!-- Footer -->
     <div class="footer">
         &copy; 2025 I3 Hub | All rights reserved.
     </div>
-
     <script>
         // List of 20 random techy colors
         const colors = [
@@ -192,6 +85,7 @@
 
         // Button click event to change background color
         document.getElementById('colorToggleBtn').addEventListener('click', setRandomColor);
+
     </script>
 
 </body>
