@@ -15,8 +15,8 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            background: url('https://source.unsplash.com/1600x900/?technology,abstract') no-repeat center center/cover;
             color: white;
+            transition: background-color 0.3s ease;
         }
 
         /* Hero Section */
@@ -70,12 +70,23 @@
             }
         }
 
-        /* Background Gradient - Dark Cyber Tech */
-        body {
-            background: linear-gradient(to right, #001f1a, #1eb580);
-            background-size: cover;
+        /* Button for Toggling Random Color */
+        #colorToggleBtn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            border: none;
+            font-size: 28px;
+            color: white;
+            cursor: pointer;
+            z-index: 9999;
+            transition: transform 0.3s ease;
         }
 
+        #colorToggleBtn:hover {
+            transform: scale(1.2);
+        }
 
         .app-link {
             display: flex;
@@ -119,32 +130,28 @@
         <p>Download our latest applications for an enhanced experience.</p>
     </div>
 
+    <!-- Color Toggle Button -->
+    <button id="colorToggleBtn">🌈</button>
+
     <!-- Download Section -->
     <div class="container">
-        <a class="app-link"
-            href="https://www.dropbox.com/scl/fi/gbqq776f8ncbd6h4vngnj/Academic-Hub.exe?rlkey=e1ac3irjobx987cr4ijidrmbl&dl=1"
-            download>
-            <img src="https://www.dropbox.com/scl/fi/tiq2bifo1h02hv93q29fn/logo.png?rlkey=c6p2ynwf9158gdlldfiioq3b4&dl=1"
-                alt="App Icon">
+        <a class="app-link" href="https://www.dropbox.com/scl/fi/gnj/Academic-Hub.exe?rlkey=e1ambl&dl=1" download>
+            <img src="https://www.dropbox.com/scl/fi/tiq2bifo1h02hv93q29fn/logo.png?rlkey=c6pl=1" alt="App Icon">
             Academic Hub (x64)
         </a>
-        <a class="app-link"
-            href="https://www.dropbox.com/scl/fi/zd243ajmdlvbu6ohmhwvi/Smart-SSCE.exe?rlkey=qb3yw7lx72arpzxezm9cq42ux&dl=1"
+        <a class="app-link" href="https://www.dropbox.com/scl/fi/zd/Smart-SSCE.exe?rlkey=qb3yw7lx72arpzxezm9cq42ux&dl=1"
             download>
-            <img src="https://www.dropbox.com/scl/fi/jvghnhgmnjamk5jc8rmas/mdle_logo.png?rlkey=o1zqlwvjv7wdf3op4ffbi95ma&dl=1"
-                alt="App Icon"> Smart
+            <img src="https://www.dropbox.com/scl/fi/js/mdle_logo.png?rlkey=o1z&dl=1" alt="App Icon"> Smart
             SSCE
         </a>
         <a class="app-link"
-            href="https://www.dropbox.com/scl/fi/9vafmyae07jciw3n5s55h/Academic-Hub-x32.exe?rlkey=zhhf34ynw99xlc827rjulwehq&dl=1"
+            href="https://www.dropbox.com/scl/fi/955h/Academic-Hub-x32.exe?rlkey=zhhf34ynw99xlc827rjulwehq&dl=1"
             download>
-            <img src="https://www.dropbox.com/scl/fi/tiq2bifo1h02hv93q29fn/logo.png?rlkey=c6p2ynwf9158gdlldfiioq3b4&dl=1"
-                alt="App Icon">
+            <img src="https://www.dropbox.com/scl/fi//logo.png?rlkey=c6p2ynwf9158gdlldfiioq3b4&dl=1" alt="App Icon">
             Academic Hub (x32)
         </a>
         <a class="app-link" href="https://www.i3hub.com/installation/smartbece.exe" download>
-            <img src="https://www.dropbox.com/scl/fi/vd730yq3xsa4jiwlbgx10/_bcelogo_.png?rlkey=7e4knopvvq5pvdivb69ppifr7&dl=1"
-                alt="App Icon"> Smart
+            <img src="https://www.dropbox.com/scl/fi/lbgx10/_bcelogo_.png?rlkey=ifr7&dl=1" alt="App Icon"> Smart
             BECE
         </a>
         <a class="app-link" href="https://bit.ly/w3marketplace" target="_blank">
@@ -157,6 +164,35 @@
     <div class="footer">
         &copy; 2025 I3 Hub | All rights reserved.
     </div>
+
+    <script>
+        // List of 20 random techy colors
+        const colors = [
+            '#1eb580', '#1a2b4c', '#00bfae', '#00c7d1', '#00ff7f', '#2c3e50',
+            '#7f8c8d', '#34495e', '#16a085', '#2ecc71', '#2980b9', '#9b59b6',
+            '#ff5733', '#f39c12', '#8e44ad', '#e74c3c', '#3498db', '#16a085',
+            '#2d3436', '#f1c40f'
+        ];
+
+        // Function to set the random color
+        function setRandomColor() {
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.backgroundColor = randomColor;
+            // Save the selected color to localStorage
+            localStorage.setItem('selectedColor', randomColor);
+        }
+
+        // Check if there's a saved color and apply it
+        window.onload = function () {
+            const savedColor = localStorage.getItem('selectedColor');
+            if (savedColor) {
+                document.body.style.backgroundColor = savedColor;
+            }
+        };
+
+        // Button click event to change background color
+        document.getElementById('colorToggleBtn').addEventListener('click', setRandomColor);
+    </script>
 
 </body>
 
