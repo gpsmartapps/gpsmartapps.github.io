@@ -52,6 +52,11 @@ body {
     filter: brightness(0) invert(1);
 }
 
+.site-logo {
+    pointer-events: none;
+    user-select: none;
+}
+
 .site-logo:hover {
     transform: scale(1.1);
 }
