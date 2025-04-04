@@ -6,14 +6,6 @@ const colors = [
     '#2d3436', '#f1c40f'
 ];
 
-// Function to set the random color
-function setRandomColor() {
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    document.body.style.backgroundColor = randomColor;
-    // Save the selected color to localStorage
-    localStorage.setItem('selectedColor', randomColor);
-}
-
 // Check if there's a saved color and apply it
 window.onload = function () {
     const savedColor = localStorage.getItem('selectedColor');
@@ -21,6 +13,14 @@ window.onload = function () {
         document.body.style.backgroundColor = savedColor;
     }
 };
+
+// Function to set the random color
+function setRandomColor() {
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    document.body.style.backgroundColor = randomColor;
+    // Save the selected color to localStorage
+    localStorage.setItem('selectedColor', randomColor);
+}
 
 // Button click event to change background color
 document.getElementById('colorToggleBtn').addEventListener('click', setRandomColor);
