@@ -121,7 +121,7 @@ body {
     right: 20px;
     background-color: transparent;
     border: none;
-    font-size: 28px;
+    font-size: 15px;
     color: white;
     cursor: pointer;
     z-index: 9999;
@@ -172,9 +172,9 @@ body {
     border: none;
     color: white;
     padding: 15px;
-    border-radius: 50%;
+    border-radius: 25px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     transition: 0.3s;
 }
