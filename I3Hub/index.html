@@ -10,10 +10,9 @@
     <script src="script.js" defer></script>
 </head>
 
-<body>
+<body oncontextmenu="return false;">
     <!-- Hero Section -->
     <div class="hero">
-        <!-- <div class="logo">I3 Hub</div> -->
         <img src="_logo_i3.png" alt="I3 Hub Logo" class="site-logo">
         <h1>Welcome to I3 Hub</h1>
         <p>Download our latest applications for an enhanced experience.</p>
@@ -21,86 +20,80 @@
 
     <!-- Download Section -->
     <div class="container">
-        <a class="app-link"
-            href="https://www.dropbox.com/scl/fi/gbqq776f8ncbd6h4vngnj/Academic-Hub.exe?rlkey=e1ac3irjobx987cr4ijidrmbl&dl=1"
+        <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')"
+            data-href="https://www.dropbox.com/scl/fi/gbqq776f8ncbd6h4vngnj/Academic-Hub.exe?rlkey=e1ac3irjobx987cr4ijidrmbl&dl=1"
             download>
             <img src="https://www.dropbox.com/scl/fi/tiq2bifo1h02hv93q29fn/logo.png?rlkey=c6p2ynwf9158gdlldfiioq3b4&dl=1"
                 alt="App Icon" style="filter: brightness(0) invert();">
             W3 Academic Hub (x64)
         </a>
-        <a class="app-link"
-            href="https://www.dropbox.com/scl/fi/9vafmyae07jciw3n5s55h/Academic-Hub-x32.exe?rlkey=zhhf34ynw99xlc827rjulwehq&dl=1"
+        <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')"
+            data-href="https://www.dropbox.com/scl/fi/9vafmyae07jciw3n5s55h/Academic-Hub-x32.exe?rlkey=zhhf34ynw99xlc827rjulwehq&dl=1"
             download>
             <img src="https://www.dropbox.com/scl/fi/tiq2bifo1h02hv93q29fn/logo.png?rlkey=c6p2ynwf9158gdlldfiioq3b4&dl=1"
                 alt="App Icon" style="filter: brightness(0) invert();">
             W3 Academic Hub (x32)
         </a>
-        <a class="app-link"
-            href="https://www.dropbox.com/scl/fi/7i4v2kz9xpk5cxdyl6e60/SmartBECE.exe?rlkey=yqu0xpxe4l619s4b193ostleg&dl=1"
+        <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')"
+            data-href="#" download>
+            <img src="https://www.dropbox.com/scl/fi/vd730yq3xsa4jiwlbgx10/_bcelogo_.png?rlkey=7e4knopvvq5pvdivb69ppifr7&dl=1"
+                alt="App Icon" style="filter: brightness(0) invert();">
+            Smart BECE Image Capture
+        </a>
+        <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')"
+            data-href="https://www.dropbox.com/scl/fi/8fj1wcm07jjqf4jnr6pf9/W3-SSCE.exe?rlkey=mnnvp1nhvm1dwxdza2znvc1ff&dl=1"
+            download>
+            <img src="https://www.dropbox.com/scl/fi/u8fkbs8kr359y3v3hi6be/_scelogo_.png?rlkey=cfhsqphs8edjajb24olfo5rkr&dl=1"
+                alt="App Icon" style="filter: brightness(0) invert();">
+            W3 SSCE
+        </a>
+        <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')"
+            data-href="https://www.dropbox.com/scl/fi/i9w862ezexxnn6civruxv/W3-BECE.exe?rlkey=ary36h7gben35nrvr201tzb4p&dl=1"
             download>
             <img src="https://www.dropbox.com/scl/fi/vd730yq3xsa4jiwlbgx10/_bcelogo_.png?rlkey=7e4knopvvq5pvdivb69ppifr7&dl=1"
-                alt="App Icon" style="filter: brightness(0) invert();"> Smart
-            BECE Image Capture
+                alt="App Icon" style="filter: brightness(0) invert();">
+            W3 BECE
         </a>
-        <a class="app-link"
-            href="https://www.dropbox.com/scl/fi/zd243ajmdlvbu6ohmhwvi/Smart-SSCE.exe?rlkey=qb3yw7lx72arpzxezm9cq42ux&dl=1"
-            download>
-            <img src="https://www.dropbox.com/scl/fi/8fj1wcm07jjqf4jnr6pf9/W3-SSCE.exe?rlkey=mnnvp1nhvm1dwxdza2znvc1ff&dl=1"
-                alt="App Icon" style="filter: brightness(0) invert();"> W3
-            SSCE
-        </a>
-        <a class="app-link"
-            href="https://www.dropbox.com/scl/fi/i9w862ezexxnn6civruxv/W3-BECE.exe?rlkey=ary36h7gben35nrvr201tzb4p&dl=1"
-            download>
-            <img src="https://www.dropbox.com/scl/fi/i9w862ezexxnn6civruxv/W3-BECE.exe?rlkey=ary36h7gben35nrvr201tzb4p&dl=1"
-                alt="App Icon" style="filter: brightness(0) invert();"> W3
-            BECE
-        </a>
-        <a class="app-link" href="https://paystack.shop/w3pay" target="_blank">
+        <a class="app-link" href="javascript:void(0);" onclick="window.open(this.getAttribute('data-href'), '_blank')"
+            data-href="https://paystack.shop/w3pay">
             <img src="https://www.dropbox.com/scl/fi/dhcht8uzdg8f3is0hfzpj/_cart_.png?rlkey=sloyvczjh40sef755w55kiky2&dl=1"
-                alt="Market Icon" style="filter: brightness(0) invert(1);"> Market Place
+                alt="Market Icon" style="filter: brightness(0) invert(1);">
+            Market Place
         </a>
     </div>
 
-    <!-- Add this button at the bottom of your body section or wherever you'd like the button to appear -->
+    <!-- Color Toggle Button -->
     <button id="colorToggleBtn" class="toggle-btn">🎨</button>
 
-    <body oncontextmenu="return false;">
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2025 I3 Hub | All rights reserved.
+    </div>
 
-        <!-- Footer -->
-        <div class="footer">
-            &copy; 2025 I3 Hub | All rights reserved.
-        </div>
-        <script>
-            // List of 20 random techy colors
-            const colors = [
-                '#1eb580', '#1a2b4c', '#00bfae', '#00c7d1', '#00ff7f', '#2c3e50',
-                '#7f8c8d', '#34495e', '#16a085', '#2ecc71', '#2980b9', '#9b59b6',
-                '#ff5733', '#f39c12', '#8e44ad', '#e74c3c', '#3498db', '#16a085',
-                '#2d3436', '#f1c40f'
-            ];
+    <script>
+        const colors = [
+            '#1eb580', '#1a2b4c', '#00bfae', '#00c7d1', '#00ff7f', '#2c3e50',
+            '#7f8c8d', '#34495e', '#16a085', '#2ecc71', '#2980b9', '#9b59b6',
+            '#ff5733', '#f39c12', '#8e44ad', '#e74c3c', '#3498db', '#16a085',
+            '#2d3436', '#f1c40f'
+        ];
 
-            // Function to set the random color
-            function setRandomColor() {
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                document.body.style.backgroundColor = randomColor;
-                // Save the selected color to localStorage
-                localStorage.setItem('selectedColor', randomColor);
+        function setRandomColor() {
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.backgroundColor = randomColor;
+            localStorage.setItem('selectedColor', randomColor);
+        }
+
+        window.onload = function () {
+            const savedColor = localStorage.getItem('selectedColor');
+            if (savedColor) {
+                document.body.style.backgroundColor = savedColor;
             }
+        };
 
-            // Check if there's a saved color and apply it
-            window.onload = function () {
-                const savedColor = localStorage.getItem('selectedColor');
-                if (savedColor) {
-                    document.body.style.backgroundColor = savedColor;
-                }
-            };
+        document.getElementById('colorToggleBtn').addEventListener('click', setRandomColor);
+    </script>
 
-            // Button click event to change background color
-            document.getElementById('colorToggleBtn').addEventListener('click', setRandomColor);
-
-        </script>
-
-    </body>
+</body>
 
 </html>
