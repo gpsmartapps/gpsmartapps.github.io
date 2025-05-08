@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plug 'n Go - Phone Check-in & Check-out</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/PlugNGo/style.css" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Landing Page -->
+    <div class="container text-center my-5" id="landingPage">
+        <img src="/PlugNGo/assets/logo_i3.png" alt="Plug 'n Go Logo" id="logoblack" style="max-width: 150px;">
+        <h1>Welcome to Plug 'n Go</h1>
+        <p>Check-in and check-out your phones, power banks, and MP3 players with ease.</p>
+        <button class="scanner-btn mt-3" id="loginButton">Login</button>
+    </div>
+
+    <!-- Login Page -->
+    <div class="container hidden" id="loginPage">
+        <h2 class="text-center">Login</h2>
+        <form id="loginForm">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="scanner-btn">Login</button>
+        </form>
+        <p id="loginError" class="text-danger mt-3 hidden">Invalid username or password.</p>
+    </div>
+
+    <!-- QR Code Scanner Page -->
+    <div class="container hidden" id="scannerPage">
+        <h2 class="text-center">Scan QR Code to Check-in/Check-out Phone</h2>
+
+        <div id="scanner" class="scanner-container">
+            <video id="preview" width="100%" height="auto"></video>
+        </div>
+        <button class="scanner-btn" id="startScan">Start Scanning</button>
+
+        <!-- Sound Toggle -->
+        <div class="form-check mt-3">
+            <input type="checkbox" class="form-check-input" id="soundToggle" checked>
+            <label class="form-check-label" for="soundToggle">Enable Sound Feedback</label>
+        </div>
+
+        <div id="result" class="mt-3"></div>
+        <div id="spinner" class="text-center my-3" style="display: none;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <!-- Fallback Manual Input -->
+        <div id="manualInput" class="manual-input">
+            <label for="orderNumber" class="form-label">Enter Order Number or Customer ID:</label>
+            <input type="text" id="orderNumber" class="form-control" placeholder="Enter Order Number or Customer ID">
+            <button class="scanner-btn mt-2" id="submitManualInput">Submit</button>
+            <button class="scanner-btn mt-2" id="retryScan" style="display: none;">Retry Scan</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-auto text-center py-3 bg-light">
+        <small>&copy; 2025 Plug 'n Go. All rights reserved.</small>
+    </footer>
+
+    <!-- Sound -->
+    <audio id="success-sound" src="/PlugNGo/sounds/success-beep.mp3" preload="auto"></audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+    <script src="/PlugNGo/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

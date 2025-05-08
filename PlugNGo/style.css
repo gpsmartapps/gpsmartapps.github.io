@@ -1,0 +1,48 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.logoblack {
+    max-width: 150px;
+    filter: brightness(0) saturate(100%);
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+.scanner-container {
+    margin-top: 30px;
+}
+
+.scanner-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+}
+
+.manual-input {
+    display: none;
+    margin-top: 20px;
+}
+
+.spinner {
+    display: none;
+    text-align: center;
+}
+
+#preview.scanning {
+    border-color: #28a745;
+}
+
+.alert {
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
