@@ -84,7 +84,7 @@ function startScanning() {
     startScanButton.disabled = true;
     manualInputDiv.style.display = "none";
     retryScanButton.style.display = "none";
-    video.style.display = "block";
+    // video.style.display = "block";
     video.setAttribute("playsinline", true); // Required for iOS Safari
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
         .then(stream => {
