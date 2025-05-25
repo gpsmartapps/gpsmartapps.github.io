@@ -81,7 +81,7 @@ retryScanButton.addEventListener("click", () => {
 function startScanning() {
     resultDiv.innerHTML = ''; // Clear previous results
     spinnerDiv.style.display = "block";
-    startScanButton.disabled = true;
+    // startScanButton.disabled = true;
     manualInputDiv.style.display = "none";
     retryScanButton.style.display = "none";
     video.style.display = "block";
