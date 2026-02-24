@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Meta SEO -->
-    <meta name="description" content="I3 Hub – academic tools, exam software & student apps. Dark/light theme with fresh green identity." />
+    <meta name="description"
+        content="I3 Hub – academic tools, exam software & student apps. Dark/light theme with fresh green identity." />
     <meta name="keywords" content="I3Hub, student apps, BECE, SSCE, dark theme, light theme, professional" />
     <meta name="author" content="I3 Hub" />
     <meta name="robots" content="index, follow" />
@@ -35,7 +37,9 @@
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
 
     <style>
         /* ===== GREEN PROFESSIONAL CORE (LIGHT & DARK VARIABLES) ===== */
@@ -59,7 +63,8 @@
 
         /* ===== LIGHT THEME (default) ===== */
         body.light-theme {
-            background: #f0f7ec;      /* soft green-white */
+            background: #f0f7ec;
+            /* soft green-white */
             color: #1c3b2b;
         }
 
@@ -106,18 +111,21 @@
 
         /* ===== DARK THEME (green deep tones) ===== */
         body.dark-theme {
-            background: #0f281c;        /* deep forest */
+            background: #0f281c;
+            /* deep forest */
             color: #ddf4e0;
         }
 
         body.dark-theme .card {
-            background: #1c3328;         /* dark green-black card */
+            background: #1c3328;
+            /* dark green-black card */
             border-color: #2b593b;
             box-shadow: 0 25px 35px -12px #0a1f13, 0 0 0 1px #2b593b inset;
         }
 
         body.dark-theme .hero-green h1 {
-            color: #b3e6c5;              /* soft mint */
+            color: #b3e6c5;
+            /* soft mint */
         }
 
         body.dark-theme .hero-green p {
@@ -127,7 +135,8 @@
         }
 
         body.dark-theme .app-link {
-            background: #1f3f2b;          /* dark card item */
+            background: #1f3f2b;
+            /* dark card item */
             border-color: #376845;
             color: #d0f0da;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -193,6 +202,7 @@
             margin-bottom: 1.2rem;
             transition: transform 0.2s;
         }
+
         .site-logo:hover {
             transform: scale(1.02);
         }
@@ -299,13 +309,16 @@
             .card {
                 padding: 2rem 1.5rem;
             }
+
             .hero-green h1 {
                 font-size: 2.2rem;
             }
+
             .app-link {
                 padding: 0.8rem 1.2rem;
                 font-size: 1rem;
             }
+
             .toggle-btn {
                 top: 16px;
                 right: 16px;
@@ -316,7 +329,8 @@
         }
     </style>
 </head>
-<body oncontextmenu="return false;" class="light-theme">  <!-- light theme as default -->
+
+<body oncontextmenu="return false;" class="light-theme"> <!-- light theme as default -->
 
     <!-- toggle button: now switches between DARK <-> LIGHT (green shades) -->
     <button class="toggle-btn" id="themeToggleBtn" aria-label="switch dark/light theme">🌓</button>
@@ -331,27 +345,38 @@
 
         <!-- download tiles (identical content, style via theme) -->
         <div class="app-list">
-            <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')" data-href="https://www.dropbox.com/scl/fi/qs4kfaav367molyf69gx7/Academic-Hub.exe?rlkey=7te30rud9fpj5aabcl09hkbi4&dl=1" download>
+            <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')"
+                data-href="https://www.dropbox.com/scl/fi/qs4kfaav367molyf69gx7/Academic-Hub.exe?rlkey=7te30rud9fpj5aabcl09hkbi4&dl=1"
+                download>
                 <img src="https://gpsmartapps.github.io/I3Hub/assets/logo.png" alt="Academic Hub icon" />
                 <span>W3 Academic Hub (x64)</span>
             </a>
-            <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')" data-href="https://www.dropbox.com/scl/fi/9vafmyae07jciw3n5s55h/Academic-Hub-x32.exe?rlkey=zhhf34ynw99xlc827rjulwehq&dl=1" download>
+            <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')"
+                data-href="https://www.dropbox.com/scl/fi/9vafmyae07jciw3n5s55h/Academic-Hub-x32.exe?rlkey=zhhf34ynw99xlc827rjulwehq&dl=1"
+                download>
                 <img src="https://gpsmartapps.github.io/I3Hub/assets/logo.png" alt="Academic Hub icon" />
                 <span>W3 Academic Hub (x32)</span>
             </a>
-            <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')" data-href="https://www.dropbox.com/scl/fi/kij7rs5anm6a9b6zosgw6/W3-UniCapture.exe?rlkey=j7hu78momzvdi56r6qwtfkv1a&dl=1" download>
+            <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')"
+                data-href="https://www.dropbox.com/scl/fi/kij7rs5anm6a9b6zosgw6/W3-UniCapture.exe?rlkey=j7hu78momzvdi56r6qwtfkv1a&dl=1"
+                download>
                 <img src="https://gpsmartapps.github.io/I3Hub/assets/webcam_.png" alt="UniCapture icon" />
                 <span>W3 UniCapture</span>
             </a>
-            <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')" data-href="https://www.dropbox.com/scl/fi/8fj1wcm07jjqf4jnr6pf9/W3-SSCE.exe?rlkey=mnnvp1nhvm1dwxdza2znvc1ff&dl=1" download>
+            <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')"
+                data-href="https://www.dropbox.com/scl/fi/8fj1wcm07jjqf4jnr6pf9/W3-SSCE.exe?rlkey=mnnvp1nhvm1dwxdza2znvc1ff&dl=1"
+                download>
                 <img src="https://gpsmartapps.github.io/I3Hub/assets/scelogo_.png" alt="SSCE icon" />
                 <span>W3 SSCE</span>
             </a>
-            <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')" data-href="https://www.dropbox.com/scl/fi/3ou07fe005gv0v252vt6i/W3-BECE.exe?rlkey=jie7nlb87me5hs7ago8xcdk1b&dl=1" download>
+            <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')"
+                data-href="https://www.dropbox.com/scl/fi/3ou07fe005gv0v252vt6i/W3-BECE.exe?rlkey=jie7nlb87me5hs7ago8xcdk1b&dl=1"
+                download>
                 <img src="https://gpsmartapps.github.io/I3Hub/assets/bcelogo_.png" alt="BECE icon" />
                 <span>W3 BECE</span>
             </a>
-            <a class="app-link" href="javascript:void(0);" onclick="window.open(this.getAttribute('data-href'), '_blank')" data-href="https://paystack.shop/w3pay">
+            <a class="app-link" href="javascript:void(0);"
+                onclick="window.open(this.getAttribute('data-href'), '_blank')" data-href="https://paystack.shop/w3pay">
                 <img src="https://gpsmartapps.github.io/I3Hub/assets/cart_.png" alt="Market icon" />
                 <span>Market Place</span>
             </a>
@@ -363,11 +388,12 @@
     </div>
 
     <noscript>
-        <div class="noscript-warn">JavaScript off. <a href="/I3Hub/error-page.html" style="color:#2d5a2d;">switch manually?</a></div>
+        <div class="noscript-warn">JavaScript off. <a href="/I3Hub/error-page.html" style="color:#2d5a2d;">switch
+                manually?</a></div>
     </noscript>
 
     <script>
-        (function() {
+        (function () {
             // === DARK / LIGHT THEME TOGGLE (green professional) ===
             const STORAGE_KEY = 'i3hub_theme_pref';
             const LIGHT_CLASS = 'light-theme';
@@ -427,7 +453,7 @@
             }
 
             // run on load
-            window.addEventListener('load', function() {
+            window.addEventListener('load', function () {
                 loadSavedTheme();
                 initToggleButton();
 
@@ -459,4 +485,5 @@
         })();
     </script>
 </body>
+
 </html>
