@@ -1,26 +1,48 @@
-// List of 20 random techy colors
-const colors = [
-    '#1eb580', '#1a2b4c', '#00bfae', '#00c7d1', '#00ff7f', '#2c3e50',
-    '#7f8c8d', '#34495e', '#16a085', '#2ecc71', '#2980b9', '#9b59b6',
-    '#ff5733', '#f39c12', '#8e44ad', '#e74c3c', '#3498db', '#16a085',
-    '#2d3436', '#f1c40f'
-];
+ // green-white-theme.js
+        (function() {
+            // List of fresh green & neutral / white-ish backgrounds
+            const greenPalette = [
+                '#eaf7e1', '#d8efd6', '#c0e8d5', '#b1dfcc', '#c6f0c6', '#deefde',
+                '#f0fff0', '#e2f0da', '#d4ebd0', '#c0e0c0', '#eaffea', '#dbf5db'
+            ];
 
-// Check if there's a saved color and apply it
-window.onload = function () {
-    const savedColor = localStorage.getItem('selectedColor');
-    if (savedColor) {
-        document.body.style.backgroundColor = savedColor;
-    }
-};
+            // Get stored background from localStorage (if any)
+            function loadSavedColor() {
+                const saved = localStorage.getItem('i3hubGreenBg');
+                if (saved && greenPalette.includes(saved)) {
+                    document.body.style.backgroundColor = saved;
+                } else {
+                    // default green-white
+                    document.body.style.backgroundColor = '#eaf7e1';
+                }
+            }
 
-// Function to set the random color
-function setRandomColor() {
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    document.body.style.backgroundColor = randomColor;
-    // Save the selected color to localStorage
-    localStorage.setItem('selectedColor', randomColor);
-}
+            // set random green/light background from palette
+            function setRandomGreenBg() {
+                const randomIndex = Math.floor(Math.random() * greenPalette.length);
+                const newColor = greenPalette[randomIndex];
+                document.body.style.backgroundColor = newColor;
+                localStorage.setItem('i3hubGreenBg', newColor);
+            }
 
-// Button click event to change background color
-document.getElementById('colorToggleBtn').addEventListener('click', setRandomColor);
+            // apply saved on load
+            window.addEventListener('load', function() {
+                loadSavedColor();
+
+                // toggle button functionality (same as original but uses green palette)
+                const toggleBtn = document.getElementById('colorToggleBtn');
+                if (toggleBtn) {
+                    // remove any previous listener (just in case)
+                    toggleBtn.replaceWith(toggleBtn.cloneNode(true));
+                    const newBtn = document.getElementById('colorToggleBtn');
+                    newBtn.addEventListener('click', setRandomGreenBg);
+                }
+            });
+
+            // optional: prevent right-context menu? already in body, but we keep.
+            // the original had oncontextmenu, we keep.
+
+            // Also mimic original 'download' protection: the links already use data-href + onclick.
+            // That part is fully preserved from original design.
+        })();
+    </script>
