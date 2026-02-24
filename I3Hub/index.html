@@ -5,91 +5,370 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Meta SEO -->
-    <meta name="description" content="Access and download top student-focused applications by I3 Hub. Simplify school and exam processes with secure, smart tools." />
-    <meta name="keywords" content="I3Hub, app download, academic tools, student management, exam software, school apps, BECE, SSCE, smart capture, educational software" />
+    <!-- Meta SEO – professional & fresh -->
+    <meta name="description" content="I3 Hub – download academic tools, exam software & student apps. Smart, secure, and built for schools." />
+    <meta name="keywords" content="I3Hub, academic hub, student apps, BECE, SSCE, exam software, school management" />
     <meta name="author" content="I3 Hub" />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#f0fff0" />
+    <meta name="theme-color" content="#f2f9f2" />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="I3 Hub – App Library" />
-    <meta property="og:description" content="Access and download top student-focused applications by I3 Hub. Simplify school and exam processes with secure, smart tools." />
+    <meta property="og:title" content="I3 Hub · app library" />
+    <meta property="og:description" content="Green & white professional suite for students." />
     <meta property="og:image" content="https://gpsmartapps.github.io/I3Hub/assets/logo_i3.png" />
     <meta property="og:url" content="https://gpsmartapps.github.io/I3Hub" />
     <meta property="og:type" content="website" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="I3 Hub – App Library" />
-    <meta name="twitter:description" content="Student apps & smart tools." />
+    <meta name="twitter:title" content="I3 Hub – download apps" />
+    <meta name="twitter:description" content="Student tools, fresh design." />
     <meta name="twitter:image" content="https://gpsmartapps.github.io/I3Hub/assets/logo_i3.png" />
 
-    <title>I3 Hub · green & white</title>
+    <title>I3 Hub · professional green & white</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://gpsmartapps.github.io/I3Hub/assets/logo_i3.png" />
     <link rel="apple-touch-icon" href="https://gpsmartapps.github.io/I3Hub/assets/logo_i3.png" />
 
-    <!-- ===== Google Fonts ===== -->
+    <!-- Google Fonts: Inter (professional) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== GREEN & WHITE PROFESSIONAL RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            background: #f0f7ec;  /* soft green-white base */
+            color: #1c3b2b;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.2rem;
+            transition: background-color 0.25s ease;
+            font-weight: 400;
+        }
+
+        /* main card – crisp white, subtle green border */
+        .card {
+            max-width: 740px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 2.5rem;
+            padding: 2.8rem 2.5rem 2.2rem 2.5rem;
+            box-shadow: 0 30px 40px -16px rgba(30, 70, 30, 0.25),
+                        0 8px 14px -6px rgba(20, 60, 20, 0.12);
+            border: 1px solid #d3e9d0;
+            margin: 1rem 0 1.8rem 0;
+        }
+
+        /* hero section – green & white balance */
+        .hero-green {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .site-logo {
+            width: 96px;
+            height: auto;
+            filter: drop-shadow(0 6px 8px rgba(35, 90, 35, 0.12));
+            margin-bottom: 1.2rem;
+            transition: transform 0.2s;
+        }
+        .site-logo:hover {
+            transform: scale(1.02);
+        }
+
+        .hero-green h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #1b5436;        /* deep, professional green */
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-green p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #2f6d4a;
+            background: #edf7ed;
+            padding: 0.4rem 1.6rem;
+            border-radius: 80px;
+            display: inline-block;
+            border: 1px solid #bcddb4;
+            backdrop-filter: blur(2px);
+        }
+
+        /* professional app list – clean tiles */
+        .app-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2.2rem 0 1.8rem;
+        }
+
+        .app-link {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            background: #f9fff9;         /* icy white-green */
+            border: 1.5px solid #c0e0c0;
+            border-radius: 100px;
+            padding: 0.9rem 2rem 0.9rem 1.5rem;
+            text-decoration: none;
+            color: #175a37;
+            font-weight: 550;
+            font-size: 1.16rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(60, 110, 60, 0.06);
+            backdrop-filter: blur(2px);
+        }
+
+        .app-link:hover {
+            background: #ffffff;
+            border-color: #3e9e67;
+            box-shadow: 0 16px 22px -12px #347d4e75;
+            transform: translateY(-2px) scale(1.01);
+        }
+
+        /* icon styling — green filter for brand consistency */
+        .app-link img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            filter: brightness(0) invert(22%) sepia(60%) saturate(620%) hue-rotate(95deg);
+            transition: filter 0.15s;
+        }
+
+        /* special handling for market icon (cart) — keep green but slightly deeper */
+        .app-link img[alt*="Market"] {
+            filter: brightness(0) invert(27%) sepia(51%) saturate(900%) hue-rotate(92deg);
+        }
+
+        /* optional differentiation for last item (market) */
+        .app-link:last-of-type {
+            background: #effaef;
+            border-color: #b2d8b2;
+        }
+
+        /* footer – refined */
+        .footer {
+            text-align: center;
+            font-size: 0.98rem;
+            color: #3e6b4e;
+            margin-top: 2.5rem;
+            border-top: 1.5px solid #d0e7d0;
+            padding-top: 2rem;
+            width: 100%;
+            font-weight: 400;
+        }
+
+        /* toggle button – green glassmorphism */
+        .toggle-btn {
+            position: fixed;
+            top: 26px;
+            right: 28px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 2px solid #378b5e;
+            color: #236b41;
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 12px 18px -8px rgba(20, 80, 20, 0.3);
+            backdrop-filter: blur(8px);
+            transition: 0.18s;
+            z-index: 999;
+            line-height: 1;
+            padding: 0;
+            font-weight: 400;
+        }
+
+        .toggle-btn:hover {
+            background: white;
+            transform: scale(1.07) rotate(3deg);
+            border-color: #1e7543;
+            box-shadow: 0 20px 24px -12px #1e5e37;
+        }
+
+        /* noscript fallback – subtle */
+        .noscript-warn {
+            background: #fff1cc;
+            color: #4d4a1f;
+            padding: 0.7rem 1.8rem;
+            border-radius: 40px;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            border: 1px solid #e6d6a6;
+        }
+
+        /* disable right-click hint (preserved) – just style */
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* mobile fine-tuning */
+        @media (max-width: 550px) {
+            .card {
+                padding: 2rem 1.5rem;
+            }
+            .hero-green h1 {
+                font-size: 2.2rem;
+            }
+            .app-link {
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
+            }
+            .toggle-btn {
+                top: 16px;
+                right: 16px;
+                width: 52px;
+                height: 52px;
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
 <body oncontextmenu="return false;">
 
-    <!-- fixed toggle (kept from original, but with green styling) -->
-    <button class="toggle-btn" id="colorToggleBtn" aria-label="switch background green/white">🎨</button>
+    <!-- fixed toggle: fresh green switcher -->
+    <button class="toggle-btn" id="colorToggleBtn" aria-label="shift green background">🍃</button>
 
-    <!-- main content card (green & white) -->
+    <!-- main white card, green accents -->
     <div class="card">
         <div class="hero-green">
             <img src="https://gpsmartapps.github.io/I3Hub/assets/logo_i3.png" alt="I3 Hub" class="site-logo" />
             <h1>I3 Hub</h1>
-            <p>green · white · fresh</p>
+            <p>professional · green & white</p>
         </div>
 
-        <!-- download tiles (green & white theme) -->
+        <!-- download tiles – clean, green, accessible -->
         <div class="app-list">
-            <!-- x64 -->
-            <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')" data-href="https://www.dropbox.com/scl/fi/gbqq776f8ncbd6h4vngnj/Academic-Hub.exe?rlkey=e1ac3irjobx987cr4ijidrmbl&dl=1" download>
-                <img src="https://gpsmartapps.github.io/I3Hub/assets/logo.png" alt="app icon" />
+            <!-- Academic Hub x64 -->
+            <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')" data-href="https://www.dropbox.com/scl/fi/qs4kfaav367molyf69gx7/Academic-Hub.exe?rlkey=7te30rud9fpj5aabcl09hkbi4&dl=1" download>
+                <img src="https://gpsmartapps.github.io/I3Hub/assets/logo.png" alt="Academic Hub icon" />
                 <span>W3 Academic Hub (x64)</span>
             </a>
-            <!-- x32 -->
+            <!-- Academic Hub x32 -->
             <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')" data-href="https://www.dropbox.com/scl/fi/9vafmyae07jciw3n5s55h/Academic-Hub-x32.exe?rlkey=zhhf34ynw99xlc827rjulwehq&dl=1" download>
-                <img src="https://gpsmartapps.github.io/I3Hub/assets/logo.png" alt="app icon" />
+                <img src="https://gpsmartapps.github.io/I3Hub/assets/logo.png" alt="Academic Hub icon" />
                 <span>W3 Academic Hub (x32)</span>
             </a>
             <!-- UniCapture -->
             <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')" data-href="https://www.dropbox.com/scl/fi/kij7rs5anm6a9b6zosgw6/W3-UniCapture.exe?rlkey=j7hu78momzvdi56r6qwtfkv1a&dl=1" download>
-                <img src="https://gpsmartapps.github.io/I3Hub/assets/webcam_.png" alt="webcam icon" />
+                <img src="https://gpsmartapps.github.io/I3Hub/assets/webcam_.png" alt="UniCapture icon" />
                 <span>W3 UniCapture</span>
             </a>
             <!-- SSCE -->
             <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')" data-href="https://www.dropbox.com/scl/fi/8fj1wcm07jjqf4jnr6pf9/W3-SSCE.exe?rlkey=mnnvp1nhvm1dwxdza2znvc1ff&dl=1" download>
-                <img src="https://gpsmartapps.github.io/I3Hub/assets/scelogo_.png" alt="ssce icon" />
+                <img src="https://gpsmartapps.github.io/I3Hub/assets/scelogo_.png" alt="SSCE icon" />
                 <span>W3 SSCE</span>
             </a>
             <!-- BECE -->
             <a class="app-link" href="javascript:void(0);" onclick="window.location=this.getAttribute('data-href')" data-href="https://www.dropbox.com/scl/fi/3ou07fe005gv0v252vt6i/W3-BECE.exe?rlkey=jie7nlb87me5hs7ago8xcdk1b&dl=1" download>
-                <img src="https://gpsmartapps.github.io/I3Hub/assets/bcelogo_.png" alt="bece icon" />
+                <img src="https://gpsmartapps.github.io/I3Hub/assets/bcelogo_.png" alt="BECE icon" />
                 <span>W3 BECE</span>
             </a>
-            <!-- Market (opens new tab) -->
+            <!-- Market Place (external) -->
             <a class="app-link" href="javascript:void(0);" onclick="window.open(this.getAttribute('data-href'), '_blank')" data-href="https://paystack.shop/w3pay">
-                <img src="https://gpsmartapps.github.io/I3Hub/assets/cart_.png" alt="Market Icon" />
+                <img src="https://gpsmartapps.github.io/I3Hub/assets/cart_.png" alt="Market icon" />
                 <span>Market Place</span>
             </a>
         </div>
 
-        <!-- footer inside card (aligned with green) -->
+        <!-- footer inside card -->
         <div class="footer">
-            &copy; 2025 I3 Hub | All rights reserved.
+            © 2025 I3 Hub · clean tools for education
         </div>
     </div>
 
-    <!-- noscript fallback (optional) -->
+    <!-- noscript message -->
     <noscript>
-        <div class="noscript-warn">JavaScript is off. <a href="/I3Hub/error-page.html">Visit error page</a></div>
+        <div class="noscript-warn">⚠️ JavaScript is turned off. <a href="/I3Hub/error-page.html" style="color:#2d5a2d;">Visit fallback page</a></div>
     </noscript>
+
+    <script>
+        (function() {
+            // ===== PROFESSIONAL GREEN & WHITE BACKGROUND PALETTE =====
+            const greenPalette = [
+                '#f0f7ec', '#e6f2e6', '#e2f0df', '#d9ecda', '#d0e8d0',
+                '#dbf0db', '#eaf5e7', '#d2ead3', '#f2faf0', '#e2f2df',
+                '#e9f3e3', '#deedd9', '#f5fff0', '#e2eeda', '#cde8cf'
+            ];
+
+            // get stored background (if any)
+            function loadSavedGreen() {
+                const saved = localStorage.getItem('i3hubGreenBg');
+                if (saved && greenPalette.includes(saved)) {
+                    document.body.style.backgroundColor = saved;
+                } else {
+                    // default crisp green-white
+                    document.body.style.backgroundColor = '#f0f7ec';
+                }
+            }
+
+            // pick random green-white from palette & apply
+            function setRandomGreenBg() {
+                const randomIndex = Math.floor(Math.random() * greenPalette.length);
+                const newBg = greenPalette[randomIndex];
+                document.body.style.backgroundColor = newBg;
+                localStorage.setItem('i3hubGreenBg', newBg);
+            }
+
+            // execute on load
+            window.addEventListener('load', function() {
+                loadSavedGreen();
+
+                // toggle button (regenerate to avoid double listeners)
+                const toggleBtn = document.getElementById('colorToggleBtn');
+                if (toggleBtn) {
+                    // clone to wipe old listeners (safe practice)
+                    const newBtn = toggleBtn.cloneNode(true);
+                    toggleBtn.parentNode?.replaceChild(newBtn, toggleBtn);
+                    newBtn.addEventListener('click', setRandomGreenBg);
+                }
+
+                // (optional) add small extra: if any .app-link missing data-href? Not needed, preserved.
+            });
+
+            // protect contextmenu (already in body, double assurance)
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            // also retain original download logic via data-href (the onclick already uses this.getAttribute)
+            // all good – no changes to functionality.
+        })();
+    </script>
+
+    <!-- small additional touch: prevent drag on images (keeps professional look) -->
+    <script>
+        (function() {
+            const images = document.querySelectorAll('.app-link img, .site-logo');
+            images.forEach(img => {
+                img.addEventListener('dragstart', (e) => e.preventDefault());
+            });
+        })();
+    </script>
+</body>
+</html>
