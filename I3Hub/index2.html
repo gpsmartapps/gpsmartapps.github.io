@@ -1,200 +1,628 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I3 Hub - Download My Apps</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="I3 Hub – academic tools, exam software & student apps." />
+    <title>I3 Hub · Software Downloads</title>
+    <link rel="icon" type="image/png" href="https://gpsmartapps.github.io/I3Hub/assets/logo_i3.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
-        /* Google Font */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Global Styles */
+        /* ── PALETTE ── */
+        :root {
+            --green-900: #0d2e1a;
+            --green-800: #144024;
+            --green-700: #1b5230;
+            --green-600: #22673d;
+            --green-500: #2e8a52;
+            --green-400: #4aad70;
+            --green-300: #7ecb97;
+            --green-200: #c2e8cf;
+            --green-100: #e8f5ed;
+            --green-50:  #f4fbf6;
+        }
+
+        /* LIGHT */
+        [data-theme="light"] {
+            --bg:           #ffffff;
+            --surface:      #ffffff;
+            --surface-alt:  #f0f9f3;
+            --ink:          #0d2e1a;
+            --ink-muted:    #4a6b55;
+            --rule:         #d4eadb;
+            --accent:       #2e8a52;
+            --accent-dim:   #e8f5ed;
+            --toggle-bg:    #ffffff;
+            --toggle-bd:    #2e8a52;
+            --toggle-color: #1b5230;
+            --market-bg:    #0d2e1a;
+            --market-hov:   #144024;
+            --market-text:  #ffffff;
+            --market-meta:  rgba(255,255,255,0.55);
+            --icon-filter:  none;
+        }
+
+        /* DARK */
+        [data-theme="dark"] {
+            --bg:           #091910;
+            --surface:      #0f2518;
+            --surface-alt:  #152e1e;
+            --ink:          #d4edd9;
+            --ink-muted:    #74a882;
+            --rule:         #1c3f28;
+            --accent:       #4aad70;
+            --accent-dim:   #0f2518;
+            --toggle-bg:    #0f2518;
+            --toggle-bd:    #4aad70;
+            --toggle-color: #7ecb97;
+            --market-bg:    #071410;
+            --market-hov:   #0a1c14;
+            --market-text:  #d4edd9;
+            --market-meta:  rgba(212,237,217,0.5);
+            --icon-filter:  brightness(0) invert(72%) sepia(18%) saturate(450%) hue-rotate(90deg);
+        }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            color: white;
-            transition: background-color 0.3s ease;
+            font-family: 'DM Sans', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 100px 20px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
+        /* ── TOP STRIPE ── */
+        .top-bar {
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--green-900) 0%, var(--green-500) 60%, var(--green-200) 100%);
+            flex-shrink: 0;
         }
 
-        .hero h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        /* Branding */
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #FFD700;
-        }
-
-        /* App Container - Techy Neon Teal Glow */
-        .container {
-            max-width: 500px;
-            margin: 40px auto;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(15px);
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(30, 181, 128, 0.5),
-                0 0 25px rgba(30, 181, 128, 0.3);
-            border: 1px solid rgba(30, 181, 128, 0.5);
-            animation: neonGlow 1.5s infinite alternate;
-        }
-
-        /* Neon Glow Animation */
-        @keyframes neonGlow {
-            from {
-                box-shadow: 0 0 10px rgba(30, 181, 128, 0.3),
-                    0 0 20px rgba(30, 181, 128, 0.2);
-            }
-
-            to {
-                box-shadow: 0 0 20px rgba(30, 181, 128, 0.7),
-                    0 0 30px rgba(30, 181, 128, 0.5);
-            }
-        }
-
-        /* Button for Toggling Random Color */
-        #colorToggleBtn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: transparent;
-            border: none;
-            font-size: 28px;
-            color: white;
-            cursor: pointer;
-            z-index: 9999;
-            transition: transform 0.3s ease;
-        }
-
-        #colorToggleBtn:hover {
-            transform: scale(1.2);
-        }
-
-        .app-link {
+        /* ── NAV ── */
+        nav {
+            width: 100%;
+            max-width: 900px;
+            padding: 1.8rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 20px;
-            margin: 10px 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            border-radius: 8px;
-            transition: 0.3s;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-logo img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+
+        .nav-logo-text {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.25rem;
+            color: var(--ink);
+            letter-spacing: 0.02em;
+            transition: color 0.3s;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+        }
+
+        .nav-tag {
+            font-size: 0.78rem;
             font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            border: 1px solid var(--rule);
+            padding: 0.3rem 0.9rem;
+            border-radius: 100px;
+            transition: border-color 0.3s, color 0.3s;
         }
 
-        .app-link:hover {
-            background: rgba(0, 0, 0, 0.9);
-            transform: scale(1.05);
+        /* ── TOGGLE BUTTON ── */
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1.5px solid var(--toggle-bd);
+            background: var(--toggle-bg);
+            color: var(--toggle-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            line-height: 1;
+            transition: transform 0.2s ease, border-color 0.3s, background 0.3s;
+            flex-shrink: 0;
         }
 
-        .app-link img {
-            width: 24px;
-            height: 24px;
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(10deg);
         }
 
-        .footer {
-            margin-top: 30px;
-            font-size: 14px;
-            opacity: 0.8;
+        /* ── HERO ── */
+        .hero {
+            width: 100%;
+            max-width: 900px;
+            padding: 4rem 2rem 3.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--accent);
+            transition: background 0.3s;
+        }
+
+        .hero-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3.8rem;
+            line-height: 1.1;
+            color: var(--ink);
+            margin-bottom: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--accent);
+            transition: color 0.3s;
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--ink-muted);
+            line-height: 1.7;
+            max-width: 340px;
+            transition: color 0.3s;
+        }
+
+        .hero-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-wrap {
+            position: relative;
+            width: 160px;
+            height: 160px;
+        }
+
+        .logo-ring {
+            position: absolute;
+            inset: -20px;
+            border-radius: 50%;
+            border: 1px solid var(--rule);
+            animation: spin-slow 18s linear infinite;
+            transition: border-color 0.3s;
+        }
+
+        .logo-ring::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            transition: background 0.3s;
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        .logo-ring-2 {
+            position: absolute;
+            inset: -40px;
+            border-radius: 50%;
+            border: 1px dashed var(--rule);
+            transition: border-color 0.3s;
+        }
+
+        .hero-logo {
+            width: 160px;
+            height: 160px;
+            object-fit: contain;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 12px 28px rgba(30,90,50,0.2));
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            width: 100%;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .divider hr {
+            border: none;
+            border-top: 1px solid var(--rule);
+            transition: border-color 0.3s;
+        }
+
+        /* ── DOWNLOADS ── */
+        .downloads-section {
+            width: 100%;
+            max-width: 900px;
+            padding: 3rem 2rem 5rem;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: color 0.3s;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--rule);
+            transition: background 0.3s;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--rule);
+            border: 1px solid var(--rule);
+            border-radius: 1.2rem;
+            overflow: hidden;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .app-row {
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 1.4rem 1.8rem;
+            text-decoration: none;
+            color: var(--ink);
+            transition: background 0.15s ease, color 0.15s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-row::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--accent);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.2s ease;
+        }
+
+        .app-row:hover { background: var(--surface-alt); }
+        .app-row:hover::after { transform: scaleY(1); }
+        .app-row:hover .app-arrow { transform: translateX(3px); opacity: 1; }
+
+        .app-icon-wrap {
+            width: 44px;
+            height: 44px;
+            background: var(--accent-dim);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background 0.15s;
+        }
+
+        .app-row:hover .app-icon-wrap { background: var(--rule); }
+
+        .app-icon-wrap img {
+            width: 26px;
+            height: 26px;
+            object-fit: contain;
+            filter: var(--icon-filter);
+        }
+
+        .app-info { flex: 1; min-width: 0; }
+
+        .app-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .app-meta {
+            font-size: 0.75rem;
+            color: var(--ink-muted);
+            margin-top: 0.15rem;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .app-arrow {
+            color: var(--accent);
+            opacity: 0.4;
+            font-size: 1.1rem;
+            transition: transform 0.2s, opacity 0.2s;
+            flex-shrink: 0;
+        }
+
+        /* Market row */
+        .app-row.market {
+            grid-column: 1 / -1;
+            background: var(--market-bg);
+            color: var(--market-text);
+            transition: background 0.15s ease;
+        }
+
+        .app-row.market .app-icon-wrap {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .app-row.market .app-icon-wrap img {
+            filter: brightness(0) invert(1) !important;
+        }
+
+        .app-row.market .app-meta { color: var(--market-meta); }
+
+        .app-row.market .app-arrow {
+            color: var(--green-300);
+            opacity: 0.9;
+        }
+
+        .app-row.market:hover { background: var(--market-hov); }
+
+        .app-row.market::after { background: var(--green-400); }
+
+        /* ── FOOTER ── */
+        footer {
+            width: 100%;
+            border-top: 1px solid var(--rule);
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            font-size: 0.82rem;
+            color: var(--ink-muted);
+            transition: border-color 0.3s, color 0.3s;
+            margin-top: auto;
+        }
+
+        footer .dot { color: var(--accent); }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-text   { animation: fade-up 0.7s ease both; }
+        .hero-visual { animation: fade-up 0.7s 0.15s ease both; }
+        .app-grid    { animation: fade-up 0.7s 0.25s ease both; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 640px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 2.5rem 1.5rem 2rem;
+                gap: 2rem;
+                text-align: center;
+            }
+            .hero-visual { order: -1; }
+            .hero-eyebrow { justify-content: center; }
+            .hero-desc { max-width: 100%; }
+            .hero-title { font-size: 2.6rem; }
+            .app-grid { grid-template-columns: 1fr; }
+            .app-row.market { grid-column: 1; }
+            nav { padding: 1.4rem 1.5rem; }
+            .downloads-section { padding: 2rem 1.5rem 4rem; }
+            .logo-wrap, .hero-logo { width: 120px; height: 120px; }
+            .nav-tag { display: none; }
         }
     </style>
 </head>
 
-<body>
+<body oncontextmenu="return false;">
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <div class="logo">I3 Hub</div>
-        <h1>Welcome to I3 Hub</h1>
-        <p>Download our latest applications for an enhanced experience.</p>
+<div class="top-bar"></div>
+
+<nav>
+    <div class="nav-logo">
+        <img src="https://gpsmartapps.github.io/I3Hub/assets/logo_i3.png" alt="I3 Hub" draggable="false" />
+        <span class="nav-logo-text">I3 Hub</span>
     </div>
-
-    <!-- Color Toggle Button -->
-    <!-- <button id="colorToggleBtn">🌈</button> -->
-    <button id="colorToggleBtn" class="toggle-btn">🎨</button>
-
-    <!-- Download Section -->
-    <div class="container">
-        <a class="app-link" href="https://www.dropbox.com/scl/fi/gnj/Academic-Hub.exe?rlkey=e1ambl&dl=1" download>
-            <img src="https://www.dropbox.com/scl/fi/tiq2bifo1h02hv93q29fn/logo.png?rlkey=c6pl=1" alt="App Icon">
-            Academic Hub (x64)
-        </a>
-        <a class="app-link" href="https://www.dropbox.com/scl/fi/zd/Smart-SSCE.exe?rlkey=qb3yw7lx72arpzxezm9cq42ux&dl=1"
-            download>
-            <img src="https://www.dropbox.com/scl/fi/js/mdle_logo.png?rlkey=o1z&dl=1" alt="App Icon"> Smart
-            SSCE
-        </a>
-        <a class="app-link"
-            href="https://www.dropbox.com/scl/fi/955h/Academic-Hub-x32.exe?rlkey=zhhf34ynw99xlc827rjulwehq&dl=1"
-            download>
-            <img src="https://www.dropbox.com/scl/fi//logo.png?rlkey=c6p2ynwf9158gdlldfiioq3b4&dl=1" alt="App Icon">
-            Academic Hub (x32)
-        </a>
-        <a class="app-link" href="https://www.i3hub.com/installation/smartbece.exe" download>
-            <img src="https://www.dropbox.com/scl/fi/lbgx10/_bcelogo_.png?rlkey=ifr7&dl=1" alt="App Icon"> Smart
-            BECE
-        </a>
-        <a class="app-link" href="https://bit.ly/w3marketplace" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/1077/1077976.png" alt="Market Icon"
-                style="filter: invert(1);"> Market Place
-        </a>
+    <div class="nav-right">
+        <span class="nav-tag">Software Portal</span>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme" title="Toggle theme">🌙</button>
     </div>
+</nav>
 
-    <!-- Footer -->
-    <div class="footer">
-        &copy; 2025 I3 Hub | All rights reserved.
+<section class="hero">
+    <div class="hero-text">
+        <div class="hero-eyebrow">Academic Software</div>
+        <h1 class="hero-title">Tools built<br>for <em>students.</em></h1>
+        <p class="hero-desc">Download exam preparation software, academic utilities, and productivity apps — all in one place.</p>
     </div>
+    <div class="hero-visual">
+        <div class="logo-wrap">
+            <div class="logo-ring"></div>
+            <div class="logo-ring-2"></div>
+            <img src="https://gpsmartapps.github.io/I3Hub/assets/logo_i3.png" alt="I3 Hub" class="hero-logo" draggable="false" />
+        </div>
+    </div>
+</section>
 
-    <script>
-        // List of 20 random techy colors
-        const colors = [
-            '#1eb580', '#1a2b4c', '#00bfae', '#00c7d1', '#00ff7f', '#2c3e50',
-            '#7f8c8d', '#34495e', '#16a085', '#2ecc71', '#2980b9', '#9b59b6',
-            '#ff5733', '#f39c12', '#8e44ad', '#e74c3c', '#3498db', '#16a085',
-            '#2d3436', '#f1c40f'
-        ];
+<div class="divider"><hr /></div>
 
-        // Function to set the random color
-        function setRandomColor() {
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            document.body.style.backgroundColor = randomColor;
-            // Save the selected color to localStorage
-            localStorage.setItem('selectedColor', randomColor);
-        }
+<div class="downloads-section">
+    <div class="section-label">Available Downloads</div>
 
-        // Check if there's a saved color and apply it
-        window.onload = function () {
-            const savedColor = localStorage.getItem('selectedColor');
-            if (savedColor) {
-                document.body.style.backgroundColor = savedColor;
-            }
-        };
+    <div class="app-grid">
 
-        // Button click event to change background color
-        document.getElementById('colorToggleBtn').addEventListener('click', setRandomColor);
-    </script>
+        <a class="app-row" href="javascript:void(0);"
+           onclick="window.location='https://www.dropbox.com/scl/fi/qs4kfaav367molyf69gx7/Academic-Hub.exe?rlkey=7te30rud9fpj5aabcl09hkbi4&dl=1'">
+            <div class="app-icon-wrap"><img src="https://gpsmartapps.github.io/I3Hub/assets/logo.png" alt="" draggable="false" /></div>
+            <div class="app-info">
+                <div class="app-name">W3 Academic Hub</div>
+                <div class="app-meta">Windows · 64-bit</div>
+            </div>
+            <span class="app-arrow">↓</span>
+        </a>
+
+        <a class="app-row" href="javascript:void(0);"
+           onclick="window.location='https://www.dropbox.com/scl/fi/9vafmyae07jciw3n5s55h/Academic-Hub-x32.exe?rlkey=zhhf34ynw99xlc827rjulwehq&dl=1'">
+            <div class="app-icon-wrap"><img src="https://gpsmartapps.github.io/I3Hub/assets/logo.png" alt="" draggable="false" /></div>
+            <div class="app-info">
+                <div class="app-name">W3 Academic Hub</div>
+                <div class="app-meta">Windows · 32-bit</div>
+            </div>
+            <span class="app-arrow">↓</span>
+        </a>
+
+        <a class="app-row" href="javascript:void(0);"
+           onclick="window.location='https://www.dropbox.com/scl/fi/kij7rs5anm6a9b6zosgw6/W3-UniCapture.exe?rlkey=j7hu78momzvdi56r6qwtfkv1a&dl=1'">
+            <div class="app-icon-wrap"><img src="https://gpsmartapps.github.io/I3Hub/assets/webcam_.png" alt="" draggable="false" /></div>
+            <div class="app-info">
+                <div class="app-name">W3 UniCapture</div>
+                <div class="app-meta">Windows · Camera Tool</div>
+            </div>
+            <span class="app-arrow">↓</span>
+        </a>
+
+        <a class="app-row" href="javascript:void(0);"
+           onclick="window.location='https://www.dropbox.com/scl/fi/8fj1wcm07jjqf4jnr6pf9/W3-SSCE.exe?rlkey=mnnvp1nhvm1dwxdza2znvc1ff&dl=1'">
+            <div class="app-icon-wrap"><img src="https://gpsmartapps.github.io/I3Hub/assets/scelogo_.png" alt="" draggable="false" /></div>
+            <div class="app-info">
+                <div class="app-name">W3 SSCE</div>
+                <div class="app-meta">Windows · Exam Software</div>
+            </div>
+            <span class="app-arrow">↓</span>
+        </a>
+
+        <a class="app-row" href="javascript:void(0);"
+           onclick="window.location='https://www.dropbox.com/scl/fi/3ou07fe005gv0v252vt6i/W3-BECE.exe?rlkey=jie7nlb87me5hs7ago8xcdk1b&dl=1'">
+            <div class="app-icon-wrap"><img src="https://gpsmartapps.github.io/I3Hub/assets/bcelogo_.png" alt="" draggable="false" /></div>
+            <div class="app-info">
+                <div class="app-name">W3 BECE</div>
+                <div class="app-meta">Windows · Exam Software</div>
+            </div>
+            <span class="app-arrow">↓</span>
+        </a>
+
+        <a class="app-row market" href="javascript:void(0);"
+           onclick="window.open('https://paystack.shop/w3pay','_blank')">
+            <div class="app-icon-wrap"><img src="https://gpsmartapps.github.io/I3Hub/assets/cart_.png" alt="" draggable="false" /></div>
+            <div class="app-info">
+                <div class="app-name">Market Place</div>
+                <div class="app-meta">Browse &amp; purchase software licenses</div>
+            </div>
+            <span class="app-arrow">→</span>
+        </a>
+
+    </div>
+</div>
+
+<footer>
+    <span>© 2025 I3 Hub</span>
+    <span class="dot">·</span>
+    <span>Academic Software Portal</span>
+</footer>
+
+<noscript>
+    <style>.ns{position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);background:#fff;border:1px solid #d4eadb;padding:.6rem 1.4rem;border-radius:100px;font-size:.85rem;color:#0d2e1a;box-shadow:0 4px 16px rgba(0,0,0,.1);z-index:999}</style>
+    <div class="ns">JavaScript disabled — some features may not work.</div>
+</noscript>
+
+<script>
+(function () {
+    const KEY  = 'i3hub_theme';
+    const root = document.documentElement;
+    const btn  = document.getElementById('themeToggle');
+
+    function setTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        localStorage.setItem(KEY, theme);
+    }
+
+    function getInitialTheme() {
+        const saved = localStorage.getItem(KEY);
+        if (saved === 'dark' || saved === 'light') return saved;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    setTheme(getInitialTheme());
+
+    btn.addEventListener('click', () => {
+        setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem(KEY)) setTheme(e.matches ? 'dark' : 'light');
+    });
+
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('dragstart', e => e.preventDefault());
+        img.setAttribute('draggable', 'false');
+    });
+    document.addEventListener('contextmenu', e => e.preventDefault());
+})();
+</script>
 
 </body>
-
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8" />
@@ -23,6 +23,7 @@
             box-sizing: border-box;
         }
 
+        /* ── PALETTE ── */
         :root {
             --green-900: #0d2e1a;
             --green-800: #144024;
@@ -30,13 +31,50 @@
             --green-600: #22673d;
             --green-500: #2e8a52;
             --green-400: #4aad70;
+            --green-300: #7ecb97;
             --green-200: #c2e8cf;
             --green-100: #e8f5ed;
             --green-50: #f4fbf6;
-            --white: #ffffff;
+        }
+
+        /* LIGHT */
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --surface: #ffffff;
+            --surface-alt: #f0f9f3;
             --ink: #0d2e1a;
             --ink-muted: #4a6b55;
             --rule: #d4eadb;
+            --accent: #2e8a52;
+            --accent-dim: #e8f5ed;
+            --toggle-bg: #ffffff;
+            --toggle-bd: #2e8a52;
+            --toggle-color: #1b5230;
+            --market-bg: #0d2e1a;
+            --market-hov: #144024;
+            --market-text: #ffffff;
+            --market-meta: rgba(255, 255, 255, 0.55);
+            --icon-filter: none;
+        }
+
+        /* DARK */
+        [data-theme="dark"] {
+            --bg: #091910;
+            --surface: #0f2518;
+            --surface-alt: #152e1e;
+            --ink: #d4edd9;
+            --ink-muted: #74a882;
+            --rule: #1c3f28;
+            --accent: #4aad70;
+            --accent-dim: #0f2518;
+            --toggle-bg: #0f2518;
+            --toggle-bd: #4aad70;
+            --toggle-color: #7ecb97;
+            --market-bg: #071410;
+            --market-hov: #0a1c14;
+            --market-text: #d4edd9;
+            --market-meta: rgba(212, 237, 217, 0.5);
+            --icon-filter: brightness(0) invert(72%) sepia(18%) saturate(450%) hue-rotate(90deg);
         }
 
         html {
@@ -45,20 +83,22 @@
 
         body {
             font-family: 'DM Sans', system-ui, sans-serif;
-            background: var(--white);
+            background: var(--bg);
             color: var(--ink);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
-        /* ── TOP RULE ── */
+        /* ── TOP STRIPE ── */
         .top-bar {
             width: 100%;
             height: 4px;
             background: linear-gradient(90deg, var(--green-900) 0%, var(--green-500) 60%, var(--green-200) 100%);
+            flex-shrink: 0;
         }
 
         /* ── NAV ── */
@@ -86,8 +126,15 @@
         .nav-logo-text {
             font-family: 'DM Serif Display', serif;
             font-size: 1.25rem;
-            color: var(--green-900);
+            color: var(--ink);
             letter-spacing: 0.02em;
+            transition: color 0.3s;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
         }
 
         .nav-tag {
@@ -99,6 +146,29 @@
             border: 1px solid var(--rule);
             padding: 0.3rem 0.9rem;
             border-radius: 100px;
+            transition: border-color 0.3s, color 0.3s;
+        }
+
+        /* ── TOGGLE BUTTON ── */
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1.5px solid var(--toggle-bd);
+            background: var(--toggle-bg);
+            color: var(--toggle-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            line-height: 1;
+            transition: transform 0.2s ease, border-color 0.3s, background 0.3s;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(10deg);
         }
 
         /* ── HERO ── */
@@ -112,8 +182,6 @@
             align-items: center;
         }
 
-        .hero-text {}
-
         .hero-eyebrow {
             display: inline-flex;
             align-items: center;
@@ -122,8 +190,9 @@
             font-weight: 600;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--green-600);
+            color: var(--accent);
             margin-bottom: 1.2rem;
+            transition: color 0.3s;
         }
 
         .hero-eyebrow::before {
@@ -131,20 +200,23 @@
             display: block;
             width: 20px;
             height: 2px;
-            background: var(--green-500);
+            background: var(--accent);
+            transition: background 0.3s;
         }
 
         .hero-title {
             font-family: 'DM Serif Display', serif;
             font-size: 3.8rem;
             line-height: 1.1;
-            color: var(--green-900);
+            color: var(--ink);
             margin-bottom: 1.2rem;
+            transition: color 0.3s;
         }
 
         .hero-title em {
             font-style: italic;
-            color: var(--green-600);
+            color: var(--accent);
+            transition: color 0.3s;
         }
 
         .hero-desc {
@@ -153,13 +225,13 @@
             color: var(--ink-muted);
             line-height: 1.7;
             max-width: 340px;
+            transition: color 0.3s;
         }
 
         .hero-visual {
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
         .logo-wrap {
@@ -174,6 +246,7 @@
             border-radius: 50%;
             border: 1px solid var(--rule);
             animation: spin-slow 18s linear infinite;
+            transition: border-color 0.3s;
         }
 
         .logo-ring::before {
@@ -185,7 +258,8 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--green-500);
+            background: var(--accent);
+            transition: background 0.3s;
         }
 
         @keyframes spin-slow {
@@ -202,7 +276,8 @@
             position: absolute;
             inset: -40px;
             border-radius: 50%;
-            border: 1px dashed var(--green-100);
+            border: 1px dashed var(--rule);
+            transition: border-color 0.3s;
         }
 
         .hero-logo {
@@ -211,7 +286,7 @@
             object-fit: contain;
             position: relative;
             z-index: 1;
-            filter: drop-shadow(0 12px 28px rgba(30, 90, 50, 0.18));
+            filter: drop-shadow(0 12px 28px rgba(30, 90, 50, 0.2));
         }
 
         /* ── DIVIDER ── */
@@ -224,6 +299,7 @@
         .divider hr {
             border: none;
             border-top: 1px solid var(--rule);
+            transition: border-color 0.3s;
         }
 
         /* ── DOWNLOADS ── */
@@ -243,6 +319,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            transition: color 0.3s;
         }
 
         .section-label::after {
@@ -250,6 +327,7 @@
             flex: 1;
             height: 1px;
             background: var(--rule);
+            transition: background 0.3s;
         }
 
         .app-grid {
@@ -260,10 +338,11 @@
             border: 1px solid var(--rule);
             border-radius: 1.2rem;
             overflow: hidden;
+            transition: background 0.3s, border-color 0.3s;
         }
 
         .app-row {
-            background: var(--white);
+            background: var(--surface);
             display: flex;
             align-items: center;
             gap: 1.2rem;
@@ -283,15 +362,14 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: var(--green-500);
+            background: var(--accent);
             transform: scaleY(0);
             transform-origin: bottom;
             transition: transform 0.2s ease;
         }
 
         .app-row:hover {
-            background: var(--green-50);
-            color: var(--green-800);
+            background: var(--surface-alt);
         }
 
         .app-row:hover::after {
@@ -306,7 +384,7 @@
         .app-icon-wrap {
             width: 44px;
             height: 44px;
-            background: var(--green-100);
+            background: var(--accent-dim);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -316,13 +394,14 @@
         }
 
         .app-row:hover .app-icon-wrap {
-            background: var(--green-200);
+            background: var(--rule);
         }
 
         .app-icon-wrap img {
             width: 26px;
             height: 26px;
             object-fit: contain;
+            filter: var(--icon-filter);
         }
 
         .app-info {
@@ -343,43 +422,44 @@
             color: var(--ink-muted);
             margin-top: 0.15rem;
             font-weight: 400;
+            transition: color 0.3s;
         }
 
         .app-arrow {
-            color: var(--green-500);
+            color: var(--accent);
             opacity: 0.4;
             font-size: 1.1rem;
             transition: transform 0.2s, opacity 0.2s;
             flex-shrink: 0;
         }
 
-        /* Market special row – spans 2 cols */
+        /* Market row */
         .app-row.market {
             grid-column: 1 / -1;
-            background: var(--green-900);
-            color: var(--white);
+            background: var(--market-bg);
+            color: var(--market-text);
+            transition: background 0.15s ease;
         }
 
         .app-row.market .app-icon-wrap {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .app-row.market .app-icon-wrap img {
-            filter: brightness(0) invert(1);
+            filter: brightness(0) invert(1) !important;
         }
 
         .app-row.market .app-meta {
-            color: rgba(255, 255, 255, 0.55);
+            color: var(--market-meta);
         }
 
         .app-row.market .app-arrow {
-            color: var(--green-400);
-            opacity: 0.8;
+            color: var(--green-300);
+            opacity: 0.9;
         }
 
         .app-row.market:hover {
-            background: var(--green-800);
-            color: var(--white);
+            background: var(--market-hov);
         }
 
         .app-row.market::after {
@@ -397,10 +477,12 @@
             gap: 0.6rem;
             font-size: 0.82rem;
             color: var(--ink-muted);
+            transition: border-color 0.3s, color 0.3s;
+            margin-top: auto;
         }
 
         footer .dot {
-            color: var(--green-400);
+            color: var(--accent);
         }
 
         /* ── ANIMATIONS ── */
@@ -450,7 +532,7 @@
             }
 
             .hero-title {
-                font-size: 2.8rem;
+                font-size: 2.6rem;
             }
 
             .app-grid {
@@ -474,6 +556,10 @@
                 width: 120px;
                 height: 120px;
             }
+
+            .nav-tag {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -487,7 +573,11 @@
             <img src="https://gpsmartapps.github.io/I3Hub/assets/logo_i3.png" alt="I3 Hub" draggable="false" />
             <span class="nav-logo-text">I3 Hub</span>
         </div>
-        <span class="nav-tag">Software Portal</span>
+        <div class="nav-right">
+            <span class="nav-tag">Software Portal</span>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme"
+                title="Toggle theme">🌙</button>
+        </div>
     </nav>
 
     <section class="hero">
@@ -518,9 +608,8 @@
 
             <a class="app-row" href="javascript:void(0);"
                 onclick="window.location='https://www.dropbox.com/scl/fi/qs4kfaav367molyf69gx7/Academic-Hub.exe?rlkey=7te30rud9fpj5aabcl09hkbi4&dl=1'">
-                <div class="app-icon-wrap">
-                    <img src="https://gpsmartapps.github.io/I3Hub/assets/logo.png" alt="" draggable="false" />
-                </div>
+                <div class="app-icon-wrap"><img src="https://gpsmartapps.github.io/I3Hub/assets/logo.png" alt=""
+                        draggable="false" /></div>
                 <div class="app-info">
                     <div class="app-name">W3 Academic Hub</div>
                     <div class="app-meta">Windows · 64-bit</div>
@@ -530,9 +619,8 @@
 
             <a class="app-row" href="javascript:void(0);"
                 onclick="window.location='https://www.dropbox.com/scl/fi/9vafmyae07jciw3n5s55h/Academic-Hub-x32.exe?rlkey=zhhf34ynw99xlc827rjulwehq&dl=1'">
-                <div class="app-icon-wrap">
-                    <img src="https://gpsmartapps.github.io/I3Hub/assets/logo.png" alt="" draggable="false" />
-                </div>
+                <div class="app-icon-wrap"><img src="https://gpsmartapps.github.io/I3Hub/assets/logo.png" alt=""
+                        draggable="false" /></div>
                 <div class="app-info">
                     <div class="app-name">W3 Academic Hub</div>
                     <div class="app-meta">Windows · 32-bit</div>
@@ -542,9 +630,8 @@
 
             <a class="app-row" href="javascript:void(0);"
                 onclick="window.location='https://www.dropbox.com/scl/fi/kij7rs5anm6a9b6zosgw6/W3-UniCapture.exe?rlkey=j7hu78momzvdi56r6qwtfkv1a&dl=1'">
-                <div class="app-icon-wrap">
-                    <img src="https://gpsmartapps.github.io/I3Hub/assets/webcam_.png" alt="" draggable="false" />
-                </div>
+                <div class="app-icon-wrap"><img src="https://gpsmartapps.github.io/I3Hub/assets/webcam_.png" alt=""
+                        draggable="false" /></div>
                 <div class="app-info">
                     <div class="app-name">W3 UniCapture</div>
                     <div class="app-meta">Windows · Camera Tool</div>
@@ -554,9 +641,8 @@
 
             <a class="app-row" href="javascript:void(0);"
                 onclick="window.location='https://www.dropbox.com/scl/fi/8fj1wcm07jjqf4jnr6pf9/W3-SSCE.exe?rlkey=mnnvp1nhvm1dwxdza2znvc1ff&dl=1'">
-                <div class="app-icon-wrap">
-                    <img src="https://gpsmartapps.github.io/I3Hub/assets/scelogo_.png" alt="" draggable="false" />
-                </div>
+                <div class="app-icon-wrap"><img src="https://gpsmartapps.github.io/I3Hub/assets/scelogo_.png" alt=""
+                        draggable="false" /></div>
                 <div class="app-info">
                     <div class="app-name">W3 SSCE</div>
                     <div class="app-meta">Windows · Exam Software</div>
@@ -566,9 +652,8 @@
 
             <a class="app-row" href="javascript:void(0);"
                 onclick="window.location='https://www.dropbox.com/scl/fi/3ou07fe005gv0v252vt6i/W3-BECE.exe?rlkey=jie7nlb87me5hs7ago8xcdk1b&dl=1'">
-                <div class="app-icon-wrap">
-                    <img src="https://gpsmartapps.github.io/I3Hub/assets/bcelogo_.png" alt="" draggable="false" />
-                </div>
+                <div class="app-icon-wrap"><img src="https://gpsmartapps.github.io/I3Hub/assets/bcelogo_.png" alt=""
+                        draggable="false" /></div>
                 <div class="app-info">
                     <div class="app-name">W3 BECE</div>
                     <div class="app-meta">Windows · Exam Software</div>
@@ -578,12 +663,11 @@
 
             <a class="app-row market" href="javascript:void(0);"
                 onclick="window.open('https://paystack.shop/w3pay','_blank')">
-                <div class="app-icon-wrap">
-                    <img src="https://gpsmartapps.github.io/I3Hub/assets/cart_.png" alt="" draggable="false" />
-                </div>
+                <div class="app-icon-wrap"><img src="https://gpsmartapps.github.io/I3Hub/assets/cart_.png" alt=""
+                        draggable="false" /></div>
                 <div class="app-info">
                     <div class="app-name">Market Place</div>
-                    <div class="app-meta">Browse & purchase software licenses</div>
+                    <div class="app-meta">Browse &amp; purchase software licenses</div>
                 </div>
                 <span class="app-arrow">→</span>
             </a>
@@ -599,7 +683,7 @@
 
     <noscript>
         <style>
-            .noscript-warn {
+            .ns {
                 position: fixed;
                 bottom: 1rem;
                 left: 50%;
@@ -614,14 +698,43 @@
                 z-index: 999
             }
         </style>
-        <div class="noscript-warn">JavaScript disabled — some features may not work.</div>
+        <div class="ns">JavaScript disabled — some features may not work.</div>
     </noscript>
 
     <script>
-        document.querySelectorAll('img').forEach(img => {
-            img.addEventListener('dragstart', e => e.preventDefault());
-        });
-        document.addEventListener('contextmenu', e => e.preventDefault());
+        (function () {
+            const KEY = 'i3hub_theme';
+            const root = document.documentElement;
+            const btn = document.getElementById('themeToggle');
+
+            function setTheme(theme) {
+                root.setAttribute('data-theme', theme);
+                btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+                localStorage.setItem(KEY, theme);
+            }
+
+            function getInitialTheme() {
+                const saved = localStorage.getItem(KEY);
+                if (saved === 'dark' || saved === 'light') return saved;
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+
+            setTheme(getInitialTheme());
+
+            btn.addEventListener('click', () => {
+                setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            });
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (!localStorage.getItem(KEY)) setTheme(e.matches ? 'dark' : 'light');
+            });
+
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('dragstart', e => e.preventDefault());
+                img.setAttribute('draggable', 'false');
+            });
+            document.addEventListener('contextmenu', e => e.preventDefault());
+        })();
     </script>
 
 </body>
