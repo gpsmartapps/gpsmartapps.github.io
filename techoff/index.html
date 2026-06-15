@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REAI Forged — Technical Officer Defense</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #16a34a;
+            --primary-dark: #15803d;
+            --primary-light: #dcfce7;
+            --primary-soft: #f0fdf4;
+            --dark: #0f172a;
+            --dark-soft: #1e293b;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --radius: 16px;
+            --radius-lg: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gray-50);
+            color: var(--dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ─── Navigation ─── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .nav-logo svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 6px;
+        }
+
+        .nav-link {
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            font-family: inherit;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+        }
+
+        .nav-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: width 0.4s ease;
+        }
+
+        /* ─── Slide Container ─── */
+        .slides-container {
+            position: relative;
+        }
+
+        .slide {
+            min-height: 100vh;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 2rem 4rem;
+            position: relative;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide-content {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ─── Slide 1: Hero ─── */
+        .hero {
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: var(--primary-soft);
+            border: 1px solid #bbf7d0;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            height: 12px;
+            background: var(--primary-light);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--gray-500);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 0.6s ease 0.4s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease 0.5s both;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            margin-top: 6px;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray-400);
+            font-size: 0.8rem;
+            animation: fadeInUp 0.6s ease 0.8s both;
+        }
+
+        .scroll-hint svg {
+            animation: bounce 2s infinite;
+        }
+
+        /* ─── Slide 2: Who We Are ─── */
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            max-width: 600px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+            border-color: var(--primary-light);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: var(--primary-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-icon svg {
+            width: 26px;
+            height: 26px;
+            color: var(--primary);
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        /* ─── Slide 3: What I Do ─── */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gray-200);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.5rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2rem;
+            top: 4px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 3px solid var(--primary);
+            transform: translateX(-5px);
+        }
+
+        .timeline-item.active .timeline-dot {
+            background: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-light);
+        }
+
+        .timeline-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.4rem;
+        }
+
+        .timeline-content p {
+            font-size: 0.95rem;
+            color: var(--gray-500);
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 0.75rem;
+        }
+
+        .tech-tag {
+            padding: 4px 12px;
+            background: var(--gray-100);
+            color: var(--gray-600);
+            font-size: 0.8rem;
+            font-weight: 500;
+            border-radius: 6px;
+        }
+
+        /* ─── Slide 4: Showcase ─── */
+        .showcase-main {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .showcase-visual {
+            background: linear-gradient(135deg, var(--primary-soft) 0%, var(--white) 100%);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .showcase-visual::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+            opacity: 0.6;
+        }
+
+        .showcase-mockup {
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: var(--shadow-xl);
+            padding: 1.5rem;
+            position: relative;
+            z-index: 1;
+            border: 1px solid var(--gray-200);
+        }
+
+        .mockup-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .mockup-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .mockup-dot.red { background: #ef4444; }
+        .mockup-dot.yellow { background: #f59e0b; }
+        .mockup-dot.green { background: var(--primary); }
+
+        .mockup-title {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            margin-left: auto;
+        }
+
+        .mockup-body {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .mockup-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem;
+            background: var(--gray-50);
+            border-radius: 8px;
+        }
+
+        .mockup-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .mockup-text {
+            flex: 1;
+        }
+
+        .mockup-text-line {
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: 4px;
+            margin-bottom: 4px;
+        }
+
+        .mockup-text-line.short { width: 60%; }
+
+        .mockup-status {
+            padding: 3px 10px;
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 4px;
+        }
+
+        .showcase-info {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .showcase-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .showcase-info p {
+            color: var(--gray-500);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--gray-600);
+        }
+
+        .feature-list li svg {
+            width: 20px;
+            height: 20px;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .showcase-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .metric-box {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .metric-box-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .metric-box-label {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+
+        /* ─── Slide 5: Impact ─── */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .impact-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .impact-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .impact-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 20px;
+            background: var(--primary-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem;
+        }
+
+        .impact-icon svg {
+            width: 30px;
+            height: 30px;
+            color: var(--primary);
+        }
+
+        .impact-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1;
+        }
+
+        .impact-label {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin-top: 8px;
+        }
+
+        /* ─── Slide 6: Future & CTA ─── */
+        .cta-section {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .roadmap {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .roadmap-item {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 14px;
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            min-width: 180px;
+            transition: all 0.3s ease;
+        }
+
+        .roadmap-item:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow);
+        }
+
+        .roadmap-phase {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .roadmap-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: var(--primary);
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            font-family: inherit;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(22, 163, 74, 0.4);
+        }
+
+        /* ─── Slide Controls ─── */
+        .slide-controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .ctrl-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            color: var(--gray-600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .ctrl-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .ctrl-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--gray-400);
+            z-index: 100;
+            background: var(--white);
+            padding: 8px 16px;
+            border-radius: 10px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* ─── Animations ─── */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 768px) {
+            .showcase-main {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero-stats {
+                gap: 1.5rem;
+            }
+            .slide {
+                padding: 90px 1.25rem 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#16a34a"/>
+                    <path d="M10 22V10l6 6 6-6v12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                REAI Forged
+            </a>
+            <div class="nav-links">
+                <button class="nav-link active" onclick="goToSlide(0)">Intro</button>
+                <button class="nav-link" onclick="goToSlide(1)">Who We Are</button>
+                <button class="nav-link" onclick="goToSlide(2)">My Role</button>
+                <button class="nav-link" onclick="goToSlide(3)">Showcase</button>
+                <button class="nav-link" onclick="goToSlide(4)">Impact</button>
+                <button class="nav-link" onclick="goToSlide(5)">Future</button>
+            </div>
+        </div>
+        <div class="nav-progress" id="navProgress"></div>
+    </nav>
+
+    <!-- Slides Container -->
+    <div class="slides-container">
+
+        <!-- SLIDE 1: Hero -->
+        <section class="slide active" id="slide-0">
+            <div class="slide-content">
+                <div class="hero">
+                    <div class="hero-badge">
+                        <span class="dot"></span>
+                        Position Defense Presentation
+                    </div>
+                    <h1>Building Solutions That <span>Move the Needle</span></h1>
+                    <p class="hero-subtitle">
+                        Technical Officer at REAI Forged — delivering end-to-end technology across Web, Mobile, and IoT.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">3</div>
+                            <div class="hero-stat-label">Core Domains</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">1</div>
+                            <div class="hero-stat-label">Flagship System</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">∞</div>
+                            <div class="hero-stat-label">Possibilities</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-hint">
+                    <span>Use arrow keys or buttons to navigate</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: Who We Are -->
+        <section class="slide" id="slide-1">
+            <div class="slide-content">
+                <div class="section-header">
+                    <span class="section-tag">About Us</span>
+                    <h2 class="section-title">Who We Are at REAI Forged</h2>
+                    <p class="section-desc">A technology-driven team creating practical digital solutions for real-world problems.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <h3>Web Development</h3>
+                        <p>Building scalable, responsive web applications with modern frameworks like SvelteKit, React, and Node.js.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+                        </div>
+                        <h3>App Development</h3>
+                        <p>Cross-platform mobile experiences using React Native and Flutter, reaching users on every device.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
+                        </div>
+                        <h3>IoT & Hardware</h3>
+                        <p>Connecting the physical world through embedded systems, sensors, and smart device integrations.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h3>Security First</h3>
+                        <p>Every solution is built with data protection, authentication, and compliance as core principles.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: My Role -->
+        <section class="slide" id="slide-2">
+            <div class="slide-content">
+                <div class="section-header">
+                    <span class="section-tag">My Position</span>
+                    <h2 class="section-title">What I Do as Technical Officer</h2>
+                    <p class="section-desc">Leading the technical vision, architecture decisions, and hands-on development across all projects.</p>
+                </div>
+                <div class="cards-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div>
+                        <div class="timeline">
+                            <div class="timeline-item active">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h4>Technical Architecture</h4>
+                                    <p>Designing system architecture, database schemas, and API structures for all REAI Forged products.</p>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag">System Design</span>
+                                        <span class="tech-tag">Database</span>
+                                        <span class="tech-tag">APIs</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-item active">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h4>Full-Stack Development</h4>
+                                    <p>Hands-on coding across frontend, backend, and mobile — ensuring quality at every layer.</p>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag">SvelteKit</span>
+                                        <span class="tech-tag">React Native</span>
+                                        <span class="tech-tag">Node.js</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-item active">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h4>IoT Integration</h4>
+                                    <p>Bridging hardware and software — from sensor data collection to cloud dashboards.</p>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag">Embedded</span>
+                                        <span class="tech-tag">MQTT</span>
+                                        <span class="tech-tag">Cloud</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-item active">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h4>Team Leadership</h4>
+                                    <p>Mentoring developers, reviewing code, and setting technical standards for the team.</p>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag">Code Review</span>
+                                        <span class="tech-tag">Mentorship</span>
+                                        <span class="tech-tag">Standards</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" style="display:flex;flex-direction:column;justify-content:center;">
+                        <div class="card-icon" style="width:64px;height:64px;border-radius:20px;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h3 style="font-size:1.3rem;margin-bottom:0.75rem;">Why This Role Matters</h3>
+                        <p style="font-size:1rem;line-height:1.7;">
+                            As Technical Officer, I am the bridge between vision and execution. Every line of code, every architecture decision, and every deployed feature flows through this role. Without strong technical leadership, ideas remain ideas. I turn them into working systems.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: Showcase (MOUAU eTest) -->
+        <section class="slide" id="slide-3">
+            <div class="slide-content">
+                <div class="section-header">
+                    <span class="section-tag">Flagship Project</span>
+                    <h2 class="section-title">MOUAU eTest — Assessment System</h2>
+                    <p class="section-desc">A complete digital examination platform built for Michael Okpara University of Agriculture.</p>
+                </div>
+                <div class="showcase-main">
+                    <div class="showcase-visual">
+                        <div class="showcase-mockup">
+                            <div class="mockup-header">
+                                <span class="mockup-dot red"></span>
+                                <span class="mockup-dot yellow"></span>
+                                <span class="mockup-dot green"></span>
+                                <span class="mockup-title">MOUAU eTest Dashboard</span>
+                            </div>
+                            <div class="mockup-body">
+                                <div class="mockup-row">
+                                    <div class="mockup-avatar">A</div>
+                                    <div class="mockup-text">
+                                        <div class="mockup-text-line"></div>
+                                        <div class="mockup-text-line short"></div>
+                                    </div>
+                                    <span class="mockup-status">Active</span>
+                                </div>
+                                <div class="mockup-row">
+                                    <div class="mockup-avatar">B</div>
+                                    <div class="mockup-text">
+                                        <div class="mockup-text-line"></div>
+                                        <div class="mockup-text-line short"></div>
+                                    </div>
+                                    <span class="mockup-status">Active</span>
+                                </div>
+                                <div class="mockup-row">
+                                    <div class="mockup-avatar">C</div>
+                                    <div class="mockup-text">
+                                        <div class="mockup-text-line"></div>
+                                        <div class="mockup-text-line short"></div>
+                                    </div>
+                                    <span class="mockup-status">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-info">
+                        <h3>MOUAU eTest</h3>
+                        <p>A secure, scalable online examination system designed to replace paper-based testing at Michael Okpara University. Built with modern web technologies and a focus on reliability.</p>
+                        <ul class="feature-list">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Secure student authentication & session management
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Real-time exam monitoring & auto-submission
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Admin dashboard for question banks & analytics
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Clean, accessible UI built with SvelteKit
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Role-based access for Lecturers, Students & Admins
+                            </li>
+                        </ul>
+                        <div class="showcase-metrics">
+                            <div class="metric-box">
+                                <div class="metric-box-number">100%</div>
+                                <div class="metric-box-label">Digital</div>
+                            </div>
+                            <div class="metric-box">
+                                <div class="metric-box-number">24/7</div>
+                                <div class="metric-box-label">Uptime</div>
+                            </div>
+                            <div class="metric-box">
+                                <div class="metric-box-number">Fast</div>
+                                <div class="metric-box-label">Performance</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: Impact -->
+        <section class="slide" id="slide-4">
+            <div class="slide-content">
+                <div class="section-header">
+                    <span class="section-tag">Our Impact</span>
+                    <h2 class="section-title">The Value We Deliver</h2>
+                    <p class="section-desc">Measurable outcomes across education, efficiency, and technology adoption.</p>
+                </div>
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 4 3 9 3s9-1.34 9-3v-5"/></svg>
+                        </div>
+                        <div class="impact-number">1 Uni</div>
+                        <div class="impact-label">Institution Served</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        </div>
+                        <div class="impact-number">0</div>
+                        <div class="impact-label">Paper Exams Needed</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <div class="impact-number">Instant</div>
+                        <div class="impact-label">Result Processing</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <div class="impact-number">Web</div>
+                        <div class="impact-label">Platform Accessible</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: Future & CTA -->
+        <section class="slide" id="slide-5">
+            <div class="slide-content">
+                <div class="cta-section">
+                    <span class="section-tag">Looking Ahead</span>
+                    <h2>The Road Ahead for REAI Forged</h2>
+                    <p>We are not stopping at one success. Our technical roadmap expands our capabilities into new domains while deepening our existing strengths.</p>
+                    <div class="roadmap">
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">Phase 1</div>
+                            <div class="roadmap-title">Mobile App Launch</div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">Phase 2</div>
+                            <div class="roadmap-title">IoT Lab Setup</div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">Phase 3</div>
+                            <div class="roadmap-title">AI Integration</div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">Phase 4</div>
+                            <div class="roadmap-title">Multi-Institution</div>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="alert('Thank you for your time and consideration!')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        Thank You — Questions?
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Controls -->
+    <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">6</span>
+    </div>
+    <div class="slide-controls">
+        <button class="ctrl-btn" onclick="prevSlide()" title="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="ctrl-btn" onclick="nextSlide()" title="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 6;
+        const slides = document.querySelectorAll('.slide');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const navProgress = document.getElementById('navProgress');
+        const currentSlideEl = document.getElementById('currentSlide');
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            navLinks.forEach((link, index) => {
+                link.classList.toggle('active', index === currentSlide);
+            });
+            navProgress.style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+            currentSlideEl.textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlide();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        // Touch support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) nextSlide();
+            if (touchEndX - touchStartX > 50) prevSlide();
+        });
+
+        updateSlide();
+    </script>
+
+</body>
+</html>
