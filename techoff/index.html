@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REAI Forged — Technical Officer Defense</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #16a34a;
+            --primary-dark: #15803d;
+            --primary-light: #dcfce7;
+            --primary-soft: #f0fdf4;
+            --dark: #0f172a;
+            --dark-soft: #1e293b;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --radius: 16px;
+            --radius-lg: 24px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--gray-50); color: var(--dark); overflow-x: hidden; line-height: 1.6; }
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--gray-200); padding: 0 2rem; }
+        .nav-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--dark); text-decoration: none; }
+        .nav-logo svg { width: 32px; height: 32px; }
+        .nav-links { display: flex; gap: 6px; }
+        .nav-link { padding: 8px 16px; border-radius: 10px; font-size: 0.875rem; font-weight: 500; color: var(--gray-600); text-decoration: none; transition: all 0.2s ease; cursor: pointer; border: none; background: transparent; font-family: inherit; }
+        .nav-link:hover, .nav-link.active { background: var(--primary-soft); color: var(--primary-dark); }
+        .nav-progress { position: absolute; bottom: 0; left: 0; height: 3px; background: var(--primary); transition: width 0.4s ease; }
+        .slides-container { position: relative; }
+        .slide { min-height: 100vh; display: none; align-items: center; justify-content: center; padding: 100px 2rem 4rem; position: relative; }
+        .slide.active { display: flex; }
+        .slide-content { max-width: 1100px; width: 100%; margin: 0 auto; }
+        .hero { text-align: center; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; background: var(--primary-soft); border: 1px solid #bbf7d0; border-radius: 999px; font-size: 0.875rem; font-weight: 600; color: var(--primary-dark); margin-bottom: 2rem; animation: fadeInUp 0.6s ease 0.2s both; }
+        .hero-badge .dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; animation: pulse 2s infinite; }
+        .hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 700; line-height: 1.1; color: var(--dark); margin-bottom: 1.5rem; animation: fadeInUp 0.6s ease 0.3s both; }
+        .hero h1 span { color: var(--primary); position: relative; }
+        .hero h1 span::after { content: ''; position: absolute; bottom: 4px; left: 0; right: 0; height: 12px; background: var(--primary-light); z-index: -1; border-radius: 4px; }
+        .hero-subtitle { font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: var(--gray-500); max-width: 680px; margin: 0 auto 3rem; animation: fadeInUp 0.6s ease 0.4s both; }
+        .hero-motto { display: inline-flex; align-items: center; gap: 6px; padding: 6px 18px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 999px; font-size: 0.8rem; font-weight: 600; color: var(--gray-600); margin-bottom: 2.5rem; animation: fadeInUp 0.6s ease 0.45s both; }
+        .hero-motto svg { width: 14px; height: 14px; color: var(--primary); }
+        .hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; animation: fadeInUp 0.6s ease 0.5s both; }
+        .hero-stat { text-align: center; }
+        .hero-stat-number { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: var(--primary); line-height: 1; }
+        .hero-stat-label { font-size: 0.875rem; color: var(--gray-500); margin-top: 6px; }
+        .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--gray-400); font-size: 0.8rem; animation: fadeInUp 0.6s ease 0.8s both; }
+        .scroll-hint svg { animation: bounce 2s infinite; }
+        .section-header { margin-bottom: 3rem; }
+        .section-tag { display: inline-block; padding: 6px 14px; background: var(--primary-soft); color: var(--primary-dark); font-size: 0.8rem; font-weight: 600; border-radius: 8px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--dark); line-height: 1.2; margin-bottom: 1rem; }
+        .section-desc { font-size: 1.1rem; color: var(--gray-500); max-width: 650px; }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .card { background: var(--white); border-radius: var(--radius); padding: 2rem; border: 1px solid var(--gray-200); transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--primary); transform: scaleX(0); transition: transform 0.3s ease; }
+        .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); border-color: var(--primary-light); }
+        .card:hover::before { transform: scaleX(1); }
+        .card-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--primary-soft); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
+        .card-icon svg { width: 26px; height: 26px; color: var(--primary); }
+        .card h3 { font-size: 1.15rem; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem; }
+        .card p { font-size: 0.95rem; color: var(--gray-500); line-height: 1.6; }
+        .culture-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
+        .culture-card { background: var(--white); border-radius: var(--radius); padding: 1.75rem 1.5rem; border: 1px solid var(--gray-200); transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .culture-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); border-color: var(--primary-light); }
+        .culture-number { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: var(--primary); line-height: 1; margin-bottom: 0.75rem; }
+        .culture-card h4 { font-size: 1.05rem; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem; }
+        .culture-card p { font-size: 0.9rem; color: var(--gray-500); line-height: 1.5; }
+        .culture-quote { background: var(--white); border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 1.5rem 2rem; margin-top: 2rem; display: flex; align-items: flex-start; gap: 1rem; }
+        .culture-quote svg { width: 28px; height: 28px; color: var(--primary); flex-shrink: 0; margin-top: 2px; }
+        .culture-quote p { font-size: 1.05rem; color: var(--gray-600); font-style: italic; line-height: 1.6; }
+        .vistplexre-track { display: flex; gap: 0; margin-top: 2.5rem; background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--gray-200); overflow: hidden; }
+        .vistplexre-step { flex: 1; padding: 2rem 1.5rem; text-align: center; position: relative; transition: all 0.3s ease; cursor: default; }
+        .vistplexre-step:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 20%; bottom: 20%; width: 1px; background: var(--gray-200); }
+        .vistplexre-step:hover { background: var(--primary-soft); }
+        .vistplexre-letter { font-family: 'Space Grotesk', sans-serif; font-size: 2.8rem; font-weight: 700; color: var(--primary); line-height: 1; margin-bottom: 0.5rem; }
+        .vistplexre-word { font-size: 0.9rem; font-weight: 600; color: var(--dark); margin-bottom: 0.5rem; }
+        .vistplexre-desc { font-size: 0.8rem; color: var(--gray-500); line-height: 1.5; }
+        .vistplexre-arrow { display: flex; align-items: center; justify-content: center; margin-top: 1.5rem; color: var(--gray-400); }
+        .vistplexre-arrow svg { width: 24px; height: 24px; }
+        .vistplexre-summary { background: var(--white); border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 1.5rem 2rem; margin-top: 2rem; display: flex; align-items: center; gap: 1rem; }
+        .vistplexre-summary-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--primary-soft); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .vistplexre-summary-icon svg { width: 24px; height: 24px; color: var(--primary); }
+        .vistplexre-summary p { font-size: 1rem; color: var(--gray-600); line-height: 1.6; }
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--gray-200); }
+        .timeline-item { position: relative; padding-bottom: 2.5rem; padding-left: 2rem; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-dot { position: absolute; left: -2rem; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--white); border: 3px solid var(--primary); transform: translateX(-5px); }
+        .timeline-item.active .timeline-dot { background: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); }
+        .timeline-content h4 { font-size: 1.1rem; font-weight: 600; color: var(--dark); margin-bottom: 0.4rem; }
+        .timeline-content p { font-size: 0.95rem; color: var(--gray-500); }
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.75rem; }
+        .tech-tag { padding: 4px 12px; background: var(--gray-100); color: var(--gray-600); font-size: 0.8rem; font-weight: 500; border-radius: 6px; }
+        .tamper-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+        .tamper-card { background: var(--white); border-radius: var(--radius); padding: 2rem; border: 1px solid var(--gray-200); transition: all 0.3s ease; text-align: center; position: relative; overflow: hidden; }
+        .tamper-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+        .tamper-card.judge::before { background: #ef4444; }
+        .tamper-card.jury::before { background: #f59e0b; }
+        .tamper-card.executioner::before { background: var(--primary); }
+        .tamper-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+        .tamper-icon { width: 64px; height: 64px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
+        .tamper-card.judge .tamper-icon { background: #fef2f2; }
+        .tamper-card.judge .tamper-icon svg { color: #ef4444; }
+        .tamper-card.jury .tamper-icon { background: #fffbeb; }
+        .tamper-card.jury .tamper-icon svg { color: #f59e0b; }
+        .tamper-card.executioner .tamper-icon { background: var(--primary-soft); }
+        .tamper-card.executioner .tamper-icon svg { color: var(--primary); }
+        .tamper-icon svg { width: 30px; height: 30px; }
+        .tamper-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--dark); margin-bottom: 0.75rem; }
+        .tamper-card p { font-size: 0.95rem; color: var(--gray-500); line-height: 1.6; }
+        .tamper-flow { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+        .tamper-flow-item { display: flex; align-items: center; gap: 0.5rem; padding: 8px 16px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 10px; font-size: 0.875rem; font-weight: 600; color: var(--gray-600); }
+        .tamper-flow-arrow { color: var(--gray-400); }
+        .tamper-flow-arrow svg { width: 20px; height: 20px; }
+        .showcase-main { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--gray-200); overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+        .showcase-visual { background: linear-gradient(135deg, var(--primary-soft) 0%, var(--white) 100%); padding: 3rem; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+        .showcase-visual::before { content: ''; position: absolute; top: -50%; right: -30%; width: 400px; height: 400px; background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%); opacity: 0.6; }
+        .showcase-mockup { background: var(--white); border-radius: 16px; box-shadow: var(--shadow-xl); padding: 1.5rem; position: relative; z-index: 1; border: 1px solid var(--gray-200); }
+        .mockup-header { display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--gray-100); }
+        .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .mockup-dot.red { background: #ef4444; }
+        .mockup-dot.yellow { background: #f59e0b; }
+        .mockup-dot.green { background: var(--primary); }
+        .mockup-title { font-size: 0.8rem; color: var(--gray-400); margin-left: auto; }
+        .mockup-body { display: flex; flex-direction: column; gap: 0.75rem; }
+        .mockup-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem; background: var(--gray-50); border-radius: 8px; }
+        .mockup-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--primary-light); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; color: var(--primary-dark); }
+        .mockup-text { flex: 1; }
+        .mockup-text-line { height: 8px; background: var(--gray-200); border-radius: 4px; margin-bottom: 4px; }
+        .mockup-text-line.short { width: 60%; }
+        .mockup-status { padding: 3px 10px; background: var(--primary-soft); color: var(--primary-dark); font-size: 0.7rem; font-weight: 600; border-radius: 4px; }
+        .showcase-info { padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
+        .showcase-info h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--dark); margin-bottom: 1rem; }
+        .showcase-info p { color: var(--gray-500); margin-bottom: 1.5rem; line-height: 1.7; }
+        .feature-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+        .feature-list li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem; color: var(--gray-600); }
+        .feature-list li svg { width: 20px; height: 20px; color: var(--primary); flex-shrink: 0; }
+        .showcase-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
+        .metric-box { background: var(--gray-50); border-radius: 12px; padding: 1rem; text-align: center; }
+        .metric-box-number { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+        .metric-box-label { font-size: 0.8rem; color: var(--gray-500); margin-top: 4px; }
+        .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+        .impact-card { background: var(--white); border-radius: var(--radius); padding: 2rem; text-align: center; border: 1px solid var(--gray-200); transition: all 0.3s ease; }
+        .impact-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+        .impact-icon { width: 64px; height: 64px; border-radius: 20px; background: var(--primary-soft); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
+        .impact-icon svg { width: 30px; height: 30px; color: var(--primary); }
+        .impact-number { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--dark); line-height: 1; }
+        .impact-label { font-size: 0.9rem; color: var(--gray-500); margin-top: 8px; }
+        .cta-section { text-align: center; max-width: 700px; margin: 0 auto; }
+        .cta-section h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--dark); margin-bottom: 1.5rem; }
+        .cta-section p { font-size: 1.1rem; color: var(--gray-500); margin-bottom: 2.5rem; line-height: 1.7; }
+        .roadmap { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+        .roadmap-item { background: var(--white); border: 1px solid var(--gray-200); border-radius: 14px; padding: 1.25rem 1.5rem; text-align: left; min-width: 180px; transition: all 0.3s ease; }
+        .roadmap-item:hover { border-color: var(--primary-light); box-shadow: var(--shadow); }
+        .roadmap-phase { font-size: 0.75rem; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
+        .roadmap-title { font-size: 1rem; font-weight: 600; color: var(--dark); }
+        .btn-primary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; background: var(--primary); color: var(--white); font-size: 1rem; font-weight: 600; border: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; text-decoration: none; font-family: inherit; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(22, 163, 74, 0.4); }
+        .slide-controls { position: fixed; bottom: 2rem; right: 2rem; display: flex; gap: 8px; z-index: 100; }
+        .ctrl-btn { width: 44px; height: 44px; border-radius: 12px; background: var(--white); border: 1px solid var(--gray-200); color: var(--gray-600); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; box-shadow: var(--shadow); }
+        .ctrl-btn:hover { background: var(--primary); color: var(--white); border-color: var(--primary); }
+        .ctrl-btn svg { width: 20px; height: 20px; }
+        .slide-counter { position: fixed; bottom: 2rem; left: 2rem; font-size: 0.875rem; font-weight: 500; color: var(--gray-400); z-index: 100; background: var(--white); padding: 8px 16px; border-radius: 10px; border: 1px solid var(--gray-200); box-shadow: var(--shadow-sm); }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+        @media (max-width: 768px) {
+            .showcase-main { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero-stats { gap: 1.5rem; }
+            .slide { padding: 90px 1.25rem 3rem; }
+            .tamper-grid { grid-template-columns: 1fr; }
+            .vistplexre-track { flex-direction: column; }
+            .vistplexre-step:not(:last-child)::after { display: none; }
+            .culture-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#16a34a"/>
+                    <path d="M10 22V10l6 6 6-6v12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                REAI Forged
+            </a>
+            <div class="nav-links">
+                <button class="nav-link active" onclick="goToSlide(0)">Intro</button>
+                <button class="nav-link" onclick="goToSlide(1)">Ecosystem</button>
+                <button class="nav-link" onclick="goToSlide(2)">Culture</button>
+                <button class="nav-link" onclick="goToSlide(3)">Framework</button>
+                <button class="nav-link" onclick="goToSlide(4)">My Role</button>
+                <button class="nav-link" onclick="goToSlide(5)">Security</button>
+                <button class="nav-link" onclick="goToSlide(6)">Showcase</button>
+                <button class="nav-link" onclick="goToSlide(7)">Impact</button>
+                <button class="nav-link" onclick="goToSlide(8)">Future</button>
+            </div>
+        </div>
+        <div class="nav-progress" id="navProgress"></div>
+    </nav>
+
+    <div class="slides-container">
+
+        <section class="slide active" id="slide-0">
+            <div class="slide-content">
+                <div class="hero">
+                    <div class="hero-badge">
+                        <span class="dot"></span>
+                        Position Defense Presentation
+                    </div>
+                    <h1>Building Solutions That <span>Move the Needle</span></h1>
+                    <p class="hero-subtitle">
+                        Technical Officer at REAI Forged — delivering end-to-end technology across Web, Mobile, and IoT within the MOUAU ecosystem.
+                    </p>
+                    <div class="hero-motto">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
+                        Food, Knowledge &amp; Security
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">3</div>
+                            <div class="hero-stat-label">Core Domains</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">1</div>
+                            <div class="hero-stat-label">Flagship System</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">&#8734;</div>
+                            <div class="hero-stat-label">Possibilities</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-hint">
+                    <span>Use arrow keys or buttons to navigate</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" id="slide-1">
+            <div class="slide-content">
+                <div class="section-header">
+                    <span class="section-tag">Our Ecosystem</span>
+                    <h2 class="section-title">MOUAU — Michael Okpara University of Agriculture, Umudike</h2>
+                    <p class="section-desc">Our world is elliptical. We operate within a university ecosystem that trains problem-solvers, not just degree-holders.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 2a10 10 0 0 1 10 10"/></svg>
+                        </div>
+                        <h3>Food</h3>
+                        <p>Agricultural innovation and sustainable food systems are at the heart of our institution's mission.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                        </div>
+                        <h3>Knowledge</h3>
+                        <p>Deep research, evidence-based learning, and the pursuit of understanding that drives innovation.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h3>Security</h3>
+                        <p>Building systems that protect data, ensure integrity, and safeguard the digital infrastructure of education.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                        </div>
+                        <h3>Elliptical Earth</h3>
+                        <p>Our perspective is not flat — we think in orbits, cycles, and systems. Problems are never one-dimensional.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" id="slide-2">
+            <div class="slide-content">
+                <div class="section-header">
+                    <span class="section-tag">Our Culture</span>
+                    <h2 class="section-title">Problem-Solving Culture</h2>
+                    <p class="section-desc">Every problem is an opportunity for intelligence, research, and innovation. We train people to solve, not to complain.</p>
+                </div>
+                <div class="culture-grid">
+                    <div class="culture-card">
+                        <div class="culture-number">1</div>
+                        <h4>Understand Deeply</h4>
+                        <p>We do not skim surfaces. We investigate root causes before writing a single line of code.</p>
+                    </div>
+                    <div class="culture-card">
+                        <div class="culture-number">2</div>
+                        <h4>Think Analytically</h4>
+                        <p>Data-driven reasoning. Every decision is backed by evidence, not assumptions.</p>
+                    </div>
+                    <div class="culture-card">
+                        <div class="culture-number">3</div>
+                        <h4>Seek Evidence</h4>
+                        <p>We validate hypotheses through testing, prototyping, and iteration.</p>
+                    </div>
+                    <div class="culture-card">
+                        <div class="culture-number">4</div>
+                        <h4>Develop Solutions</h4>
+                        <p>From concept to prototype to production — we build what actually works.</p>
+                    </div>
+                    <div class="culture-card">
+                        <div class="culture-number">5</div>
+                        <h4>Improve Continuously</h4>
+                        <p>Systems are never "done." We iterate, optimize, and evolve relentlessly.</p>
+                    </div>
+                </div>
+                <div class="culture-quote">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+                    <p>Problem-Solving Culture means nationals are trained to focus on understanding and solving problems rather than merely discussing, complaining, or avoiding them. Every problem is an opportunity for intelligence, research, and innovation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" id="slide-3">
+            <div class="slide-content">
+                <div class="section-header">
+                    <span class="section-tag">Our Method</span>
+                    <h2 class="section-title">ViStPlExRe Framework</h2>
+                    <p class="section-desc">Vision &rarr; Strategy &rarr; Planning &rarr; Execution &rarr; Result. The five-phase engine that drives every project at REAI Forged.</p>
+                </div>
+                <div class="vistplexre-track">
+                    <div class="vistplexre-step">
+                        <div class="vistplexre-letter">Vi</div>
+                        <div class="vistplexre-word">Vision</div>
+                        <div class="vistplexre-desc">Define the north star. What problem are we solving and why does it matter?</div>
+                    </div>
+                    <div class="vistplexre-step">
+                        <div class="vistplexre-letter">St</div>
+                        <div class="vistplexre-word">Strategy</div>
+                        <div class="vistplexre-desc">Map the terrain. Identify constraints, resources, and the best path forward.</div>
+                    </div>
+                    <div class="vistplexre-step">
+                        <div class="vistplexre-letter">Pl</div>
+                        <div class="vistplexre-word">Planning</div>
+                        <div class="vistplexre-desc">Break the strategy into actionable milestones, sprints, and deliverables.</div>
+                    </div>
+                    <div class="vistplexre-step">
+                        <div class="vistplexre-letter">Ex</div>
+                        <div class="vistplexre-word">Execution</div>
+                        <div class="vistplexre-desc">Build with precision. Code, test, deploy, and monitor in real-time.</div>
+                    </div>
+                    <div class="vistplexre-step">
+                        <div class="vistplexre-letter">Re</div>
+                        <div class="vistplexre-word">Result</div>
+                        <div class="vistplexre-desc">Measure impact. Validate outcomes against the original vision and iterate.</div>
+                    </div>
+                </div>
+                <div class="vistplexre-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                </div>
+                <div class="vistplexre-summary">
+                    <div class="vistplexre-summary-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    </div>
+                    <p><strong>ViStPlExRe is not a checklist.</strong> It is a loop. Every result feeds back into a new vision. This is how we turn ideas into systems — and systems into impact.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" id="slide-4">
+            <div class="slide-content">
+                <div class="section-header">
+                    <span class="section-tag">My Position</span>
+                    <h2 class="section-title">What I Do as Technical Officer</h2>
+                    <p class="section-desc">Leading the technical vision, architecture decisions, and hands-on development across all projects.</p>
+                </div>
+                <div class="cards-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div>
+                        <div class="timeline">
+                            <div class="timeline-item active">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h4>Technical Architecture</h4>
+                                    <p>Designing system architecture, database schemas, and API structures for all REAI Forged products.</p>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag">System Design</span>
+                                        <span class="tech-tag">Database</span>
+                                        <span class="tech-tag">APIs</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-item active">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h4>Full-Stack Development</h4>
+                                    <p>Hands-on coding across frontend, backend, and mobile — ensuring quality at every layer.</p>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag">SvelteKit</span>
+                                        <span class="tech-tag">React Native</span>
+                                        <span class="tech-tag">Node.js</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-item active">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h4>IoT Integration</h4>
+                                    <p>Bridging hardware and software — from sensor data collection to cloud dashboards.</p>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag">Embedded</span>
+                                        <span class="tech-tag">MQTT</span>
+                                        <span class="tech-tag">Cloud</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-item active">
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h4>Team Leadership</h4>
+                                    <p>Mentoring developers, reviewing code, and setting technical standards for the team.</p>
+                                    <div class="tech-tags">
+                                        <span class="tech-tag">Code Review</span>
+                                        <span class="tech-tag">Mentorship</span>
+                                        <span class="tech-tag">Standards</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" style="display:flex;flex-direction:column;justify-content:center;">
+                        <div class="card-icon" style="width:64px;height:64px;border-radius:20px;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:32px;height:32px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h3 style="font-size:1.3rem;margin-bottom:0.75rem;">Why This Role Matters</h3>
+                        <p style="font-size:1rem;line-height:1.7;">
+                            As Technical Officer, I am the bridge between vision and execution. Every line of code, every architecture decision, and every deployed feature flows through this role. Without strong technical leadership, ideas remain ideas. I turn them into working systems.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" id="slide-5">
+            <div class="slide-content">
+                <div class="section-header">
+                    <span class="section-tag">Security Architecture</span>
+                    <h2 class="section-title">Tamper-Proof: Judge, Jury &amp; Executioner</h2>
+                    <p class="section-desc">A three-layer security model that ensures no single point of failure. Every action is watched, judged, and enforced.</p>
+                </div>
+                <div class="tamper-grid">
+                    <div class="tamper-card judge">
+                        <div class="tamper-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                        </div>
+                        <h3>The Judge</h3>
+                        <p><strong>Authentication &amp; Authorization.</strong> Every user is verified before access is granted. Role-based permissions, multi-factor auth, and session validation form the first line of defense.</p>
+                    </div>
+                    <div class="tamper-card jury">
+                        <div class="tamper-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h3>The Jury</h3>
+                        <p><strong>Audit &amp; Monitoring.</strong> Every action is logged, timestamped, and reviewed. Anomaly detection flags suspicious behavior before damage occurs. The system watches itself.</p>
+                    </div>
+                    <div class="tamper-card executioner">
+                        <div class="tamper-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                        </div>
+                        <h3>The Executioner</h3>
+                        <p><strong>Enforcement &amp; Response.</strong> Automated lockouts, IP bans, and data encryption at rest and in transit. When a threat is detected, the system acts immediately — no human delay.</p>
+                    </div>
+                </div>
+                <div class="tamper-flow">
+                    <div class="tamper-flow-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Judge
+                    </div>
+                    <div class="tamper-flow-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </div>
+                    <div class="tamper-flow-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                        Jury
+                    </div>
+                    <div class="tamper-flow-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </div>
+                    <div class="tamper-flow-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/></svg>
+                        Executioner
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" id="slide-6">
+            <div class="slide-content">
+                <div class="section-header">
+                    <span class="section-tag">Flagship Project</span>
+                    <h2 class="section-title">MOUAU eTest — Assessment System</h2>
+                    <p class="section-desc">A complete digital examination platform built for Michael Okpara University of Agriculture. Tamper-proof by design.</p>
+                </div>
+                <div class="showcase-main">
+                    <div class="showcase-visual">
+                        <div class="showcase-mockup">
+                            <div class="mockup-header">
+                                <span class="mockup-dot red"></span>
+                                <span class="mockup-dot yellow"></span>
+                                <span class="mockup-dot green"></span>
+                                <span class="mockup-title">MOUAU eTest Dashboard</span>
+                            </div>
+                            <div class="mockup-body">
+                                <div class="mockup-row">
+                                    <div class="mockup-avatar">A</div>
+                                    <div class="mockup-text">
+                                        <div class="mockup-text-line"></div>
+                                        <div class="mockup-text-line short"></div>
+                                    </div>
+                                    <span class="mockup-status">Active</span>
+                                </div>
+                                <div class="mockup-row">
+                                    <div class="mockup-avatar">B</div>
+                                    <div class="mockup-text">
+                                        <div class="mockup-text-line"></div>
+                                        <div class="mockup-text-line short"></div>
+                                    </div>
+                                    <span class="mockup-status">Active</span>
+                                </div>
+                                <div class="mockup-row">
+                                    <div class="mockup-avatar">C</div>
+                                    <div class="mockup-text">
+                                        <div class="mockup-text-line"></div>
+                                        <div class="mockup-text-line short"></div>
+                                    </div>
+                                    <span class="mockup-status">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-info">
+                        <h3>MOUAU eTest</h3>
+                        <p>A secure, scalable online examination system designed to replace paper-based testing at Michael Okpara University. Built with modern web technologies and a focus on reliability and tamper-proof integrity.</p>
+                        <ul class="feature-list">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Secure student authentication &amp; session management
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Real-time exam monitoring &amp; auto-submission
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Admin dashboard for question banks &amp; analytics
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Clean, accessible UI built with SvelteKit
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Role-based access for Lecturers, Students &amp; Admins
+                            </li>
+                        </ul>
+                        <div class="showcase-metrics">
+                            <div class="metric-box">
+                                <div class="metric-box-number">100%</div>
+                                <div class="metric-box-label">Digital</div>
+                            </div>
+                            <div class="metric-box">
+                                <div class="metric-box-number">24/7</div>
+                                <div class="metric-box-label">Uptime</div>
+                            </div>
+                            <div class="metric-box">
+                                <div class="metric-box-number">Fast</div>
+                                <div class="metric-box-label">Performance</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" id="slide-7">
+            <div class="slide-content">
+                <div class="section-header">
+                    <span class="section-tag">Our Impact</span>
+                    <h2 class="section-title">The Value We Deliver</h2>
+                    <p class="section-desc">Measurable outcomes across education, efficiency, and technology adoption within the MOUAU ecosystem.</p>
+                </div>
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 4 3 9 3s9-1.34 9-3v-5"/></svg>
+                        </div>
+                        <div class="impact-number">1 Uni</div>
+                        <div class="impact-label">Institution Served</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        </div>
+                        <div class="impact-number">0</div>
+                        <div class="impact-label">Paper Exams Needed</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <div class="impact-number">Instant</div>
+                        <div class="impact-label">Result Processing</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <div class="impact-number">Web</div>
+                        <div class="impact-label">Platform Accessible</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide" id="slide-8">
+            <div class="slide-content">
+                <div class="cta-section">
+                    <span class="section-tag">Looking Ahead</span>
+                    <h2>The Road Ahead for REAI Forged</h2>
+                    <p>We are not stopping at one success. Our technical roadmap expands our capabilities into new domains while deepening our existing strengths within the MOUAU ecosystem.</p>
+                    <div class="roadmap">
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">Phase 1</div>
+                            <div class="roadmap-title">Mobile App Launch</div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">Phase 2</div>
+                            <div class="roadmap-title">IoT Lab Setup</div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">Phase 3</div>
+                            <div class="roadmap-title">AI Integration</div>
+                        </div>
+                        <div class="roadmap-item">
+                            <div class="roadmap-phase">Phase 4</div>
+                            <div class="roadmap-title">Multi-Institution</div>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="alert('Thank you for your time and consideration!')">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        Thank You — Questions?
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">9</span>
+    </div>
+    <div class="slide-controls">
+        <button class="ctrl-btn" onclick="prevSlide()" title="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="ctrl-btn" onclick="nextSlide()" title="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 9;
+        const slides = document.querySelectorAll('.slide');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const navProgress = document.getElementById('navProgress');
+        const currentSlideEl = document.getElementById('currentSlide');
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+            navLinks.forEach((link, index) => {
+                link.classList.toggle('active', index === currentSlide);
+            });
+            navProgress.style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+            currentSlideEl.textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlide();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) nextSlide();
+            if (touchEndX - touchStartX > 50) prevSlide();
+        });
+
+        updateSlide();
+    </script>
+
+</body>
+</html>
