@@ -1,581 +1,816 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>REAi Assessment System · Pitch</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REAi Assessment System · Full Pitch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background: #eef2f5;
-      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
+        body {
+            background: #eef2f5;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-    .presentation-wrapper {
-      max-width: 1280px;
-      width: 100%;
-      background: #ffffff;
-      border-radius: 40px;
-      box-shadow: 0 20px 50px rgba(0, 20, 30, 0.2);
-      overflow: hidden;
-      padding: 20px 20px 30px;
-    }
+        .presentation-wrapper {
+            max-width: 1280px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0, 20, 30, 0.2);
+            overflow: hidden;
+            padding: 20px 20px 30px;
+        }
 
-    .slider-container {
-      position: relative;
-      background: #fafcff;
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.03);
-      aspect-ratio: 16 / 9;
-      display: flex;
-      flex-direction: column;
-    }
+        .slider-container {
+            position: relative;
+            background: #fafcff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.03);
+            aspect-ratio: 16 / 9;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .slides-track {
-      display: flex;
-      transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.15, 1);
-      height: 100%;
-      width: 100%;
-    }
+        .slides-track {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.15, 1);
+            height: 100%;
+            width: 100%;
+        }
 
-    .slide {
-      flex: 0 0 100%;
-      height: 100%;
-      padding: 2.5rem 3rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: white;
-      overflow-y: auto;
-      scrollbar-width: thin;
-    }
+        .slide {
+            flex: 0 0 100%;
+            height: 100%;
+            padding: 2.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: white;
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
 
-    /* slide variants */
-    .slide-1 { background: linear-gradient(145deg, #f0f7ff 0%, #ffffff 100%); }
-    .slide-2 { background: #ffffff; }
-    .slide-3 { background: #f5f9fe; }
-    .slide-4 { background: #ffffff; }
-    .slide-5 { background: #f3f8ff; }
-    .slide-6 { background: #ffffff; }
-    .slide-7 { background: #f7faff; }
-    .slide-8 { background: #ffffff; }
-    .slide-9 { background: #f4f9ff; }
-    .slide-10 { background: linear-gradient(135deg, #e8f0fe 0%, #ffffff 80%); }
+        /* slide variants */
+        .slide-1 {
+            background: linear-gradient(145deg, #f0f7ff 0%, #ffffff 100%);
+        }
+        .slide-2 {
+            background: #ffffff;
+        }
+        .slide-3 {
+            background: #f5f9fe;
+        }
+        .slide-4 {
+            background: #ffffff;
+        }
+        .slide-5 {
+            background: #f3f8ff;
+        }
+        .slide-6 {
+            background: #ffffff;
+        }
+        .slide-7 {
+            background: #f7faff;
+        }
+        .slide-8 {
+            background: #ffffff;
+        }
+        .slide-9 {
+            background: #f4f9ff;
+        }
+        .slide-10 {
+            background: #ffffff;
+        }
+        .slide-11 {
+            background: #f5faff;
+        }
+        .slide-12 {
+            background: #ffffff;
+        }
+        .slide-13 {
+            background: #f0f7fe;
+        }
+        .slide-14 {
+            background: #ffffff;
+        }
+        .slide-15 {
+            background: #f5faff;
+        }
+        .slide-16 {
+            background: linear-gradient(135deg, #e8f0fe 0%, #ffffff 80%);
+        }
 
-    .slide-title {
-      font-size: 2.8rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: #0b2b3d;
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+        .slide-title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0b2b3d;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-    .slide-title .badge {
-      font-size: 1rem;
-      background: #1e4b62;
-      color: white;
-      padding: 0.2rem 1rem;
-      border-radius: 40px;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-    }
+        .slide-title .badge {
+            font-size: 1rem;
+            background: #1e4b62;
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
 
-    .subhead {
-      font-size: 1.3rem;
-      font-weight: 400;
-      color: #2f5570;
-      margin-top: -0.2rem;
-      margin-bottom: 1.5rem;
-      border-left: 4px solid #3070a0;
-      padding-left: 1.2rem;
-    }
+        .subhead {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #2f5570;
+            margin-top: -0.2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #3070a0;
+            padding-left: 1.2rem;
+        }
 
-    .content-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.8rem 2.5rem;
-      margin-top: 0.8rem;
-    }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem 2.5rem;
+            margin-top: 0.8rem;
+        }
 
-    .content-single {
-      max-width: 80%;
-    }
+        .content-single {
+            max-width: 80%;
+        }
 
-    .list-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.8rem;
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
-      color: #1d3b4e;
-    }
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #1d3b4e;
+        }
 
-    .list-item .icon {
-      font-size: 1.5rem;
-      line-height: 1.2;
-      color: #1d6f9c;
-    }
+        .list-item .icon {
+            font-size: 1.5rem;
+            line-height: 1.2;
+            color: #1d6f9c;
+        }
 
-    .highlight-card {
-      background: white;
-      border-radius: 24px;
-      padding: 1.5rem 2rem;
-      box-shadow: 0 8px 18px rgba(0, 32, 64, 0.06);
-      border: 1px solid rgba(60, 130, 190, 0.1);
-    }
+        .highlight-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 8px 18px rgba(0, 32, 64, 0.06);
+            border: 1px solid rgba(60, 130, 190, 0.1);
+        }
 
-    .stat-badge {
-      background: #d4e2f0;
-      border-radius: 60px;
-      padding: 0.2rem 1.2rem;
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: #10455f;
-      display: inline-block;
-    }
+        .stat-badge {
+            background: #d4e2f0;
+            border-radius: 60px;
+            padding: 0.2rem 1.2rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #10455f;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
 
-    .role-tag {
-      background: #e6edf6;
-      border-radius: 30px;
-      padding: 0.25rem 1.2rem;
-      font-weight: 500;
-      color: #1e4a66;
-      display: inline-block;
-      margin-right: 0.6rem;
-    }
+        .role-tag {
+            background: #e6edf6;
+            border-radius: 30px;
+            padding: 0.25rem 1.2rem;
+            font-weight: 500;
+            color: #1e4a66;
+            display: inline-block;
+            margin-right: 0.6rem;
+        }
 
-    .divider {
-      width: 60px;
-      height: 4px;
-      background: #2b6c97;
-      border-radius: 6px;
-      margin: 0.5rem 0 1.25rem 0;
-    }
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: #2b6c97;
+            border-radius: 6px;
+            margin: 0.5rem 0 1.25rem 0;
+        }
 
-    .flex-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin: 0.5rem 0 1rem;
-    }
+        .flex-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 0.5rem 0 1rem;
+        }
 
-    .pill {
-      background: #e2ecf5;
-      padding: 0.4rem 1.4rem;
-      border-radius: 60px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #13415a;
-    }
+        .pill {
+            background: #e2ecf5;
+            padding: 0.4rem 1.4rem;
+            border-radius: 60px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #13415a;
+        }
 
-    .cost-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin: 0.8rem 0;
-    }
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 0.8rem 0;
+        }
 
-    .cost-item {
-      background: #f0f6fe;
-      border-radius: 20px;
-      padding: 1.2rem 1rem;
-      text-align: center;
-      border: 1px solid #d6e4f0;
-    }
+        .cost-item {
+            background: #f0f6fe;
+            border-radius: 20px;
+            padding: 1.2rem 1rem;
+            text-align: center;
+            border: 1px solid #d6e4f0;
+        }
 
-    .cost-item .number {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #0b3855;
-    }
+        .cost-item .number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0b3855;
+        }
 
-    .footnote {
-      margin-top: 1.2rem;
-      color: #3b5d78;
-      font-size: 0.95rem;
-      border-top: 1px solid #d9e4ed;
-      padding-top: 1.2rem;
-    }
+        .footnote {
+            margin-top: 1.2rem;
+            color: #3b5d78;
+            font-size: 0.95rem;
+            border-top: 1px solid #d9e4ed;
+            padding-top: 1.2rem;
+        }
 
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.2rem;
-      margin: 0.5rem 0;
-    }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            margin: 0.5rem 0;
+        }
 
-    .feature-item {
-      background: #f0f6fe;
-      border-radius: 16px;
-      padding: 0.8rem 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      border: 1px solid #dce8f2;
-    }
+        .feature-item {
+            background: #f0f6fe;
+            border-radius: 16px;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            border: 1px solid #dce8f2;
+        }
 
-    .feature-item .icon {
-      font-size: 1.8rem;
-    }
+        .feature-item .icon {
+            font-size: 1.8rem;
+        }
 
-    /* navigation */
-    .nav-controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0.5rem 0.2rem;
-      flex-wrap: wrap;
-    }
+        .timeline-item {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 0.8rem;
+            align-items: flex-start;
+        }
 
-    .dots {
-      display: flex;
-      gap: 10px;
-    }
+        .timeline-item .step {
+            background: #1b6b9c;
+            color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
 
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 40px;
-      background: #cbd8e6;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s;
-      padding: 0;
-    }
+        /* navigation */
+        .nav-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0.5rem 0.2rem;
+            flex-wrap: wrap;
+        }
 
-    .dot.active {
-      background: #1b6b9c;
-      width: 28px;
-    }
+        .dots {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-    .nav-btn {
-      background: #e8eff6;
-      border: none;
-      border-radius: 40px;
-      font-size: 1.2rem;
-      padding: 0.4rem 1.2rem;
-      font-weight: 500;
-      color: #1a4b67;
-      cursor: pointer;
-      transition: 0.15s;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-    }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 40px;
+            background: #cbd8e6;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 0;
+        }
 
-    .nav-btn:hover {
-      background: #d3e2f0;
-      color: #032b41;
-    }
+        .dot.active {
+            background: #1b6b9c;
+            width: 28px;
+        }
 
-    .slide-number {
-      font-size: 0.9rem;
-      color: #4d6f89;
-      background: #eaf1f8;
-      padding: 0.2rem 1.2rem;
-      border-radius: 60px;
-    }
+        .nav-btn {
+            background: #e8eff6;
+            border: none;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            padding: 0.4rem 1.2rem;
+            font-weight: 500;
+            color: #1a4b67;
+            cursor: pointer;
+            transition: 0.15s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
 
-    @media (max-width: 700px) {
-      .slide { padding: 1.5rem; }
-      .slide-title { font-size: 2rem; }
-      .content-grid { grid-template-columns: 1fr; }
-      .cost-grid { grid-template-columns: 1fr; }
-      .content-single { max-width: 100%; }
-      .nav-controls { flex-direction: column; gap: 12px; }
-      .feature-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+        .nav-btn:hover {
+            background: #d3e2f0;
+            color: #032b41;
+        }
+
+        .slide-number {
+            font-size: 0.9rem;
+            color: #4d6f89;
+            background: #eaf1f8;
+            padding: 0.2rem 1.2rem;
+            border-radius: 60px;
+        }
+
+        @media (max-width: 700px) {
+            .slide {
+                padding: 1.5rem;
+            }
+            .slide-title {
+                font-size: 2rem;
+            }
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .cost-grid {
+                grid-template-columns: 1fr;
+            }
+            .content-single {
+                max-width: 100%;
+            }
+            .nav-controls {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="presentation-wrapper">
-  <div class="slider-container">
-    <div class="slides-track" id="slidesTrack">
-      <!-- SLIDE 1: Title -->
-      <div class="slide slide-1">
-        <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
-          <div class="stat-badge" style="margin-bottom: 0.5rem;">✨ REAi v2.0</div>
-          <div class="slide-title" style="font-size: 3.8rem; line-height: 1.1;">REAi Assessment<br>System</div>
-          <div class="subhead" style="border-left-color: #1f6390; font-size: 1.5rem;">University eTest Platform · Lecturers · Students · Invigilators · Admin</div>
-          <div style="margin-top: 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap;">
-            <span class="pill">🔹 100+ Q bank · present 30 randomly</span>
-            <span class="pill">🔹 Face authentication</span>
-            <span class="pill">🔹 Violation detection</span>
-          </div>
-          <div style="margin-top: 2.2rem; color: #2c5b7a;"><span style="background: #dce8f2; padding: 0.2rem 1.2rem; border-radius: 40px;">Samuel Victor · presentation</span></div>
-        </div>
-      </div>
+    <div class="presentation-wrapper">
+        <div class="slider-container">
+            <div class="slides-track" id="slidesTrack">
+                <!-- SLIDE 1: Title -->
+                <div class="slide slide-1">
+                    <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                        <div class="stat-badge" style="margin-bottom: 0.5rem;">✨ REAi v2.0</div>
+                        <div class="slide-title" style="font-size: 3.8rem; line-height: 1.1;">REAi Assessment<br>System</div>
+                        <div class="subhead" style="border-left-color: #1f6390; font-size: 1.5rem;">University eTest Platform · Lecturers · Students · Invigilators · Admin</div>
+                        <div style="margin-top: 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                            <span class="pill">🔹 100+ Q bank · present 30 randomly</span>
+                            <span class="pill">🔹 Face authentication</span>
+                            <span class="pill">🔹 Violation detection</span>
+                            <span class="pill">🔹 BYOD support</span>
+                        </div>
+                        <div style="margin-top: 2.2rem; color: #2c5b7a;"><span style="background: #dce8f2; padding: 0.2rem 1.2rem; border-radius: 40px;">Samuel Victor · presentation</span></div>
+                    </div>
+                </div>
 
-      <!-- SLIDE 2: Why an Assessment Test? (replaced "Why REAi?") -->
-      <div class="slide slide-2">
-        <span class="stat-badge">📌 the question</span>
-        <div class="slide-title" style="font-size: 2.8rem;">Why an Assessment<br>eTest?</div>
-        <div class="divider"></div>
-        <div class="content-grid">
-          <div>
-            <div class="list-item"><span class="icon">📋</span> Paper-based exams: costly logistics, printing, security risks</div>
-            <div class="list-item"><span class="icon">⏳</span> Manual marking → delayed results, human error</div>
-            <div class="list-item"><span class="icon">📊</span> No real-time analytics for HOD/Deans</div>
-            <div class="list-item"><span class="icon">🖥️</span> Need for a unified, digital ecosystem</div>
-          </div>
-          <div class="highlight-card">
-            <p style="font-weight: 500; font-size: 1.1rem;">🎯 <strong>The Solution</strong></p>
-            <p style="color: #1d4059;">REAi provides a secure, scalable platform that serves all stakeholders: lecturers create tests, students attempt with face authentication, invigilators monitor, admin oversees.</p>
-            <p style="margin-top: 0.8rem; background: #e1edf7; padding: 0.5rem 1rem; border-radius: 20px;">✅ built for Nigerian universities</p>
-          </div>
-        </div>
-      </div>
+                <!-- SLIDE 2: Why an Assessment Test? -->
+                <div class="slide slide-2">
+                    <span class="stat-badge">📌 the question</span>
+                    <div class="slide-title" style="font-size: 2.8rem;">Why an Assessment<br>Test?</div>
+                    <div class="divider"></div>
+                    <div class="content-grid">
+                        <div>
+                            <div class="list-item"><span class="icon">📋</span> Paper-based exams: costly logistics, printing, security risks</div>
+                            <div class="list-item"><span class="icon">⏳</span> Manual marking → delayed results, human error</div>
+                            <div class="list-item"><span class="icon">📊</span> No real-time analytics for HOD/Deans</div>
+                            <div class="list-item"><span class="icon">🖥️</span> Need for a unified, digital ecosystem</div>
+                        </div>
+                        <div class="highlight-card">
+                            <p style="font-weight: 500; font-size: 1.1rem;">🎯 <strong>The Solution</strong></p>
+                            <p style="color: #1d4059;">REAi provides a secure, scalable platform that serves all stakeholders: lecturers create tests, students attempt with face authentication, invigilators monitor, admin oversees.</p>
+                            <p style="margin-top: 0.8rem; background: #e1edf7; padding: 0.5rem 1rem; border-radius: 20px;">✅ built for Nigerian universities</p>
+                        </div>
+                    </div>
+                </div>
 
-      <!-- SLIDE 3: what led to development -->
-      <div class="slide slide-3">
-        <span class="stat-badge">🧩 genesis</span>
-        <div class="slide-title" style="font-size: 2.6rem;">What led to the vision?</div>
-        <div class="divider"></div>
-        <div style="display: flex; flex-direction: column; gap: 1.2rem;">
-          <div class="list-item"><span class="icon">🧑‍🏫</span> <strong>Lecturer pain:</strong> manual test creation, question reuse, difficulty tracking</div>
-          <div class="list-item"><span class="icon">📈</span> <strong>HOD/Dean needs:</strong> department performance overview, question quality metrics</div>
-          <div class="list-item"><span class="icon">🔒</span> <strong>Security:</strong> face authentication, invigilator tools, randomized questions</div>
-          <div class="list-item"><span class="icon">💰</span> <strong>Cost:</strong> reduce printing, logistics, and external proctoring fees</div>
-          <div style="background: #dce9f5; border-radius: 24px; padding: 1rem 1.8rem; margin-top: 0.3rem;">
-            <span style="font-weight: 600;">→ REAi is the answer:</span> streamlined, affordable, secure, and transparent.
-          </div>
-        </div>
-      </div>
+                <!-- SLIDE 3: What led to development -->
+                <div class="slide slide-3">
+                    <span class="stat-badge">🧩 genesis</span>
+                    <div class="slide-title" style="font-size: 2.6rem;">What led to REAi?</div>
+                    <div class="divider"></div>
+                    <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+                        <div class="list-item"><span class="icon">🧑‍🏫</span> <strong>Lecturer pain:</strong> manual test creation, question reuse, difficulty tracking</div>
+                        <div class="list-item"><span class="icon">📈</span> <strong>HOD/Dean needs:</strong> department performance overview, question quality metrics</div>
+                        <div class="list-item"><span class="icon">🔒</span> <strong>Security:</strong> face authentication, invigilator tools, randomized questions</div>
+                        <div class="list-item"><span class="icon">💰</span> <strong>Cost:</strong> reduce printing, logistics, and external proctoring fees</div>
+                        <div style="background: #dce9f5; border-radius: 24px; padding: 1rem 1.8rem; margin-top: 0.3rem;">
+                            <span style="font-weight: 600;">→ REAi is the answer:</span> streamlined, affordable, secure, and transparent.
+                        </div>
+                    </div>
+                </div>
 
-      <!-- SLIDE 4: cost effectiveness -->
-      <div class="slide slide-4">
-        <span class="stat-badge">💰 cost efficiency</span>
-        <div class="slide-title" style="font-size: 2.5rem;">Cost‑effective by design</div>
-        <div class="divider"></div>
-        <div class="cost-grid">
-          <div class="cost-item"><span class="number">⬇️ 60%</span><br>printing & logistics</div>
-          <div class="cost-item"><span class="number">⬇️ 45%</span><br>marking & admin</div>
-          <div class="cost-item"><span class="number">⬇️ 70%</span><br>invigilation overhead</div>
-        </div>
-        <div class="flex-row" style="margin: 0.5rem 0;">
-          <span class="pill">📱 zero paper</span>
-          <span class="pill">🖥️ one platform</span>
-          <span class="pill">🔁 reusable question bank</span>
-        </div>
-        <div class="footnote">✔️ Low‑cost hosting · scalable · no per‑exam printing · automated grading</div>
-      </div>
+                <!-- SLIDE 4: Challenges in Traditional Assessment -->
+                <div class="slide slide-4">
+                    <span class="stat-badge">⚠️ challenges</span>
+                    <div class="slide-title" style="font-size: 2.5rem;">Traditional Assessment<br>Challenges</div>
+                    <div class="divider"></div>
+                    <div class="content-grid">
+                        <div>
+                            <div class="list-item"><span class="icon">📄</span> Printing costs & paper waste</div>
+                            <div class="list-item"><span class="icon">📮</span> Distribution & collection logistics</div>
+                            <div class="list-item"><span class="icon">✍️</span> Subjective marking & errors</div>
+                        </div>
+                        <div>
+                            <div class="list-item"><span class="icon">👀</span> Cheating & impersonation</div>
+                            <div class="list-item"><span class="icon">⏰</span> Delayed result processing</div>
+                            <div class="list-item"><span class="icon">📈</span> Limited data analytics</div>
+                        </div>
+                    </div>
+                    <div style="background: #e8f0f8; border-radius: 24px; padding: 0.8rem 1.5rem; margin-top: 0.5rem;">
+                        <span>⚡ REAi solves all these challenges with a modern, digital approach</span>
+                    </div>
+                </div>
 
-      <!-- SLIDE 5: lecturer creates test (updated with 100+ questions) -->
-      <div class="slide slide-5">
-        <span class="stat-badge">🧑‍🏫 lecturer flow</span>
-        <div class="slide-title" style="font-size: 2.4rem;">Create a test (dept)</div>
-        <div class="subhead" style="font-size: 1.1rem;">Set department · question pool · presentation rules</div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 0.2rem;">
-          <div>
-            <div class="list-item"><span class="icon">1️⃣</span> Select department & course</div>
-            <div class="list-item"><span class="icon">2️⃣</span> Build question bank (<strong>100+ questions</strong>)</div>
-            <div class="list-item"><span class="icon">3️⃣</span> Set <strong>“present 30”</strong> randomly from pool</div>
-            <div class="list-item"><span class="icon">4️⃣</span> Assign <strong>30 marks</strong> (1 mark each)</div>
-            <div class="list-item"><span class="icon">5️⃣</span> Publish · schedule · invigilator</div>
-          </div>
-          <div class="highlight-card" style="background: #e3effa;">
-            <p><span style="background: #1d5b7a; color: white; padding: 0.1rem 0.8rem; border-radius: 30px;">example</span></p>
-            <p style="margin-top: 0.4rem;"><strong>Department:</strong> Computer Science <br> <strong>Course:</strong> CSC 301 <br> <strong>Bank:</strong> 120Q · <strong>Show:</strong> 30Q (random) <br> <strong>Marks:</strong> 30 (1 each)</p>
-            <p style="font-size: 0.9rem; margin-top: 0.4rem;">⏱️ randomised per student for fairness</p>
-          </div>
-        </div>
-      </div>
+                <!-- SLIDE 5: Cost effectiveness -->
+                <div class="slide slide-5">
+                    <span class="stat-badge">💰 cost efficiency</span>
+                    <div class="slide-title" style="font-size: 2.5rem;">Cost‑effective by design</div>
+                    <div class="divider"></div>
+                    <div class="cost-grid">
+                        <div class="cost-item"><span class="number">⬇️ 60%</span><br>printing & logistics</div>
+                        <div class="cost-item"><span class="number">⬇️ 45%</span><br>marking & admin</div>
+                        <div class="cost-item"><span class="number">⬇️ 70%</span><br>invigilation overhead</div>
+                    </div>
+                    <div class="flex-row" style="margin: 0.5rem 0;">
+                        <span class="pill">📱 zero paper</span>
+                        <span class="pill">🖥️ one platform</span>
+                        <span class="pill">🔁 reusable question bank</span>
+                        <span class="pill">🤖 automated grading</span>
+                    </div>
+                    <div class="footnote">✔️ Low‑cost hosting · scalable · no per‑exam printing · automated grading</div>
+                </div>
 
-      <!-- SLIDE 6: 100+ questions / present 30 / 30 marks -->
-      <div class="slide slide-6">
-        <span class="stat-badge">🎯 exam logic</span>
-        <div class="slide-title" style="font-size: 2.4rem;">100+ questions · present 30 · 30 marks</div>
-        <div class="divider"></div>
-        <div style="display: flex; flex-wrap: wrap; gap: 1.8rem; justify-content: space-between;">
-          <div style="flex: 1; min-width: 180px;"><span style="font-size: 2.2rem; font-weight: 600; color: #104a6b;">100+</span><br>question bank</div>
-          <div style="flex: 1; min-width: 180px;"><span style="font-size: 2.2rem; font-weight: 600; color: #1b6b9c;">→ 30</span><br>randomly presented</div>
-          <div style="flex: 1; min-width: 180px;"><span style="font-size: 2.2rem; font-weight: 600; color: #0e5a7a;">= 30</span><br>total marks</div>
-        </div>
-        <div style="background: #e5eff8; border-radius: 24px; padding: 0.8rem 1.5rem; margin-top: 0.5rem;">
-          <span>⚡ Lecturer defines the pool, system picks 30 unique questions per student – fair & secure.</span>
-        </div>
-      </div>
+                <!-- SLIDE 6: Lecturer workflow -->
+                <div class="slide slide-6">
+                    <span class="stat-badge">🧑‍🏫 lecturer flow</span>
+                    <div class="slide-title" style="font-size: 2.4rem;">Create a test (dept)</div>
+                    <div class="subhead" style="font-size: 1.1rem;">Set department · question pool · presentation rules</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 0.2rem;">
+                        <div>
+                            <div class="list-item"><span class="icon">1️⃣</span> Select department & course</div>
+                            <div class="list-item"><span class="icon">2️⃣</span> Build question bank (<strong>100+ questions</strong>)</div>
+                            <div class="list-item"><span class="icon">3️⃣</span> Set <strong>“present 30”</strong> randomly from pool</div>
+                            <div class="list-item"><span class="icon">4️⃣</span> Assign <strong>30 marks</strong> (1 mark each)</div>
+                            <div class="list-item"><span class="icon">5️⃣</span> Publish · schedule · invigilator</div>
+                        </div>
+                        <div class="highlight-card" style="background: #e3effa;">
+                            <p><span style="background: #1d5b7a; color: white; padding: 0.1rem 0.8rem; border-radius: 30px;">example</span></p>
+                            <p style="margin-top: 0.4rem;"><strong>Department:</strong> Computer Science <br> <strong>Course:</strong> CSC 301 <br> <strong>Bank:</strong> 120Q · <strong>Show:</strong> 30Q (random) <br> <strong>Marks:</strong> 30 (1 each)</p>
+                            <p style="font-size: 0.9rem; margin-top: 0.4rem;">⏱️ randomised per student for fairness</p>
+                        </div>
+                    </div>
+                </div>
 
-      <!-- SLIDE 7: Face Authentication & Violation Detection -->
-      <div class="slide slide-7">
-        <span class="stat-badge">🔐 security & integrity</span>
-        <div class="slide-title" style="font-size: 2.4rem;">Face Auth & Violation<br>Detection</div>
-        <div class="divider"></div>
-        <div class="feature-grid">
-          <div class="feature-item">
-            <span class="icon">👤</span>
-            <div><strong>Face Authentication</strong><br>Secure login & exam access</div>
-          </div>
-          <div class="feature-item">
-            <span class="icon">👀</span>
-            <div><strong>Proctoring</strong><br>Real-time monitoring</div>
-          </div>
-          <div class="feature-item">
-            <span class="icon">🚫</span>
-            <div><strong>Violation Detection</strong><br>Multiple faces, looking away, phone usage</div>
-          </div>
-          <div class="feature-item">
-            <span class="icon">📸</span>
-            <div><strong>Automated Screenshots</strong><br>Evidence capture for review</div>
-          </div>
-          <div class="feature-item">
-            <span class="icon">🔔</span>
-            <div><strong>Alert System</strong><br>Real-time notifications to invigilators</div>
-          </div>
-          <div class="feature-item">
-            <span class="icon">📊</span>
-            <div><strong>Violation Reports</strong><br>Detailed logs for HOD/Admin</div>
-          </div>
-        </div>
-        <div style="margin-top: 0.5rem; background: #ddebf5; border-radius: 60px; padding: 0.5rem 1.5rem; display: inline-block;">🔹 Ensures academic integrity with AI-powered proctoring</div>
-      </div>
+                <!-- SLIDE 7: 100+ questions logic -->
+                <div class="slide slide-7">
+                    <span class="stat-badge">🎯 exam logic</span>
+                    <div class="slide-title" style="font-size: 2.4rem;">100+ questions · present 30 · 30 marks</div>
+                    <div class="divider"></div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 1.8rem; justify-content: space-between;">
+                        <div style="flex: 1; min-width: 180px;"><span style="font-size: 2.2rem; font-weight: 600; color: #104a6b;">100+</span><br>question bank</div>
+                        <div style="flex: 1; min-width: 180px;"><span style="font-size: 2.2rem; font-weight: 600; color: #1b6b9c;">→ 30</span><br>randomly presented</div>
+                        <div style="flex: 1; min-width: 180px;"><span style="font-size: 2.2rem; font-weight: 600; color: #0e5a7a;">= 30</span><br>total marks</div>
+                    </div>
+                    <div style="background: #e5eff8; border-radius: 24px; padding: 0.8rem 1.5rem; margin-top: 0.5rem;">
+                        <span>⚡ Lecturer defines the pool, system picks 30 unique questions per student – fair & secure.</span>
+                    </div>
+                    <div style="margin-top: 0.8rem; display: flex; gap: 0.8rem; flex-wrap: wrap;">
+                        <span class="pill">🎲 Random selection</span>
+                        <span class="pill">🔄 Unique per student</span>
+                        <span class="pill">📊 Balanced difficulty</span>
+                    </div>
+                </div>
 
-      <!-- SLIDE 8: roles (lecturers, students, invigilators, admin) -->
-      <div class="slide slide-8">
-        <span class="stat-badge">👥 stakeholders</span>
-        <div class="slide-title" style="font-size: 2.4rem;">Four pillars</div>
-        <div class="divider"></div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-          <div><span class="role-tag">🧑‍🏫 Lecturer</span> create tests, view analytics, manage bank</div>
-          <div><span class="role-tag">👨‍🎓 Student</span> attempt tests with face auth, view results</div>
-          <div><span class="role-tag">🔍 Invigilator</span> monitor sessions, flag violations</div>
-          <div><span class="role-tag">⚙️ Admin</span> oversee departments, users, reports</div>
-        </div>
-        <div style="margin-top: 1.2rem; background: #ddebf5; border-radius: 60px; padding: 0.5rem 1.5rem; display: inline-block;">🔹 unified dashboard for each role</div>
-      </div>
+                <!-- SLIDE 8: BYOD - Bring Your Own Device -->
+                <div class="slide slide-8">
+                    <span class="stat-badge">📱 flexibility</span>
+                    <div class="slide-title" style="font-size: 2.4rem;">Bring Your Own Device<br>(BYOD)</div>
+                    <div class="divider"></div>
+                    <div class="content-grid">
+                        <div>
+                            <div class="list-item"><span class="icon">💻</span> Students use their own laptops, tablets, or smartphones</div>
+                            <div class="list-item"><span class="icon">📱</span> Cross-platform compatibility (Windows, macOS, Android, iOS)</div>
+                            <div class="list-item"><span class="icon">🌐</span> Browser-based access – no installation required</div>
+                            <div class="list-item"><span class="icon">💰</span> Eliminates need for expensive computer labs</div>
+                        </div>
+                        <div class="highlight-card">
+                            <p style="font-weight: 500; font-size: 1.1rem;">✅ <strong>Benefits</strong></p>
+                            <p style="color: #1d4059;">• Reduced infrastructure costs</p>
+                            <p style="color: #1d4059;">• Students use familiar devices</p>
+                            <p style="color: #1d4059;">• Flexible exam scheduling</p>
+                            <p style="color: #1d4059;">• Scalable for large class sizes</p>
+                            <p style="color: #1d4059;">• Device-agnostic experience</p>
+                        </div>
+                    </div>
+                    <div style="background: #e8f0f8; border-radius: 24px; padding: 0.8rem 1.5rem; margin-top: 0.5rem;">
+                        <span>⚡ Students can take exams from anywhere using their personal devices</span>
+                    </div>
+                </div>
 
-      <!-- SLIDE 9: Key features showcase -->
-      <div class="slide slide-9">
-        <span class="stat-badge">✨ showcase</span>
-        <div class="slide-title" style="font-size: 2.4rem;">Key features</div>
-        <div class="divider"></div>
-        <div class="content-grid">
-          <div>
-            <div class="list-item"><span class="icon">📝</span> Auto‑generated question variants</div>
-            <div class="list-item"><span class="icon">⏲️</span> Timed exams & auto‑submit</div>
-            <div class="list-item"><span class="icon">📊</span> Real‑time performance dash</div>
-            <div class="list-item"><span class="icon">👤</span> Face authentication</div>
-          </div>
-          <div>
-            <div class="list-item"><span class="icon">🔐</span> Secure, role‑based access</div>
-            <div class="list-item"><span class="icon">📁</span> Department‑wise question bank</div>
-            <div class="list-item"><span class="icon">📬</span> Instant results & feedback</div>
-            <div class="list-item"><span class="icon">🚫</span> Violation detection & reporting</div>
-          </div>
-        </div>
-        <div style="margin-top: 0.5rem;">✅ <strong>Live demo</strong> – ask us for a walkthrough</div>
-      </div>
+                <!-- SLIDE 9: Face Authentication -->
+                <div class="slide slide-9">
+                    <span class="stat-badge">👤 security</span>
+                    <div class="slide-title" style="font-size: 2.4rem;">Face Authentication</div>
+                    <div class="divider"></div>
+                    <div class="content-grid">
+                        <div>
+                            <div class="list-item"><span class="icon">📸</span> Real-time facial recognition</div>
+                            <div class="list-item"><span class="icon">🔐</span> Secure login & exam access</div>
+                            <div class="list-item"><span class="icon">🔄</span> Continuous verification during exam</div>
+                            <div class="list-item"><span class="icon">📋</span> Pre-registered student database</div>
+                        </div>
+                        <div class="highlight-card">
+                            <p style="font-weight: 500; font-size: 1.1rem;">✅ <strong>Benefits</strong></p>
+                            <p style="color: #1d4059;">• Eliminates impersonation</p>
+                            <p style="color: #1d4059;">• Ensures test integrity</p>
+                            <p style="color: #1d4059;">• Automatic attendance tracking</p>
+                            <p style="color: #1d4059;">• Audit trail for security</p>
+                        </div>
+                    </div>
+                </div>
 
-      <!-- SLIDE 10: HOD/Dean pitch -->
-      <div class="slide slide-10">
-        <span class="stat-badge">🎤 pitch</span>
-        <div class="slide-title" style="font-size: 2.4rem;">For HOD & Dean</div>
-        <div class="divider"></div>
-        <div>
-          <div class="list-item"><span class="icon">📈</span> Department‑wise performance trends & analytics</div>
-          <div class="list-item"><span class="icon">🧩</span> Question quality & difficulty metrics</div>
-          <div class="list-item"><span class="icon">📉</span> Reduce cost by 60%, increase integrity</div>
-          <div class="list-item"><span class="icon">🔁</span> Seamless integration with existing LMS</div>
-          <div class="list-item"><span class="icon">👤</span> Face authentication & violation detection for zero cheating</div>
+                <!-- SLIDE 10: Violation Detection -->
+                <div class="slide slide-10">
+                    <span class="stat-badge">🚫 integrity</span>
+                    <div class="slide-title" style="font-size: 2.4rem;">Violation Detection<br>System</div>
+                    <div class="divider"></div>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <span class="icon">👀</span>
+                            <div><strong>Multiple Faces</strong><br>Detects extra people in frame</div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">👤</span>
+                            <div><strong>Face Swapping</strong><br>Identifies when student leaves</div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">📱</span>
+                            <div><strong>Phone Detection</strong><br>Flags mobile device usage</div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">👁️</span>
+                            <div><strong>Gaze Tracking</strong><br>Detects looking away from screen</div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">🔊</span>
+                            <div><strong>Audio Detection</strong><br>Flags conversations or noise</div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">📸</span>
+                            <div><strong>Automated Screenshots</strong><br>Evidence capture for review</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 0.5rem; background: #ddebf5; border-radius: 60px; padding: 0.5rem 1.5rem; display: inline-block;">🔹 AI-powered proctoring ensures academic integrity</div>
+                </div>
+
+                <!-- SLIDE 11: Real-time Monitoring -->
+                <div class="slide slide-11">
+                    <span class="stat-badge">📊 monitoring</span>
+                    <div class="slide-title" style="font-size: 2.4rem;">Real-time Monitoring<br>& Alerts</div>
+                    <div class="divider"></div>
+                    <div class="content-grid">
+                        <div>
+                            <div class="list-item"><span class="icon">🔔</span> Instant violation alerts to invigilators</div>
+                            <div class="list-item"><span class="icon">📋</span> Live dashboard of all active exams</div>
+                            <div class="list-item"><span class="icon">📸</span> Automated evidence collection</div>
+                        </div>
+                        <div>
+                            <div class="list-item"><span class="icon">📊</span> Real-time student activity logs</div>
+                            <div class="list-item"><span class="icon">⏱️</span> Time tracking & auto-submit</div>
+                            <div class="list-item"><span class="icon">📈</span> Violation trends & reports</div>
+                        </div>
+                    </div>
+                    <div style="background: #e8f0f8; border-radius: 24px; padding: 0.8rem 1.5rem; margin-top: 0.5rem;">
+                        <span>⚡ Invigilators can intervene immediately when violations are detected</span>
+                    </div>
+                </div>
+
+                <!-- SLIDE 12: Stakeholder Roles -->
+                <div class="slide slide-12">
+                    <span class="stat-badge">👥 stakeholders</span>
+                    <div class="slide-title" style="font-size: 2.4rem;">Four Pillars of the eTest</div>
+                    <div class="divider"></div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div class="highlight-card"><span class="role-tag">🧑‍🏫 Lecturer</span> create tests, view analytics, manage bank, monitor results</div>
+                        <div class="highlight-card"><span class="role-tag">👨‍🎓 Student</span> attempt tests with face auth, view results, feedback</div>
+                        <div class="highlight-card"><span class="role-tag">🔍 Invigilator</span> monitor sessions, flag violations, intervene</div>
+                        <div class="highlight-card"><span class="role-tag">⚙️ Admin</span> oversee departments, users, system reports</div>
+                    </div>
+                    <div style="margin-top: 1.2rem; background: #ddebf5; border-radius: 60px; padding: 0.5rem 1.5rem; display: inline-block;">🔹 unified dashboard for each role with specific permissions</div>
+                </div>
+
+                <!-- SLIDE 13: Key Features -->
+                <div class="slide slide-13">
+                    <span class="stat-badge">✨ features</span>
+                    <div class="slide-title" style="font-size: 2.4rem;">Key Features Overview</div>
+                    <div class="divider"></div>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <span class="icon">📝</span>
+                            <div><strong>Question Bank</strong><br>100+ questions per test</div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">🎲</span>
+                            <div><strong>Randomization</strong><br>30 unique questions per student</div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">👤</span>
+                            <div><strong>Face Auth</strong><br>Identity verification</div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">🚫</span>
+                            <div><strong>Violation Detection</strong><br>AI-powered proctoring</div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">📱</span>
+                            <div><strong>BYOD</strong><br>Bring Your Own Device</div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="icon">📊</span>
+                            <div><strong>Analytics</strong><br>Real-time performance dashboards</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 14: HOD/Dean Benefits -->
+                <div class="slide slide-14">
+                    <span class="stat-badge">🎤 for leadership</span>
+                    <div class="slide-title" style="font-size: 2.4rem;">Benefits for HOD & Dean</div>
+                    <div class="divider"></div>
+                    <div>
+                        <div class="list-item"><span class="icon">📈</span> Department‑wise performance trends & analytics</div>
+                        <div class="list-item"><span class="icon">🧩</span> Question quality & difficulty metrics</div>
+                        <div class="list-item"><span class="icon">📉</span> Reduce cost by 60%, increase integrity</div>
+                        <div class="list-item"><span class="icon">🔁</span> Seamless integration with existing LMS</div>
+                        <div class="list-item"><span class="icon">👤</span> Face authentication & violation detection for zero cheating</div>
+                        <div class="list-item"><span class="icon">📊</span> Real-time visibility into exam integrity</div>
+                        <div class="list-item"><span class="icon">📱</span> BYOD reduces infrastructure costs</div>
+                    </div>
+                    <div style="background: #cfdff0; border-radius: 40px; padding: 0.5rem 1.8rem; display: inline-block; margin-top: 0.5rem;">📌 <strong>REAi</strong> – your digital assessment partner</div>
+                </div>
+
+                <!-- SLIDE 15: Implementation Timeline -->
+                <div class="slide slide-15">
+                    <span class="stat-badge">📅 roadmap</span>
+                    <div class="slide-title" style="font-size: 2.4rem;">Implementation Timeline</div>
+                    <div class="divider"></div>
+                    <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <div class="timeline-item">
+                            <div class="step">1</div>
+                            <div><strong>Week 1-2:</strong> System setup & configuration</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="step">2</div>
+                            <div><strong>Week 3-4:</strong> Staff training & onboarding</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="step">3</div>
+                            <div><strong>Week 5:</strong> Pilot test with one department</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="step">4</div>
+                            <div><strong>Week 6-8:</strong> Full rollout & support</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="step">5</div>
+                            <div><strong>Ongoing:</strong> Continuous improvement & updates</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 0.8rem; background: #e8f0f8; border-radius: 24px; padding: 0.5rem 1.5rem;">
+                        <span>🔄 Flexible timeline based on university requirements</span>
+                    </div>
+                </div>
+
+                <!-- SLIDE 16: Closing / Call to Action -->
+                <div class="slide slide-16">
+                    <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                        <div class="slide-title" style="font-size: 3rem;">Ready to<br>Transform Assessment?</div>
+                        <div class="subhead" style="border-left-color: #13638c; font-size: 1.2rem;">Samuel Victor · REAi Assessment System</div>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.8rem;">
+                            <span class="pill">📞 demo request</span>
+                            <span class="pill">📧 reai@university.edu</span>
+                            <span class="pill">📱 +234 800 000 0000</span>
+                        </div>
+                        <div style="margin-top: 1.5rem; font-size: 0.9rem; color: #2f5e7a;">© 2026 · built for Nigerian tertiary institutions</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div style="background: #cfdff0; border-radius: 40px; padding: 0.5rem 1.8rem; display: inline-block; margin-top: 0.5rem;">📌 <strong>REAi</strong> – your digital assessment partner</div>
-      </div>
+
+        <!-- navigation -->
+        <div class="nav-controls">
+            <button class="nav-btn" id="prevBtn">← Previous</button>
+            <div class="dots" id="dotsContainer"></div>
+            <button class="nav-btn" id="nextBtn">Next →</button>
+        </div>
+        <div style="display: flex; justify-content: center; margin-top: 0.5rem;">
+            <span class="slide-number" id="slideCounter">1 / 16</span>
+        </div>
     </div>
-  </div>
 
-  <!-- navigation -->
-  <div class="nav-controls">
-    <button class="nav-btn" id="prevBtn">← Previous</button>
-    <div class="dots" id="dotsContainer"></div>
-    <button class="nav-btn" id="nextBtn">Next →</button>
-  </div>
-  <div style="display: flex; justify-content: center; margin-top: 0.5rem;">
-    <span class="slide-number" id="slideCounter">1 / 10</span>
-  </div>
-</div>
+    <script>
+        (function() {
+            const track = document.getElementById('slidesTrack');
+            const slides = track.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+            let currentIndex = 0;
 
-<script>
-  (function() {
-    const track = document.getElementById('slidesTrack');
-    const slides = track.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    let currentIndex = 0;
+            const dotsContainer = document.getElementById('dotsContainer');
+            const counter = document.getElementById('slideCounter');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
 
-    const dotsContainer = document.getElementById('dotsContainer');
-    const counter = document.getElementById('slideCounter');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+            // Create dots
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('data-index', i);
+                dot.addEventListener('click', function() {
+                    goToSlide(parseInt(this.getAttribute('data-index')));
+                });
+                dotsContainer.appendChild(dot);
+            }
 
-    // Create dots
-    for (let i = 0; i < totalSlides; i++) {
-      const dot = document.createElement('button');
-      dot.className = 'dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('data-index', i);
-      dot.addEventListener('click', function() {
-        goToSlide(parseInt(this.getAttribute('data-index')));
-      });
-      dotsContainer.appendChild(dot);
-    }
+            const dots = dotsContainer.querySelectorAll('.dot');
 
-    const dots = dotsContainer.querySelectorAll('.dot');
+            function updateSlide(index) {
+                if (index < 0) index = 0;
+                if (index >= totalSlides) index = totalSlides - 1;
+                currentIndex = index;
+                track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+                // update dots
+                dots.forEach(function(dot, i) {
+                    if (i === currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+                counter.textContent = (currentIndex + 1) + ' / ' + totalSlides;
+            }
 
-    function updateSlide(index) {
-      if (index < 0) index = 0;
-      if (index >= totalSlides) index = totalSlides - 1;
-      currentIndex = index;
-      track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
-      // update dots
-      dots.forEach(function(dot, i) {
-        if (i === currentIndex) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
-        }
-      });
-      counter.textContent = (currentIndex + 1) + ' / ' + totalSlides;
-    }
+            function goToSlide(index) {
+                if (index === currentIndex) return;
+                updateSlide(index);
+            }
 
-    function goToSlide(index) {
-      if (index === currentIndex) return;
-      updateSlide(index);
-    }
+            // Previous button
+            prevBtn.addEventListener('click', function() {
+                goToSlide(currentIndex - 1);
+            });
 
-    // Previous button
-    prevBtn.addEventListener('click', function() {
-      goToSlide(currentIndex - 1);
-    });
+            // Next button
+            nextBtn.addEventListener('click', function() {
+                goToSlide(currentIndex + 1);
+            });
 
-    // Next button
-    nextBtn.addEventListener('click', function() {
-      goToSlide(currentIndex + 1);
-    });
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    goToSlide(currentIndex + 1);
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    goToSlide(currentIndex - 1);
+                }
+            });
 
-    // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        e.preventDefault();
-        goToSlide(currentIndex + 1);
-      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        goToSlide(currentIndex - 1);
-      }
-    });
-
-    // Initialize
-    updateSlide(0);
-  })();
-</script>
+            // Initialize
+            updateSlide(0);
+        })();
+    </script>
 </body>
 </html>
