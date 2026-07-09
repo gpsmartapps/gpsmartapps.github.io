@@ -211,6 +211,27 @@
       padding-top: 1.2rem;
     }
 
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+      margin: 0.5rem 0;
+    }
+
+    .feature-item {
+      background: #f0f6fe;
+      border-radius: 16px;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      border: 1px solid #dce8f2;
+    }
+
+    .feature-item .icon {
+      font-size: 1.8rem;
+    }
+
     /* navigation */
     .nav-controls {
       display: flex;
@@ -274,6 +295,7 @@
       .cost-grid { grid-template-columns: 1fr; }
       .content-single { max-width: 100%; }
       .nav-controls { flex-direction: column; gap: 12px; }
+      .feature-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -288,47 +310,50 @@
           <div class="slide-title" style="font-size: 3.8rem; line-height: 1.1;">REAi Assessment<br>System</div>
           <div class="subhead" style="border-left-color: #1f6390; font-size: 1.5rem;">University eTest Platform · Lecturers · Students · Invigilators · Admin</div>
           <div style="margin-top: 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap;">
-            <span class="pill">🔹 Cost‑effective</span>
-            <span class="pill">🔹 100Q bank · present 30</span>
-            <span class="pill">🔹 30 marks</span>
+            <span class="pill">🔹 100+ Q bank · present 30 randomly</span>
+            <span class="pill">🔹 Face authentication</span>
+            <span class="pill">🔹 Violation detection</span>
           </div>
           <div style="margin-top: 2.2rem; color: #2c5b7a;"><span style="background: #dce8f2; padding: 0.2rem 1.2rem; border-radius: 40px;">Samuel Victor · presentation</span></div>
         </div>
       </div>
-      <!-- SLIDE 2: Background & context -->
+
+      <!-- SLIDE 2: Why an Assessment Test? (replaced "Why REAi?") -->
       <div class="slide slide-2">
-        <span class="stat-badge">📌 background</span>
-        <div class="slide-title" style="font-size: 2.8rem;">Why REAi?</div>
+        <span class="stat-badge">📌 the question</span>
+        <div class="slide-title" style="font-size: 2.8rem;">Why an Assessment<br>eTest?</div>
         <div class="divider"></div>
         <div class="content-grid">
           <div>
-            <div class="list-item"><span class="icon">📋</span> Traditional exams: logistics, printing, security</div>
-            <div class="list-item"><span class="icon">⏳</span> Delayed results & manual marking</div>
-            <div class="list-item"><span class="icon">📊</span> No real‑time analytics for HOD/Dean</div>
-            <div class="list-item"><span class="icon">🖥️</span> Need for a unified digital ecosystem</div>
+            <div class="list-item"><span class="icon">📋</span> Paper-based exams: costly logistics, printing, security risks</div>
+            <div class="list-item"><span class="icon">⏳</span> Manual marking → delayed results, human error</div>
+            <div class="list-item"><span class="icon">📊</span> No real-time analytics for HOD/Deans</div>
+            <div class="list-item"><span class="icon">🖥️</span> Need for a unified, digital ecosystem</div>
           </div>
           <div class="highlight-card">
-            <p style="font-weight: 500; font-size: 1.1rem;">🎯 <strong>Goal</strong></p>
-            <p style="color: #1d4059;">A secure, scalable platform that serves all stakeholders: lecturers create tests, students attempt, invigilators monitor, admin oversees.</p>
+            <p style="font-weight: 500; font-size: 1.1rem;">🎯 <strong>The Solution</strong></p>
+            <p style="color: #1d4059;">REAi provides a secure, scalable platform that serves all stakeholders: lecturers create tests, students attempt with face authentication, invigilators monitor, admin oversees.</p>
             <p style="margin-top: 0.8rem; background: #e1edf7; padding: 0.5rem 1rem; border-radius: 20px;">✅ built for Nigerian universities</p>
           </div>
         </div>
       </div>
+
       <!-- SLIDE 3: what led to development -->
       <div class="slide slide-3">
         <span class="stat-badge">🧩 genesis</span>
         <div class="slide-title" style="font-size: 2.6rem;">What led to REAi?</div>
         <div class="divider"></div>
         <div style="display: flex; flex-direction: column; gap: 1.2rem;">
-          <div class="list-item"><span class="icon">🧑‍🏫</span> <strong>Lecturer pain:</strong> manual test creation, re‑use of questions, difficulty tracking</div>
+          <div class="list-item"><span class="icon">🧑‍🏫</span> <strong>Lecturer pain:</strong> manual test creation, question reuse, difficulty tracking</div>
           <div class="list-item"><span class="icon">📈</span> <strong>HOD/Dean needs:</strong> department performance overview, question quality metrics</div>
-          <div class="list-item"><span class="icon">🔒</span> <strong>Security:</strong> invigilator tools & randomised question presentation</div>
+          <div class="list-item"><span class="icon">🔒</span> <strong>Security:</strong> face authentication, invigilator tools, randomized questions</div>
           <div class="list-item"><span class="icon">💰</span> <strong>Cost:</strong> reduce printing, logistics, and external proctoring fees</div>
           <div style="background: #dce9f5; border-radius: 24px; padding: 1rem 1.8rem; margin-top: 0.3rem;">
-            <span style="font-weight: 600;">→ REAi is the answer:</span> streamlined, affordable, and transparent.
+            <span style="font-weight: 600;">→ REAi is the answer:</span> streamlined, affordable, secure, and transparent.
           </div>
         </div>
       </div>
+
       <!-- SLIDE 4: cost effectiveness -->
       <div class="slide slide-4">
         <span class="stat-badge">💰 cost efficiency</span>
@@ -346,7 +371,8 @@
         </div>
         <div class="footnote">✔️ Low‑cost hosting · scalable · no per‑exam printing · automated grading</div>
       </div>
-      <!-- SLIDE 5: lecturer creates test -->
+
+      <!-- SLIDE 5: lecturer creates test (updated with 100+ questions) -->
       <div class="slide slide-5">
         <span class="stat-badge">🧑‍🏫 lecturer flow</span>
         <div class="slide-title" style="font-size: 2.4rem;">Create a test (dept)</div>
@@ -354,25 +380,26 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 0.2rem;">
           <div>
             <div class="list-item"><span class="icon">1️⃣</span> Select department & course</div>
-            <div class="list-item"><span class="icon">2️⃣</span> Build question bank (up to 100)</div>
-            <div class="list-item"><span class="icon">3️⃣</span> Set <strong>“present 30”</strong> from 100</div>
+            <div class="list-item"><span class="icon">2️⃣</span> Build question bank (<strong>100+ questions</strong>)</div>
+            <div class="list-item"><span class="icon">3️⃣</span> Set <strong>“present 30”</strong> randomly from pool</div>
             <div class="list-item"><span class="icon">4️⃣</span> Assign <strong>30 marks</strong> (1 mark each)</div>
             <div class="list-item"><span class="icon">5️⃣</span> Publish · schedule · invigilator</div>
           </div>
           <div class="highlight-card" style="background: #e3effa;">
             <p><span style="background: #1d5b7a; color: white; padding: 0.1rem 0.8rem; border-radius: 30px;">example</span></p>
-            <p style="margin-top: 0.4rem;"><strong>Department:</strong> Computer Science <br> <strong>Course:</strong> CSC 301 <br> <strong>Bank:</strong> 100Q · <strong>Show:</strong> 30Q <br> <strong>Marks:</strong> 30 (1 each)</p>
-            <p style="font-size: 0.9rem; margin-top: 0.4rem;">⏱️ randomised per student</p>
+            <p style="margin-top: 0.4rem;"><strong>Department:</strong> Computer Science <br> <strong>Course:</strong> CSC 301 <br> <strong>Bank:</strong> 120Q · <strong>Show:</strong> 30Q (random) <br> <strong>Marks:</strong> 30 (1 each)</p>
+            <p style="font-size: 0.9rem; margin-top: 0.4rem;">⏱️ randomised per student for fairness</p>
           </div>
         </div>
       </div>
-      <!-- SLIDE 6: 100Q / present 30 / 30 marks -->
+
+      <!-- SLIDE 6: 100+ questions / present 30 / 30 marks -->
       <div class="slide slide-6">
         <span class="stat-badge">🎯 exam logic</span>
-        <div class="slide-title" style="font-size: 2.4rem;">100 questions · present 30 · 30 marks</div>
+        <div class="slide-title" style="font-size: 2.4rem;">100+ questions · present 30 · 30 marks</div>
         <div class="divider"></div>
         <div style="display: flex; flex-wrap: wrap; gap: 1.8rem; justify-content: space-between;">
-          <div style="flex: 1; min-width: 180px;"><span style="font-size: 2.2rem; font-weight: 600; color: #104a6b;">100</span><br>question bank</div>
+          <div style="flex: 1; min-width: 180px;"><span style="font-size: 2.2rem; font-weight: 600; color: #104a6b;">100+</span><br>question bank</div>
           <div style="flex: 1; min-width: 180px;"><span style="font-size: 2.2rem; font-weight: 600; color: #1b6b9c;">→ 30</span><br>randomly presented</div>
           <div style="flex: 1; min-width: 180px;"><span style="font-size: 2.2rem; font-weight: 600; color: #0e5a7a;">= 30</span><br>total marks</div>
         </div>
@@ -380,21 +407,57 @@
           <span>⚡ Lecturer defines the pool, system picks 30 unique questions per student – fair & secure.</span>
         </div>
       </div>
-      <!-- SLIDE 7: roles (lecturers, students, invigilators, admin) -->
+
+      <!-- SLIDE 7: Face Authentication & Violation Detection -->
       <div class="slide slide-7">
+        <span class="stat-badge">🔐 security & integrity</span>
+        <div class="slide-title" style="font-size: 2.4rem;">Face Auth & Violation<br>Detection</div>
+        <div class="divider"></div>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <span class="icon">👤</span>
+            <div><strong>Face Authentication</strong><br>Secure login & exam access</div>
+          </div>
+          <div class="feature-item">
+            <span class="icon">👀</span>
+            <div><strong>Proctoring</strong><br>Real-time monitoring</div>
+          </div>
+          <div class="feature-item">
+            <span class="icon">🚫</span>
+            <div><strong>Violation Detection</strong><br>Multiple faces, looking away, phone usage</div>
+          </div>
+          <div class="feature-item">
+            <span class="icon">📸</span>
+            <div><strong>Automated Screenshots</strong><br>Evidence capture for review</div>
+          </div>
+          <div class="feature-item">
+            <span class="icon">🔔</span>
+            <div><strong>Alert System</strong><br>Real-time notifications to invigilators</div>
+          </div>
+          <div class="feature-item">
+            <span class="icon">📊</span>
+            <div><strong>Violation Reports</strong><br>Detailed logs for HOD/Admin</div>
+          </div>
+        </div>
+        <div style="margin-top: 0.5rem; background: #ddebf5; border-radius: 60px; padding: 0.5rem 1.5rem; display: inline-block;">🔹 Ensures academic integrity with AI-powered proctoring</div>
+      </div>
+
+      <!-- SLIDE 8: roles (lecturers, students, invigilators, admin) -->
+      <div class="slide slide-8">
         <span class="stat-badge">👥 stakeholders</span>
         <div class="slide-title" style="font-size: 2.4rem;">Four pillars</div>
         <div class="divider"></div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
           <div><span class="role-tag">🧑‍🏫 Lecturer</span> create tests, view analytics, manage bank</div>
-          <div><span class="role-tag">👨‍🎓 Student</span> attempt tests, view results, feedback</div>
-          <div><span class="role-tag">🔍 Invigilator</span> monitor sessions, flag issues</div>
+          <div><span class="role-tag">👨‍🎓 Student</span> attempt tests with face auth, view results</div>
+          <div><span class="role-tag">🔍 Invigilator</span> monitor sessions, flag violations</div>
           <div><span class="role-tag">⚙️ Admin</span> oversee departments, users, reports</div>
         </div>
         <div style="margin-top: 1.2rem; background: #ddebf5; border-radius: 60px; padding: 0.5rem 1.5rem; display: inline-block;">🔹 unified dashboard for each role</div>
       </div>
-      <!-- SLIDE 8: demo / showcase highlights -->
-      <div class="slide slide-8">
+
+      <!-- SLIDE 9: Key features showcase -->
+      <div class="slide slide-9">
         <span class="stat-badge">✨ showcase</span>
         <div class="slide-title" style="font-size: 2.4rem;">Key features</div>
         <div class="divider"></div>
@@ -403,39 +466,31 @@
             <div class="list-item"><span class="icon">📝</span> Auto‑generated question variants</div>
             <div class="list-item"><span class="icon">⏲️</span> Timed exams & auto‑submit</div>
             <div class="list-item"><span class="icon">📊</span> Real‑time performance dash</div>
+            <div class="list-item"><span class="icon">👤</span> Face authentication</div>
           </div>
           <div>
             <div class="list-item"><span class="icon">🔐</span> Secure, role‑based access</div>
             <div class="list-item"><span class="icon">📁</span> Department‑wise question bank</div>
             <div class="list-item"><span class="icon">📬</span> Instant results & feedback</div>
+            <div class="list-item"><span class="icon">🚫</span> Violation detection & reporting</div>
           </div>
         </div>
         <div style="margin-top: 0.5rem;">✅ <strong>Live demo</strong> – ask us for a walkthrough</div>
       </div>
-      <!-- SLIDE 9: HOD/Dean pitch -->
-      <div class="slide slide-9">
+
+      <!-- SLIDE 10: HOD/Dean pitch -->
+      <div class="slide slide-10">
         <span class="stat-badge">🎤 pitch</span>
         <div class="slide-title" style="font-size: 2.4rem;">For HOD & Dean</div>
         <div class="divider"></div>
         <div>
-          <div class="list-item"><span class="icon">📈</span> Department‑wise performance trends</div>
-          <div class="list-item"><span class="icon">🧩</span> Question quality & difficulty analytics</div>
-          <div class="list-item"><span class="icon">📉</span> Reduce cost, increase integrity</div>
+          <div class="list-item"><span class="icon">📈</span> Department‑wise performance trends & analytics</div>
+          <div class="list-item"><span class="icon">🧩</span> Question quality & difficulty metrics</div>
+          <div class="list-item"><span class="icon">📉</span> Reduce cost by 60%, increase integrity</div>
           <div class="list-item"><span class="icon">🔁</span> Seamless integration with existing LMS</div>
+          <div class="list-item"><span class="icon">👤</span> Face authentication & violation detection for zero cheating</div>
         </div>
         <div style="background: #cfdff0; border-radius: 40px; padding: 0.5rem 1.8rem; display: inline-block; margin-top: 0.5rem;">📌 <strong>REAi</strong> – your digital assessment partner</div>
-      </div>
-      <!-- SLIDE 10: closing + call to action -->
-      <div class="slide slide-10">
-        <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
-          <div class="slide-title" style="font-size: 3rem;">Ready to<br>transform assessment?</div>
-          <div class="subhead" style="border-left-color: #13638c; font-size: 1.2rem;">Samuel Victor · REAi Assessment System</div>
-          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.8rem;">
-            <span class="pill">📞 demo request</span>
-            <span class="pill">📧 reai@university.edu</span>
-          </div>
-          <div style="margin-top: 1.5rem; font-size: 0.9rem; color: #2f5e7a;">© 2026 · built for Nigerian tertiary institutions</div>
-        </div>
       </div>
     </div>
   </div>
