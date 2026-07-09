@@ -59,6 +59,32 @@
             background: white;
             overflow-y: auto;
             scrollbar-width: thin;
+            position: relative;
+        }
+
+        /* Logo container */
+        .logo-container {
+            position: absolute;
+            top: 1.2rem;
+            right: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            z-index: 10;
+        }
+
+        .logo-container img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-container .mouau-logo {
+            height: 45px;
+        }
+
+        .logo-container .reai-logo {
+            height: 40px;
         }
 
         /* slide variants */
@@ -373,6 +399,19 @@
             .feature-grid {
                 grid-template-columns: 1fr;
             }
+            .logo-container {
+                top: 0.8rem;
+                right: 1rem;
+            }
+            .logo-container img {
+                height: 35px;
+            }
+            .logo-container .mouau-logo {
+                height: 32px;
+            }
+            .logo-container .reai-logo {
+                height: 28px;
+            }
         }
     </style>
 </head>
@@ -382,6 +421,10 @@
             <div class="slides-track" id="slidesTrack">
                 <!-- SLIDE 1: Title -->
                 <div class="slide slide-1">
+                    <div class="logo-container">
+                        <img src="jpeg" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
                         <div class="stat-badge" style="margin-bottom: 0.5rem;">✨ REAi v2.0</div>
                         <div class="slide-title" style="font-size: 3.8rem; line-height: 1.1;">REAi Assessment<br>System</div>
@@ -398,6 +441,10 @@
 
                 <!-- SLIDE 2: Why an Assessment Test? -->
                 <div class="slide slide-2">
+                    <div class="logo-container">
+                        <img src="reai.png" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <span class="stat-badge">📌 the question</span>
                     <div class="slide-title" style="font-size: 2.8rem;">Why an Assessment<br>Test?</div>
                     <div class="divider"></div>
@@ -418,6 +465,10 @@
 
                 <!-- SLIDE 3: What led to development -->
                 <div class="slide slide-3">
+                    <div class="logo-container">
+                        <img src="reai.png" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <span class="stat-badge">🧩 genesis</span>
                     <div class="slide-title" style="font-size: 2.6rem;">What led to REAi?</div>
                     <div class="divider"></div>
@@ -434,6 +485,10 @@
 
                 <!-- SLIDE 4: Challenges in Traditional Assessment -->
                 <div class="slide slide-4">
+                    <div class="logo-container">
+                        <img src="reai.png" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <span class="stat-badge">⚠️ challenges</span>
                     <div class="slide-title" style="font-size: 2.5rem;">Traditional Assessment<br>Challenges</div>
                     <div class="divider"></div>
@@ -456,6 +511,10 @@
 
                 <!-- SLIDE 5: Cost effectiveness -->
                 <div class="slide slide-5">
+                    <div class="logo-container">
+                        <img src="reai.png" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <span class="stat-badge">💰 cost efficiency</span>
                     <div class="slide-title" style="font-size: 2.5rem;">Cost‑effective by design</div>
                     <div class="divider"></div>
@@ -475,6 +534,10 @@
 
                 <!-- SLIDE 6: Lecturer workflow -->
                 <div class="slide slide-6">
+                    <div class="logo-container">
+                        <img src="reai.png" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <span class="stat-badge">🧑‍🏫 lecturer flow</span>
                     <div class="slide-title" style="font-size: 2.4rem;">Create a test (dept)</div>
                     <div class="subhead" style="font-size: 1.1rem;">Set department · question pool · presentation rules</div>
@@ -496,6 +559,10 @@
 
                 <!-- SLIDE 7: 100+ questions logic -->
                 <div class="slide slide-7">
+                    <div class="logo-container">
+                        <img src="reai.png" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <span class="stat-badge">🎯 exam logic</span>
                     <div class="slide-title" style="font-size: 2.4rem;">100+ questions · present 30 · 30 marks</div>
                     <div class="divider"></div>
@@ -516,6 +583,10 @@
 
                 <!-- SLIDE 8: BYOD - Bring Your Own Device -->
                 <div class="slide slide-8">
+                    <div class="logo-container">
+                        <img src="reai.png" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <span class="stat-badge">📱 flexibility</span>
                     <div class="slide-title" style="font-size: 2.4rem;">Bring Your Own Device<br>(BYOD)</div>
                     <div class="divider"></div>
@@ -542,6 +613,10 @@
 
                 <!-- SLIDE 9: Face Authentication -->
                 <div class="slide slide-9">
+                    <div class="logo-container">
+                        <img src="reai.png" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <span class="stat-badge">👤 security</span>
                     <div class="slide-title" style="font-size: 2.4rem;">Face Authentication</div>
                     <div class="divider"></div>
@@ -564,6 +639,10 @@
 
                 <!-- SLIDE 10: Violation Detection -->
                 <div class="slide slide-10">
+                    <div class="logo-container">
+                        <img src="reai.png" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <span class="stat-badge">🚫 integrity</span>
                     <div class="slide-title" style="font-size: 2.4rem;">Violation Detection<br>System</div>
                     <div class="divider"></div>
@@ -598,6 +677,10 @@
 
                 <!-- SLIDE 11: Real-time Monitoring -->
                 <div class="slide slide-11">
+                    <div class="logo-container">
+                        <img src="reai.png" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <span class="stat-badge">📊 monitoring</span>
                     <div class="slide-title" style="font-size: 2.4rem;">Real-time Monitoring<br>& Alerts</div>
                     <div class="divider"></div>
@@ -620,6 +703,10 @@
 
                 <!-- SLIDE 12: Stakeholder Roles -->
                 <div class="slide slide-12">
+                    <div class="logo-container">
+                        <img src="reai.png" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <span class="stat-badge">👥 stakeholders</span>
                     <div class="slide-title" style="font-size: 2.4rem;">Four Pillars of the eTest</div>
                     <div class="divider"></div>
@@ -634,6 +721,10 @@
 
                 <!-- SLIDE 13: Key Features -->
                 <div class="slide slide-13">
+                    <div class="logo-container">
+                        <img src="reai.png" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <span class="stat-badge">✨ features</span>
                     <div class="slide-title" style="font-size: 2.4rem;">Key Features Overview</div>
                     <div class="divider"></div>
@@ -667,6 +758,10 @@
 
                 <!-- SLIDE 14: HOD/Dean Benefits -->
                 <div class="slide slide-14">
+                    <div class="logo-container">
+                        <img src="reai.png" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <span class="stat-badge">🎤 for leadership</span>
                     <div class="slide-title" style="font-size: 2.4rem;">Benefits for HOD & Dean</div>
                     <div class="divider"></div>
@@ -684,6 +779,10 @@
 
                 <!-- SLIDE 15: Implementation Timeline -->
                 <div class="slide slide-15">
+                    <div class="logo-container">
+                        <img src="reai.png" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <span class="stat-badge">📅 roadmap</span>
                     <div class="slide-title" style="font-size: 2.4rem;">Implementation Timeline</div>
                     <div class="divider"></div>
@@ -716,6 +815,10 @@
 
                 <!-- SLIDE 16: Closing / Call to Action -->
                 <div class="slide slide-16">
+                    <div class="logo-container">
+                        <img src="reai.png" alt="REAi Logo" class="reai-logo" />
+                        <img src="mouau.jpg" alt="MOUAU Logo" class="mouau-logo" />
+                    </div>
                     <div style="display: flex; flex-direction: column; justify-content: center; height: 100%;">
                         <div class="slide-title" style="font-size: 3rem;">Ready to<br>Transform Assessment?</div>
                         <div class="subhead" style="border-left-color: #13638c; font-size: 1.2rem;">Samuel Victor · REAi Assessment System</div>
@@ -814,3 +917,4 @@
     </script>
 </body>
 </html>
+```
