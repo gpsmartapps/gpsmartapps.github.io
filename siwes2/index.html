@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIWES Seminar Quiz Pro</title>
+  <style>
+    /* ========== THEME VARIABLES ========== */
+    :root, [data-theme="dark"] {
+      --bg: #0b1120;
+      --bg-gradient: linear-gradient(160deg, #0b1120 0%, #1e1b4b 55%, #0f172a 100%);
+      --card: #1e293b;
+      --card-inner: #0f172a;
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --correct: #22c55e;
+      --wrong: #ef4444;
+      --border: #334155;
+      --easy: #22c55e;
+      --medium: #f59e0b;
+      --hard: #ef4444;
+      --shadow: 0 25px 50px -20px rgba(0,0,0,0.55);
+      --option-hover: #1e293b;
+      --toggle-bg: #334155;
+    }
+
+    [data-theme="light"] {
+      --bg: #f1f5f9;
+      --bg-gradient: linear-gradient(160deg, #f8fafc 0%, #e0e7ff 50%, #f1f5f9 100%);
+      --card: #ffffff;
+      --card-inner: #f8fafc;
+      --accent: #0284c7;
+      --accent2: #6366f1;
+      --text: #0f172a;
+      --muted: #64748b;
+      --correct: #16a34a;
+      --wrong: #dc2626;
+      --border: #e2e8f0;
+      --easy: #16a34a;
+      --medium: #d97706;
+      --hard: #dc2626;
+      --shadow: 0 20px 40px -15px rgba(15,23,42,0.12);
+      --option-hover: #f1f5f9;
+      --toggle-bg: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: background 0.35s ease, color 0.25s ease;
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 100;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      box-shadow: var(--shadow);
+      transition: all 0.2s;
+    }
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      transform: scale(1.06);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.25rem;
+      max-width: 680px;
+      width: 100%;
+    }
+    header h1 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.3rem;
+    }
+    header p { color: var(--muted); font-size: 0.92rem; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.6rem;
+      width: 100%;
+      max-width: 680px;
+      box-shadow: var(--shadow);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.9rem;
+      color: var(--accent);
+    }
+
+    .form-group { margin-bottom: 1.1rem; }
+    label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    select, input[type="number"] {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      background: var(--card-inner);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+    select:focus, input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .level-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .level-btn {
+      padding: 0.75rem 0.5rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: var(--card-inner);
+      color: var(--text);
+      cursor: pointer;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .level-btn:hover { border-color: var(--accent); }
+    .level-btn.active {
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 15%, transparent);
+    }
+    .level-btn.easy.active {
+      border-color: var(--easy);
+      background: color-mix(in srgb, var(--easy) 15%, transparent);
+    }
+    .level-btn.medium.active {
+      border-color: var(--medium);
+      background: color-mix(in srgb, var(--medium) 15%, transparent);
+    }
+    .level-btn.hard.active {
+      border-color: var(--hard);
+      background: color-mix(in srgb, var(--hard) 15%, transparent);
+    }
+    .level-btn .count {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 0.2rem;
+    }
+
+    .feedback-mode { display: flex; gap: 0.6rem; }
+    .fb-btn {
+      flex: 1;
+      padding: 0.7rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: var(--card-inner);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .fb-btn.active {
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 15%, transparent);
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: filter 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+    .btn-primary:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--muted);
+      padding: 0.7rem 1.1rem;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--text);
+      padding: 0.75rem 1.2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+      margin-top: 0.6rem;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Progress & quiz */
+    .progress-bar {
+      height: 7px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 99px;
+      transition: width 0.3s ease;
+    }
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .badge-level {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 99px;
+      text-transform: uppercase;
+    }
+    .badge-easy { background: color-mix(in srgb, var(--easy) 20%, transparent); color: var(--easy); }
+    .badge-medium { background: color-mix(in srgb, var(--medium) 20%, transparent); color: var(--medium); }
+    .badge-hard { background: color-mix(in srgb, var(--hard) 20%, transparent); color: var(--hard); }
+
+    .question {
+      font-size: 1.12rem;
+      font-weight: 600;
+      line-height: 1.45;
+      margin-bottom: 1.3rem;
+    }
+    .options { display: flex; flex-direction: column; gap: 0.55rem; }
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      padding: 0.8rem 0.95rem;
+      background: var(--card-inner);
+      border: 1.5px solid var(--border);
+      border-radius: 11px;
+      cursor: pointer;
+      text-align: left;
+      color: var(--text);
+      font-size: 0.93rem;
+      transition: all 0.18s;
+    }
+    .option:hover:not(.disabled) {
+      border-color: var(--accent);
+      background: var(--option-hover);
+    }
+    .option.selected {
+      border-color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+    }
+    .option.correct {
+      border-color: var(--correct);
+      background: color-mix(in srgb, var(--correct) 15%, transparent);
+    }
+    .option.wrong {
+      border-color: var(--wrong);
+      background: color-mix(in srgb, var(--wrong) 15%, transparent);
+    }
+    .option.disabled { cursor: default; }
+    .letter {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+    .option.selected .letter { background: var(--accent); color: #fff; }
+    .option.correct .letter { background: var(--correct); color: #fff; }
+    .option.wrong .letter { background: var(--wrong); color: #fff; }
+
+    .actions {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 1.3rem;
+      flex-wrap: wrap;
+    }
+    .actions button { flex: 1; min-width: 110px; }
+
+    .feedback-box {
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 9px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .feedback-box.show { display: block; }
+    .feedback-box.correct {
+      background: color-mix(in srgb, var(--correct) 15%, transparent);
+      color: var(--correct);
+    }
+    .feedback-box.wrong {
+      background: color-mix(in srgb, var(--wrong) 15%, transparent);
+      color: var(--wrong);
+    }
+
+    /* Result */
+    .result-screen { text-align: center; }
+    .score-big {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin: 1rem 0 0.3rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .result-msg { color: var(--muted); margin-bottom: 1.4rem; line-height: 1.5; }
+    .review-list {
+      text-align: left;
+      max-height: 280px;
+      overflow-y: auto;
+      margin-bottom: 1.2rem;
+    }
+    .review-item {
+      padding: 0.7rem 0.9rem;
+      background: var(--card-inner);
+      border-radius: 9px;
+      margin-bottom: 0.5rem;
+      font-size: 0.88rem;
+      border-left: 3px solid var(--wrong);
+    }
+    .bank-info {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    /* Home page */
+    .home-screen {
+      text-align: center;
+      padding: 1.5rem 0.5rem;
+    }
+    .home-icon {
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    .home-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .home-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.55;
+      margin-bottom: 1.6rem;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .home-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem;
+      margin-bottom: 1.6rem;
+      text-align: left;
+    }
+    .feature-item {
+      background: var(--card-inner);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      font-size: 0.85rem;
+    }
+    .feature-item strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+    .feature-item span { color: var(--muted); font-size: 0.8rem; }
+
+    footer {
+      margin-top: 1.8rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    .hidden { display: none !important; }
+
+    @media (max-width: 480px) {
+      .home-features { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.45rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle dark / light mode" aria-label="Toggle theme">
+    🌙
+  </button>
+
+  <header id="mainHeader">
+    <h1>SIWES Seminar Quiz Pro</h1>
+    <p>Anatomy • Clinical • Histology • Orthopedics • Radiology</p>
+  </header>
+
+  <div class="card" id="app">
+    <!-- ========== HOME SCREEN ========== -->
+    <div id="homeScreen" class="home-screen">
+      <div class="home-icon">📚</div>
+      <div class="home-title">SIWES Seminar Quiz</div>
+      <p class="home-desc">
+        Prepare for your seminar with randomized questions drawn from the full SIWES industrial training report. Choose difficulty, set question count, and practice at your own pace.
+      </p>
+      <div class="home-features">
+        <div class="feature-item">
+          <strong>3 Difficulty Levels</strong>
+          <span>Easy, Medium & Hard + Mixed mode</span>
+        </div>
+        <div class="feature-item">
+          <strong>Custom Length</strong>
+          <span>Pick how many questions you want</span>
+        </div>
+        <div class="feature-item">
+          <strong>Feedback Modes</strong>
+          <span>Immediate or at the end of quiz</span>
+        </div>
+        <div class="feature-item">
+          <strong>Review Wrong Answers</strong>
+          <span>See corrections after finishing</span>
+        </div>
+      </div>
+      <button class="btn-primary" onclick="goToSetup()">Start Practising</button>
+      <div class="bank-info" id="homeBankInfo">Loading question bank…</div>
+    </div>
+
+    <!-- ========== SETUP SCREEN ========== -->
+    <div id="setupScreen" class="hidden">
+      <div class="section-title">Choose Difficulty</div>
+      <div class="level-grid">
+        <button class="level-btn easy active" data-level="easy" onclick="setLevel('easy')">
+          Level 1<br><span class="count">Easy</span>
+        </button>
+        <button class="level-btn medium" data-level="medium" onclick="setLevel('medium')">
+          Level 2<br><span class="count">Medium</span>
+        </button>
+        <button class="level-btn hard" data-level="hard" onclick="setLevel('hard')">
+          Level 3<br><span class="count">Hard</span>
+        </button>
+      </div>
+      <div class="form-group" style="margin-top:1rem;">
+        <label>Or select Mixed (all levels)</label>
+        <button class="level-btn" id="mixedBtn" style="width:100%;" onclick="setLevel('mixed')">
+          Mixed Difficulty
+        </button>
+      </div>
+
+      <div class="form-group">
+        <label>Number of Questions</label>
+        <input type="number" id="numQuestions" min="5" max="100" value="10" />
+        <div style="font-size:0.75rem;color:var(--muted);margin-top:0.3rem;">
+          Defaults: Easy 10 • Medium 15 • Hard 20 • Mixed 20
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Feedback Mode</label>
+        <div class="feedback-mode">
+          <button class="fb-btn active" id="fbImmediate" onclick="setFeedback('immediate')">Immediate</button>
+          <button class="fb-btn" id="fbEnd" onclick="setFeedback('end')">At the End</button>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="startQuiz()">Start Quiz</button>
+      <button class="btn-outline" onclick="goHome()">← Back to Home</button>
+      <div class="bank-info" id="bankInfo">Loading question bank…</div>
+    </div>
+
+    <!-- ========== QUIZ SCREEN ========== -->
+    <div id="quizScreen" class="hidden">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="meta">
+        <span id="qCounter">Question 1 / 10</span>
+        <span id="levelBadge" class="badge-level badge-easy">Easy</span>
+        <span id="scoreLive">Score: 0</span>
+      </div>
+      <div class="question" id="questionText"></div>
+      <div class="options" id="optionsContainer"></div>
+      <div class="feedback-box" id="feedbackBox"></div>
+      <div class="actions">
+        <button class="btn-secondary" id="skipBtn" onclick="nextQuestion(true)">Skip</button>
+        <button class="btn-primary" id="checkBtn" onclick="checkAnswer()" disabled>Check Answer</button>
+        <button class="btn-primary hidden" id="nextBtn" onclick="nextQuestion(false)">Next →</button>
+      </div>
+    </div>
+
+    <!-- ========== RESULT SCREEN ========== -->
+    <div id="resultScreen" class="hidden result-screen">
+      <h2 style="font-size:1.4rem;">Quiz Complete</h2>
+      <div class="score-big" id="finalScore">0/10</div>
+      <p class="result-msg" id="resultMsg"></p>
+      <div id="reviewSection" class="hidden">
+        <div class="section-title" style="text-align:left;">Review Incorrect Answers</div>
+        <div class="review-list" id="reviewList"></div>
+      </div>
+      <button class="btn-primary" onclick="goToSetup()" style="margin-top:0.5rem;">Practice Again</button>
+      <button class="btn-outline" onclick="goHome()">← Back to Home</button>
+    </div>
+  </div>
+
+  <footer>Based on SIWES Industrial Training Report • Questions from Chapters 1–4</footer>
+
+  <script>
+    // ===================== QUESTION BANK =====================
+    const bank = [
+      // EASY
+      { q: "What does SIWES stand for?", options: ["Students Industrial Work Experience Scheme","Students Internship Work Experience System","Skills Industrial Workforce Experience Scheme","Student Industrial Workplace Education Scheme","Scheme for Industrial Work Experience of Students"], answer: 0, level: "easy" },
+      { q: "In which year was the Industrial Training Fund (ITF) established?", options: ["1969","1971","1973","1979","1985"], answer: 1, level: "easy" },
+      { q: "SIWES was launched by ITF in which year with about 748 students?", options: ["1971","1973","1979","1984","1985"], answer: 1, level: "easy" },
+      { q: "Which body currently plays a major role in managing SIWES alongside NUC, NBTE and NCCE?", options: ["WAEC","ITF","JAMB","NECO","NUC alone"], answer: 1, level: "easy" },
+      { q: "One major aim of SIWES is to:", options: ["Guarantee jobs for all graduates","Bridge the gap between theory and practice","Replace all classroom teaching","Provide free transport to students","Award automatic degrees"], answer: 1, level: "easy" },
+      { q: "SIWES is usually a requirement for:", options: ["Promotion only","Graduation in relevant fields","Getting a passport","National service only","Postgraduate admission only"], answer: 1, level: "easy" },
+      { q: "The vision of the organisation behind SIWES includes being the foremost skills training development organisation in:", options: ["West Africa","Nigeria and one of the best in the world","Africa only","Enugu State","The South-East"], answer: 1, level: "easy" },
+      { q: "How many main institutions/units did the student train at during this SIWES?", options: ["Two","Three","Four","Five","Six"], answer: 2, level: "easy" },
+      { q: "82 Division Medical Hospital is located in:", options: ["Trans-Ekulu","Abakpa, Enugu North","Ituku-Ozalla","UNEC campus","Nsukka"], answer: 1, level: "easy" },
+      { q: "Orthofit Orthopedic Hospital is located at:", options: ["Abakpa","Ituku-Ozalla","Trans-Ekulu, Enugu","UNEC","Nsukka"], answer: 2, level: "easy" },
+      { q: "The Histology Unit is part of the Department of Human Anatomy at:", options: ["UNTH","82 Division","UNEC","Orthofit","Nnamdi Azikiwe University"], answer: 2, level: "easy" },
+      { q: "The Radiology Unit visited is at:", options: ["82 Division","Orthofit","UNEC","UNTH, Ituku-Ozalla","Parklane Hospital"], answer: 3, level: "easy" },
+      { q: "Normal adult resting pulse rate range given is:", options: ["40–60 beats/min","60–100 beats/min","80–120 beats/min","50–80 beats/min","70–110 beats/min"], answer: 1, level: "easy" },
+      { q: "Normal oral temperature range stated is approximately:", options: ["35.0–36.0°C","36.1–37.2°C","37.5–38.5°C","34.0–35.5°C","38.0–39.0°C"], answer: 1, level: "easy" },
+      { q: "Normal respiratory rate range given is:", options: ["8–12 breaths/min","12–20 breaths/min","20–30 breaths/min","6–10 breaths/min","25–35 breaths/min"], answer: 1, level: "easy" },
+      { q: "Normal oxygen saturation range is:", options: ["80–90%","90–94%","95–100%","85–95%","70–80%"], answer: 2, level: "easy" },
+      { q: "An acute syncopal attack is also commonly known as:", options: ["Seizure","Fainting","Stroke","Heart attack","Coma"], answer: 1, level: "easy" },
+      { q: "A Ryle’s tube is another name for a:", options: ["Urinary catheter","Nasogastric tube","IV cannula","Chest tube","Endotracheal tube"], answer: 1, level: "easy" },
+      { q: "The most common type of hernia mentioned is:", options: ["Femoral","Umbilical","Inguinal","Incisional","Hiatal"], answer: 2, level: "easy" },
+      { q: "Presbyopia is mainly related to:", options: ["Infection of the eye","Age-related loss of near focusing","High blood pressure","Diabetes only","Glaucoma"], answer: 1, level: "easy" },
+      { q: "The Snellen chart is used to test:", options: ["Colour vision","Visual acuity","Intraocular pressure","Hearing","Blood pressure"], answer: 1, level: "easy" },
+      { q: "Histology is the microscopic study of:", options: ["Abnormal tissue only","Normal tissue","Bones only","Blood cells only","Bacteria"], answer: 1, level: "easy" },
+      { q: "Histopathology is the microscopic study of:", options: ["Normal tissue","Abnormal tissue","Living animals","X-rays","Embalming fluids"], answer: 1, level: "easy" },
+      { q: "The common routine stain in histology is:", options: ["Gram stain","Haematoxylin and Eosin (H&E)","Ziehl-Neelsen","Giemsa","PAS only"], answer: 1, level: "easy" },
+      { q: "A common clearing agent in tissue processing is:", options: ["Formalin","Xylene","Alcohol only","Paraffin","Water"], answer: 1, level: "easy" },
+      { q: "Embalming aims primarily at:", options: ["Permanent mummification only","Temporary preservation and disinfection of the body","Cremation preparation only","Organ transplant","Blood donation"], answer: 1, level: "easy" },
+      { q: "The preferred artery for arterial embalming in humans (as stated) is the:", options: ["Carotid","Brachial","Femoral","Radial","Aorta"], answer: 2, level: "easy" },
+      { q: "Amputation performed across a joint is called:", options: ["Trans-amputation","Disarticulation","Revision","Guillotine","Replantation"], answer: 1, level: "easy" },
+      { q: "Phocomelia is historically linked to exposure to:", options: ["Aspirin","Thalidomide","Penicillin","Insulin","Paracetamol"], answer: 1, level: "easy" },
+      { q: "On a plain radiograph, bone typically appears:", options: ["Black","Dark grey","Light grey","White","Transparent"], answer: 3, level: "easy" },
+      { q: "Air-filled areas (e.g. lungs) on X-ray appear:", options: ["White","Light grey","Black","Bright white","Dark grey"], answer: 2, level: "easy" },
+      { q: "The Gross Anatomy Unit includes a:", options: ["CT scanner","Dissection hall","MRI machine","Pharmacy","Blood bank"], answer: 1, level: "easy" },
+      { q: "BCG vaccine is typically given:", options: ["At 6 weeks","At birth","At 9 months","At 14 weeks","At 6 months"], answer: 1, level: "easy" },
+      { q: "A prosthesis is a device that:", options: ["Supports a weak limb","Replaces a missing body part","Measures blood pressure","Takes X-rays","Stains tissues"], answer: 1, level: "easy" },
+      { q: "An orthosis is mainly used to:", options: ["Replace a missing limb","Support or correct a weak/deformed part","Administer drugs","Fix tissues","Embalm bodies"], answer: 1, level: "easy" },
+
+      // MEDIUM
+      { q: "After ITF withdrew in 1979, supervision of SIWES was handed to:", options: ["Only NUC","NUC and NBTE","Only NBTE","NCCE alone","State governments"], answer: 1, level: "medium" },
+      { q: "Management of SIWES was returned to ITF around:", options: ["1973","1979","1984/85","1990","2000"], answer: 2, level: "medium" },
+      { q: "Which of the following is NOT listed as an objective of SIWES?", options: ["Expose students to equipment institutions often lack","Prepare students for work after graduation","Guarantee automatic employment","Make transition from school to work easier","Bridge theory and practice"], answer: 2, level: "medium" },
+      { q: "At 82 Division Medical Hospital the student trained in how many units?", options: ["4","5","6","7","8"], answer: 2, level: "medium" },
+      { q: "Which of these was NOT listed among the 6 units at 82 Division?", options: ["Medical unit","Surgical unit","Maternity unit","Radiology unit","Physiotherapy"], answer: 3, level: "medium" },
+      { q: "In vital signs, blood pressure is measured using a:", options: ["Pulse oximeter","Sphygmomanometer","Thermometer","Stethoscope only","Glucometer"], answer: 1, level: "medium" },
+      { q: "Before checking vital signs, the patient should ideally rest for at least:", options: ["1 minute","5 minutes","15 minutes","30 minutes","No rest needed"], answer: 1, level: "medium" },
+      { q: "In immediate management of syncope, the legs should be elevated about:", options: ["10 degrees","30 degrees","60 degrees","90 degrees","Not elevated"], answer: 1, level: "medium" },
+      { q: "Position of a Ryle’s tube is confirmed by checking that gastric aspirate is:", options: ["Alkaline","Acidic","Neutral","Bloody","Clear water"], answer: 1, level: "medium" },
+      { q: "After feeding via Ryle’s tube the patient should remain upright for:", options: ["5–10 minutes","15–20 minutes","30–60 minutes","2 hours","Immediately lie down"], answer: 2, level: "medium" },
+      { q: "Last offices refer to care given:", options: ["Before surgery","After death","During labour","In the eye clinic","In physiotherapy"], answer: 1, level: "medium" },
+      { q: "A hernia is the protrusion of an organ or tissue through a:", options: ["Strong muscle","Weak point in the abdominal wall","Blood vessel","Bone fracture","Nerve sheath"], answer: 1, level: "medium" },
+      { q: "Which of these increases risk of hernia?", options: ["Chronic cough and straining","Regular exercise only","Young age only","High blood pressure only","Wearing glasses"], answer: 0, level: "medium" },
+      { q: "The prostate gland is located:", options: ["Above the bladder in women","Below the bladder in men","In the chest","In the brain","Behind the knee"], answer: 1, level: "medium" },
+      { q: "In the maternity unit, urine is tested for protein and glucose mainly to help detect risks of:", options: ["Only anaemia","Preeclampsia and gestational diabetes related complications","Only malaria","Only HIV","Only syphilis"], answer: 1, level: "medium" },
+      { q: "HIV/Syphilis combo rapid test detects:", options: ["Antigens only","Antibodies to HIV-1/2 and Treponema pallidum","Viral load","CD4 count","Bacterial culture"], answer: 1, level: "medium" },
+      { q: "Standard distance for Snellen chart testing is:", options: ["3 metres","4 metres","6 metres","10 metres","1 metre"], answer: 2, level: "medium" },
+      { q: "If vision improves with a pinhole, the problem is likely:", options: ["Cataract","Refractive error","Glaucoma","Optic nerve disease","Retinal detachment"], answer: 1, level: "medium" },
+      { q: "Presbyopia usually starts around the age of:", options: ["20–25 years","30–35 years","40–45 years","55–60 years","From birth"], answer: 2, level: "medium" },
+      { q: "In histology, fixation mainly helps to:", options: ["Stain the tissue","Preserve tissue and prevent autolysis","Section the tissue","Clear the tissue","Mount the slide"], answer: 1, level: "medium" },
+      { q: "A typical tissue-to-fixative volume ratio for small samples is about:", options: ["1:1","1:5","1:10","1:50","1:100"], answer: 2, level: "medium" },
+      { q: "Dehydration in tissue processing uses graded concentrations of:", options: ["Xylene","Alcohol","Formalin","Paraffin","Water only"], answer: 1, level: "medium" },
+      { q: "After clearing, the tissue is impregnated with:", options: ["Alcohol","Xylene","Molten paraffin wax","Formalin","Haematoxylin"], answer: 2, level: "medium" },
+      { q: "Thin sections for microscopy are cut using a:", options: ["Scalpel only","Microtome","Centrifuge","Autoclave","Spectrophotometer"], answer: 1, level: "medium" },
+      { q: "In H&E staining, nuclei typically appear:", options: ["Pink","Purple-blue","Green","Yellow","Colourless"], answer: 1, level: "medium" },
+      { q: "The three goals of embalming include sanitization, preservation with restoration, and:", options: ["Cremation","Presentation","Organ harvest","Immediate burial only","Taxation"], answer: 1, level: "medium" },
+      { q: "Modern arterial embalming was significantly advanced by work associated with:", options: ["Only ancient Egyptians","Dr. Thomas Holmes and later developments with formaldehyde","Only Renaissance painters","Only Nigerian traditional methods","MRI inventors"], answer: 1, level: "medium" },
+      { q: "Thiel embalming is known for producing bodies that are:", options: ["Very rigid and dark","Soft, lifelike with natural colour and flexibility","Completely mummified","Only useful for display","Impossible to dissect"], answer: 1, level: "medium" },
+      { q: "Plastination was developed by:", options: ["Walter Thiel","Gunther von Hagens","Thomas Holmes","William Hunter","August Hofmann"], answer: 1, level: "medium" },
+      { q: "In bone preparation, the method involving burial and later excavation is called:", options: ["Maceration only","Burial / Excavation / Exhumation method","Chemical only","Scraping only","Boiling only"], answer: 1, level: "medium" },
+      { q: "Trans-femoral amputation is also known as:", options: ["Below-knee","Above-knee","Through the ankle","Shoulder level","Finger level"], answer: 1, level: "medium" },
+      { q: "Trans-tibial amputation is:", options: ["Above the knee","Below the knee","Through the hip","Through the shoulder","Through the wrist"], answer: 1, level: "medium" },
+      { q: "Scoliosis is characterised by:", options: ["Excessive outward thoracic curve only","Lateral curvature of the spine","Exaggerated inward lumbar curve only","Complete absence of spine","Straight spine"], answer: 1, level: "medium" },
+      { q: "Kyphosis refers to:", options: ["Lateral curve","Excessive outward curve of the spine","Inward lumbar curve","No curve","Rotation only"], answer: 1, level: "medium" },
+      { q: "Lordosis refers to:", options: ["Lateral curve","Outward thoracic curve","Exaggerated inward curve of the spine","Flat back","Scoliosis"], answer: 2, level: "medium" },
+      { q: "A major importance of braces in scoliosis is to:", options: ["Cure the condition completely","Help stop progression of the curvature","Replace the spine","Only for cosmetic reasons","Prevent all exercise"], answer: 1, level: "medium" },
+      { q: "X-ray hazards include possible damage to:", options: ["Only skin","Cells/DNA, skin, reproductive organs and eyes with excessive exposure","Only bones","Only muscles","None – X-rays are completely harmless"], answer: 1, level: "medium" },
+      { q: "Factors that can affect X-ray image quality include:", options: ["Only patient age","Magnification, obesity, movement and scatter","Only the brand of machine","Only the time of day","Only the radiographer’s height"], answer: 1, level: "medium" },
+
+      // HARD
+      { q: "Which statement about SIWES management history is correct?", options: ["ITF never withdrew from the scheme","ITF withdrew in 1979 due to rising numbers and funding pressure, then resumed around 1985","NUC has always been the sole manager","SIWES started in 1990","Only NBTE manages it today"], answer: 1, level: "hard" },
+      { q: "In the medical unit, which finding is typical during an acute syncopal attack?", options: ["High blood pressure and strong pulse","Low or unrecordable blood pressure with pale, cold, clammy skin","Very high temperature","Normal consciousness throughout","Bright red flushed skin"], answer: 1, level: "hard" },
+      { q: "Which of the following is a correct step in immediate management of syncope?", options: ["Give oral fluids immediately while unconscious","Ensure safety, position supine with legs elevated, check ABC","Force the patient to stand quickly","Give food by mouth at once","Ignore vital signs"], answer: 1, level: "hard" },
+      { q: "Why should you never feed through a Ryle’s tube if position is not confirmed?", options: ["It is only a preference","Risk of aspiration into the lungs","It makes the tube longer","It is too expensive","It changes the colour of the feed"], answer: 1, level: "hard" },
+      { q: "Complications of hernia include all EXCEPT:", options: ["Incarceration","Strangulation","Bowel obstruction","Peritonitis","Improved muscle strength"], answer: 4, level: "hard" },
+      { q: "BPH and prostate cancer can increase hernia risk mainly because they cause:", options: ["Weight loss","Straining and urinary retention","Improved stream","Reduced abdominal pressure","Better muscle tone"], answer: 1, level: "hard" },
+      { q: "In the HIV/Syphilis combo test, a missing control line means:", options: ["The test is positive","The test is negative","The test is invalid and should be repeated","Only syphilis is present","Only HIV is present"], answer: 2, level: "hard" },
+      { q: "Urine glucose is not reliable for diagnosing gestational diabetes because:", options: ["It is always accurate","Further blood testing (e.g. OGTT) is required for diagnosis","It never appears in urine","It only detects protein","It is used only for men"], answer: 1, level: "hard" },
+      { q: "If vision does NOT improve with pinhole, one should suspect:", options: ["Simple myopia only","Possible eye disease such as cataract, glaucoma, macular or optic nerve problems","Only need for stronger glasses","Normal vision","Only presbyopia"], answer: 1, level: "hard" },
+      { q: "Which classification of fixatives contains more than one chemical component?", options: ["Simple fixatives","Compound fixatives","Only alcohol","Only formalin","Water-based only"], answer: 1, level: "hard" },
+      { q: "Cytological fixatives are particularly used to preserve:", options: ["Only the extracellular matrix","Cellular structures including nucleus and cytoplasm","Only bone","Only fat","Only blood vessels"], answer: 1, level: "hard" },
+      { q: "Why must dehydration be carefully timed?", options: ["To make the tissue expand","To avoid shrinking or hardening of the tissue","To increase water content","To remove all paraffin","To stain the tissue immediately"], answer: 1, level: "hard" },
+      { q: "In the observed embalming procedure, the body was positioned:", options: ["Prone","Sitting","Supine","Standing","Lateral only"], answer: 2, level: "hard" },
+      { q: "For delicate regions such as the face during embalming, fluid was administered using:", options: ["Only gravity from a large vessel","A hypodermic syringe","Only immersion","Only powder","No fluid at all"], answer: 1, level: "hard" },
+      { q: "In the bone preparation method described, after scraping and boiling, the bone was finally:", options: ["Buried again","Left to dry in direct sunlight","Immediately plastinated","Soaked in pure acid for days","Painted"], answer: 1, level: "hard" },
+      { q: "The femoral triangle is bounded laterally by the sartorius, medially by adductor longus, and at its base by the:", options: ["Inguinal ligament","Patella","Tibia","Femoral nerve only","Pubic symphysis only"], answer: 0, level: "hard" },
+      { q: "In animal handling for extract administration, the volume was calculated by dividing the weight of the rat by:", options: ["100","500","1000","10","50"], answer: 2, level: "hard" },
+      { q: "When two extracts (herbal and tablet) are used, the experimental design described had how many groups?", options: ["Three","Four","Five","Six","Eight"], answer: 3, level: "hard" },
+      { q: "Which statement about amputation levels is correct?", options: ["Disarticulation is across the bone; Trans is across the joint","Disarticulation is across the joint; Trans is across the bone","Both mean the same thing","Only upper limbs use these terms","Amputation is always straight cut"], answer: 1, level: "hard" },
+      { q: "In a transfemoral prosthesis, one reason the prosthetic side may be managed carefully for length is to:", options: ["Make the patient taller permanently","Enable foot clearance while walking","Prevent all movement","Only for appearance in sitting","Avoid using a knee joint"], answer: 1, level: "hard" },
+      { q: "Phocomelia literally relates to the idea of:", options: ["Giant limbs","Seal limbs or flipper limbs","Extra fingers only","Missing eyes","Elongated spine"], answer: 1, level: "hard" },
+      { q: "Cobb’s angle is associated with measurement of:", options: ["Blood pressure","Degree of spinal curvature in scoliosis","Visual acuity","Embalming fluid concentration","X-ray exposure time"], answer: 1, level: "hard" },
+      { q: "Which of the following is a correct sequence in routine tissue processing?", options: ["Staining → Fixation → Sectioning","Fixation → Dehydration → Clearing → Impregnation → Sectioning","Sectioning → Fixation → Dehydration","Clearing → Fixation → Staining only","Mounting → Fixation → Dehydration"], answer: 1, level: "hard" },
+      { q: "DPX is used in histology for:", options: ["Fixation","Clearing","Mounting (non-aqueous mounting medium)","Decalcification","Animal anaesthesia"], answer: 2, level: "hard" },
+      { q: "Which embalming method involves removing organs and packing cavities with cotton wool soaked in fluid?", options: ["Arterial embalming","Cavity embalming","Thiel method only","Plastination","Injection method only"], answer: 1, level: "hard" },
+      { q: "Formaldehyde as a key embalming reagent was discovered by:", options: ["Gunther von Hagens","August Wilhelm von Hofmann","Walter Thiel","Thomas Holmes","William Hunter"], answer: 1, level: "hard" },
+      { q: "In radiology, soft tissues/water density structures typically appear:", options: ["Black","White","Light grey","Bright white like metal","Invisible"], answer: 2, level: "hard" },
+      { q: "One reason students were not fully hands-on in the radiology unit was:", options: ["They were not interested","They were not permitted to use the X-ray room and had to stand by","The machines were broken","No patients came","They finished early"], answer: 1, level: "hard" },
+      { q: "A key challenge reported in the SIWES was:", options: ["Too much free time","Financial hardship from high transport costs and short learning periods in some units","Excessive practical exposure","Too many supervisors","Free accommodation"], answer: 1, level: "hard" },
+      { q: "Which recommendation addresses the problem of harsh or unapproachable staff?", options: ["Ignore the staff","Sensitize soldiers and senior staff to be more approachable and supportive","Cancel SIWES","Only study theory","Avoid military hospitals"], answer: 1, level: "hard" }
+    ];
+
+    // ===================== THEME =====================
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      const btn = document.getElementById('themeToggle');
+      btn.textContent = theme === 'dark' ? '🌙' : '☀️';
+      localStorage.setItem('siwes-theme', theme);
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    }
+
+    // Load saved theme
+    (function () {
+      const saved = localStorage.getItem('siwes-theme');
+      if (saved === 'light' || saved === 'dark') applyTheme(saved);
+      else applyTheme('dark');
+    })();
+
+    // ===================== APP STATE =====================
+    let currentLevel = 'easy';
+    let feedbackMode = 'immediate';
+    let quizQuestions = [];
+    let currentIndex = 0;
+    let score = 0;
+    let selected = null;
+    let answered = false;
+    let wrongAnswers = [];
+
+    function updateBankInfo() {
+      const easy = bank.filter(q => q.level === 'easy').length;
+      const medium = bank.filter(q => q.level === 'medium').length;
+      const hard = bank.filter(q => q.level === 'hard').length;
+      const total = bank.length;
+      const text = `Question bank: ${total} questions (Easy ${easy} • Medium ${medium} • Hard ${hard})`;
+      const el1 = document.getElementById('bankInfo');
+      const el2 = document.getElementById('homeBankInfo');
+      if (el1) el1.textContent = text;
+      if (el2) el2.textContent = text;
+    }
+    updateBankInfo();
+
+    function showScreen(id) {
+      ['homeScreen', 'setupScreen', 'quizScreen', 'resultScreen'].forEach(s => {
+        document.getElementById(s).classList.add('hidden');
+      });
+      document.getElementById(id).classList.remove('hidden');
+      // Hide main header title on home for cleaner look, show on others
+      document.getElementById('mainHeader').style.display = id === 'homeScreen' ? 'none' : 'block';
+    }
+
+    function goHome() {
+      showScreen('homeScreen');
+    }
+
+    function goToSetup() {
+      showScreen('setupScreen');
+    }
+
+    function setLevel(level) {
+      currentLevel = level;
+      document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+      if (level === 'mixed') {
+        document.getElementById('mixedBtn').classList.add('active');
+      } else {
+        const btn = document.querySelector(`.level-btn[data-level="${level}"]`);
+        if (btn) btn.classList.add('active');
+      }
+      const defaults = { easy: 10, medium: 15, hard: 20, mixed: 20 };
+      document.getElementById('numQuestions').value = defaults[level] || 15;
+    }
+
+    function setFeedback(mode) {
+      feedbackMode = mode;
+      document.getElementById('fbImmediate').classList.toggle('active', mode === 'immediate');
+      document.getElementById('fbEnd').classList.toggle('active', mode === 'end');
+    }
+
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function startQuiz() {
+      let pool = currentLevel === 'mixed' ? [...bank] : bank.filter(q => q.level === currentLevel);
+      if (pool.length === 0) {
+        alert('No questions available for this level.');
+        return;
+      }
+      let num = parseInt(document.getElementById('numQuestions').value, 10);
+      if (isNaN(num) || num < 1) num = 10;
+      num = Math.min(num, pool.length);
+
+      quizQuestions = shuffle(pool).slice(0, num);
+      currentIndex = 0;
+      score = 0;
+      wrongAnswers = [];
+      selected = null;
+      answered = false;
+
+      showScreen('quizScreen');
+      showQuestion();
+    }
+
+    function showQuestion() {
+      answered = false;
+      selected = null;
+      const q = quizQuestions[currentIndex];
+      document.getElementById('questionText').textContent = q.q;
+      document.getElementById('qCounter').textContent = `Question ${currentIndex + 1} / ${quizQuestions.length}`;
+      document.getElementById('scoreLive').textContent = `Score: ${score}`;
+      document.getElementById('progressFill').style.width = `${(currentIndex / quizQuestions.length) * 100}%`;
+
+      const badge = document.getElementById('levelBadge');
+      badge.textContent = q.level.charAt(0).toUpperCase() + q.level.slice(1);
+      badge.className = 'badge-level badge-' + q.level;
+
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D', 'E'];
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'option';
+        btn.innerHTML = `<span class="letter">${letters[i]}</span><span>${opt}</span>`;
+        btn.onclick = () => selectOption(i, btn);
+        container.appendChild(btn);
+      });
+
+      const fb = document.getElementById('feedbackBox');
+      fb.className = 'feedback-box';
+      fb.textContent = '';
+
+      document.getElementById('checkBtn').classList.remove('hidden');
+      document.getElementById('checkBtn').disabled = true;
+      document.getElementById('nextBtn').classList.add('hidden');
+      document.getElementById('skipBtn').classList.remove('hidden');
+    }
+
+    function selectOption(index, btn) {
+      if (answered) return;
+      selected = index;
+      document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      btn.classList.add('selected');
+      document.getElementById('checkBtn').disabled = false;
+    }
+
+    function checkAnswer() {
+      if (selected === null || answered) return;
+      answered = true;
+      const q = quizQuestions[currentIndex];
+      const options = document.querySelectorAll('.option');
+      options.forEach((opt, i) => {
+        opt.classList.add('disabled');
+        if (feedbackMode === 'immediate') {
+          if (i === q.answer) opt.classList.add('correct');
+          else if (i === selected) opt.classList.add('wrong');
+        }
+      });
+
+      const isCorrect = selected === q.answer;
+      if (isCorrect) {
+        score++;
+      } else {
+        wrongAnswers.push({
+          question: q.q,
+          yourAnswer: q.options[selected],
+          correctAnswer: q.options[q.answer],
+          level: q.level
+        });
+      }
+
+      if (feedbackMode === 'immediate') {
+        const fb = document.getElementById('feedbackBox');
+        if (isCorrect) {
+          fb.textContent = 'Correct!';
+          fb.className = 'feedback-box show correct';
+        } else {
+          fb.textContent = `Incorrect. Correct answer: ${['A','B','C','D','E'][q.answer]} – ${q.options[q.answer]}`;
+          fb.className = 'feedback-box show wrong';
+        }
+      }
+
+      document.getElementById('checkBtn').classList.add('hidden');
+      document.getElementById('skipBtn').classList.add('hidden');
+      document.getElementById('nextBtn').classList.remove('hidden');
+      document.getElementById('scoreLive').textContent = `Score: ${score}`;
+    }
+
+    function nextQuestion(skipped = false) {
+      if (skipped && !answered && selected === null) {
+        const q = quizQuestions[currentIndex];
+        wrongAnswers.push({
+          question: q.q,
+          yourAnswer: '(Skipped)',
+          correctAnswer: q.options[q.answer],
+          level: q.level
+        });
+      }
+      currentIndex++;
+      if (currentIndex >= quizQuestions.length) {
+        showResult();
+      } else {
+        showQuestion();
+      }
+    }
+
+    function showResult() {
+      showScreen('resultScreen');
+      document.getElementById('finalScore').textContent = `${score}/${quizQuestions.length}`;
+      const pct = Math.round((score / quizQuestions.length) * 100);
+      let msg = '';
+      if (pct >= 85) msg = 'Excellent performance. Strong command of the SIWES material.';
+      else if (pct >= 70) msg = 'Good result. Review the missed topics for a stronger seminar.';
+      else if (pct >= 50) msg = 'Fair. Focus on the areas you missed – especially procedures and definitions.';
+      else msg = 'Needs more revision. Go back to the report sections that correspond to the wrong answers.';
+      document.getElementById('resultMsg').textContent = msg;
+
+      const reviewSection = document.getElementById('reviewSection');
+      const reviewList = document.getElementById('reviewList');
+      if (wrongAnswers.length > 0) {
+        reviewSection.classList.remove('hidden');
+        reviewList.innerHTML = wrongAnswers.map(w => `
+          <div class="review-item">
+            <strong>${w.question}</strong><br>
+            <span style="color:var(--wrong)">Your answer: ${w.yourAnswer}</span><br>
+            <span style="color:var(--correct)">Correct: ${w.correctAnswer}</span>
+          </div>
+        `).join('');
+      } else {
+        reviewSection.classList.add('hidden');
+      }
+    }
+
+    // Start on home
+    showScreen('homeScreen');
+  </script>
+</body>
+</html>
