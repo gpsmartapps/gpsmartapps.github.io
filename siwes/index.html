@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SIWES Seminar Quiz</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#1b1f24;--mu:#5d6672;--ac:#1f6feb;--ok:#1a7f37;--okb:#dafbe1;--no:#cf222e;--nob:#ffebe9;--bd:#d6dbe1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1318;--card:#181e26;--tx:#e8ecf1;--mu:#98a2b0;--ac:#58a6ff;--ok:#56d364;--okb:#12301b;--no:#ff7b72;--nob:#3a1517;--bd:#2c3540}}
+:root[data-theme="dark"]{--bg:#0f1318;--card:#181e26;--tx:#e8ecf1;--mu:#98a2b0;--ac:#58a6ff;--ok:#56d364;--okb:#12301b;--no:#ff7b72;--nob:#3a1517;--bd:#2c3540}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:680px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:18px;margin-bottom:14px}
+h1{font-size:1.4rem;margin:.2rem 0}h2{font-size:1.1rem;margin:0 0 .6rem}.mu{color:var(--mu);font-size:.9rem}
+label{display:flex;align-items:center;gap:10px;margin:8px 0}
+input[type=number]{width:70px;padding:6px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx)}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:10px;padding:11px 18px;font-weight:600}
+.btn.alt{background:transparent;color:var(--ac);border:1px solid var(--ac)}
+.opt{display:flex;gap:10px;width:100%;text-align:left;background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:11px 12px;margin:8px 0}
+.opt b{min-width:1.4em;color:var(--ac)}.opt.sel{border-color:var(--ac);outline:2px solid var(--ac)}
+.opt.ok{background:var(--okb);border-color:var(--ok)}.opt.no{background:var(--nob);border-color:var(--no)}
+.bar{height:6px;background:var(--bd);border-radius:4px;overflow:hidden;margin:6px 0 14px}.bar i{display:block;height:100%;background:var(--ac)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.rev{border-left:4px solid var(--no);padding:6px 10px;margin:10px 0;background:var(--nob);border-radius:6px;font-size:.92rem}
+.hide{display:none}
+</style></head><body><main>
+<div id="setup">
+ <div class="card"><h1>SIWES Seminar Quiz</h1><div class="mu" id="bankInfo"></div></div>
+ <div class="card"><h2>Levels and number of questions</h2>
+  <label><input type="checkbox" id="c1" checked> Level 1 (Easy) <input type="number" id="n1" min="1" value="10"> questions</label>
+  <label><input type="checkbox" id="c2" checked> Level 2 (Medium) <input type="number" id="n2" min="1" value="15"> questions</label>
+  <label><input type="checkbox" id="c3" checked> Level 3 (Hard) <input type="number" id="n3" min="1" value="20"> questions</label>
+  <div class="mu">Tick one level for a single difficulty, or several to mix them. Questions and options are shuffled every time.</div></div>
+ <div class="card"><h2>Show answers</h2>
+  <label><input type="radio" name="fb" value="instant" checked> Right after each question</label>
+  <label><input type="radio" name="fb" value="end"> Only at the end</label></div>
+ <div class="row"><button class="btn" id="start">Start quiz</button><span class="mu" id="best"></span></div>
+</div>
+<div id="quiz" class="hide"></div>
+<div id="result" class="hide"></div>
+</main>
+<script>
+// ===== QUESTION BANK: add more lines as  category|level(1-3)|term|description  =====
+// Each line makes 2 questions (term->description and description->term). Distractors come from the same category.
+const FACTS=`
+Y|1|1971|Year the ITF was established by Decree No. 47
+Y|2|1973|Year ITF launched SIWES with about 748 students from 11 institutions
+Y|3|1979|Year ITF withdrew and NUC and NBTE took over supervision
+Y|3|1984/85|Year the Federal Government returned management of SIWES to ITF
+Y|3|1985|Year ITF took over SIWES management again
+S|1|SIWES|Students Industrial Work Experience Scheme
+S|1|ITF|Industrial Training Fund, the main body managing SIWES
+S|1|Aim of SIWES|Bridging the gap between theory and practice
+S|2|SIWES vision|To be the foremost skills training development organization in Nigeria
+S|2|SIWES mission|To equip students with practical knowledge and technical skills for self-employment and industrial growth
+S|2|NUC|National Universities Commission, which co-supervised SIWES in 1979
+S|2|NBTE|National Board for Technical Education
+V|1|Normal temperature|36.1–37.2°C (oral)
+V|1|Normal pulse|60–100 beats/minute
+V|1|Normal respiration|12–20 breaths/minute
+V|1|Normal oxygen saturation|95–100%
+V|1|Normal blood pressure|120/80 mmHg
+C|1|Syncope|Sudden, brief loss of consciousness from reduced blood flow to the brain (fainting)
+C|1|Snellen chart|Chart used to test visual acuity at 6 metres
+C|1|6/6|Normal vision on the Snellen scale
+C|2|Hernia|Protrusion of an organ or tissue through a weak point in the abdominal wall
+C|2|Inguinal hernia|The most common type of hernia
+C|2|Ryle’s tube|Nasogastric tube passed through the nose into the stomach for feeding and drainage
+C|2|Urinary catheter|Tube inserted into the bladder to drain urine
+C|2|Last offices|Care given to a patient after death
+C|2|Presbyopia|Age-related loss of near focusing, starting around 40–45 years
+C|2|Pinhole test|Blocks scattered light; improved vision suggests refractive error
+C|2|Syncope positioning|Lie the patient supine with the legs raised about 30 degrees
+C|3|Herniorrhaphy|Surgical repair of a hernia
+C|3|Hernioplasty|Hernia repair using mesh
+C|3|OGTT|75 g oral glucose tolerance test done at 24–28 weeks for gestational diabetes
+C|3|HIV/syphilis combo test|Screening test for antibodies to HIV-1/2 and Treponema pallidum
+C|3|No control line|Rapid test is invalid and must be repeated with a new device
+I|1|Vaccines at birth|BCG, OPV and Hepatitis B
+I|2|Vaccines at 6 weeks|Penta 1, OPV 1, Rota 1 and IPV 1
+I|2|Vaccine at 14 weeks|IPV 2
+I|2|Given at 6 months|Vitamin A
+I|3|Vaccines at 9 months|Measles, Yellow Fever and Meningitis
+I|3|Vaccines at 12 months|Vitamin A, MMR and Chickenpox
+I|3|Vaccines at 2 years and above|Cholera and Typhoid
+F|2|Ultrasound machine (physio)|Treats pain, muscle spasm and tissue injury; gel is applied first
+F|2|TENS|Delivers low-voltage electrical current to relieve pain
+F|2|Precision box|Helps stroke patients relearn fine movements like turning doorknobs
+F|2|Quadriceps bench|Strengthens the lower limb muscles
+F|2|Abdominal bench|Trains the abdominal muscles
+O|1|Prosthesis|Device that replaces a lost body part
+O|1|Orthosis|Brace or splint that supports, corrects or protects a weak body part
+O|1|Prosthetist|Practitioner trained to fabricate and fit prostheses
+O|1|Orthotist|Health professional who designs and fits orthotic devices
+O|2|Disarticulation|Amputation done across a joint
+O|2|Trans amputation|Amputation done across a bone
+O|2|Trans-femoral|Amputation above the knee
+O|2|Trans-tibial|Amputation below the knee
+O|2|Trans-humeral|Amputation above the elbow
+O|2|Trans-radial|Amputation below the elbow
+O|2|Scoliosis|Lateral curvature of the spine
+O|2|Kyphosis|Excessive outward curve of the thoracic spine
+O|2|Lordosis|Exaggerated inward curve of the lower back
+O|3|Pylon|Part of a prosthesis that replaces the bone
+O|3|Polypropylene|Plastic used to produce prosthetic sockets
+O|3|Luther machine|Used for grinding and shaping prosthetic components
+O|3|Phocomelia|“Seal limbs”: rare congenital disorder with severely shortened or absent limbs
+O|3|Thalidomide|Drug linked to phocomelia when used in pregnancy in the 1950s–60s
+H|1|Histology|Microscopic study of normal tissue
+H|1|Histopathology|Microscopic study of abnormal tissue
+H|1|Fixation|Preserving tissue with chemicals to prevent autolysis and putrefaction
+H|2|Dehydration|Removing water from tissue using graded alcohols
+H|2|Clearing|Removing the dehydrating agent, commonly with xylene
+H|2|Impregnation|Replacing the clearing agent with molten paraffin wax
+H|2|Microtomy|Cutting thin sections from a paraffin block
+H|2|Floating|Spreading sections on a warm water bath to remove folds
+H|2|H&E stain|Routine stain: nuclei purple-blue, cytoplasm pink
+H|3|DPX|Non-aqueous mounting medium that makes a permanent slide
+H|3|Bouin’s solution|An anatomical compound fixative
+H|3|Carnoy’s fluid|A nuclear cytological fixative
+H|3|Group 1 (rats)|Normal (negative) control without inducement
+H|3|Group 2 (rats)|Positive control: induced but untreated
+E|1|Embalming|Temporary preservation and disinfection of dead human remains
+E|2|Thiel embalming|Technique by Walter Thiel that keeps bodies soft and lifelike
+E|2|Plastination|Replaces water and fat with polymers; developed by Gunther von Hagens
+E|2|Arterial embalming|Fluid infused through major arteries such as the femoral artery
+E|2|Cavity embalming|Organs removed and cavities packed with fluid-soaked cotton wool
+E|3|Thomas Holmes|Established modern embalming during the American wars
+E|3|William Hunter|Scottish surgeon who popularised arterial embalming
+E|3|Formaldehyde|Principal embalming reagent, discovered by von Hofmann in 1869
+E|3|Three goals of embalming|Sanitization, preservation with restoration, and presentation
+E|3|Maceration|Boiling or soaking to remove soft tissue from bones
+R|1|Bone on X-ray|Appears white because it is very dense
+R|1|Air-filled areas on X-ray|Appear black
+R|2|Fat on X-ray|Appears dark grey
+R|2|Soft tissue on X-ray|Appears light grey
+R|2|X-ray|High-energy electromagnetic radiation that produces 2D images
+R|3|Scatter|Unwanted radiation that reduces X-ray image clarity
+R|3|Radiation dermatitis|Skin damage from very high X-ray doses
+R|3|Eye hazard of X-rays|Repeated exposure may contribute to cataracts`;
+
+const sh=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const $=id=>document.getElementById(id);
+const facts=FACTS.trim().split("\n").map(l=>{const p=l.split("|");return{c:p[0],l:+p[1],t:p[2],d:p.slice(3).join("|")}});
+const pools={};facts.forEach(f=>(pools[f.c]??=[]).push(f));
+function make(f,rev){
+ const others=sh(pools[f.c].filter(x=>x!==f)).slice(0,4);
+ const key=rev?"t":"d", ask=rev?"d":"t";
+ const opts=sh([f,...others]);
+ return{l:f.l,q:rev?`Which term is described as: “${f.d}”?`:`Which of these best matches “${f.t}”?`,o:opts.map(x=>x[key]),a:opts.indexOf(f)};
+}
+const total=facts.length*2;
+$("bankInfo").textContent=`${total} questions in the bank (${[1,2,3].map(l=>facts.filter(f=>f.l===l).length*2).join(" / ")} across levels 1 / 2 / 3).`;
+
+let store={};try{store=JSON.parse(localStorage.getItem("siwesQuiz")||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem("siwesQuiz",JSON.stringify(store))}catch(e){}};
+if(store.s){[1,2,3].forEach(i=>{$("c"+i).checked=store.s["c"+i];$("n"+i).value=store.s["n"+i]});document.querySelector(`input[name=fb][value=${store.s.fb}]`).checked=true}
+const showBest=()=>{$("best").textContent=store.best?`Best: ${store.best.score}/${store.best.n}`:""};showBest();
+
+let Q=[],i=0,ans=[],mode="instant";
+$("start").onclick=()=>{
+ const s={fb:document.querySelector("input[name=fb]:checked").value};
+ Q=[];
+ for(const l of [1,2,3]){
+  s["c"+l]=$("c"+l).checked;s["n"+l]=+$("n"+l).value||1;
+  if(!s["c"+l])continue;
+  const all=sh(facts.filter(f=>f.l===l).flatMap(f=>[[f,0],[f,1]]));
+  Q.push(...all.slice(0,s["n"+l]).map(([f,r])=>make(f,r)));
+ }
+ if(!Q.length){alert("Tick at least one level.");return}
+ store.s=s;save();mode=s.fb;Q=sh(Q);i=0;ans=[];
+ $("setup").classList.add("hide");$("result").classList.add("hide");$("quiz").classList.remove("hide");render();
+};
+function render(){
+ const q=Q[i],a=ans[i],done=a!==undefined&&mode==="instant";
+ $("quiz").innerHTML=`<div class="card"><div class="row"><span class="mu">Question ${i+1} of ${Q.length}</span><span class="mu">Level ${q.l}</span></div>
+ <div class="bar"><i style="width:${i/Q.length*100}%"></i></div><h2>${q.q}</h2>
+ ${q.o.map((t,k)=>`<button class="opt ${done?(k===q.a?"ok":k===a?"no":""):(k===a?"sel":"")}" data-k="${k}" ${done?"disabled":""}><b>${"ABCDE"[k]}</b><span>${t}</span></button>`).join("")}
+ <div class="row" style="margin-top:12px"><button class="btn alt" id="quit">Quit</button><button class="btn" id="next" ${a===undefined?"disabled style='opacity:.5'":""}>${i===Q.length-1?"Finish":"Next"}</button></div></div>`;
+ $("quiz").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{if(ans[i]!==undefined&&mode==="instant")return;ans[i]=+b.dataset.k;render()});
+ $("next").onclick=()=>{i<Q.length-1?(i++,render()):finish()};
+ $("quit").onclick=()=>{if(confirm("Quit this quiz?")){$("quiz").classList.add("hide");$("setup").classList.remove("hide")}};
+}
+function finish(){
+ const score=Q.filter((q,k)=>ans[k]===q.a).length;
+ if(!store.best||score/Q.length>=store.best.score/store.best.n)store.best={score,n:Q.length};save();showBest();
+ const wrong=Q.map((q,k)=>({q,k})).filter(x=>ans[x.k]!==x.q.a);
+ $("quiz").classList.add("hide");$("result").classList.remove("hide");
+ $("result").innerHTML=`<div class="card"><h1>${score} / ${Q.length} (${Math.round(score/Q.length*100)}%)</h1>
+ ${[1,2,3].map(l=>{const t=Q.filter(q=>q.l===l);return t.length?`<div class="mu">Level ${l}: ${t.filter(q=>ans[Q.indexOf(q)]===q.a).length}/${t.length}</div>`:""}).join("")}
+ <div class="row" style="margin-top:12px"><button class="btn" id="again">New quiz</button></div></div>
+ ${wrong.length?`<div class="card"><h2>Review of wrong answers</h2>${wrong.map(({q,k})=>`<div class="rev"><b>${q.q}</b><br>Your answer: ${ans[k]===undefined?"none":"ABCDE"[ans[k]]+". "+q.o[ans[k]]}<br>Correct: <b>${"ABCDE"[q.a]}. ${q.o[q.a]}</b></div>`).join("")}</div>`:`<div class="card">Perfect score!</div>`}`;
+ $("again").onclick=()=>{$("result").classList.add("hide");$("setup").classList.remove("hide")};
+}
+</script></body></html>
