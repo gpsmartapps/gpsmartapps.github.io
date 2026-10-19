@@ -22,9 +22,22 @@ button{font:inherit;cursor:pointer}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
 .rev{border-left:4px solid var(--no);padding:6px 10px;margin:10px 0;background:var(--nob);border-radius:6px;font-size:.92rem}
 .hide{display:none}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.top .btn{padding:7px 12px;font-size:.9rem}
+.hero{text-align:center;padding:28px 18px}.hero .big{font-size:2.6rem}.hero h1{font-size:1.7rem}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0;text-align:left}
+.feat div{border:1px solid var(--bd);border-radius:10px;padding:10px;font-size:.9rem}.feat b{display:block}
 </style></head><body><main>
-<div id="setup">
- <div class="card"><h1>SIWES Seminar Quiz</h1><div class="mu" id="bankInfo"></div></div>
+<header class="top"><b>🩺 SIWES Seminar Quiz</b><button class="btn alt" id="theme" aria-label="Switch light or dark mode">🌙 Dark</button></header>
+<div id="home" class="card hero">
+ <div class="big">🩺</div><h1>SIWES Seminar Quiz</h1>
+ <p class="mu">Test yourself on the SIWES report: hospital units, orthopaedics, histology, embalming and radiology.</p>
+ <div class="feat"><div><b>3 levels</b>Easy, Medium and Hard, or mix them</div><div><b>Always random</b>Questions and A to E options reshuffle every time</div><div><b>Your choice</b>See answers instantly or only at the end</div></div>
+ <p class="mu" id="bankInfo"></p>
+ <button class="btn" id="go">Start a quiz</button>
+</div>
+<div id="setup" class="hide">
+ <div class="card row"><h1>Quiz setup</h1><button class="btn alt" id="toHome">Home</button></div>
  <div class="card"><h2>Levels and number of questions</h2>
   <label><input type="checkbox" id="c1" checked> Level 1 (Easy) <input type="number" id="n1" min="1" value="10"> questions</label>
   <label><input type="checkbox" id="c2" checked> Level 2 (Medium) <input type="number" id="n2" min="1" value="15"> questions</label>
@@ -163,7 +176,7 @@ $("start").onclick=()=>{
  for(const l of [1,2,3]){
   s["c"+l]=$("c"+l).checked;s["n"+l]=+$("n"+l).value||1;
   if(!s["c"+l])continue;
-  const all=sh(facts.filter(f=>f.l===l).flatMap(f=>[[f,0],[f,1]]));
+  const all=sh(facts.filter(f=>f.l===l).map(f=>[f,Math.random()<.5?1:0]));
   Q.push(...all.slice(0,s["n"+l]).map(([f,r])=>make(f,r)));
  }
  if(!Q.length){alert("Tick at least one level.");return}
@@ -191,4 +204,10 @@ function finish(){
  ${wrong.length?`<div class="card"><h2>Review of wrong answers</h2>${wrong.map(({q,k})=>`<div class="rev"><b>${q.q}</b><br>Your answer: ${ans[k]===undefined?"none":"ABCDE"[ans[k]]+". "+q.o[ans[k]]}<br>Correct: <b>${"ABCDE"[q.a]}. ${q.o[q.a]}</b></div>`).join("")}</div>`:`<div class="card">Perfect score!</div>`}`;
  $("again").onclick=()=>{$("result").classList.add("hide");$("setup").classList.remove("hide")};
 }
+const root=document.documentElement;
+function applyTheme(t){root.dataset.theme=t;$("theme").textContent=t==="dark"?"☀️ Light":"🌙 Dark"}
+applyTheme(store.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"));
+$("theme").onclick=()=>{const t=root.dataset.theme==="dark"?"light":"dark";applyTheme(t);store.theme=t;save()};
+$("go").onclick=()=>{$("home").classList.add("hide");$("setup").classList.remove("hide")};
+$("toHome").onclick=()=>{$("setup").classList.add("hide");$("home").classList.remove("hide")};
 </script></body></html>
