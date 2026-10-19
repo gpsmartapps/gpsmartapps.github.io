@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SIWES Seminar Quiz</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#1b1f24;--mu:#5d6672;--ac:#1f6feb;--ok:#1a7f37;--okb:#dafbe1;--no:#cf222e;--nob:#ffebe9;--bd:#d6dbe1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1318;--card:#181e26;--tx:#e8ecf1;--mu:#98a2b0;--ac:#58a6ff;--ok:#56d364;--okb:#12301b;--no:#ff7b72;--nob:#3a1517;--bd:#2c3540}}
+:root[data-theme="dark"]{--bg:#0f1318;--card:#181e26;--tx:#e8ecf1;--mu:#98a2b0;--ac:#58a6ff;--ok:#56d364;--okb:#12301b;--no:#ff7b72;--nob:#3a1517;--bd:#2c3540}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:680px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:18px;margin-bottom:14px}
+h1{font-size:1.4rem;margin:.2rem 0}h2{font-size:1.1rem;margin:0 0 .6rem}.mu{color:var(--mu);font-size:.9rem}
+label{display:flex;align-items:center;gap:10px;margin:8px 0}
+input[type=number]{width:70px;padding:6px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx)}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:10px;padding:11px 18px;font-weight:600}
+.btn.alt{background:transparent;color:var(--ac);border:1px solid var(--ac)}
+.opt{display:flex;gap:10px;width:100%;text-align:left;background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:11px 12px;margin:8px 0}
+.opt b{min-width:1.4em;color:var(--ac)}.opt.sel{border-color:var(--ac);outline:2px solid var(--ac)}
+.opt.ok{background:var(--okb);border-color:var(--ok)}.opt.no{background:var(--nob);border-color:var(--no)}
+.bar{height:6px;background:var(--bd);border-radius:4px;overflow:hidden;margin:6px 0 14px}.bar i{display:block;height:100%;background:var(--ac)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.rev{border-left:4px solid var(--no);padding:6px 10px;margin:10px 0;background:var(--nob);border-radius:6px;font-size:.92rem}
+.hide{display:none}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.top .btn{padding:7px 12px;font-size:.9rem}
+.hero{text-align:center;padding:28px 18px}.hero .big{font-size:2.6rem}.hero h1{font-size:1.7rem}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0;text-align:left}
+.feat div{border:1px solid var(--bd);border-radius:10px;padding:10px;font-size:.9rem}.feat b{display:block}
+select{padding:8px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit;max-width:100%}
+.ans{background:var(--okb);border-left:4px solid var(--ok);padding:10px 12px;border-radius:8px;margin:8px 0}
+</style></head><body><main>
+<header class="top"><b>🩺 SIWES Seminar Quiz</b><button class="btn alt" id="theme" aria-label="Switch light or dark mode">🌙 Dark</button></header>
+<div id="home" class="card hero">
+ <div class="big">🩺</div><h1>SIWES Seminar Quiz</h1>
+ <p class="mu">Test yourself on the SIWES report: hospital units, orthopaedics, histology, embalming and radiology.</p>
+ <div class="feat"><div><b>3 levels</b>Easy, Medium and Hard, or mix them</div><div><b>Always random</b>Questions and A to E options reshuffle every time</div><div><b>Your choice</b>See answers instantly or only at the end</div></div>
+ <p class="mu" id="bankInfo"></p>
+ <button class="btn" id="go">Start a quiz</button> <button class="btn alt" id="goOral">Oral practice</button>
+</div>
+<div id="setup" class="hide">
+ <div class="card row"><h1>Quiz setup</h1><button class="btn alt" id="toHome">Home</button></div>
+ <div class="card"><h2>Levels and number of questions</h2>
+  <label><input type="checkbox" id="c1" checked> Level 1 (Easy) <input type="number" id="n1" min="1" value="10"> questions</label>
+  <label><input type="checkbox" id="c2" checked> Level 2 (Medium) <input type="number" id="n2" min="1" value="15"> questions</label>
+  <label><input type="checkbox" id="c3" checked> Level 3 (Hard) <input type="number" id="n3" min="1" value="20"> questions</label>
+  <div class="mu">Tick one level for a single difficulty, or several to mix them. Questions and options are shuffled every time.</div></div>
+ <div class="card"><h2>Show answers</h2>
+  <label><input type="radio" name="fb" value="instant" checked> Right after each question</label>
+  <label><input type="radio" name="fb" value="end"> Only at the end</label></div>
+ <div class="row"><button class="btn" id="start">Start quiz</button><span class="mu" id="best"></span></div>
+</div>
+<div id="quiz" class="hide"></div>
+<div id="result" class="hide"></div>
+<div id="oral" class="hide"><div class="card row"><h1>Oral practice</h1><button class="btn alt" id="oHome">Home</button></div>
+<div class="card row"><select id="osec"></select><label><input type="checkbox" id="oshuf" checked> Shuffle</label></div>
+<div class="card" id="oc"></div></div>
+</main>
+<script>
+// ===== QUESTION BANK: add more lines as  category|level(1-3)|term|description  =====
+// Each line makes 2 questions (term->description and description->term). Distractors come from the same category.
+const FACTS=`
+Y|1|1971|Year the ITF was established by Decree No. 47
+Y|2|1973|Year ITF launched SIWES with about 748 students from 11 institutions
+Y|3|1979|Year ITF withdrew and NUC and NBTE took over supervision
+Y|3|1984/85|Year the Federal Government returned management of SIWES to ITF
+Y|3|1985|Year ITF took over SIWES management again
+S|1|SIWES|Students Industrial Work Experience Scheme
+S|1|ITF|Industrial Training Fund, the main body managing SIWES
+S|1|Aim of SIWES|Bridging the gap between theory and practice
+S|2|SIWES vision|To be the foremost skills training development organization in Nigeria
+S|2|SIWES mission|To equip students with practical knowledge and technical skills for self-employment and industrial growth
+S|2|NUC|National Universities Commission, which co-supervised SIWES in 1979
+S|2|NBTE|National Board for Technical Education
+V|1|Normal temperature|36.1–37.2°C (oral)
+V|1|Normal pulse|60–100 beats/minute
+V|1|Normal respiration|12–20 breaths/minute
+V|1|Normal oxygen saturation|95–100%
+V|1|Normal blood pressure|120/80 mmHg
+C|1|Syncope|Sudden, brief loss of consciousness from reduced blood flow to the brain (fainting)
+C|1|Snellen chart|Chart used to test visual acuity at 6 metres
+C|1|6/6|Normal vision on the Snellen scale
+C|2|Hernia|Protrusion of an organ or tissue through a weak point in the abdominal wall
+C|2|Inguinal hernia|The most common type of hernia
+C|2|Ryle’s tube|Nasogastric tube passed through the nose into the stomach for feeding and drainage
+C|2|Urinary catheter|Tube inserted into the bladder to drain urine
+C|2|Last offices|Care given to a patient after death
+C|2|Presbyopia|Age-related loss of near focusing, starting around 40–45 years
+C|2|Pinhole test|Blocks scattered light; improved vision suggests refractive error
+C|2|Syncope positioning|Lie the patient supine with the legs raised about 30 degrees
+C|3|Herniorrhaphy|Surgical repair of a hernia
+C|3|Hernioplasty|Hernia repair using mesh
+C|3|OGTT|75 g oral glucose tolerance test done at 24–28 weeks for gestational diabetes
+C|3|HIV/syphilis combo test|Screening test for antibodies to HIV-1/2 and Treponema pallidum
+C|3|No control line|Rapid test is invalid and must be repeated with a new device
+I|1|Vaccines at birth|BCG, OPV and Hepatitis B
+I|2|Vaccines at 6 weeks|Penta 1, OPV 1, Rota 1 and IPV 1
+I|2|Vaccine at 14 weeks|IPV 2
+I|2|Given at 6 months|Vitamin A
+I|3|Vaccines at 9 months|Measles, Yellow Fever and Meningitis
+I|3|Vaccines at 12 months|Vitamin A, MMR and Chickenpox
+I|3|Vaccines at 2 years and above|Cholera and Typhoid
+F|2|Ultrasound machine (physio)|Treats pain, muscle spasm and tissue injury; gel is applied first
+F|2|TENS|Delivers low-voltage electrical current to relieve pain
+F|2|Precision box|Helps stroke patients relearn fine movements like turning doorknobs
+F|2|Quadriceps bench|Strengthens the lower limb muscles
+F|2|Abdominal bench|Trains the abdominal muscles
+O|1|Prosthesis|Device that replaces a lost body part
+O|1|Orthosis|Brace or splint that supports, corrects or protects a weak body part
+O|1|Prosthetist|Practitioner trained to fabricate and fit prostheses
+O|1|Orthotist|Health professional who designs and fits orthotic devices
+O|2|Disarticulation|Amputation done across a joint
+O|2|Trans amputation|Amputation done across a bone
+O|2|Trans-femoral|Amputation above the knee
+O|2|Trans-tibial|Amputation below the knee
+O|2|Trans-humeral|Amputation above the elbow
+O|2|Trans-radial|Amputation below the elbow
+O|2|Scoliosis|Lateral curvature of the spine
+O|2|Kyphosis|Excessive outward curve of the thoracic spine
+O|2|Lordosis|Exaggerated inward curve of the lower back
+O|3|Pylon|Part of a prosthesis that replaces the bone
+O|3|Polypropylene|Plastic used to produce prosthetic sockets
+O|3|Luther machine|Used for grinding and shaping prosthetic components
+O|3|Phocomelia|“Seal limbs”: rare congenital disorder with severely shortened or absent limbs
+O|3|Thalidomide|Drug linked to phocomelia when used in pregnancy in the 1950s–60s
+H|1|Histology|Microscopic study of normal tissue
+H|1|Histopathology|Microscopic study of abnormal tissue
+H|1|Fixation|Preserving tissue with chemicals to prevent autolysis and putrefaction
+H|2|Dehydration|Removing water from tissue using graded alcohols
+H|2|Clearing|Removing the dehydrating agent, commonly with xylene
+H|2|Impregnation|Replacing the clearing agent with molten paraffin wax
+H|2|Microtomy|Cutting thin sections from a paraffin block
+H|2|Floating|Spreading sections on a warm water bath to remove folds
+H|2|H&E stain|Routine stain: nuclei purple-blue, cytoplasm pink
+H|3|DPX|Non-aqueous mounting medium that makes a permanent slide
+H|3|Bouin’s solution|An anatomical compound fixative
+H|3|Carnoy’s fluid|A nuclear cytological fixative
+H|3|Group 1 (rats)|Normal (negative) control without inducement
+H|3|Group 2 (rats)|Positive control: induced but untreated
+E|1|Embalming|Temporary preservation and disinfection of dead human remains
+E|2|Thiel embalming|Technique by Walter Thiel that keeps bodies soft and lifelike
+E|2|Plastination|Replaces water and fat with polymers; developed by Gunther von Hagens
+E|2|Arterial embalming|Fluid infused through major arteries such as the femoral artery
+E|2|Cavity embalming|Organs removed and cavities packed with fluid-soaked cotton wool
+E|3|Thomas Holmes|Established modern embalming during the American wars
+E|3|William Hunter|Scottish surgeon who popularised arterial embalming
+E|3|Formaldehyde|Principal embalming reagent, discovered by von Hofmann in 1869
+E|3|Three goals of embalming|Sanitization, preservation with restoration, and presentation
+E|3|Maceration|Boiling or soaking to remove soft tissue from bones
+R|1|Bone on X-ray|Appears white because it is very dense
+R|1|Air-filled areas on X-ray|Appear black
+R|2|Fat on X-ray|Appears dark grey
+R|2|Soft tissue on X-ray|Appears light grey
+R|2|X-ray|High-energy electromagnetic radiation that produces 2D images
+R|3|Scatter|Unwanted radiation that reduces X-ray image clarity
+R|3|Radiation dermatitis|Skin damage from very high X-ray doses
+R|3|Eye hazard of X-rays|Repeated exposure may contribute to cataracts
+R|1|Metal or contrast on X-ray|Appears bright white
+R|2|Factors affecting X-ray quality|Magnification, obesity, movement and scatter
+R|3|DNA risk of X-rays|Prolonged or repeated exposure may increase cancer risk
+R|3|Reproductive risk of X-rays|Excessive exposure may cause infertility or birth defects
+R|3|UNTH radiology location|Diagnostic unit opposite the Department of Morbid Anatomy
+S|1|Why SIWES was set up|Graduates had strong theory but little practical skill
+S|2|SIWES compulsory fields|Engineering, sciences, health sciences, agriculture and education
+S|3|NCCE|National Commission for Colleges of Education, one of the bodies managing SIWES
+S|3|Exposure benefit|Shows students work methods and equipment their institutions often lack
+N|1|82 Division Medical Hospital|Military healthcare facility in Abakpa, Enugu North
+N|1|Orthofit Orthopedic Hospital|Located at Trans-Ekulu, Enugu; makes customized artificial limbs
+N|2|Histology Unit|Part of Human Anatomy, UNEC, with a tissue processing room and slide museum
+N|2|Gross Anatomy Unit|Has a dissection hall, cadaver storage and an embalming unit
+N|2|Radiology Unit, UNTH|At Ituku-Ozalla, Enugu; began shortly after the civil war as a small X-ray unit
+N|3|Units trained in at 82 Division|Medical, Surgical, Maternity, Eye clinic, Public health and Physiotherapy
+N|3|Orthofit partnership|First prosthetic clinic in Nigeria to partner with a German prosthetics company
+N|3|Slide museum|Stores cataloged reference slides in the Histology Unit
+D|1|Sphygmomanometer|Measures blood pressure
+D|1|Pulse oximeter|Measures oxygen saturation
+D|2|Microtome|Cuts thin sections from paraffin blocks
+D|2|Cannula|Inserted into a rat’s mouth to give extract
+D|2|Reagent strip|Dipped in urine to check protein and glucose
+D|3|Hypodermic syringe (embalming)|Gives fluid directly to delicate areas such as the face
+K|1|Blood pressure in syncope|Low or unrecordable
+K|2|Pulse in syncope|Slow, weak, thready, or fast/irregular
+K|2|Skin in syncope|Pale, cold and clammy
+K|2|Vasovagal reaction|Syncope cause: emotional stress, pain or prolonged standing
+K|2|Orthostatic hypotension|Syncope cause: sudden change in position, dehydration or medications
+K|3|Before a syncopal attack|Dizziness, blurred vision, nausea, sweating and palpitations
+K|3|Jerking during syncope|Brief movements from reduced brain blood flow, not a true seizure
+K|3|Oral intake in syncope|Give nothing by mouth until the patient is fully conscious
+K|3|If the patient vomits|Turn to the recovery position
+K|3|No breathing and no pulse|Start CPR immediately
+C|2|Ryle’s tube uses|Feeding, drainage, medication and gastric lavage
+C|3|Checking Ryle’s tube position|Test the pH of aspirate; gastric fluid is acidic
+C|2|Prostate|Gland below the bladder in men
+C|3|Prostate cancer symptoms|Poor stream, hesitancy, frequency, nocturia, retention and haematuria
+C|2|Gestational diabetes urine test|Urine glucose is not reliable for diagnosis
+C|3|Syphilis reactive result|Usually followed by an RPR/VDRL test
+C|3|HIV reactive result|Needs confirmatory testing
+C|2|Presbyopia correction|Reading glasses, bifocals or progressive lenses
+C|2|Combo test purpose|Reduce mother-to-child transmission to under 1%
+C|3|No improvement with pinhole|Suspect eye disease such as cataract or glaucoma
+P|1|First step of vital signs|Perform hand hygiene
+P|2|Rest before vital signs|At least 5 minutes
+P|2|Abnormal vital signs|Report to the nurse or doctor immediately
+P|2|Last offices: first step|Doctor confirms death and the time is noted
+P|2|Last offices: after cleaning|Attach identification tags
+P|2|Last offices: final step|Hand the body over to the mortuary
+P|2|Rapid test buffer|Goes into the buffer well, not the sample well
+P|3|Rapid test waiting time|Usually 15–20 minutes
+P|3|Tube feeding position|Sit the patient up at 30–45 degrees
+P|3|Embalming incisions|Visible wounds or cuts were sutured closed
+P|3|Embalming body openings|Cleaned, disinfected and packed with cotton wool
+P|3|Embalming injection point|Femoral artery
+P|3|Bone preparation: boiling|Water with sodium chloride, up to three hours
+P|3|Bone preparation: drying|In direct sunlight
+I|2|Vaccines at 10 weeks|Same as 6 weeks, except IPV
+I|2|Public health role|Vaccination, disease surveillance, health inspections and community outreach
+F|2|Physiotherapy focus|Mobility problems, musculoskeletal issues and stroke recovery
+F|2|Hydrotherapy|Exercising in water
+F|3|Exercises for cerebral lesion|Stretching, strengthening, balance, walking practice, crawling or rolling, hydrotherapy
+O|2|Prosthetics|Branch that fabricates devices to replace missing body parts
+O|2|Orthotics|Devices that support or correct weak or deformed body parts
+O|2|Hip disarticulation|Amputation through the hip joint
+O|2|Knee disarticulation|Amputation through the knee joint
+O|3|Femoral prosthesis parts|Suspension system, knee joint, pylon and foot
+O|3|Suspension types|Elevated vacuum, locking pin, and straps and belt
+O|3|Modification room|Where negative casts are shaped and adjusted for fit
+O|3|Scoliosis brace|Thoracolumbosacral orthosis, to stop the curve progressing
+O|2|Effects of phocomelia|Mobility and dexterity problems, depression and lower self-esteem
+O|3|Causes of phocomelia|Genetic mutation or thalidomide exposure
+H|2|Picking a rat|By the tail, holding the distal end
+H|3|Extract volume|Rat’s weight divided by 1000
+H|3|Extract given gradually|0.5 ml at a time to prevent choking
+H|2|Routes of extract administration|Oral, intravenous, intramuscular, intraperitoneal and rectal
+H|3|Groups with two extracts|Six groups
+H|3|Groups with one extract|Five groups
+H|3|Group 3 (rats)|High dose of herbal medicine
+H|3|Group 4 (rats)|Low dose of herbal medicine
+H|3|Fixative volume|About 1:10 for small tissue and 1:20 for large specimens
+H|2|Simple fixatives|Contain one or two chemicals, e.g. formalin and alcohol
+H|2|Compound fixatives|Contain more than one chemical component
+H|3|Purpose of staining|Gives contrast because most tissue components are transparent
+H|2|Natural dye|Hematoxylin
+H|3|Dehydration order|From lower to higher alcohol concentrations
+E|2|Origin of the word embalming|From words meaning to apply balm or preserve with spices
+E|2|Ancient embalmers|Egyptians, who believed the soul would return to a preserved body
+E|2|Preferred artery for humans|Femoral artery
+E|2|Artery used for animals|Common carotid artery
+E|3|Embalming fluid components|Formaldehyde, methanol or ethanol, glycerine, salt and water
+E|3|Plastination polymers|Silicone, epoxy or polyester
+E|3|Plastination steps in order|Fixation, dehydration, forced impregnation, positioning, curing
+E|3|Renaissance embalming|Coloured camphor and alcohol solution infused through arteries
+E|3|First modern embalming fluid|Arsenic solution, used by Thomas Holmes
+E|3|Methods of embalming|Gravity/pressure, pumping, injection, immersion and powder/surface
+E|2|Importance of embalming|Delays decomposition, prevents disease spread and preserves cadavers
+E|3|Burial method|Body buried, then bones exhumed after decomposition
+E|3|Decomposition in rainy season|Faster than in the dry season
+G|1|Military zone challenge|Some soldiers were harsh and senior staff hard to approach
+G|2|Public health posting challenge|Only two days, too short to learn
+G|2|Radiology challenge|Students not permitted to use the X-ray room
+G|2|Financial recommendation|Transport allowances, reimbursements or subsidized transport
+G|3|Orientation recommendation|Directions, a map and a contact person before posting`;
+
+const sh=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const $=id=>document.getElementById(id);
+const facts=FACTS.trim().split("\n").map(l=>{const p=l.split("|");return{c:p[0],l:+p[1],t:p[2],d:p.slice(3).join("|")}});
+const pools={};facts.forEach(f=>(pools[f.c]??=[]).push(f));
+function make(f,rev){
+ const others=sh(pools[f.c].filter(x=>x!==f)).slice(0,4);
+ const key=rev?"t":"d", ask=rev?"d":"t";
+ const opts=sh([f,...others]);
+ return{l:f.l,q:rev?`Which term is described as: “${f.d}”?`:`Which of these best matches “${f.t}”?`,o:opts.map(x=>x[key]),a:opts.indexOf(f)};
+}
+const total=facts.length;
+$("bankInfo").textContent=`${total} questions in the bank (${[1,2,3].map(l=>facts.filter(f=>f.l===l).length).join(" / ")} across levels 1 / 2 / 3).`;
+
+let store={};try{store=JSON.parse(localStorage.getItem("siwesQuiz")||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem("siwesQuiz",JSON.stringify(store))}catch(e){}};
+if(store.s){[1,2,3].forEach(i=>{$("c"+i).checked=store.s["c"+i];$("n"+i).value=store.s["n"+i]});document.querySelector(`input[name=fb][value=${store.s.fb}]`).checked=true}
+const showBest=()=>{$("best").textContent=store.best?`Best: ${store.best.score}/${store.best.n}`:""};showBest();
+
+let Q=[],i=0,ans=[],mode="instant";
+$("start").onclick=()=>{
+ const s={fb:document.querySelector("input[name=fb]:checked").value};
+ Q=[];
+ for(const l of [1,2,3]){
+  s["c"+l]=$("c"+l).checked;s["n"+l]=+$("n"+l).value||1;
+  if(!s["c"+l])continue;
+  const all=sh(facts.filter(f=>f.l===l).map(f=>[f,Math.random()<.5?1:0]));
+  Q.push(...all.slice(0,s["n"+l]).map(([f,r])=>make(f,r)));
+ }
+ if(!Q.length){alert("Tick at least one level.");return}
+ store.s=s;save();mode=s.fb;Q=sh(Q);i=0;ans=[];
+ $("setup").classList.add("hide");$("result").classList.add("hide");$("quiz").classList.remove("hide");render();
+};
+function render(){
+ const q=Q[i],a=ans[i],done=a!==undefined&&mode==="instant";
+ $("quiz").innerHTML=`<div class="card"><div class="row"><span class="mu">Question ${i+1} of ${Q.length}</span><span class="mu">Level ${q.l}</span></div>
+ <div class="bar"><i style="width:${i/Q.length*100}%"></i></div><h2>${q.q}</h2>
+ ${q.o.map((t,k)=>`<button class="opt ${done?(k===q.a?"ok":k===a?"no":""):(k===a?"sel":"")}" data-k="${k}" ${done?"disabled":""}><b>${"ABCDE"[k]}</b><span>${t}</span></button>`).join("")}
+ <div class="row" style="margin-top:12px"><button class="btn alt" id="quit">Quit</button><button class="btn" id="next" ${a===undefined?"disabled style='opacity:.5'":""}>${i===Q.length-1?"Finish":"Next"}</button></div></div>`;
+ $("quiz").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{if(ans[i]!==undefined&&mode==="instant")return;ans[i]=+b.dataset.k;render()});
+ $("next").onclick=()=>{i<Q.length-1?(i++,render()):finish()};
+ $("quit").onclick=()=>{if(confirm("Quit this quiz?")){$("quiz").classList.add("hide");$("setup").classList.remove("hide")}};
+}
+function finish(){
+ const score=Q.filter((q,k)=>ans[k]===q.a).length;
+ if(!store.best||score/Q.length>=store.best.score/store.best.n)store.best={score,n:Q.length};save();showBest();
+ const wrong=Q.map((q,k)=>({q,k})).filter(x=>ans[x.k]!==x.q.a);
+ $("quiz").classList.add("hide");$("result").classList.remove("hide");
+ $("result").innerHTML=`<div class="card"><h1>${score} / ${Q.length} (${Math.round(score/Q.length*100)}%)</h1>
+ ${[1,2,3].map(l=>{const t=Q.filter(q=>q.l===l);return t.length?`<div class="mu">Level ${l}: ${t.filter(q=>ans[Q.indexOf(q)]===q.a).length}/${t.length}</div>`:""}).join("")}
+ <div class="row" style="margin-top:12px"><button class="btn" id="again">New quiz</button></div></div>
+ ${wrong.length?`<div class="card"><h2>Review of wrong answers</h2>${wrong.map(({q,k})=>`<div class="rev"><b>${q.q}</b><br>Your answer: ${ans[k]===undefined?"none":"ABCDE"[ans[k]]+". "+q.o[ans[k]]}<br>Correct: <b>${"ABCDE"[q.a]}. ${q.o[q.a]}</b></div>`).join("")}</div>`:`<div class="card">Perfect score!</div>`}`;
+ $("again").onclick=()=>{$("result").classList.add("hide");$("setup").classList.remove("hide")};
+}
+const root=document.documentElement;
+function applyTheme(t){root.dataset.theme=t;$("theme").textContent=t==="dark"?"☀️ Light":"🌙 Dark"}
+applyTheme(store.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"));
+$("theme").onclick=()=>{const t=root.dataset.theme==="dark"?"light":"dark";applyTheme(t);store.theme=t;save()};
+$("go").onclick=()=>{$("home").classList.add("hide");$("setup").classList.remove("hide")};
+$("toHome").onclick=()=>{$("setup").classList.add("hide");$("home").classList.remove("hide")};
+const OSEC=["SIWES","Placements","Vitals & syncope","Clinical","Physiotherapy","Orthopaedics","Histology","Embalming & anatomy","Radiology","Challenges"];
+// Oral bank: section(1-10)|question|model answer
+const ORAL=`1|What does SIWES stand for?|Students Industrial Work Experience Scheme.
+1|Who set up SIWES and when?|The Industrial Training Fund (ITF), established by Decree No. 47 of 1971. SIWES started in 1973 with about 748 students from 11 institutions.
+1|What is the aim of SIWES?|To bridge the gap between theory and practice.
+1|Why was SIWES needed?|Graduates had strong theory but little practical skill.
+1|How did SIWES management change over time?|In 1979 the ITF withdrew and the NUC and NBTE took over supervision. Management returned to the ITF in 1984/85.
+1|What is the vision of SIWES?|To be the foremost skills training development organization in Nigeria.
+2|Where did you train in Abakpa?|82 Division Medical Hospital, a military facility. Units: Medical, Surgical, Maternity, Eye clinic, Public health and Physiotherapy.
+2|Where is Orthofit and what does it do?|Trans-Ekulu, Enugu. Makes customized artificial limbs; first prosthetic clinic in Nigeria to partner with a German prosthetics company.
+2|Which units did you cover at UNEC and UNTH?|Histology and Gross Anatomy at UNEC; Radiology at UNTH, Ituku-Ozalla.
+3|State the normal vital sign ranges.|Temperature 36.1–37.2°C, pulse 60–100 beats/min, respiration 12–20 breaths/min, oxygen saturation 95–100%, blood pressure about 120/80 mmHg.
+3|Which instruments measure vital signs?|Thermometer, sphygmomanometer (blood pressure) and pulse oximeter (oxygen saturation).
+3|What is the first step before taking vital signs?|Hand hygiene. The patient should also rest for at least 5 minutes.
+3|What do you do if a reading is abnormal?|Report it to the nurse or doctor immediately.
+3|What is syncope?|Sudden, brief loss of consciousness from reduced blood flow to the brain (fainting).
+3|What are the common causes of syncope?|Vasovagal reactions (emotional stress, pain, prolonged standing) and orthostatic hypotension (sudden position change, dehydration, medications).
+3|What are the signs of syncope?|Low or unrecordable blood pressure, slow weak (or fast irregular) pulse, and pale, cold, clammy skin.
+3|What warning signs come before an attack?|Dizziness, blurred vision, nausea, sweating and palpitations.
+3|How do you manage a patient who has fainted?|Ease them to the floor, lie them supine with legs raised about 30 degrees, give nothing by mouth until fully conscious, use the recovery position if they vomit, and start CPR if there is no breathing or pulse.
+4|What is a hernia?|Protrusion of an organ or tissue through a weak point in the abdominal wall. The most common type is inguinal.
+4|How is a hernia repaired?|Herniorrhaphy is surgical repair; hernioplasty is repair using mesh.
+4|What is a Ryle’s tube used for?|A nasogastric tube passed through the nose into the stomach for feeding, drainage, medication and gastric lavage.
+4|How do you confirm Ryle’s tube position?|Test the pH of the aspirate (gastric fluid is acidic). Sit the patient up at 30–45 degrees for feeding.
+4|What is a urinary catheter?|A tube inserted into the bladder to drain urine.
+4|What are last offices?|Care after death: the doctor confirms death and notes the time, the body is cleaned, tagged, wrapped in a shroud and handed to the mortuary.
+4|What is the Snellen chart?|A chart for testing visual acuity at 6 metres. Normal vision is 6/6.
+4|What is the pinhole test?|It blocks scattered light. Improvement suggests a refractive error; no improvement suggests eye disease such as cataract or glaucoma.
+4|What is presbyopia?|Age-related loss of near focusing from about 40–45 years, corrected with reading glasses, bifocals or progressive lenses.
+4|Name some prostate cancer symptoms.|Poor stream, hesitancy, frequency, nocturia, retention and haematuria.
+4|How is gestational diabetes diagnosed?|75 g oral glucose tolerance test (OGTT) at 24–28 weeks. Urine glucose is not reliable.
+4|What does the HIV/syphilis combo test detect?|Antibodies to HIV-1/2 and Treponema pallidum. It helps reduce mother-to-child transmission to under 1%.
+4|How do you read a rapid test?|Wait about 15–20 minutes. If the control line is absent the test is invalid; repeat with a new device.
+4|Give the immunization schedule you saw.|Birth: BCG, OPV, Hep B. 6 wks: Penta 1, OPV 1, Rota 1, IPV 1. 10 wks: same except IPV. 14 wks: IPV 2. 6 mo: Vitamin A. 9 mo: Measles, Yellow Fever, Meningitis. 12 mo: Vitamin A, MMR, Chickenpox. 2 yrs+: Cholera, Typhoid.
+4|What does the public health unit do?|Vaccination, disease surveillance, health inspections and community outreach.
+5|What does the physiotherapy unit focus on?|Mobility problems, musculoskeletal issues and stroke recovery.
+5|What is the ultrasound machine used for?|Treating pain, muscle spasm and tissue injury. Gel is applied first.
+5|What is TENS?|Low-voltage electrical current used to relieve pain.
+5|Name some physiotherapy equipment and uses.|Precision box (stroke patients relearn fine movements), quadriceps bench (leg strength), abdominal bench (abdominal muscles). Hydrotherapy is exercise in water.
+6|Differentiate prosthesis from orthosis.|A prosthesis replaces a lost body part. An orthosis is a brace or splint that supports, corrects or protects a weak part.
+6|Differentiate a prosthetist from an orthotist.|A prosthetist fabricates and fits prostheses; an orthotist designs and fits orthotic devices.
+6|What is a disarticulation?|An amputation across a joint (e.g. hip or knee). A “trans” amputation is across a bone.
+6|Define trans-femoral, trans-tibial, trans-humeral and trans-radial.|Above the knee, below the knee, above the elbow and below the elbow.
+6|What are the parts of a femoral prosthesis?|Suspension system, knee joint, pylon and foot. The pylon replaces the bone.
+6|What suspension types are used?|Elevated vacuum, locking pin, and straps and belt.
+6|Which material makes the sockets?|Polypropylene.
+6|Which machines did you see in the workshop?|Luther machine (grinding and shaping), drilling machine (holes). Negative casts are shaped in the modification room.
+6|Define scoliosis, kyphosis and lordosis.|Scoliosis: lateral spinal curve. Kyphosis: excessive outward curve of the thoracic spine. Lordosis: exaggerated inward curve of the lower back.
+6|How is scoliosis braced?|With a thoracolumbosacral orthosis to stop the curve progressing.
+6|What is phocomelia?|Rare congenital condition (“seal limbs”) with severely shortened or absent limbs. Causes: genetic mutation or thalidomide in pregnancy. Effects: mobility and dexterity problems, lower self-esteem.
+7|Differentiate histology from histopathology.|Histology: microscopic study of normal tissue. Histopathology: study of abnormal tissue.
+7|List the stages of tissue processing.|Fixation, dehydration, clearing, impregnation, embedding, microtomy, floating, staining and mounting.
+7|What is fixation and why is it done?|Preserving tissue with chemicals to prevent autolysis and putrefaction and to maintain architecture.
+7|What fixative volume ratio is used?|About 1:10 for small tissue and 1:20 for large specimens.
+7|Give examples of simple and compound fixatives.|Simple: formalin and alcohol. Compound: Bouin’s solution (anatomical) and Carnoy’s fluid (nuclear cytological).
+7|What is dehydration?|Removing water from tissue with graded alcohols, from lower to higher concentrations.
+7|What is clearing?|Removing the dehydrating agent, commonly with xylene.
+7|What is impregnation?|Replacing the clearing agent with molten paraffin wax, giving a firm block that resists distortion.
+7|What are microtomy and floating?|Microtomy: cutting thin sections of a paraffin block. Floating: spreading sections on warm water to remove folds.
+7|Why do we stain, and what is H&E?|Tissue is mostly transparent, so stains give contrast. H&E colours nuclei purple-blue and cytoplasm pink. Hematoxylin is the natural dye.
+7|What is DPX?|A non-aqueous mounting medium that makes a permanent slide.
+7|Describe the rat experiment groups.|Group 1: normal (negative) control. Group 2: induced but untreated (positive) control. Group 3: high dose herbal medicine. Group 4: low dose.
+7|How were the rats handled and dosed?|Picked by the tail at the distal end. Volume is body weight divided by 1000, given 0.5 ml at a time by cannula to prevent choking.
+8|What is embalming?|Temporary preservation and disinfection of dead human remains.
+8|Where does the word come from and who practised it early?|From words meaning to apply balm or preserve with spices. Ancient Egyptians practised it, believing the soul would return to a preserved body.
+8|What are the three goals of embalming?|Sanitization, preservation with restoration, and presentation.
+8|Why is embalming important?|It delays decomposition, prevents disease spread and preserves cadavers for dissection.
+8|Which artery is used for embalming?|Femoral artery in humans; common carotid in animals.
+8|Differentiate arterial from cavity embalming.|Arterial: fluid infused through major arteries. Cavity: organs removed and cavities packed with fluid-soaked cotton wool.
+8|What is in embalming fluid?|Formaldehyde, methanol or ethanol, glycerine, salt and water. Formaldehyde was discovered by von Hofmann in 1869.
+8|Give some history of embalming.|Renaissance embalmers used coloured camphor and alcohol through arteries. William Hunter popularised arterial embalming; Thomas Holmes established modern embalming using arsenic solution.
+8|What are Thiel embalming and plastination?|Thiel (Walter Thiel, Austria) keeps bodies soft and lifelike. Plastination (Gunther von Hagens) replaces water and fat with silicone, epoxy or polyester: fixation, dehydration, forced impregnation, positioning, curing.
+8|Describe the embalming procedure you saw.|Position supine, suture wounds, clean and pack body openings with cotton wool, inject through the femoral artery, and use a hypodermic syringe for delicate areas like the face.
+8|How are bones prepared?|Burial then exhumation, or maceration: scrape fat, boil in water with sodium chloride up to three hours, dry in direct sunlight. Decomposition is faster in the rainy season.
+9|What is an X-ray?|High-energy electromagnetic radiation that produces 2D images.
+9|How do tissues appear on an X-ray?|Bone and metal white, soft tissue light grey, fat dark grey, air black.
+9|What affects X-ray image quality?|Magnification, obesity, movement and scatter (unwanted radiation that reduces clarity).
+9|What are the hazards of X-rays?|Radiation dermatitis at very high doses, cataracts, DNA damage with possible cancer risk, and infertility or birth defects at excessive exposure.
+9|Which imaging methods avoid radiation?|Ultrasound and MRI.
+10|What challenges did you face?|Harsh soldiers and hard-to-approach staff in the military zone, only two days in public health, no permission to use the X-ray room, difficulty locating sites, and high transport costs.
+10|What do you recommend?|Orientation with directions, a map and a contact person; transport allowances or subsidies; a clear teaching plan per unit; longer rotations; supervised access to the X-ray room.`.trim().split("\n").map(l=>{const p=l.split("|");return{s:+p[0],q:p[1],a:p[2]}});
+let OL=[],oi=0,oshow=false;
+$("osec").innerHTML=`<option value="0">All sections (${ORAL.length})</option>`+OSEC.map((n,k)=>`<option value="${k+1}">${n} (${ORAL.filter(x=>x.s===k+1).length})</option>`).join("");
+function oStart(){const v=+$("osec").value,l=ORAL.filter(x=>!v||x.s===v);OL=$("oshuf").checked?sh(l):l;oi=0;oshow=false;oRender()}
+function oRender(){const x=OL[oi];
+ $("oc").innerHTML=`<div class="row"><span class="mu">Question ${oi+1} of ${OL.length}</span><span class="mu">${OSEC[x.s-1]}</span></div><div class="bar"><i style="width:${(oi+1)/OL.length*100}%"></i></div><h2>${x.q}</h2>${oshow?`<div class="ans">${x.a}</div>`:""}<div class="row" style="margin-top:12px"><button class="btn alt" id="op" ${oi?"":"disabled"}>Previous</button><button class="btn" id="osh">${oshow?"Hide answer":"Show answer"}</button><button class="btn alt" id="on" ${oi<OL.length-1?"":"disabled"}>Next</button></div>`;
+ $("osh").onclick=()=>{oshow=!oshow;oRender()};
+ $("op").onclick=()=>{oi--;oshow=false;oRender()};
+ $("on").onclick=()=>{oi++;oshow=false;oRender()};
+}
+$("osec").onchange=oStart;$("oshuf").onchange=oStart;
+$("goOral").onclick=()=>{$("home").classList.add("hide");$("oral").classList.remove("hide");oStart()};
+$("oHome").onclick=()=>{$("oral").classList.add("hide");$("home").classList.remove("hide")};
+</script></body></html>
